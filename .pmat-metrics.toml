@@ -1,0 +1,37 @@
+# O(1) Quality Gate Metric Thresholds for HF-Advanced-Fine-Tuning
+# Course 4: Advanced Fine-Tuning with Sovereign AI Stack
+# Pattern: Toyota Way - Jidoka (quality at the source)
+
+[thresholds]
+# Documentation project thresholds
+lint_max_ms = 30_000              # 30s (markdown linting)
+docs_build_max_ms = 60_000        # 60s (mdbook build)
+
+[staleness]
+# Metrics older than this trigger warnings
+max_age_days = 30
+
+[enforcement]
+# Pre-commit behavior
+fail_on_stale_metrics = false     # Warn, don't block
+fail_on_missing_metrics = false   # Allow commits if no cache
+fail_on_threshold_violation = false # Docs project - advisory only
+
+[trend_analysis]
+# Track metrics for Kaizen (continuous improvement)
+enabled = true
+retention_days = 90
+alert_on_regression = false       # Docs project
+
+[quality_gates]
+# Documentation project targets
+min_tdg_grade = "C"               # Target: C or better for docs
+
+[project]
+# Project metadata
+type = "course"
+stack = "sovereign-ai"
+primary_tool = "apr-cli"
+model_family = "qwen2.5-coder"
+default_tier = "small"            # 1.5B - Colab free tier compatible
+hf_integration = true             # Uses HuggingFace Hub

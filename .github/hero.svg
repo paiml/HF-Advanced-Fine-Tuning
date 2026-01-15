@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a3e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aprGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="qwenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Grid pattern -->
+  <g opacity="0.1" stroke="#6366f1" stroke-width="0.5">
+    <line x1="0" y1="50" x2="800" y2="50"/>
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="150" x2="800" y2="150"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="250" x2="800" y2="250"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="350" x2="800" y2="350"/>
+    <line x1="100" y1="0" x2="100" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="500" y1="0" x2="500" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+    <line x1="700" y1="0" x2="700" y2="400"/>
+  </g>
+
+  <!-- Central .apr file icon -->
+  <g transform="translate(340, 80)" filter="url(#glow)">
+    <!-- File shape -->
+    <path d="M0 10 L0 100 L80 100 L80 25 L65 10 Z" fill="#1e1e3f" stroke="url(#aprGrad)" stroke-width="2"/>
+    <path d="M65 10 L65 25 L80 25" fill="none" stroke="url(#aprGrad)" stroke-width="2"/>
+    <!-- .apr text -->
+    <text x="40" y="65" font-family="monospace" font-size="16" fill="url(#aprGrad)" text-anchor="middle" font-weight="bold">.apr</text>
+  </g>
+
+  <!-- Left: HuggingFace import arrow -->
+  <g transform="translate(180, 110)">
+    <text x="0" y="0" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">HuggingFace</text>
+    <text x="0" y="18" font-family="monospace" font-size="11" fill="url(#qwenGrad)">Qwen2.5-Coder</text>
+    <path d="M90 25 L140 25" stroke="#6366f1" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <polygon points="140,25 132,21 132,29" fill="#6366f1"/>
+  </g>
+
+  <!-- Right: Inference output arrow -->
+  <g transform="translate(480, 110)">
+    <path d="M0 25 L50 25" stroke="#8b5cf6" stroke-width="2"/>
+    <polygon points="50,25 42,21 42,29" fill="#8b5cf6"/>
+    <text x="60" y="20" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">2.7x Faster</text>
+    <text x="60" y="38" font-family="monospace" font-size="11" fill="#22c55e">788 tok/s</text>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="220" font-family="system-ui, sans-serif" font-size="32" fill="#f8fafc" text-anchor="middle" font-weight="bold">Advanced Fine-Tuning</text>
+
+  <!-- Subtitle -->
+  <text x="400" y="252" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8" text-anchor="middle">Sovereign AI Stack + Qwen2.5-Coder</text>
+
+  <!-- Feature boxes -->
+  <g transform="translate(100, 280)">
+    <!-- Box 1: entrenar -->
+    <rect x="0" y="0" width="140" height="60" rx="8" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="70" y="25" font-family="monospace" font-size="14" fill="url(#aprGrad)" text-anchor="middle" font-weight="bold">entrenar</text>
+    <text x="70" y="45" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">LoRA / QLoRA</text>
+  </g>
+
+  <g transform="translate(260, 280)">
+    <!-- Box 2: realizar -->
+    <rect x="0" y="0" width="140" height="60" rx="8" fill="#1e1e3f" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="70" y="25" font-family="monospace" font-size="14" fill="#8b5cf6" text-anchor="middle" font-weight="bold">realizar</text>
+    <text x="70" y="45" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">GGUF Inference</text>
+  </g>
+
+  <g transform="translate(420, 280)">
+    <!-- Box 3: apr -->
+    <rect x="0" y="0" width="140" height="60" rx="8" fill="#1e1e3f" stroke="url(#qwenGrad)" stroke-width="1"/>
+    <text x="70" y="25" font-family="monospace" font-size="14" fill="url(#qwenGrad)" text-anchor="middle" font-weight="bold">apr</text>
+    <text x="70" y="45" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">CLI + Serve</text>
+  </g>
+
+  <g transform="translate(580, 280)">
+    <!-- Box 4: pmat -->
+    <rect x="0" y="0" width="140" height="60" rx="8" fill="#1e1e3f" stroke="#22c55e" stroke-width="1"/>
+    <text x="70" y="25" font-family="monospace" font-size="14" fill="#22c55e" text-anchor="middle" font-weight="bold">pmat</text>
+    <text x="70" y="45" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle">Quality Gates</text>
+  </g>
+
+  <!-- Tier badges -->
+  <g transform="translate(100, 365)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="30" y="15" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="middle">0.5B</text>
+  </g>
+  <g transform="translate(170, 365)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#1e1e3f" stroke="#6366f1" stroke-width="1"/>
+    <text x="30" y="15" font-family="monospace" font-size="10" fill="#6366f1" text-anchor="middle">1.5B</text>
+  </g>
+  <g transform="translate(240, 365)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="30" y="15" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="middle">7B</text>
+  </g>
+  <g transform="translate(310, 365)">
+    <rect x="0" y="0" width="60" height="22" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="30" y="15" font-family="monospace" font-size="10" fill="#94a3b8" text-anchor="middle">32B</text>
+  </g>
+
+  <!-- Colab badge -->
+  <g transform="translate(580, 365)">
+    <rect x="0" y="0" width="120" height="22" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="60" y="15" font-family="system-ui, sans-serif" font-size="10" fill="#f59e0b" text-anchor="middle">Colab Free Tier</text>
+  </g>
+</svg>

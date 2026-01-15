@@ -1,0 +1,42 @@
+# ComputeBrick Configuration for HF-Advanced-Fine-Tuning
+# Profiles .apr model inference performance
+#
+# Reference: qwen2.5-coder-showcase-demo.md §2.5
+
+[brick]
+name = "hf-fine-tuning-course"
+version = "0.1.0"
+description = "Performance profiling for fine-tuned Qwen2.5-Coder models"
+
+[targets]
+# Inference throughput targets (tok/s)
+tiny_target = 1000    # 0.5B model
+small_target = 788    # 1.5B model (validated benchmark)
+medium_target = 400   # 7B model
+large_target = 150    # 32B model
+
+# Latency budgets (µs per token)
+tiny_budget_us = 1000
+small_budget_us = 1270    # 1/788 tok/s
+medium_budget_us = 2500
+large_budget_us = 6667
+
+[scoring]
+# ComputeBrick score weights (total 100)
+performance_weight = 40   # Throughput vs target
+efficiency_weight = 25    # Backend utilization
+correctness_weight = 20   # All bricks executed
+stability_weight = 15     # CV < 15%
+
+# Minimum passing score
+min_score = 70
+
+[baselines]
+# Baseline comparisons
+ollama_multiplier = 2.7   # apr should be 2.7x faster
+llamacpp_multiplier = 1.5 # apr should be 1.5x faster
+
+[profiles]
+# Profile output directory
+output_dir = "brick/profiles"
+format = "json"
