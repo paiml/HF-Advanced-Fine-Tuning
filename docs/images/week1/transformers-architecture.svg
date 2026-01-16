@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Section backgrounds -->
+  <!-- When to use -->
+  <rect x="40" y="140" width="580" height="400" fill="#ebf8ff" stroke="#4299e1" stroke-width="2" rx="8"/>
+  <!-- ELI5 center -->
+  <rect x="640" y="140" width="640" height="400" fill="#faf5ff" stroke="#9f7aea" stroke-width="2" rx="8"/>
+  <!-- Why they won -->
+  <rect x="1300" y="140" width="580" height="400" fill="#1a202c" stroke="#4a5568" stroke-width="2" rx="8"/>
+  <!-- Bottom: Old vs New comparison -->
+  <rect x="40" y="560" width="1840" height="280" fill="#fff5f5" stroke="#fc8181" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Icons and visuals -->
+
+  <!-- When: Domain icons -->
+  <!-- Text icon -->
+  <rect x="80" y="200" width="100" height="70" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="95" y="215" width="70" height="8" fill="#bee3f8" rx="1"/>
+  <rect x="95" y="230" width="55" height="8" fill="#bee3f8" rx="1"/>
+  <rect x="95" y="245" width="65" height="8" fill="#bee3f8" rx="1"/>
+
+  <!-- Image icon -->
+  <rect x="200" y="200" width="100" height="70" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <circle cx="230" cy="230" r="12" fill="#ecc94b"/>
+  <polygon points="210,260 250,235 270,260 290,245 290,260 210,260" fill="#48bb78"/>
+
+  <!-- Audio icon -->
+  <rect x="320" y="200" width="100" height="70" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="340" y="250" width="8" height="15" fill="#bee3f8"/>
+  <rect x="355" y="235" width="8" height="30" fill="#bee3f8"/>
+  <rect x="370" y="220" width="8" height="45" fill="#bee3f8"/>
+  <rect x="385" y="240" width="8" height="25" fill="#bee3f8"/>
+  <rect x="400" y="230" width="8" height="35" fill="#bee3f8"/>
+
+  <!-- Code icon -->
+  <rect x="440" y="200" width="100" height="70" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+
+  <!-- ELI5: Attention visualization -->
+  <!-- Token boxes -->
+  <rect x="680" y="200" width="55" height="35" fill="#9f7aea" stroke="#6b46c1" stroke-width="2" rx="4"/>
+  <rect x="745" y="200" width="55" height="35" fill="#9f7aea" stroke="#6b46c1" stroke-width="4"/>
+  <rect x="810" y="200" width="55" height="35" fill="#9f7aea" stroke="#6b46c1" stroke-width="2" rx="4"/>
+  <rect x="875" y="200" width="55" height="35" fill="#9f7aea" stroke="#6b46c1" stroke-width="2" rx="4"/>
+  <rect x="940" y="200" width="55" height="35" fill="#9f7aea" stroke="#6b46c1" stroke-width="2" rx="4"/>
+  <rect x="1005" y="200" width="55" height="35" fill="#6b46c1" stroke="#44337a" stroke-width="2" rx="4"/>
+  <rect x="1070" y="200" width="55" height="35" fill="#e9d8fd" stroke="#9f7aea" stroke-width="2" rx="4"/>
+  <rect x="1135" y="200" width="55" height="35" fill="#e9d8fd" stroke="#9f7aea" stroke-width="2" rx="4"/>
+  <rect x="1200" y="200" width="55" height="35" fill="#e9d8fd" stroke="#9f7aea" stroke-width="2" rx="4"/>
+
+  <!-- Attention arrows pointing to blank -->
+  <line x1="707" y1="235" x2="1032" y2="280" stroke="#d6bcfa" stroke-width="2"/>
+  <line x1="772" y1="235" x2="1032" y2="280" stroke="#9f7aea" stroke-width="3"/>
+  <line x1="837" y1="235" x2="1032" y2="280" stroke="#6b46c1" stroke-width="4"/>
+  <line x1="902" y1="235" x2="1032" y2="280" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="967" y1="235" x2="1032" y2="280" stroke="#d6bcfa" stroke-width="1"/>
+
+  <!-- Prediction box -->
+  <rect x="1000" y="290" width="70" height="40" fill="#38a169" stroke="#276749" stroke-width="3" rx="4"/>
+
+  <!-- Why: Three pillars -->
+  <!-- Parallel -->
+  <rect x="1520" y="200" width="140" height="90" fill="#38a169" stroke="#48bb78" stroke-width="2" rx="4"/>
+  <!-- Grid of parallel ops -->
+  <rect x="1535" y="215" width="25" height="25" fill="#ffffff" rx="2"/>
+  <rect x="1570" y="215" width="25" height="25" fill="#ffffff" rx="2"/>
+  <rect x="1605" y="215" width="25" height="25" fill="#ffffff" rx="2"/>
+  <rect x="1640" y="215" width="25" height="25" fill="#ffffff" rx="2"/>
+  <rect x="1535" y="250" width="25" height="25" fill="#ffffff" rx="2"/>
+  <rect x="1570" y="250" width="25" height="25" fill="#ffffff" rx="2"/>
+  <rect x="1605" y="250" width="25" height="25" fill="#ffffff" rx="2"/>
+  <rect x="1640" y="250" width="25" height="25" fill="#ffffff" rx="2"/>
+
+  <!-- Long-range memory -->
+  <rect x="1520" y="320" width="140" height="60" fill="#3182ce" stroke="#4299e1" stroke-width="2" rx="4"/>
+  <circle cx="1555" cy="350" r="12" fill="#ffffff" stroke="#bee3f8" stroke-width="1"/>
+  <circle cx="1645" cy="350" r="12" fill="#ffffff" stroke="#bee3f8" stroke-width="1"/>
+  <line x1="1567" y1="350" x2="1633" y2="350" stroke="#ffffff" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Scale -->
+  <rect x="1520" y="410" width="40" height="40" fill="#9f7aea" stroke="#b794f4" stroke-width="2" rx="4"/>
+  <rect x="1570" y="400" width="50" height="50" fill="#805ad5" stroke="#9f7aea" stroke-width="2" rx="4"/>
+  <rect x="1630" y="390" width="60" height="60" fill="#6b46c1" stroke="#805ad5" stroke-width="2" rx="4"/>
+
+  <!-- Bottom: Old vs New -->
+  <!-- Old: RNN sequential -->
+  <rect x="100" y="620" width="60" height="40" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="180" y="620" width="60" height="40" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="260" y="620" width="60" height="40" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="340" y="620" width="60" height="40" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="420" y="620" width="60" height="40" fill="#fc8181" stroke="#e53e3e" stroke-width="2" rx="4"/>
+  <!-- Sequential arrows -->
+  <line x1="160" y1="640" x2="175" y2="640" stroke="#c53030" stroke-width="2"/>
+  <polygon points="175,635 185,640 175,645" fill="#c53030"/>
+  <line x1="240" y1="640" x2="255" y2="640" stroke="#c53030" stroke-width="2"/>
+  <polygon points="255,635 265,640 255,645" fill="#c53030"/>
+  <line x1="320" y1="640" x2="335" y2="640" stroke="#c53030" stroke-width="2"/>
+  <polygon points="335,635 345,640 335,645" fill="#c53030"/>
+  <line x1="400" y1="640" x2="415" y2="640" stroke="#c53030" stroke-width="2"/>
+  <polygon points="415,635 425,640 415,645" fill="#c53030"/>
+  <!-- Fading color = forgetting -->
+
+  <!-- Divider -->
+  <rect x="560" y="600" width="3" height="220" fill="#e2e8f0"/>
+
+  <!-- New: Transformer parallel -->
+  <rect x="620" y="620" width="60" height="40" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="700" y="620" width="60" height="40" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="780" y="620" width="60" height="40" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="860" y="620" width="60" height="40" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="940" y="620" width="60" height="40" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <!-- All-to-all connections -->
+  <line x1="650" y1="660" x2="650" y2="720" stroke="#4299e1" stroke-width="1"/>
+  <line x1="730" y1="660" x2="730" y2="720" stroke="#4299e1" stroke-width="1"/>
+  <line x1="810" y1="660" x2="810" y2="720" stroke="#4299e1" stroke-width="1"/>
+  <line x1="890" y1="660" x2="890" y2="720" stroke="#4299e1" stroke-width="1"/>
+  <line x1="970" y1="660" x2="970" y2="720" stroke="#4299e1" stroke-width="1"/>
+  <!-- Attention layer -->
+  <rect x="620" y="720" width="380" height="30" fill="#bee3f8" stroke="#4299e1" stroke-width="2" rx="4"/>
+  <!-- Output connections -->
+  <line x1="650" y1="750" x2="650" y2="790" stroke="#4299e1" stroke-width="1"/>
+  <line x1="730" y1="750" x2="730" y2="790" stroke="#4299e1" stroke-width="1"/>
+  <line x1="810" y1="750" x2="810" y2="790" stroke="#4299e1" stroke-width="1"/>
+  <line x1="890" y1="750" x2="890" y2="790" stroke="#4299e1" stroke-width="1"/>
+  <line x1="970" y1="750" x2="970" y2="790" stroke="#4299e1" stroke-width="1"/>
+
+  <!-- Comparison stats -->
+  <rect x="1100" y="620" width="320" height="80" fill="#fff5f5" stroke="#fc8181" stroke-width="1" rx="4"/>
+  <rect x="1100" y="720" width="320" height="80" fill="#ebf8ff" stroke="#4299e1" stroke-width="1" rx="4"/>
+
+  <!-- Dominant architecture badge -->
+  <rect x="1480" y="640" width="340" height="140" fill="#f0fff4" stroke="#48bb78" stroke-width="3" rx="8"/>
+
+  <!-- Legend boxes -->
+  <rect x="600" y="1020" width="20" height="20" fill="#e53e3e" rx="2"/>
+  <rect x="780" y="1020" width="20" height="20" fill="#3182ce" rx="2"/>
+  <rect x="960" y="1020" width="20" height="20" fill="#38a169" rx="2"/>
+
+  <!-- LAYER 5: TEXT (always last) -->
+
+  <!-- Title -->
+  <text x="960" y="70" font-family="Georgia, Times, serif" font-size="52" fill="#1a202c" text-anchor="middle" font-weight="600">Transformers: The Dominant Architecture</text>
+  <text x="960" y="110" font-family="Georgia, Times, serif" font-size="22" fill="#718096" text-anchor="middle">Since 2017, nearly all state-of-the-art models use this design</text>
+
+  <!-- Code icon text -->
+  <text x="490" y="245" font-family="Menlo, Monaco, monospace" font-size="28" fill="#bee3f8" text-anchor="middle">&lt;/&gt;</text>
+
+  <!-- When header -->
+  <text x="330" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#2c5282" text-anchor="middle" font-weight="600">WHEN TO USE</text>
+  <text x="130" y="290" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle" font-weight="500">Text</text>
+  <text x="130" y="310" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">GPT, BERT</text>
+  <text x="130" y="325" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Qwen, LLaMA</text>
+  <text x="250" y="290" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle" font-weight="500">Images</text>
+  <text x="250" y="310" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">ViT, DALL-E</text>
+  <text x="250" y="325" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Stable Diffusion</text>
+  <text x="370" y="290" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle" font-weight="500">Audio</text>
+  <text x="370" y="310" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Whisper</text>
+  <text x="490" y="290" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle" font-weight="500">Code</text>
+  <text x="490" y="310" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Codex</text>
+  <text x="490" y="325" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">StarCoder</text>
+
+  <text x="330" y="380" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568" text-anchor="middle">Anything sequential</text>
+  <text x="330" y="405" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568" text-anchor="middle">where context matters</text>
+
+  <!-- ELI5 header and content -->
+  <text x="960" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#553c9a" text-anchor="middle" font-weight="600">THE KEY IDEA: ATTENTION</text>
+
+  <!-- Token labels -->
+  <text x="707" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">The</text>
+  <text x="772" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">cat</text>
+  <text x="837" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">sat</text>
+  <text x="902" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">on</text>
+  <text x="967" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">the</text>
+  <text x="1032" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">___</text>
+  <text x="1097" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#6b46c1" text-anchor="middle">?</text>
+  <text x="1162" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#6b46c1" text-anchor="middle">?</text>
+  <text x="1227" y="222" font-family="Georgia, Times, serif" font-size="14" fill="#6b46c1" text-anchor="middle">?</text>
+
+  <text x="1035" y="316" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="600">mat</text>
+
+  <text x="960" y="370" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">"Which words help predict the blank?"</text>
+  <text x="960" y="395" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">Looks at ALL words at once, weights by relevance</text>
+  <text x="960" y="430" font-family="Georgia, Times, serif" font-size="18" fill="#6b46c1" text-anchor="middle" font-weight="500">"cat" + "sat" → probably "mat"</text>
+
+  <!-- Why header -->
+  <text x="1590" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#ffffff" text-anchor="middle" font-weight="600">WHY THEY WON</text>
+  <text x="1410" y="235" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Parallel</text>
+  <text x="1410" y="260" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">GPUs love it</text>
+  <text x="1410" y="340" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Long-range</text>
+  <text x="1410" y="365" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">Word 1 ↔ 1000</text>
+  <text x="1410" y="430" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Scales</text>
+  <text x="1410" y="455" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">Bigger = smarter</text>
+
+  <!-- Bottom comparison -->
+  <text x="280" y="600" font-family="Georgia, Times, serif" font-size="20" fill="#c53030" text-anchor="middle" font-weight="600">OLD: RNNs (Sequential)</text>
+  <text x="130" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W1</text>
+  <text x="210" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W2</text>
+  <text x="290" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W3</text>
+  <text x="370" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W4</text>
+  <text x="450" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#c53030" text-anchor="middle">W5</text>
+  <text x="280" y="700" font-family="Georgia, Times, serif" font-size="16" fill="#c53030" text-anchor="middle">One at a time → forgets early words</text>
+
+  <text x="810" y="600" font-family="Georgia, Times, serif" font-size="20" fill="#2c5282" text-anchor="middle" font-weight="600">NEW: Transformers (Parallel)</text>
+  <text x="650" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W1</text>
+  <text x="730" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W2</text>
+  <text x="810" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W3</text>
+  <text x="890" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W4</text>
+  <text x="970" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">W5</text>
+  <text x="810" y="740" font-family="Georgia, Times, serif" font-size="14" fill="#2c5282" text-anchor="middle">ATTENTION</text>
+  <text x="810" y="810" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle">All at once → remembers everything</text>
+
+  <!-- Stats comparison -->
+  <text x="1260" y="650" font-family="Georgia, Times, serif" font-size="18" fill="#c53030" text-anchor="middle" font-weight="500">RNN/LSTM</text>
+  <text x="1260" y="680" font-family="Georgia, Times, serif" font-size="16" fill="#718096" text-anchor="middle">Slow, sequential, forgets</text>
+  <text x="1260" y="755" font-family="Georgia, Times, serif" font-size="18" fill="#2c5282" text-anchor="middle" font-weight="500">Transformer</text>
+  <text x="1260" y="785" font-family="Georgia, Times, serif" font-size="16" fill="#718096" text-anchor="middle">Fast, parallel, remembers</text>
+
+  <!-- Badge text -->
+  <text x="1650" y="690" font-family="Georgia, Times, serif" font-size="24" fill="#276749" text-anchor="middle" font-weight="600">2017 → Now</text>
+  <text x="1650" y="725" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568" text-anchor="middle">GPT, BERT, Qwen,</text>
+  <text x="1650" y="750" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568" text-anchor="middle">Claude, Gemini, LLaMA</text>
+  <text x="1650" y="775" font-family="Georgia, Times, serif" font-size="16" fill="#38a169" text-anchor="middle" font-weight="500">ALL Transformers</text>
+
+  <!-- Legend text -->
+  <text x="630" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Old (RNN)</text>
+  <text x="810" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Transformer</text>
+  <text x="990" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Winner</text>
+
+</svg>
