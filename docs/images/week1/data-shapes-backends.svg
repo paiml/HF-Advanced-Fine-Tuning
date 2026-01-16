@@ -1,0 +1,312 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Section backgrounds -->
+  <!-- Scalar -->
+  <rect x="40" y="140" width="280" height="360" fill="#fff5f5" stroke="#fc8181" stroke-width="2" rx="8"/>
+  <!-- Vector -->
+  <rect x="340" y="140" width="360" height="360" fill="#ebf8ff" stroke="#4299e1" stroke-width="2" rx="8"/>
+  <!-- Matrix -->
+  <rect x="720" y="140" width="360" height="360" fill="#faf5ff" stroke="#9f7aea" stroke-width="2" rx="8"/>
+  <!-- SIMD -->
+  <rect x="1100" y="140" width="380" height="360" fill="#fffaf0" stroke="#ed8936" stroke-width="2" rx="8"/>
+  <!-- GPU -->
+  <rect x="1500" y="140" width="380" height="360" fill="#f0fff4" stroke="#48bb78" stroke-width="2" rx="8"/>
+
+  <!-- Bottom: Comparison -->
+  <rect x="40" y="520" width="1840" height="320" fill="#1a202c" stroke="#2d3748" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Visual elements -->
+
+  <!-- Scalar: Single box -->
+  <rect x="140" y="240" width="80" height="80" fill="#e53e3e" stroke="#c53030" stroke-width="3" rx="4"/>
+
+  <!-- Vector: Row of boxes -->
+  <rect x="370" y="260" width="50" height="50" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="430" y="260" width="50" height="50" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="490" y="260" width="50" height="50" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="550" y="260" width="50" height="50" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="610" y="260" width="50" height="50" fill="#4299e1" stroke="#3182ce" stroke-width="2" rx="4"/>
+
+  <!-- Matrix: Grid of boxes -->
+  <rect x="760" y="200" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="810" y="200" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="860" y="200" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="910" y="200" width="40" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="2" rx="2"/>
+  <rect x="960" y="200" width="40" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="2" rx="2"/>
+  <rect x="760" y="250" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="810" y="250" width="40" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="2" rx="2"/>
+  <rect x="860" y="250" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="910" y="250" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="960" y="250" width="40" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="2" rx="2"/>
+  <rect x="760" y="300" width="40" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="2" rx="2"/>
+  <rect x="810" y="300" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="860" y="300" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="910" y="300" width="40" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="2" rx="2"/>
+  <rect x="960" y="300" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="760" y="350" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="810" y="350" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="860" y="350" width="40" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="2" rx="2"/>
+  <rect x="910" y="350" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+  <rect x="960" y="350" width="40" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="2"/>
+
+  <!-- SIMD: CPU with 4-8 lanes -->
+  <rect x="1140" y="220" width="300" height="100" fill="#c05621" stroke="#9c4221" stroke-width="2" rx="8"/>
+  <!-- 8 SIMD lanes -->
+  <rect x="1160" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <rect x="1195" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <rect x="1230" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <rect x="1265" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <rect x="1300" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <rect x="1335" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <rect x="1370" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <rect x="1405" y="240" width="30" height="60" fill="#fbd38d" stroke="#ed8936" stroke-width="1" rx="2"/>
+  <!-- Arrow showing "one instruction" -->
+  <line x1="1290" y1="340" x2="1290" y2="370" stroke="#ed8936" stroke-width="3"/>
+  <polygon points="1280,370 1290,390 1300,370" fill="#ed8936"/>
+
+  <!-- GPU: Thousands of tiny cores -->
+  <rect x="1540" y="200" width="300" height="180" fill="#1c4532" stroke="#1a202c" stroke-width="2" rx="8"/>
+  <!-- Many tiny cores grid -->
+  <rect x="1555" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1572" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1589" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1606" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1623" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1640" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1657" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1674" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1691" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1708" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1725" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1742" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1759" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1776" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1793" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1810" y="215" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1555" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1572" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1589" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1606" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1623" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1640" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1657" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1674" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1691" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1708" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1725" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1742" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1759" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1776" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1793" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1810" y="232" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1555" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1572" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1589" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1606" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1623" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1640" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1657" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1674" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1691" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1708" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1725" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1742" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1759" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1776" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1793" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1810" y="249" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1555" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1572" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1589" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1606" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1623" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1640" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1657" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1674" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1691" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1708" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1725" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1742" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1759" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1776" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1793" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1810" y="266" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1555" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1572" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1589" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1606" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1623" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1640" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1657" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1674" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1691" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1708" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1725" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1742" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1759" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1776" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1793" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1810" y="283" width="12" height="12" fill="#48bb78" rx="1"/>
+  <rect x="1555" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1572" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1589" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1606" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1623" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1640" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1657" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1674" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1691" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1708" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1725" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1742" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1759" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1776" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1793" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1810" y="300" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1555" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1572" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1589" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1606" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1623" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1640" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1657" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1674" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1691" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1708" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1725" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1742" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1759" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1776" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1793" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1810" y="317" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1555" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1572" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1589" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1606" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1623" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1640" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1657" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1674" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1691" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1708" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1725" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1742" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1759" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1776" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1793" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1810" y="334" width="12" height="12" fill="#38a169" rx="1"/>
+  <rect x="1555" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1572" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1589" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1606" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1623" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1640" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1657" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1674" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1691" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1708" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1725" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1742" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1759" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1776" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1793" y="351" width="12" height="12" fill="#276749" rx="1"/>
+  <rect x="1810" y="351" width="12" height="12" fill="#276749" rx="1"/>
+
+  <!-- Bottom comparison table rows -->
+  <rect x="80" y="580" width="200" height="50" fill="#2d3748" stroke="#4a5568" stroke-width="1" rx="4"/>
+  <rect x="300" y="580" width="300" height="50" fill="#2d3748" stroke="#4a5568" stroke-width="1" rx="4"/>
+  <rect x="620" y="580" width="300" height="50" fill="#2d3748" stroke="#4a5568" stroke-width="1" rx="4"/>
+  <rect x="940" y="580" width="300" height="50" fill="#2d3748" stroke="#4a5568" stroke-width="1" rx="4"/>
+  <rect x="1260" y="580" width="580" height="50" fill="#2d3748" stroke="#4a5568" stroke-width="1" rx="4"/>
+
+  <!-- Data rows -->
+  <rect x="80" y="640" width="200" height="50" fill="#e53e3e" stroke="#c53030" stroke-width="1" rx="4"/>
+  <rect x="300" y="640" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="620" y="640" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="940" y="640" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="1260" y="640" width="580" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+
+  <rect x="80" y="700" width="200" height="50" fill="#3182ce" stroke="#2c5282" stroke-width="1" rx="4"/>
+  <rect x="300" y="700" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="620" y="700" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="940" y="700" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="1260" y="700" width="580" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+
+  <rect x="80" y="760" width="200" height="50" fill="#6b46c1" stroke="#553c9a" stroke-width="1" rx="4"/>
+  <rect x="300" y="760" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="620" y="760" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="940" y="760" width="300" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <rect x="1260" y="760" width="580" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4"/>
+
+  <!-- LAYER 5: TEXT (always last) -->
+
+  <!-- Title -->
+  <text x="960" y="70" font-family="Georgia, Times, serif" font-size="48" fill="#1a202c" text-anchor="middle" font-weight="600">Data Shapes + Compute Backends</text>
+  <text x="960" y="105" font-family="Georgia, Times, serif" font-size="20" fill="#718096" text-anchor="middle">What trueno operates on and how it runs fast</text>
+
+  <!-- Scalar -->
+  <text x="180" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#c53030" text-anchor="middle" font-weight="600">SCALAR</text>
+  <text x="180" y="285" font-family="Georgia, Times, serif" font-size="28" fill="#ffffff" text-anchor="middle" font-weight="500">1</text>
+  <text x="180" y="360" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">One number</text>
+  <text x="180" y="385" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">if/else, indexing</text>
+  <text x="180" y="470" font-family="Georgia, Times, serif" font-size="18" fill="#c53030" text-anchor="middle" font-weight="500">No parallelism</text>
+
+  <!-- Vector -->
+  <text x="520" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#2c5282" text-anchor="middle" font-weight="600">VECTOR</text>
+  <text x="520" y="350" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">1D list: [a, b, c, d, ...]</text>
+  <text x="520" y="375" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">embeddings, norms</text>
+  <text x="520" y="470" font-family="Georgia, Times, serif" font-size="18" fill="#2c5282" text-anchor="middle" font-weight="500">1×N = N ops</text>
+
+  <!-- Matrix -->
+  <text x="900" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#553c9a" text-anchor="middle" font-weight="600">MATRIX</text>
+  <text x="900" y="420" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">2D grid: M rows × N cols</text>
+  <text x="900" y="445" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">weights, attention scores</text>
+  <text x="900" y="470" font-family="Georgia, Times, serif" font-size="18" fill="#553c9a" text-anchor="middle" font-weight="500">M×N = millions of ops</text>
+
+  <!-- SIMD -->
+  <text x="1290" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#c05621" text-anchor="middle" font-weight="600">SIMD</text>
+  <text x="1290" y="210" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Single Instruction Multiple Data</text>
+  <text x="1290" y="340" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">CPU trick: 4-8 at once</text>
+  <text x="1290" y="420" font-family="Georgia, Times, serif" font-size="18" fill="#c05621" text-anchor="middle" font-weight="500">One instruction</text>
+  <text x="1290" y="445" font-family="Georgia, Times, serif" font-size="18" fill="#c05621" text-anchor="middle" font-weight="500">↓</text>
+  <text x="1290" y="470" font-family="Georgia, Times, serif" font-size="18" fill="#c05621" text-anchor="middle" font-weight="500">8 results</text>
+
+  <!-- GPU -->
+  <text x="1690" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#276749" text-anchor="middle" font-weight="600">GPU</text>
+  <text x="1690" y="400" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">1000s of tiny cores</text>
+  <text x="1690" y="425" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">all same op, different data</text>
+  <text x="1690" y="470" font-family="Georgia, Times, serif" font-size="18" fill="#276749" text-anchor="middle" font-weight="500">Massive parallelism</text>
+
+  <!-- Table header -->
+  <text x="180" y="610" font-family="Georgia, Times, serif" font-size="16" fill="#a0aec0" text-anchor="middle" font-weight="500">Type</text>
+  <text x="450" y="610" font-family="Georgia, Times, serif" font-size="16" fill="#a0aec0" text-anchor="middle" font-weight="500">Shape</text>
+  <text x="770" y="610" font-family="Georgia, Times, serif" font-size="16" fill="#a0aec0" text-anchor="middle" font-weight="500">Parallelism</text>
+  <text x="1090" y="610" font-family="Georgia, Times, serif" font-size="16" fill="#a0aec0" text-anchor="middle" font-weight="500">Speedup</text>
+  <text x="1550" y="610" font-family="Georgia, Times, serif" font-size="16" fill="#a0aec0" text-anchor="middle" font-weight="500">Best for</text>
+
+  <!-- Table data -->
+  <text x="180" y="672" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Scalar</text>
+  <text x="450" y="672" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">1</text>
+  <text x="770" y="672" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">None</text>
+  <text x="1090" y="672" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">1×</text>
+  <text x="1550" y="672" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">if/else, branching logic</text>
+
+  <text x="180" y="732" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Vector</text>
+  <text x="450" y="732" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">1×N</text>
+  <text x="770" y="732" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">N ops</text>
+  <text x="1090" y="732" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">4-8× (SIMD)</text>
+  <text x="1550" y="732" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">embeddings, activations, norms</text>
+
+  <text x="180" y="792" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Matrix</text>
+  <text x="450" y="792" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">M×N</text>
+  <text x="770" y="792" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">M×N ops</text>
+  <text x="1090" y="792" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">100-1000× (GPU)</text>
+  <text x="1550" y="792" font-family="Georgia, Times, serif" font-size="16" fill="#e2e8f0" text-anchor="middle">weights, attention, all the heavy lifting</text>
+
+  <!-- TL;DR -->
+  <text x="960" y="860" font-family="Georgia, Times, serif" font-size="22" fill="#48bb78" text-anchor="middle" font-weight="500">TL;DR: Vector = list, Matrix = grid, SIMD = CPU 4-8 wide, GPU = thousands wide</text>
+
+</svg>
