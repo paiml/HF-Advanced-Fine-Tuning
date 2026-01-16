@@ -127,10 +127,16 @@ apr push paiml/my-model --file model.apr
 | Week | Demo | Description | Run |
 |------|------|-------------|-----|
 | 1 | Scalar vs SIMD vs GPU | Compare compute backends on small vs large operations | `cd demos && make demo-scalar-simd-gpu` |
+| 1 | Training vs Inference | Why training is parallel but inference is sequential | `cd demos && make demo-training-vs-inference` |
 
-**Key insights:**
-- **Small ops (dot product)**: SIMD wins, GPU loses to transfer overhead
-- **Large ops (matmul)**: GPU wins with massive parallelism
+**Demo 1 - Scalar vs SIMD vs GPU:**
+- Small ops (dot product): SIMD wins, GPU loses to transfer overhead
+- Large ops (matmul): GPU wins with massive parallelism
+
+**Demo 2 - Training vs Inference:**
+- Softmax: Global reduction - must sum all before normalizing any
+- LayerNorm: Global reduction - must compute μ,σ from all dimensions
+- Autoregressive: Token N+1 cannot exist until Token N is sampled
 
 ## ComputeBrick Profiling
 

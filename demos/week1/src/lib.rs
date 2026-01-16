@@ -7,6 +7,7 @@
 use clap::Parser;
 
 pub mod scalar_simd_gpu;
+pub mod training_vs_inference;
 
 /// Common CLI args for all demos
 #[derive(Parser, Debug, Clone, Default)]

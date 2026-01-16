@@ -4,6 +4,7 @@
 
 .PHONY: all lint test-fast coverage clean help
 .PHONY: demo-scalar-simd-gpu demo-scalar-simd-gpu-stdout
+.PHONY: demo-training-vs-inference demo-training-vs-inference-stdout
 
 # Default: full pipeline
 all: lint test-fast coverage
@@ -16,11 +17,15 @@ help:
 	@printf '  make test-fast     Fast unit tests\n'
 	@printf '  make coverage      Coverage report\n\n'
 	@printf 'Demos:\n'
-	@printf '  make demo-scalar-simd-gpu         TUI mode\n'
-	@printf '  make demo-scalar-simd-gpu-stdout  stdout mode (CI)\n\n'
-	@printf 'Demo shows:\n'
-	@printf '  1. Dot product (small)  - SIMD wins, GPU loses (transfer overhead)\n'
-	@printf '  2. Matrix multiply      - GPU wins (compute-bound)\n'
+	@printf '  make demo-scalar-simd-gpu              Scalar vs SIMD vs GPU\n'
+	@printf '  make demo-training-vs-inference        Training vs Inference\n\n'
+	@printf 'Demo 1 - Scalar vs SIMD vs GPU:\n'
+	@printf '  Dot product (small)  - SIMD wins, GPU loses (transfer overhead)\n'
+	@printf '  Matrix multiply      - GPU wins (compute-bound)\n\n'
+	@printf 'Demo 2 - Training vs Inference:\n'
+	@printf '  Softmax     - Global reduction (must sum all before normalizing)\n'
+	@printf '  LayerNorm   - Global reduction (must compute mean/std first)\n'
+	@printf '  Autoregressive - Token N+1 depends on Token N\n'
 
 # =============================================================================
 # Pipeline Targets
@@ -54,3 +59,9 @@ demo-scalar-simd-gpu:
 
 demo-scalar-simd-gpu-stdout:
 	@cargo run --manifest-path week1/Cargo.toml --release --bin demo-scalar-simd-gpu -- --stdout
+
+demo-training-vs-inference:
+	@cargo run --manifest-path week1/Cargo.toml --release --bin demo-training-vs-inference
+
+demo-training-vs-inference-stdout:
+	@cargo run --manifest-path week1/Cargo.toml --release --bin demo-training-vs-inference -- --stdout

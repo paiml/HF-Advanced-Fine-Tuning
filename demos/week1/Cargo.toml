@@ -15,3 +15,7 @@ proptest = "1.9"
 [[bin]]
 name = "demo-scalar-simd-gpu"
 path = "src/bin/scalar_simd_gpu.rs"
+
+[[bin]]
+name = "demo-training-vs-inference"
+path = "src/bin/training_vs_inference.rs"
