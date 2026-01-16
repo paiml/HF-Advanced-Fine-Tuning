@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Section backgrounds -->
+  <!-- Left: Before/After visualization -->
+  <rect x="40" y="140" width="600" height="480" fill="#fff5f5" stroke="#fc8181" stroke-width="2" rx="8"/>
+  <!-- Center: The Transform -->
+  <rect x="660" y="140" width="600" height="480" fill="#ebf8ff" stroke="#4299e1" stroke-width="2" rx="8"/>
+  <!-- Right: Why use it -->
+  <rect x="1280" y="140" width="600" height="480" fill="#f0fff4" stroke="#48bb78" stroke-width="2" rx="8"/>
+
+  <!-- Bottom: Comparison with Log -->
+  <rect x="40" y="640" width="1840" height="200" fill="#1a202c" stroke="#2d3748" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Visual elements -->
+
+  <!-- Left: Before bars (raw scores) -->
+  <rect x="100" y="400" width="60" height="150" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="2"/>
+  <rect x="180" y="350" width="60" height="200" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="2"/>
+  <rect x="260" y="300" width="60" height="250" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="2"/>
+  <rect x="340" y="450" width="60" height="100" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="2"/>
+
+  <!-- Left: Mean line -->
+  <line x1="80" y1="375" x2="420" y2="375" stroke="#718096" stroke-width="2" stroke-dasharray="8,4"/>
+
+  <!-- Arrow from left to center -->
+  <line x1="480" y1="400" x2="620" y2="400" stroke="#4299e1" stroke-width="3"/>
+  <polygon points="620,392 640,400 620,408" fill="#4299e1"/>
+
+  <!-- Center: After bars (normalized) - centered around 0 -->
+  <rect x="720" y="420" width="60" height="60" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="2"/>
+  <rect x="800" y="380" width="60" height="100" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="2"/>
+  <rect x="880" y="340" width="60" height="140" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="2"/>
+  <rect x="960" y="450" width="60" height="30" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="2"/>
+
+  <!-- Center: Zero line -->
+  <line x1="700" y1="480" x2="1040" y2="480" stroke="#2d3748" stroke-width="3"/>
+
+  <!-- Center: +1 std line -->
+  <line x1="700" y1="400" x2="1040" y2="400" stroke="#48bb78" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Center: -1 std line -->
+  <line x1="700" y1="560" x2="1040" y2="560" stroke="#e53e3e" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Arrow from center to right -->
+  <line x1="1100" y1="400" x2="1240" y2="400" stroke="#48bb78" stroke-width="3"/>
+  <polygon points="1240,392 1260,400 1240,408" fill="#48bb78"/>
+
+  <!-- Right: Benefits icons -->
+  <!-- Stable training -->
+  <rect x="1320" y="240" width="200" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <!-- Prevents explosion -->
+  <rect x="1320" y="320" width="200" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <!-- Learnable -->
+  <rect x="1320" y="400" width="200" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- Right: X mark for "not outlier removal" -->
+  <rect x="1560" y="240" width="200" height="60" fill="#4a5568" stroke="#2d3748" stroke-width="2" rx="4"/>
+  <line x1="1575" y1="255" x2="1595" y2="285" stroke="#fc8181" stroke-width="3"/>
+  <line x1="1595" y1="255" x2="1575" y2="285" stroke="#fc8181" stroke-width="3"/>
+
+  <!-- Formula box -->
+  <rect x="700" y="200" width="520" height="80" fill="#2c5282" stroke="#1a365d" stroke-width="2" rx="8"/>
+
+  <!-- Bottom: Log vs LayerNorm comparison -->
+  <!-- Raw data points -->
+  <circle cx="200" cy="740" r="8" fill="#e53e3e"/>
+  <circle cx="280" cy="720" r="8" fill="#e53e3e"/>
+  <circle cx="360" cy="700" r="8" fill="#e53e3e"/>
+  <circle cx="440" cy="680" r="8" fill="#e53e3e"/>
+
+  <!-- Log transformed points -->
+  <circle cx="700" cy="760" r="8" fill="#ed8936"/>
+  <circle cx="780" cy="740" r="8" fill="#ed8936"/>
+  <circle cx="860" cy="720" r="8" fill="#ed8936"/>
+  <circle cx="940" cy="710" r="8" fill="#ed8936"/>
+
+  <!-- LayerNorm transformed points -->
+  <circle cx="1200" cy="780" r="8" fill="#4299e1"/>
+  <circle cx="1280" cy="750" r="8" fill="#4299e1"/>
+  <circle cx="1360" cy="720" r="8" fill="#4299e1"/>
+  <circle cx="1440" cy="690" r="8" fill="#4299e1"/>
+
+  <!-- Connecting lines to show spread -->
+  <line x1="200" y1="740" x2="440" y2="680" stroke="#e53e3e" stroke-width="2" stroke-dasharray="4,2"/>
+  <line x1="700" y1="760" x2="940" y2="710" stroke="#ed8936" stroke-width="2" stroke-dasharray="4,2"/>
+  <line x1="1200" y1="780" x2="1440" y2="690" stroke="#4299e1" stroke-width="2" stroke-dasharray="4,2"/>
+
+  <!-- Spread indicators -->
+  <line x1="200" y1="800" x2="440" y2="800" stroke="#e53e3e" stroke-width="2"/>
+  <line x1="200" y1="795" x2="200" y2="805" stroke="#e53e3e" stroke-width="2"/>
+  <line x1="440" y1="795" x2="440" y2="805" stroke="#e53e3e" stroke-width="2"/>
+
+  <line x1="700" y1="800" x2="940" y2="800" stroke="#ed8936" stroke-width="2"/>
+  <line x1="700" y1="795" x2="700" y2="805" stroke="#ed8936" stroke-width="2"/>
+  <line x1="940" y1="795" x2="940" y2="805" stroke="#ed8936" stroke-width="2"/>
+
+  <line x1="1200" y1="800" x2="1440" y2="800" stroke="#4299e1" stroke-width="2"/>
+  <line x1="1200" y1="795" x2="1200" y2="805" stroke="#4299e1" stroke-width="2"/>
+  <line x1="1440" y1="795" x2="1440" y2="805" stroke="#4299e1" stroke-width="2"/>
+
+  <!-- LAYER 5: TEXT (always last) -->
+
+  <!-- Title -->
+  <text x="960" y="70" font-family="Georgia, Times, serif" font-size="52" fill="#1a202c" text-anchor="middle" font-weight="600">Layer Normalization</text>
+  <text x="960" y="110" font-family="Georgia, Times, serif" font-size="22" fill="#718096" text-anchor="middle">Center, scale, then let the model re-adjust</text>
+
+  <!-- Left panel -->
+  <text x="340" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#c53030" text-anchor="middle" font-weight="600">BEFORE</text>
+  <text x="340" y="210" font-family="Georgia, Times, serif" font-size="16" fill="#718096" text-anchor="middle">Raw values (all over the place)</text>
+
+  <!-- Bar labels -->
+  <text x="130" y="580" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">85</text>
+  <text x="210" y="580" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">90</text>
+  <text x="290" y="580" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">95</text>
+  <text x="370" y="580" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">80</text>
+
+  <text x="450" y="370" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="end">mean</text>
+
+  <!-- Center panel -->
+  <text x="960" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#2c5282" text-anchor="middle" font-weight="600">AFTER</text>
+
+  <!-- Formula -->
+  <text x="960" y="235" font-family="Georgia, Times, serif" font-size="24" fill="#ffffff" text-anchor="middle">y = (x − μ) / σ × γ + β</text>
+  <text x="960" y="265" font-family="Georgia, Times, serif" font-size="16" fill="#bee3f8" text-anchor="middle">normalize        rescale (learnable)</text>
+
+  <!-- Normalized bar labels -->
+  <text x="750" y="500" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle">-0.45</text>
+  <text x="830" y="500" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle">+0.45</text>
+  <text x="910" y="500" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle">+1.34</text>
+  <text x="990" y="500" font-family="Georgia, Times, serif" font-size="16" fill="#2c5282" text-anchor="middle">-1.34</text>
+
+  <text x="1060" y="485" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">0</text>
+  <text x="1060" y="405" font-family="Georgia, Times, serif" font-size="14" fill="#48bb78" text-anchor="start">+1σ</text>
+  <text x="1060" y="565" font-family="Georgia, Times, serif" font-size="14" fill="#e53e3e" text-anchor="start">-1σ</text>
+
+  <text x="870" y="600" font-family="Georgia, Times, serif" font-size="16" fill="#718096" text-anchor="middle">Z-scores: how many std from mean</text>
+
+  <!-- Right panel -->
+  <text x="1580" y="180" font-family="Georgia, Times, serif" font-size="24" fill="#276749" text-anchor="middle" font-weight="600">WHY USE IT</text>
+
+  <text x="1420" y="278" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Stable training</text>
+  <text x="1420" y="358" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Prevents explosion</text>
+  <text x="1420" y="438" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Learnable γ, β</text>
+
+  <text x="1660" y="278" font-family="Georgia, Times, serif" font-size="16" fill="#a0aec0" text-anchor="middle">NOT outlier removal</text>
+
+  <text x="1580" y="510" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">Outliers still there,</text>
+  <text x="1580" y="535" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">just measured in "std away"</text>
+  <text x="1580" y="580" font-family="Georgia, Times, serif" font-size="18" fill="#276749" text-anchor="middle" font-weight="500">Tall kid = +3σ, not deleted</text>
+
+  <!-- Bottom: Comparison -->
+  <text x="960" y="680" font-family="Georgia, Times, serif" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="600">LayerNorm vs Log: Both compress, different how</text>
+
+  <text x="320" y="720" font-family="Georgia, Times, serif" font-size="18" fill="#fc8181" text-anchor="middle" font-weight="500">Raw</text>
+  <text x="320" y="825" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">[1, 10, 100, 1000]</text>
+
+  <text x="820" y="720" font-family="Georgia, Times, serif" font-size="18" fill="#ed8936" text-anchor="middle" font-weight="500">Log</text>
+  <text x="820" y="825" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">[0, 1, 2, 3] ← crushed</text>
+
+  <text x="1320" y="720" font-family="Georgia, Times, serif" font-size="18" fill="#4299e1" text-anchor="middle" font-weight="500">LayerNorm</text>
+  <text x="1320" y="825" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">[-1, -0.3, 0.3, 1] ← centered</text>
+
+  <text x="1700" y="750" font-family="Georgia, Times, serif" font-size="16" fill="#48bb78" text-anchor="start">LayerNorm wins:</text>
+  <text x="1700" y="775" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="start">• handles negatives</text>
+  <text x="1700" y="795" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="start">• learnable params</text>
+  <text x="1700" y="815" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="start">• preserves ratios</text>
+
+  <!-- TL;DR -->
+  <text x="960" y="920" font-family="Georgia, Times, serif" font-size="26" fill="#2d3748" text-anchor="middle" font-weight="500">TL;DR: LayerNorm = z-score + learnable rescale. Keeps numbers sane across layers.</text>
+
+</svg>
