@@ -122,6 +122,16 @@ apr push paiml/my-model --file model.apr
 | 3 | `lab-ppo-rlhf` | Small | Full RLHF pipeline |
 | 3 | `lab-evaluation` | Small | Model evaluation + benchmark |
 
+## Interactive Demos
+
+| Week | Demo | Description | Run |
+|------|------|-------------|-----|
+| 1 | Scalar vs SIMD vs GPU | Compare compute backends on small vs large operations | `cd demos && make demo-scalar-simd-gpu` |
+
+**Key insights:**
+- **Small ops (dot product)**: SIMD wins, GPU loses to transfer overhead
+- **Large ops (matmul)**: GPU wins with massive parallelism
+
 ## ComputeBrick Profiling
 
 Profile inference performance against baseline:

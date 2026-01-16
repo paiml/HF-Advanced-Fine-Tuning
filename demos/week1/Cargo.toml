@@ -1,0 +1,17 @@
+[package]
+name = "week1-demos"
+version = "0.1.0"
+edition = "2021"
+description = "Week 1: Parameter-Efficient Fine-Tuning Demos"
+
+[dependencies]
+trueno = { version = "0.13", features = ["gpu"] }
+presentar-terminal = "0.3"
+clap = { version = "4.5", features = ["derive"] }
+
+[dev-dependencies]
+proptest = "1.9"
+
+[[bin]]
+name = "demo-scalar-simd-gpu"
+path = "src/bin/scalar_simd_gpu.rs"
