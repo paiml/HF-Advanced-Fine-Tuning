@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Section backgrounds -->
+  <!-- Neural Networks -->
+  <rect x="40" y="140" width="600" height="280" fill="#faf5ff" stroke="#9f7aea" stroke-width="2" rx="8"/>
+  <!-- Transformers -->
+  <rect x="660" y="140" width="600" height="280" fill="#ebf8ff" stroke="#4299e1" stroke-width="2" rx="8"/>
+  <!-- Pre-training vs Fine-tuning -->
+  <rect x="1280" y="140" width="600" height="280" fill="#fff5f5" stroke="#fc8181" stroke-width="2" rx="8"/>
+  <!-- GPU vs CPU -->
+  <rect x="40" y="440" width="600" height="280" fill="#f0fff4" stroke="#48bb78" stroke-width="2" rx="8"/>
+  <!-- Loss Functions -->
+  <rect x="660" y="440" width="920" height="280" fill="#fffaf0" stroke="#ed8936" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Professional icons -->
+
+  <!-- Neural Networks: 3-layer network -->
+  <!-- Input layer -->
+  <circle cx="100" cy="220" r="12" fill="#9f7aea" stroke="#6b46c1" stroke-width="2"/>
+  <circle cx="100" cy="260" r="12" fill="#9f7aea" stroke="#6b46c1" stroke-width="2"/>
+  <circle cx="100" cy="300" r="12" fill="#9f7aea" stroke="#6b46c1" stroke-width="2"/>
+  <circle cx="100" cy="340" r="12" fill="#9f7aea" stroke="#6b46c1" stroke-width="2"/>
+  <!-- Hidden layer -->
+  <circle cx="170" cy="235" r="12" fill="#805ad5" stroke="#553c9a" stroke-width="2"/>
+  <circle cx="170" cy="280" r="12" fill="#805ad5" stroke="#553c9a" stroke-width="2"/>
+  <circle cx="170" cy="325" r="12" fill="#805ad5" stroke="#553c9a" stroke-width="2"/>
+  <!-- Output layer -->
+  <circle cx="240" cy="260" r="12" fill="#6b46c1" stroke="#44337a" stroke-width="2"/>
+  <circle cx="240" cy="300" r="12" fill="#6b46c1" stroke="#44337a" stroke-width="2"/>
+  <!-- Connections (weights) -->
+  <line x1="112" y1="220" x2="158" y2="235" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="112" y1="220" x2="158" y2="280" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="112" y1="260" x2="158" y2="235" stroke="#d6bcfa" stroke-width="2"/>
+  <line x1="112" y1="260" x2="158" y2="280" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="112" y1="260" x2="158" y2="325" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="112" y1="300" x2="158" y2="280" stroke="#d6bcfa" stroke-width="2"/>
+  <line x1="112" y1="300" x2="158" y2="325" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="112" y1="340" x2="158" y2="325" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="182" y1="235" x2="228" y2="260" stroke="#d6bcfa" stroke-width="2"/>
+  <line x1="182" y1="280" x2="228" y2="260" stroke="#d6bcfa" stroke-width="1"/>
+  <line x1="182" y1="280" x2="228" y2="300" stroke="#d6bcfa" stroke-width="2"/>
+  <line x1="182" y1="325" x2="228" y2="300" stroke="#d6bcfa" stroke-width="1"/>
+
+  <!-- Transformers: Attention matrix + tokens -->
+  <!-- Token boxes -->
+  <rect x="700" y="200" width="50" height="30" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="760" y="200" width="50" height="30" fill="#3182ce" stroke="#2c5282" stroke-width="4"/>
+  <rect x="820" y="200" width="50" height="30" fill="#3182ce" stroke="#2c5282" stroke-width="2"/>
+  <rect x="880" y="200" width="50" height="30" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <!-- Attention lines (from "is" to others) -->
+  <line x1="785" y1="230" x2="725" y2="270" stroke="#4299e1" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="785" y1="230" x2="785" y2="270" stroke="#4299e1" stroke-width="3"/>
+  <line x1="785" y1="230" x2="845" y2="270" stroke="#4299e1" stroke-width="2"/>
+  <line x1="785" y1="230" x2="905" y2="270" stroke="#4299e1" stroke-width="1" stroke-dasharray="3,2"/>
+  <!-- Attention heatmap -->
+  <rect x="700" y="280" width="40" height="40" fill="#bee3f8" stroke="#4299e1" stroke-width="1"/>
+  <rect x="740" y="280" width="40" height="40" fill="#4299e1" stroke="#2c5282" stroke-width="1"/>
+  <rect x="780" y="280" width="40" height="40" fill="#63b3ed" stroke="#4299e1" stroke-width="1"/>
+  <rect x="820" y="280" width="40" height="40" fill="#bee3f8" stroke="#4299e1" stroke-width="1"/>
+  <rect x="860" y="280" width="40" height="40" fill="#e2e8f0" stroke="#a0aec0" stroke-width="1"/>
+  <rect x="900" y="280" width="40" height="40" fill="#bee3f8" stroke="#4299e1" stroke-width="1"/>
+
+  <!-- Pre-training vs Fine-tuning: Two phase diagram -->
+  <!-- Phase 1: Large corpus -->
+  <rect x="1320" y="200" width="100" height="80" fill="#718096" stroke="#4a5568" stroke-width="2" rx="4"/>
+  <rect x="1330" y="210" width="80" height="10" fill="#a0aec0" rx="1"/>
+  <rect x="1330" y="225" width="60" height="10" fill="#a0aec0" rx="1"/>
+  <rect x="1330" y="240" width="70" height="10" fill="#a0aec0" rx="1"/>
+  <rect x="1330" y="255" width="50" height="10" fill="#a0aec0" rx="1"/>
+  <!-- Arrow -->
+  <line x1="1430" y1="240" x2="1480" y2="240" stroke="#2d3748" stroke-width="2"/>
+  <polygon points="1480,234 1495,240 1480,246" fill="#2d3748"/>
+  <!-- Model blob -->
+  <rect x="1505" y="210" width="70" height="60" fill="#4a5568" stroke="#2d3748" stroke-width="2" rx="8"/>
+  <!-- Phase 2: Task data -->
+  <rect x="1320" y="310" width="60" height="50" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="1328" y="318" width="44" height="6" fill="#fed7d7" rx="1"/>
+  <rect x="1328" y="328" width="36" height="6" fill="#fed7d7" rx="1"/>
+  <rect x="1328" y="338" width="40" height="6" fill="#fed7d7" rx="1"/>
+  <!-- Arrow -->
+  <line x1="1390" y1="335" x2="1480" y2="280" stroke="#e53e3e" stroke-width="2"/>
+  <polygon points="1475,273 1490,280 1478,286" fill="#e53e3e"/>
+  <!-- Plus sign on model -->
+  <rect x="1580" y="230" width="30" height="6" fill="#e53e3e"/>
+  <rect x="1592" y="218" width="6" height="30" fill="#e53e3e"/>
+  <!-- Final model -->
+  <rect x="1620" y="210" width="70" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="8"/>
+
+  <!-- GPU vs CPU: Parallel vs Serial -->
+  <!-- CPU: Few big cores -->
+  <rect x="80" y="500" width="120" height="100" fill="#276749" stroke="#1c4532" stroke-width="2" rx="4"/>
+  <rect x="95" y="515" width="35" height="30" fill="#48bb78" stroke="#276749" stroke-width="1" rx="2"/>
+  <rect x="140" y="515" width="35" height="30" fill="#48bb78" stroke="#276749" stroke-width="1" rx="2"/>
+  <rect x="95" y="555" width="35" height="30" fill="#48bb78" stroke="#276749" stroke-width="1" rx="2"/>
+  <rect x="140" y="555" width="35" height="30" fill="#48bb78" stroke="#276749" stroke-width="1" rx="2"/>
+  <!-- GPU: Many small cores -->
+  <rect x="80" y="620" width="120" height="80" fill="#1c4532" stroke="#1a202c" stroke-width="2" rx="4"/>
+  <!-- Grid of tiny cores -->
+  <rect x="90" y="630" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="105" y="630" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="120" y="630" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="135" y="630" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="150" y="630" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="165" y="630" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="180" y="630" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="90" y="645" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="105" y="645" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="120" y="645" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="135" y="645" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="150" y="645" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="165" y="645" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="180" y="645" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="90" y="660" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="105" y="660" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="120" y="660" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="135" y="660" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="150" y="660" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="165" y="660" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="180" y="660" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="90" y="675" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="105" y="675" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="120" y="675" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="135" y="675" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="150" y="675" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="165" y="675" width="10" height="10" fill="#38a169" rx="1"/>
+  <rect x="180" y="675" width="10" height="10" fill="#38a169" rx="1"/>
+
+  <!-- Loss Functions: Curve with minimum -->
+  <!-- Axes -->
+  <line x1="700" y1="680" x2="700" y2="500" stroke="#2d3748" stroke-width="2"/>
+  <line x1="700" y1="680" x2="950" y2="680" stroke="#2d3748" stroke-width="2"/>
+  <!-- Loss curve (U shape) -->
+  <path d="M 720 520 Q 750 680 825 620 Q 900 560 930 580" fill="none" stroke="#ed8936" stroke-width="3"/>
+  <!-- Minimum point -->
+  <circle cx="825" cy="620" r="8" fill="#38a169" stroke="#276749" stroke-width="2"/>
+  <!-- Current point (higher) -->
+  <circle cx="750" cy="560" r="8" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
+  <!-- Arrow from current to minimum -->
+  <line x1="758" y1="568" x2="810" y2="612" stroke="#e53e3e" stroke-width="2" stroke-dasharray="4,2"/>
+  <polygon points="808,606 818,618 805,614" fill="#e53e3e"/>
+  <!-- Target/prediction comparison -->
+  <rect x="1000" y="520" width="80" height="30" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="1000" y="570" width="80" height="30" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <!-- Difference bracket -->
+  <line x1="1090" y1="535" x2="1110" y2="535" stroke="#2d3748" stroke-width="2"/>
+  <line x1="1110" y1="535" x2="1110" y2="585" stroke="#2d3748" stroke-width="2"/>
+  <line x1="1090" y1="585" x2="1110" y2="585" stroke="#2d3748" stroke-width="2"/>
+  <!-- Delta arrow -->
+  <line x1="1120" y1="560" x2="1160" y2="560" stroke="#ed8936" stroke-width="2"/>
+  <polygon points="1160,554 1175,560 1160,566" fill="#ed8936"/>
+  <!-- Loss value box -->
+  <rect x="1185" y="545" width="70" height="30" fill="#fbd38d" stroke="#ed8936" stroke-width="2" rx="4"/>
+
+  <!-- Legend boxes -->
+  <rect x="100" y="1020" width="20" height="20" fill="#9f7aea" rx="2"/>
+  <rect x="280" y="1020" width="20" height="20" fill="#4299e1" rx="2"/>
+  <rect x="480" y="1020" width="20" height="20" fill="#e53e3e" rx="2"/>
+  <rect x="680" y="1020" width="20" height="20" fill="#48bb78" rx="2"/>
+  <rect x="860" y="1020" width="20" height="20" fill="#ed8936" rx="2"/>
+
+  <!-- LAYER 5: TEXT (always last) -->
+
+  <!-- Title -->
+  <text x="960" y="70" font-family="Georgia, Times, serif" font-size="52" fill="#1a202c" text-anchor="middle" font-weight="600">ML Foundations</text>
+  <text x="960" y="110" font-family="Georgia, Times, serif" font-size="22" fill="#718096" text-anchor="middle">Five concepts before you touch fine-tuning</text>
+
+  <!-- Neural Networks text -->
+  <text x="280" y="200" font-family="Georgia, Times, serif" font-size="24" fill="#553c9a" font-weight="600">NEURAL NETWORKS</text>
+  <text x="280" y="235" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Layers of connected nodes.</text>
+  <text x="280" y="265" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Weights control signal strength.</text>
+  <text x="280" y="295" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Activations add non-linearity.</text>
+  <text x="280" y="340" font-family="Georgia, Times, serif" font-size="18" fill="#6b46c1" font-weight="500">Input → Hidden → Output</text>
+  <text x="280" y="370" font-family="Georgia, Times, serif" font-size="18" fill="#6b46c1" font-weight="500">Deeper = more abstract features</text>
+
+  <!-- Transformers text -->
+  <text x="1000" y="190" font-family="Georgia, Times, serif" font-size="24" fill="#2c5282" font-weight="600">TRANSFORMERS</text>
+  <text x="1000" y="340" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Tokens: text → pieces</text>
+  <text x="1000" y="365" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Attention: which tokens matter</text>
+  <text x="1000" y="390" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Embeddings: tokens as vectors</text>
+
+  <!-- Token labels -->
+  <text x="725" y="220" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">The</text>
+  <text x="785" y="220" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">cat</text>
+  <text x="845" y="220" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">is</text>
+  <text x="905" y="220" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">here</text>
+
+  <!-- Pre-training vs Fine-tuning text -->
+  <text x="1460" y="190" font-family="Georgia, Times, serif" font-size="22" fill="#c53030" font-weight="600">PRE-TRAIN vs FINE-TUNE</text>
+  <text x="1370" y="295" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="middle">Massive data</text>
+  <text x="1540" y="295" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="middle">Base model</text>
+  <text x="1350" y="375" font-family="Georgia, Times, serif" font-size="14" fill="#c53030" text-anchor="middle">Task data</text>
+  <text x="1655" y="295" font-family="Georgia, Times, serif" font-size="14" fill="#276749" text-anchor="middle">Tuned</text>
+  <text x="1600" y="360" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Pre-train: learn language</text>
+  <text x="1600" y="385" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Fine-tune: learn your task</text>
+
+  <!-- GPU vs CPU text -->
+  <text x="240" y="490" font-family="Georgia, Times, serif" font-size="24" fill="#276749" font-weight="600">GPU vs CPU</text>
+  <text x="240" y="530" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">CPU: 4-16 fast cores</text>
+  <text x="240" y="560" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Good at sequential tasks</text>
+  <text x="240" y="620" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">GPU: 1000s of small cores</text>
+  <text x="240" y="650" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Good at parallel math</text>
+  <text x="240" y="700" font-family="Georgia, Times, serif" font-size="18" fill="#276749" font-weight="500">ML = matrix math = parallel</text>
+
+  <!-- Loss Functions text -->
+  <text x="700" y="490" font-family="Georgia, Times, serif" font-size="24" fill="#c05621" font-weight="600">LOSS FUNCTIONS</text>
+  <text x="1000" y="510" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Target (truth)</text>
+  <text x="1000" y="560" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Prediction</text>
+  <text x="1200" y="565" font-family="Georgia, Times, serif" font-size="16" fill="#c05621" font-weight="500">Loss</text>
+  <text x="830" y="510" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Loss landscape</text>
+  <text x="1300" y="540" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Loss = how wrong</text>
+  <text x="1300" y="570" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Training = minimize loss</text>
+  <text x="1300" y="600" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Lower loss = better model</text>
+
+  <!-- Axis labels -->
+  <text x="825" y="700" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Parameters</text>
+  <text x="690" y="590" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="end" transform="rotate(-90 690 590)">Loss</text>
+
+  <!-- Tagline -->
+  <text x="960" y="780" font-family="Georgia, Times, serif" font-size="28" fill="#2d3748" text-anchor="middle" font-weight="500">Master these 5 ideas before diving into LoRA and QLoRA.</text>
+
+  <!-- Model requirements callout -->
+  <text x="960" y="850" font-family="Georgia, Times, serif" font-size="22" fill="#718096" text-anchor="middle">Transformers + GPU + Loss minimization = modern ML training pipeline</text>
+
+  <!-- Legend text -->
+  <text x="130" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Neural Nets</text>
+  <text x="310" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Transformers</text>
+  <text x="510" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Fine-tuning</text>
+  <text x="710" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">GPU/CPU</text>
+  <text x="890" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Loss</text>
+
+</svg>
