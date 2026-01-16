@@ -1,0 +1,298 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Section backgrounds -->
+  <!-- Top: Training (parallel) -->
+  <rect x="40" y="120" width="700" height="400" fill="#f0fff4" stroke="#48bb78" stroke-width="3" rx="8"/>
+  <!-- Top: Inference (sequential) -->
+  <rect x="760" y="120" width="700" height="400" fill="#fff5f5" stroke="#e53e3e" stroke-width="3" rx="8"/>
+  <!-- Top: Real numbers -->
+  <rect x="1480" y="120" width="400" height="400" fill="#2d3748" stroke="#4a5568" stroke-width="2" rx="8"/>
+
+  <!-- Bottom: The three bottlenecks -->
+  <rect x="40" y="540" width="1840" height="300" fill="#1a202c" stroke="#4a5568" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Visual elements -->
+
+  <!-- Training: All tokens processed at once (parallel grid) -->
+  <rect x="80" y="220" width="620" height="120" fill="#276749" stroke="#1c4532" stroke-width="2" rx="4"/>
+  <!-- Token boxes all at once -->
+  <rect x="100" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="170" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="240" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="310" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="380" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="450" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="520" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="590" y="240" width="60" height="80" fill="#48bb78" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="660" y="240" width="20" height="80" fill="#48bb78" stroke="#38a169" stroke-width="1" rx="2"/>
+
+  <!-- All processed arrow (down) -->
+  <line x1="390" y1="360" x2="390" y2="420" stroke="#48bb78" stroke-width="4"/>
+  <polygon points="375,420 390,450 405,420" fill="#48bb78"/>
+
+  <!-- Result box -->
+  <rect x="280" y="460" width="220" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- Inference: One token at a time (sequential chain) -->
+  <!-- Token 1 -->
+  <rect x="800" y="240" width="60" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <line x1="860" y1="265" x2="880" y2="265" stroke="#718096" stroke-width="2"/>
+  <polygon points="880,259 895,265 880,271" fill="#718096"/>
+
+  <!-- Token 2 -->
+  <rect x="900" y="240" width="60" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <line x1="960" y1="265" x2="980" y2="265" stroke="#718096" stroke-width="2"/>
+  <polygon points="980,259 995,265 980,271" fill="#718096"/>
+
+  <!-- Token 3 -->
+  <rect x="1000" y="240" width="60" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <line x1="1060" y1="265" x2="1080" y2="265" stroke="#718096" stroke-width="2"/>
+  <polygon points="1080,259 1095,265 1080,271" fill="#718096"/>
+
+  <!-- Token 4 -->
+  <rect x="1100" y="240" width="60" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <line x1="1160" y1="265" x2="1180" y2="265" stroke="#718096" stroke-width="2"/>
+  <polygon points="1180,259 1195,265 1180,271" fill="#718096"/>
+
+  <!-- Token 5 (generating) -->
+  <rect x="1200" y="240" width="60" height="50" fill="#e53e3e" stroke="#c53030" stroke-width="3" rx="4"/>
+  <line x1="1260" y1="265" x2="1280" y2="265" stroke="#718096" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- Token 6 (waiting) -->
+  <rect x="1300" y="240" width="60" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="2" rx="4" stroke-dasharray="6,3"/>
+  <line x1="1360" y1="265" x2="1380" y2="265" stroke="#718096" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- Token 7 (waiting) -->
+  <rect x="1400" y="240" width="50" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="2" rx="4" stroke-dasharray="6,3"/>
+
+  <!-- Wait/block indicator -->
+  <rect x="1200" y="310" width="60" height="25" fill="#c53030" stroke="#9b2c2c" stroke-width="2" rx="4"/>
+
+  <!-- Dependency arrows -->
+  <line x1="1230" y1="290" x2="1230" y2="305" stroke="#e53e3e" stroke-width="2"/>
+  <polygon points="1223,305 1230,318 1237,305" fill="#e53e3e"/>
+
+  <!-- Clock/time indicator -->
+  <rect x="860" y="370" width="580" height="120" fill="#2d3748" stroke="#4a5568" stroke-width="2" rx="8"/>
+
+  <!-- Time blocks showing sequential -->
+  <rect x="880" y="410" width="70" height="50" fill="#38a169" rx="4"/>
+  <rect x="960" y="410" width="70" height="50" fill="#38a169" rx="4"/>
+  <rect x="1040" y="410" width="70" height="50" fill="#38a169" rx="4"/>
+  <rect x="1120" y="410" width="70" height="50" fill="#38a169" rx="4"/>
+  <rect x="1200" y="410" width="70" height="50" fill="#e53e3e" rx="4"/>
+  <rect x="1280" y="410" width="70" height="50" fill="#4a5568" stroke="#718096" stroke-width="1" stroke-dasharray="4,2" rx="4"/>
+  <rect x="1360" y="410" width="60" height="50" fill="#4a5568" stroke="#718096" stroke-width="1" stroke-dasharray="4,2" rx="4"/>
+
+  <!-- Timeline arrow -->
+  <line x1="870" y1="480" x2="1430" y2="480" stroke="#718096" stroke-width="2"/>
+  <polygon points="1430,474 1445,480 1430,486" fill="#718096"/>
+
+  <!-- Real-world example: Neural network processing a question -->
+  <!-- Input question box -->
+  <rect x="1510" y="150" width="340" height="40" fill="#4a5568" stroke="#718096" stroke-width="2" rx="4"/>
+
+  <!-- Neural network layers -->
+  <!-- Embedding -->
+  <rect x="1540" y="210" width="280" height="30" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- Attention block with softmax -->
+  <rect x="1540" y="260" width="280" height="50" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+
+  <!-- LayerNorm -->
+  <rect x="1540" y="330" width="280" height="25" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+
+  <!-- FFN -->
+  <rect x="1540" y="375" width="280" height="30" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- LayerNorm 2 -->
+  <rect x="1540" y="425" width="280" height="25" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+
+  <!-- Output: Autoregressive generation -->
+  <rect x="1510" y="470" width="340" height="40" fill="#6b46c1" stroke="#553c9a" stroke-width="3" rx="4"/>
+
+  <!-- Arrows showing flow -->
+  <line x1="1680" y1="190" x2="1680" y2="205" stroke="#718096" stroke-width="2"/>
+  <polygon points="1673,205 1680,218 1687,205" fill="#718096"/>
+
+  <line x1="1680" y1="240" x2="1680" y2="255" stroke="#718096" stroke-width="2"/>
+  <polygon points="1673,255 1680,268 1687,255" fill="#718096"/>
+
+  <line x1="1680" y1="310" x2="1680" y2="325" stroke="#718096" stroke-width="2"/>
+  <polygon points="1673,325 1680,338 1687,325" fill="#718096"/>
+
+  <line x1="1680" y1="355" x2="1680" y2="370" stroke="#718096" stroke-width="2"/>
+  <polygon points="1673,370 1680,383 1687,370" fill="#718096"/>
+
+  <line x1="1680" y1="405" x2="1680" y2="420" stroke="#718096" stroke-width="2"/>
+  <polygon points="1673,420 1680,433 1687,420" fill="#718096"/>
+
+  <line x1="1680" y1="450" x2="1680" y2="465" stroke="#718096" stroke-width="2"/>
+  <polygon points="1673,465 1680,478 1687,465" fill="#718096"/>
+
+  <!-- Repeat bracket ×32 layers -->
+  <line x1="1830" y1="260" x2="1840" y2="260" stroke="#718096" stroke-width="2"/>
+  <line x1="1840" y1="260" x2="1840" y2="450" stroke="#718096" stroke-width="2"/>
+  <line x1="1830" y1="450" x2="1840" y2="450" stroke="#718096" stroke-width="2"/>
+
+  <!-- Bottom: Three bottlenecks -->
+  <!-- Softmax -->
+  <rect x="100" y="600" width="500" height="200" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="8"/>
+
+  <!-- Softmax visual: must sum first -->
+  <rect x="140" y="660" width="40" height="60" fill="#fc8181" rx="2"/>
+  <rect x="190" y="660" width="40" height="60" fill="#fc8181" rx="2"/>
+  <rect x="240" y="660" width="40" height="60" fill="#fc8181" rx="2"/>
+  <rect x="290" y="660" width="40" height="60" fill="#fc8181" rx="2"/>
+  <line x1="140" y1="740" x2="330" y2="740" stroke="#fed7d7" stroke-width="2"/>
+  <line x1="140" y1="735" x2="140" y2="745" stroke="#fed7d7" stroke-width="2"/>
+  <line x1="330" y1="735" x2="330" y2="745" stroke="#fed7d7" stroke-width="2"/>
+  <!-- Arrow to sum -->
+  <line x1="350" y1="700" x2="380" y2="700" stroke="#fed7d7" stroke-width="2"/>
+  <polygon points="380,694 395,700 380,706" fill="#fed7d7"/>
+  <rect x="400" y="680" width="60" height="40" fill="#c53030" rx="4"/>
+  <!-- Then divide -->
+  <line x1="470" y1="700" x2="500" y2="700" stroke="#fed7d7" stroke-width="2"/>
+  <polygon points="500,694 515,700 500,706" fill="#fed7d7"/>
+  <rect x="520" y="680" width="60" height="40" fill="#38a169" rx="4"/>
+
+  <!-- LayerNorm -->
+  <rect x="660" y="600" width="500" height="200" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="8"/>
+
+  <!-- LayerNorm visual: must compute mean/std -->
+  <rect x="700" y="660" width="40" height="80" fill="#fbd38d" rx="2"/>
+  <rect x="750" y="660" width="40" height="50" fill="#fbd38d" rx="2"/>
+  <rect x="800" y="660" width="40" height="65" fill="#fbd38d" rx="2"/>
+  <rect x="850" y="660" width="40" height="35" fill="#fbd38d" rx="2"/>
+  <!-- Mean line -->
+  <line x1="700" y1="710" x2="890" y2="710" stroke="#ffffff" stroke-width="2" stroke-dasharray="4,4"/>
+  <!-- Arrow to μ,σ -->
+  <line x1="910" y1="700" x2="940" y2="700" stroke="#feebc8" stroke-width="2"/>
+  <polygon points="940,694 955,700 940,706" fill="#feebc8"/>
+  <rect x="960" y="670" width="70" height="60" fill="#c05621" rx="4"/>
+  <!-- Then normalize -->
+  <line x1="1040" y1="700" x2="1070" y2="700" stroke="#feebc8" stroke-width="2"/>
+  <polygon points="1070,694 1085,700 1070,706" fill="#feebc8"/>
+  <rect x="1090" y="680" width="50" height="40" fill="#38a169" rx="4"/>
+
+  <!-- Autoregressive (the big one) -->
+  <rect x="1220" y="600" width="620" height="200" fill="#6b46c1" stroke="#553c9a" stroke-width="3" rx="8"/>
+
+  <!-- Token chain -->
+  <rect x="1260" y="680" width="60" height="40" fill="#9f7aea" rx="4"/>
+  <line x1="1320" y1="700" x2="1350" y2="700" stroke="#e9d8fd" stroke-width="2"/>
+  <polygon points="1350,694 1365,700 1350,706" fill="#e9d8fd"/>
+  <rect x="1370" y="680" width="60" height="40" fill="#9f7aea" rx="4"/>
+  <line x1="1430" y1="700" x2="1460" y2="700" stroke="#e9d8fd" stroke-width="2"/>
+  <polygon points="1460,694 1475,700 1460,706" fill="#e9d8fd"/>
+  <rect x="1480" y="680" width="60" height="40" fill="#9f7aea" rx="4"/>
+  <line x1="1540" y1="700" x2="1570" y2="700" stroke="#e9d8fd" stroke-width="2"/>
+  <polygon points="1570,694 1585,700 1570,706" fill="#e9d8fd"/>
+  <rect x="1590" y="680" width="60" height="40" fill="#805ad5" stroke="#6b46c1" stroke-width="3" rx="4"/>
+  <line x1="1650" y1="700" x2="1680" y2="700" stroke="#a0aec0" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="1700" y="680" width="60" height="40" fill="#4a5568" stroke="#718096" stroke-width="2" stroke-dasharray="4,2" rx="4"/>
+  <line x1="1760" y1="700" x2="1790" y2="700" stroke="#a0aec0" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="1800" y="680" width="30" height="40" fill="#4a5568" stroke="#718096" stroke-width="1" stroke-dasharray="4,2" rx="4"/>
+
+  <!-- LAYER 5: TEXT (always last) -->
+
+  <!-- Title -->
+  <text x="960" y="60" font-family="Georgia, Times, serif" font-size="48" fill="#1a202c" text-anchor="middle" font-weight="600">Why Training is Fast, Inference is Slow</text>
+  <text x="960" y="95" font-family="Georgia, Times, serif" font-size="20" fill="#718096" text-anchor="middle">The sequential bottlenecks in LLMs</text>
+
+  <!-- Training panel -->
+  <text x="390" y="160" font-family="Georgia, Times, serif" font-size="28" fill="#276749" text-anchor="middle" font-weight="600">TRAINING</text>
+  <text x="390" y="190" font-family="Georgia, Times, serif" font-size="16" fill="#38a169" text-anchor="middle">All tokens known → parallel</text>
+
+  <text x="130" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T1</text>
+  <text x="200" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T2</text>
+  <text x="270" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T3</text>
+  <text x="340" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T4</text>
+  <text x="410" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T5</text>
+  <text x="480" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T6</text>
+  <text x="550" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T7</text>
+  <text x="620" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T8</text>
+
+  <text x="390" y="493" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Done in 1 step</text>
+
+  <!-- Inference panel -->
+  <text x="1110" y="160" font-family="Georgia, Times, serif" font-size="28" fill="#c53030" text-anchor="middle" font-weight="600">INFERENCE</text>
+  <text x="1110" y="190" font-family="Georgia, Times, serif" font-size="16" fill="#e53e3e" text-anchor="middle">Each token needs previous → sequential</text>
+
+  <text x="830" y="270" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">The</text>
+  <text x="930" y="270" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">cat</text>
+  <text x="1030" y="270" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">sat</text>
+  <text x="1130" y="270" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">on</text>
+  <text x="1230" y="270" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">???</text>
+  <text x="1330" y="270" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">wait</text>
+  <text x="1425" y="270" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">wait</text>
+
+  <text x="1230" y="328" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">WAIT</text>
+
+  <text x="1150" y="400" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">Time →</text>
+  <text x="915" y="440" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">t1</text>
+  <text x="995" y="440" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">t2</text>
+  <text x="1075" y="440" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">t3</text>
+  <text x="1155" y="440" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">t4</text>
+  <text x="1235" y="440" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">t5</text>
+
+  <!-- Real-world callout panel header -->
+  <text x="1680" y="140" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="600">REAL EXAMPLE</text>
+
+  <!-- Input question -->
+  <text x="1680" y="176" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">"What is the capital of France?"</text>
+
+  <!-- Layer labels -->
+  <text x="1680" y="230" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Embedding</text>
+
+  <text x="1680" y="282" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="500">Attention + Softmax</text>
+  <text x="1680" y="300" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle">sum 8K values × 32 heads</text>
+
+  <text x="1680" y="348" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">LayerNorm (4096 dims)</text>
+
+  <text x="1680" y="395" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">FFN</text>
+
+  <text x="1680" y="443" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">LayerNorm (4096 dims)</text>
+
+  <!-- ×32 layers label -->
+  <text x="1855" y="360" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="start">×32</text>
+  <text x="1855" y="378" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="start">layers</text>
+
+  <!-- Output -->
+  <text x="1680" y="494" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="500">"The capital of France is Paris"</text>
+  <text x="1850" y="494" font-family="Georgia, Times, serif" font-size="14" fill="#e9d8fd" text-anchor="end">← 7 steps</text>
+
+  <!-- Bottom header -->
+  <text x="960" y="580" font-family="Georgia, Times, serif" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="600">THE THREE SEQUENTIAL BOTTLENECKS</text>
+
+  <!-- Softmax -->
+  <text x="350" y="640" font-family="Georgia, Times, serif" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="600">Softmax</text>
+  <text x="430" y="706" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle">Σ</text>
+  <text x="550" y="706" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle">÷</text>
+  <text x="235" y="770" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle">sum all first</text>
+  <text x="480" y="770" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle">then divide</text>
+
+  <!-- LayerNorm -->
+  <text x="910" y="640" font-family="Georgia, Times, serif" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="600">LayerNorm</text>
+  <text x="995" y="706" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle">μ,σ</text>
+  <text x="795" y="770" font-family="Georgia, Times, serif" font-size="14" fill="#feebc8" text-anchor="middle">compute mean/std</text>
+  <text x="1050" y="770" font-family="Georgia, Times, serif" font-size="14" fill="#feebc8" text-anchor="middle">then scale</text>
+
+  <!-- Autoregressive -->
+  <text x="1530" y="640" font-family="Georgia, Times, serif" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="600">Autoregressive Decoding</text>
+  <text x="1530" y="665" font-family="Georgia, Times, serif" font-size="16" fill="#e9d8fd" text-anchor="middle">(THE BIG ONE)</text>
+  <text x="1290" y="706" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T1</text>
+  <text x="1400" y="706" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T2</text>
+  <text x="1510" y="706" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T3</text>
+  <text x="1620" y="706" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">T4</text>
+  <text x="1730" y="706" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">?</text>
+  <text x="1530" y="770" font-family="Georgia, Times, serif" font-size="14" fill="#e9d8fd" text-anchor="middle">Token N+1 needs Token N</text>
+
+  <!-- TL;DR -->
+  <text x="960" y="900" font-family="Georgia, Times, serif" font-size="26" fill="#2d3748" text-anchor="middle" font-weight="600">Training 1T tokens = days. Generating 1K tokens = seconds but feels slow.</text>
+  <text x="960" y="940" font-family="Georgia, Times, serif" font-size="20" fill="#718096" text-anchor="middle">Because training is parallel, inference is sequential.</text>
+
+</svg>
