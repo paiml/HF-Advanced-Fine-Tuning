@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+  
+  <!-- LAYER 2: Section backgrounds -->
+  <!-- Parameters -->
+  <rect x="40" y="140" width="600" height="280" fill="#faf5ff" stroke="#9f7aea" stroke-width="2" rx="8"/>
+  <!-- Fine-tuning -->
+  <rect x="660" y="140" width="600" height="280" fill="#fff5f5" stroke="#fc8181" stroke-width="2" rx="8"/>
+  <!-- VRAM -->
+  <rect x="1280" y="140" width="600" height="280" fill="#ebf8ff" stroke="#4299e1" stroke-width="2" rx="8"/>
+  <!-- Gradients -->
+  <rect x="40" y="440" width="600" height="280" fill="#f0fff4" stroke="#48bb78" stroke-width="2" rx="8"/>
+  <!-- Rank -->
+  <rect x="660" y="440" width="920" height="280" fill="#fffaf0" stroke="#ed8936" stroke-width="2" rx="8"/>
+  
+  <!-- LAYER 3: Professional icons -->
+  
+  <!-- Parameters: Grid of parameter nodes -->
+  <rect x="80" y="200" width="140" height="140" fill="#e9d8fd" stroke="#9f7aea" stroke-width="1" rx="4"/>
+  <!-- Parameter dots grid -->
+  <circle cx="110" cy="230" r="8" fill="#6b46c1"/>
+  <circle cx="140" cy="230" r="8" fill="#6b46c1"/>
+  <circle cx="170" cy="230" r="8" fill="#6b46c1"/>
+  <circle cx="190" cy="230" r="8" fill="#9f7aea"/>
+  <circle cx="110" cy="260" r="8" fill="#6b46c1"/>
+  <circle cx="140" cy="260" r="8" fill="#9f7aea"/>
+  <circle cx="170" cy="260" r="8" fill="#6b46c1"/>
+  <circle cx="190" cy="260" r="8" fill="#6b46c1"/>
+  <circle cx="110" cy="290" r="8" fill="#9f7aea"/>
+  <circle cx="140" cy="290" r="8" fill="#6b46c1"/>
+  <circle cx="170" cy="290" r="8" fill="#6b46c1"/>
+  <circle cx="190" cy="290" r="8" fill="#6b46c1"/>
+  <circle cx="110" cy="320" r="8" fill="#6b46c1"/>
+  <circle cx="140" cy="320" r="8" fill="#6b46c1"/>
+  <circle cx="170" cy="320" r="8" fill="#9f7aea"/>
+  <circle cx="190" cy="320" r="8" fill="#6b46c1"/>
+  
+  <!-- Fine-tuning: Neural network with adjustment -->
+  <!-- Base network (frozen) -->
+  <circle cx="720" cy="220" r="12" fill="#718096"/>
+  <circle cx="720" cy="260" r="12" fill="#718096"/>
+  <circle cx="720" cy="300" r="12" fill="#718096"/>
+  <circle cx="780" cy="240" r="12" fill="#718096"/>
+  <circle cx="780" cy="280" r="12" fill="#718096"/>
+  <circle cx="840" cy="260" r="12" fill="#718096"/>
+  <!-- Connections -->
+  <line x1="732" y1="220" x2="768" y2="240" stroke="#a0aec0" stroke-width="1"/>
+  <line x1="732" y1="260" x2="768" y2="240" stroke="#a0aec0" stroke-width="1"/>
+  <line x1="732" y1="260" x2="768" y2="280" stroke="#a0aec0" stroke-width="1"/>
+  <line x1="732" y1="300" x2="768" y2="280" stroke="#a0aec0" stroke-width="1"/>
+  <line x1="792" y1="240" x2="828" y2="260" stroke="#a0aec0" stroke-width="1"/>
+  <line x1="792" y1="280" x2="828" y2="260" stroke="#a0aec0" stroke-width="1"/>
+  <!-- Adjustment layer (red = trainable) -->
+  <circle cx="780" cy="340" r="14" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
+  <circle cx="820" cy="340" r="14" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
+  <!-- Connection to adjustment -->
+  <line x1="780" y1="292" x2="780" y2="326" stroke="#e53e3e" stroke-width="2" stroke-dasharray="4,2"/>
+  <line x1="840" y1="272" x2="820" y2="326" stroke="#e53e3e" stroke-width="2" stroke-dasharray="4,2"/>
+  
+  <!-- VRAM: Memory chip diagram -->
+  <rect x="1320" y="200" width="180" height="120" fill="#2c5282" stroke="#1a365d" stroke-width="2" rx="4"/>
+  <!-- Memory cells -->
+  <rect x="1335" y="215" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1375" y="215" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1415" y="215" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1455" y="215" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1335" y="245" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1375" y="245" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1415" y="245" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1455" y="245" width="30" height="20" fill="#4299e1" rx="2"/>
+  <rect x="1335" y="275" width="30" height="20" fill="#63b3ed" rx="2"/>
+  <rect x="1375" y="275" width="30" height="20" fill="#63b3ed" rx="2"/>
+  <rect x="1415" y="275" width="30" height="20" fill="#e2e8f0" rx="2"/>
+  <rect x="1455" y="275" width="30" height="20" fill="#e2e8f0" rx="2"/>
+  <!-- Capacity bar -->
+  <rect x="1320" y="340" width="180" height="16" fill="#e2e8f0" stroke="#a0aec0" stroke-width="1" rx="3"/>
+  <rect x="1320" y="340" width="120" height="16" fill="#4299e1" rx="3"/>
+  
+  <!-- Gradients: Vector field arrows -->
+  <rect x="80" y="500" width="140" height="140" fill="#c6f6d5" stroke="#48bb78" stroke-width="1" rx="4"/>
+  <!-- Gradient arrows pointing toward minimum -->
+  <line x1="100" y1="520" x2="130" y2="550" stroke="#276749" stroke-width="2"/>
+  <polygon points="130,545 135,555 125,552" fill="#276749"/>
+  <line x1="160" y1="510" x2="150" y2="545" stroke="#276749" stroke-width="2"/>
+  <polygon points="148,540 155,552 145,548" fill="#276749"/>
+  <line x1="200" y1="530" x2="170" y2="555" stroke="#276749" stroke-width="2"/>
+  <polygon points="172,550 165,560 175,557" fill="#276749"/>
+  <line x1="100" y1="580" x2="135" y2="575" stroke="#276749" stroke-width="2"/>
+  <polygon points="132,570 145,575 135,580" fill="#276749"/>
+  <line x1="190" y1="600" x2="160" y2="580" stroke="#276749" stroke-width="2"/>
+  <polygon points="163,582 155,575 162,588" fill="#276749"/>
+  <line x1="110" y1="620" x2="140" y2="600" stroke="#276749" stroke-width="2"/>
+  <polygon points="137,602 148,595 142,608" fill="#276749"/>
+  <!-- Target point -->
+  <circle cx="150" cy="575" r="10" fill="#38a169" stroke="#276749" stroke-width="2"/>
+  
+  <!-- Rank: Matrix visualization -->
+  <!-- Full rank matrix -->
+  <rect x="700" y="500" width="120" height="120" fill="#fbd38d" stroke="#ed8936" stroke-width="2" rx="4"/>
+  <!-- Dense grid lines -->
+  <line x1="720" y1="500" x2="720" y2="620" stroke="#ed8936" stroke-width="1"/>
+  <line x1="740" y1="500" x2="740" y2="620" stroke="#ed8936" stroke-width="1"/>
+  <line x1="760" y1="500" x2="760" y2="620" stroke="#ed8936" stroke-width="1"/>
+  <line x1="780" y1="500" x2="780" y2="620" stroke="#ed8936" stroke-width="1"/>
+  <line x1="800" y1="500" x2="800" y2="620" stroke="#ed8936" stroke-width="1"/>
+  <line x1="700" y1="520" x2="820" y2="520" stroke="#ed8936" stroke-width="1"/>
+  <line x1="700" y1="540" x2="820" y2="540" stroke="#ed8936" stroke-width="1"/>
+  <line x1="700" y1="560" x2="820" y2="560" stroke="#ed8936" stroke-width="1"/>
+  <line x1="700" y1="580" x2="820" y2="580" stroke="#ed8936" stroke-width="1"/>
+  <line x1="700" y1="600" x2="820" y2="600" stroke="#ed8936" stroke-width="1"/>
+  
+  <!-- Low rank: Two thin matrices -->
+  <rect x="920" y="510" width="20" height="100" fill="#38a169" stroke="#276749" stroke-width="2" rx="2"/>
+  <rect x="960" y="540" width="80" height="20" fill="#38a169" stroke="#276749" stroke-width="2" rx="2"/>
+  
+  <!-- Multiplication symbol -->
+  <line x1="945" y1="550" x2="955" y2="560" stroke="#2d3748" stroke-width="2"/>
+  <line x1="955" y1="550" x2="945" y2="560" stroke="#2d3748" stroke-width="2"/>
+  
+  <!-- Approximately equals -->
+  <line x1="1070" y1="555" x2="1100" y2="555" stroke="#2d3748" stroke-width="2"/>
+  <line x1="1070" y1="565" x2="1100" y2="565" stroke="#2d3748" stroke-width="2"/>
+  <line x1="1075" y1="548" x2="1095" y2="548" stroke="#2d3748" stroke-width="1"/>
+  
+  <!-- Result matrix (same as full rank) -->
+  <rect x="1130" y="510" width="100" height="100" fill="#c6f6d5" stroke="#38a169" stroke-width="2" rx="4"/>
+  <line x1="1155" y1="510" x2="1155" y2="610" stroke="#48bb78" stroke-width="1"/>
+  <line x1="1180" y1="510" x2="1180" y2="610" stroke="#48bb78" stroke-width="1"/>
+  <line x1="1205" y1="510" x2="1205" y2="610" stroke="#48bb78" stroke-width="1"/>
+  <line x1="1130" y1="535" x2="1230" y2="535" stroke="#48bb78" stroke-width="1"/>
+  <line x1="1130" y1="560" x2="1230" y2="560" stroke="#48bb78" stroke-width="1"/>
+  <line x1="1130" y1="585" x2="1230" y2="585" stroke="#48bb78" stroke-width="1"/>
+  
+  <!-- Legend boxes -->
+  <rect x="100" y="1020" width="20" height="20" fill="#9f7aea" rx="2"/>
+  <rect x="280" y="1020" width="20" height="20" fill="#e53e3e" rx="2"/>
+  <rect x="480" y="1020" width="20" height="20" fill="#4299e1" rx="2"/>
+  <rect x="640" y="1020" width="20" height="20" fill="#48bb78" rx="2"/>
+  <rect x="820" y="1020" width="20" height="20" fill="#ed8936" rx="2"/>
+  
+  <!-- LAYER 5: TEXT (always last) -->
+  
+  <!-- Title -->
+  <text x="960" y="70" font-family="Georgia, Times, serif" font-size="52" fill="#1a202c" text-anchor="middle" font-weight="600">Core Concepts in Fine-Tuning</text>
+  <text x="960" y="110" font-family="Georgia, Times, serif" font-size="22" fill="#718096" text-anchor="middle">Five ideas you need to understand Qwen + LoRA fine-tuning</text>
+  
+  <!-- Parameters text -->
+  <text x="240" y="200" font-family="Georgia, Times, serif" font-size="24" fill="#553c9a" font-weight="600">PARAMETERS</text>
+  <text x="240" y="235" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Learnable weights in the model.</text>
+  <text x="240" y="265" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">More parameters = more capacity,</text>
+  <text x="240" y="295" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">but harder to train.</text>
+  <text x="240" y="340" font-family="Georgia, Times, serif" font-size="20" fill="#6b46c1" font-weight="500">7B = 7 billion weights</text>
+  <text x="240" y="370" font-family="Georgia, Times, serif" font-size="20" fill="#6b46c1" font-weight="500">1.5B = 1.5 billion weights</text>
+  
+  <!-- Fine-tuning text -->
+  <text x="870" y="190" font-family="Georgia, Times, serif" font-size="24" fill="#c53030" font-weight="600">FINE-TUNING</text>
+  <text x="870" y="225" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Adapting a pretrained model</text>
+  <text x="870" y="255" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">to a specific task. Base layers</text>
+  <text x="870" y="285" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">stay frozen, new layers train.</text>
+  <text x="870" y="330" font-family="Georgia, Times, serif" font-size="20" fill="#c53030" font-weight="500">Much cheaper than</text>
+  <text x="870" y="360" font-family="Georgia, Times, serif" font-size="20" fill="#c53030" font-weight="500">training from scratch</text>
+  
+  <!-- VRAM text -->
+  <text x="1520" y="200" font-family="Georgia, Times, serif" font-size="24" fill="#2c5282" font-weight="600">VRAM</text>
+  <text x="1520" y="235" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">GPU memory for</text>
+  <text x="1520" y="265" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">model weights + activations.</text>
+  <text x="1520" y="295" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Bigger model = more VRAM.</text>
+  <text x="1520" y="340" font-family="Georgia, Times, serif" font-size="20" fill="#2c5282" font-weight="500">1.5B ≈ 4GB</text>
+  <text x="1520" y="370" font-family="Georgia, Times, serif" font-size="20" fill="#2c5282" font-weight="500">7B ≈ 8GB</text>
+  
+  <!-- Gradients text -->
+  <text x="240" y="500" font-family="Georgia, Times, serif" font-size="24" fill="#276749" font-weight="600">GRADIENTS</text>
+  <text x="240" y="540" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Direction to update each weight.</text>
+  <text x="240" y="570" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Points toward lower loss.</text>
+  <text x="240" y="600" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">Backpropagation computes these.</text>
+  <text x="240" y="650" font-family="Georgia, Times, serif" font-size="20" fill="#276749" font-weight="500">The learning signal</text>
+  
+  <!-- Rank text -->
+  <text x="700" y="480" font-family="Georgia, Times, serif" font-size="24" fill="#c05621" font-weight="600">RANK (LoRA)</text>
+  <text x="700" y="650" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">Full matrix (d × d)</text>
+  <text x="920" y="650" font-family="Georgia, Times, serif" font-size="16" fill="#276749" font-weight="500">A (d × r) × B (r × d)</text>
+  <text x="1130" y="650" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568">≈ Same result</text>
+  <text x="1300" y="530" font-family="Georgia, Times, serif" font-size="18" fill="#c05621" font-weight="500">Low-rank approximation:</text>
+  <text x="1300" y="560" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">r=16 instead of d=4096</text>
+  <text x="1300" y="590" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">99% fewer parameters</text>
+  <text x="1300" y="620" font-family="Georgia, Times, serif" font-size="18" fill="#4a5568">~Same performance</text>
+  
+  <!-- Tagline -->
+  <text x="960" y="780" font-family="Georgia, Times, serif" font-size="28" fill="#2d3748" text-anchor="middle" font-weight="500">These 5 concepts unlock 90% of understanding modern ML fine-tuning.</text>
+  
+  <!-- Model requirements callout -->
+  <text x="960" y="850" font-family="Georgia, Times, serif" font-size="22" fill="#718096" text-anchor="middle">Qwen 1.5B: 1.5 billion parameters, needs 4GB VRAM, LoRA rank=16 enables laptop fine-tuning</text>
+  
+  <!-- Legend text -->
+  <text x="130" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Parameters</text>
+  <text x="310" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Fine-tuning</text>
+  <text x="510" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">VRAM</text>
+  <text x="670" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Gradients</text>
+  <text x="850" y="1036" font-family="Georgia, Times, serif" font-size="14" fill="#718096">Rank</text>
+
+</svg> put in week1
