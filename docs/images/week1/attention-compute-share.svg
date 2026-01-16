@@ -1,0 +1,288 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Section backgrounds -->
+  <!-- Left: Full model stack -->
+  <rect x="40" y="100" width="520" height="700" fill="#f7fafc" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <!-- Center: One layer expanded -->
+  <rect x="580" y="100" width="420" height="700" fill="#faf5ff" stroke="#9f7aea" stroke-width="2" rx="8"/>
+  <!-- Right: Inside attention -->
+  <rect x="1020" y="100" width="860" height="700" fill="#1a202c" stroke="#2d3748" stroke-width="2" rx="8"/>
+
+  <!-- Bottom: Legend -->
+  <rect x="40" y="820" width="1840" height="220" fill="#f7fafc" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Visual elements -->
+
+  <!-- Left: Full model stack -->
+  <!-- Input -->
+  <rect x="80" y="160" width="260" height="35" fill="#4a5568" stroke="#2d3748" stroke-width="2" rx="4"/>
+
+  <!-- Embedding -->
+  <rect x="80" y="205" width="260" height="35" fill="#718096" stroke="#4a5568" stroke-width="2" rx="4"/>
+
+  <!-- Layer block ×32 -->
+  <rect x="80" y="250" width="260" height="360" fill="#2d3748" stroke="#1a202c" stroke-width="2" rx="8"/>
+
+  <!-- Layer contents -->
+  <rect x="100" y="270" width="220" height="60" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="100" y="340" width="220" height="25" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+  <rect x="100" y="375" width="220" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="100" y="435" width="220" height="25" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+
+  <!-- Dots for more layers -->
+  <circle cx="210" cy="485" r="4" fill="#718096"/>
+  <circle cx="210" cy="505" r="4" fill="#718096"/>
+  <circle cx="210" cy="525" r="4" fill="#718096"/>
+
+  <!-- Layer 32 hint -->
+  <rect x="100" y="545" width="220" height="50" fill="#4a5568" stroke="#2d3748" stroke-width="1" rx="4" stroke-dasharray="4,2"/>
+
+  <!-- Output layer -->
+  <rect x="80" y="625" width="260" height="35" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="4"/>
+
+  <!-- Output -->
+  <rect x="80" y="670" width="260" height="35" fill="#4a5568" stroke="#2d3748" stroke-width="2" rx="4"/>
+
+  <!-- ×32 badge - clear and prominent -->
+  <rect x="350" y="370" width="70" height="70" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="8"/>
+
+  <!-- Compute % rollup bar -->
+  <rect x="440" y="160" width="100" height="545" fill="#1a202c" stroke="#2d3748" stroke-width="1" rx="4"/>
+  <!-- Embedding slice 1% -->
+  <rect x="445" y="165" width="90" height="10" fill="#718096" rx="2"/>
+  <!-- Attention slices 50% -->
+  <rect x="445" y="180" width="90" height="270" fill="#e53e3e" rx="2"/>
+  <!-- FFN slices 45% -->
+  <rect x="445" y="455" width="90" height="240" fill="#38a169" rx="2"/>
+  <!-- LayerNorm 3% -->
+  <rect x="445" y="655" width="90" height="15" fill="#ed8936" rx="2"/>
+  <!-- Output 1% -->
+  <rect x="445" y="675" width="90" height="25" fill="#6b46c1" rx="2"/>
+
+  <!-- Arrows -->
+  <line x1="210" y1="195" x2="210" y2="200" stroke="#718096" stroke-width="2"/>
+  <polygon points="203,200 210,213 217,200" fill="#718096"/>
+  <line x1="210" y1="240" x2="210" y2="245" stroke="#718096" stroke-width="2"/>
+  <polygon points="203,245 210,258 217,245" fill="#718096"/>
+  <line x1="210" y1="610" x2="210" y2="620" stroke="#718096" stroke-width="2"/>
+  <polygon points="203,620 210,633 217,620" fill="#718096"/>
+  <line x1="210" y1="660" x2="210" y2="665" stroke="#718096" stroke-width="2"/>
+  <polygon points="203,665 210,678 217,665" fill="#718096"/>
+
+  <!-- Center: One layer expanded -->
+  <!-- Attention block -->
+  <rect x="620" y="180" width="340" height="200" fill="#e53e3e" stroke="#c53030" stroke-width="3" rx="8"/>
+
+  <!-- LayerNorm 1 -->
+  <rect x="620" y="400" width="340" height="50" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+
+  <!-- FFN -->
+  <rect x="620" y="470" width="340" height="160" fill="#38a169" stroke="#276749" stroke-width="2" rx="8"/>
+
+  <!-- LayerNorm 2 -->
+  <rect x="620" y="650" width="340" height="50" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+
+  <!-- Arrows -->
+  <line x1="790" y1="380" x2="790" y2="395" stroke="#718096" stroke-width="2"/>
+  <polygon points="783,395 790,408 797,395" fill="#718096"/>
+  <line x1="790" y1="450" x2="790" y2="465" stroke="#718096" stroke-width="2"/>
+  <polygon points="783,465 790,478 797,465" fill="#718096"/>
+  <line x1="790" y1="630" x2="790" y2="645" stroke="#718096" stroke-width="2"/>
+  <polygon points="783,645 790,658 797,645" fill="#718096"/>
+
+  <!-- Right: Inside attention with HOT/COLD colors -->
+  <!-- Q, K, V projections (COLD - green = parallel) -->
+  <rect x="1080" y="160" width="80" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="1180" y="160" width="80" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="1280" y="160" width="80" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- Arrows down from Q, K -->
+  <line x1="1120" y1="210" x2="1120" y2="250" stroke="#48bb78" stroke-width="2"/>
+  <line x1="1220" y1="210" x2="1220" y2="250" stroke="#48bb78" stroke-width="2"/>
+
+  <!-- QK^T matrix (COOL green - parallel but big) -->
+  <rect x="1080" y="270" width="180" height="140" fill="#48bb78" stroke="#276749" stroke-width="2" rx="4"/>
+  <!-- Grid lines -->
+  <line x1="1080" y1="305" x2="1260" y2="305" stroke="#276749" stroke-width="1"/>
+  <line x1="1080" y1="340" x2="1260" y2="340" stroke="#276749" stroke-width="1"/>
+  <line x1="1080" y1="375" x2="1260" y2="375" stroke="#276749" stroke-width="1"/>
+  <line x1="1125" y1="270" x2="1125" y2="410" stroke="#276749" stroke-width="1"/>
+  <line x1="1170" y1="270" x2="1170" y2="410" stroke="#276749" stroke-width="1"/>
+  <line x1="1215" y1="270" x2="1215" y2="410" stroke="#276749" stroke-width="1"/>
+
+  <!-- Arrow to softmax (turns red) -->
+  <line x1="1170" y1="410" x2="1170" y2="450" stroke="#c53030" stroke-width="3"/>
+  <polygon points="1160,450 1170,470 1180,450" fill="#c53030"/>
+
+  <!-- Softmax (HOT - red = bottleneck) -->
+  <rect x="1060" y="480" width="220" height="100" fill="#e53e3e" stroke="#c53030" stroke-width="4" rx="8"/>
+  <!-- Inner glow effect -->
+  <rect x="1070" y="490" width="200" height="80" fill="#fc8181" stroke="#e53e3e" stroke-width="2" rx="6"/>
+
+  <!-- Arrow out (turns green again) -->
+  <line x1="1170" y1="580" x2="1170" y2="620" stroke="#48bb78" stroke-width="2"/>
+  <polygon points="1160,620 1170,640 1180,620" fill="#48bb78"/>
+
+  <!-- V comes in from side -->
+  <line x1="1320" y1="210" x2="1320" y2="670" stroke="#48bb78" stroke-width="2"/>
+  <line x1="1260" y1="670" x2="1315" y2="670" stroke="#48bb78" stroke-width="2"/>
+  <polygon points="1260,663 1245,670 1260,677" fill="#48bb78"/>
+
+  <!-- × V multiplication (COLD - green) -->
+  <rect x="1080" y="650" width="180" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- Output projection (COLD - green) -->
+  <line x1="1170" y1="710" x2="1170" y2="740" stroke="#48bb78" stroke-width="2"/>
+  <polygon points="1160,740 1170,758 1180,740" fill="#48bb78"/>
+  <rect x="1080" y="760" width="180" height="40" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- Right side: HOT/COLD summary bars -->
+  <rect x="1420" y="160" width="200" height="50" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="1420" y="270" width="200" height="140" fill="#48bb78" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="1420" y="480" width="200" height="100" fill="#e53e3e" stroke="#c53030" stroke-width="4" rx="8"/>
+  <rect x="1420" y="650" width="200" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="1420" y="760" width="200" height="40" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+
+  <!-- Temperature indicators -->
+  <rect x="1640" y="160" width="80" height="50" fill="#276749" stroke="#1c4532" stroke-width="2" rx="4"/>
+  <rect x="1640" y="270" width="80" height="140" fill="#276749" stroke="#1c4532" stroke-width="2" rx="4"/>
+  <rect x="1640" y="480" width="80" height="100" fill="#c53030" stroke="#9b2c2c" stroke-width="2" rx="4"/>
+  <rect x="1640" y="650" width="80" height="60" fill="#276749" stroke="#1c4532" stroke-width="2" rx="4"/>
+  <rect x="1640" y="760" width="80" height="40" fill="#276749" stroke="#1c4532" stroke-width="2" rx="4"/>
+
+  <!-- Legend boxes -->
+  <rect x="80" y="860" width="350" height="150" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+  <rect x="460" y="860" width="350" height="150" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+  <rect x="840" y="860" width="350" height="150" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+  <rect x="1220" y="860" width="350" height="150" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+  <rect x="1600" y="860" width="260" height="150" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+
+  <!-- Legend color indicators -->
+  <rect x="100" y="890" width="30" height="30" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="480" y="890" width="30" height="30" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="860" y="890" width="30" height="30" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+  <rect x="1240" y="890" width="30" height="30" fill="#6b46c1" stroke="#553c9a" stroke-width="2" rx="4"/>
+  <rect x="1620" y="890" width="30" height="30" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="1620" y="930" width="30" height="30" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+
+  <!-- LAYER 5: TEXT (always last) -->
+
+  <!-- Title -->
+  <text x="960" y="50" font-family="Georgia, Times, serif" font-size="40" fill="#1a202c" text-anchor="middle" font-weight="600">Where Attention Lives + Compute Share</text>
+  <text x="960" y="80" font-family="Georgia, Times, serif" font-size="18" fill="#718096" text-anchor="middle">Attention is ~50% of compute. Softmax is the one bottleneck.</text>
+
+  <!-- Left panel -->
+  <text x="210" y="135" font-family="Georgia, Times, serif" font-size="18" fill="#2d3748" text-anchor="middle" font-weight="600">FULL MODEL (7B)</text>
+
+  <text x="210" y="183" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Input</text>
+  <text x="210" y="228" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Embedding</text>
+
+  <text x="210" y="307" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="500">Attention</text>
+  <text x="210" y="358" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">LN</text>
+  <text x="210" y="405" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="500">FFN</text>
+  <text x="210" y="453" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">LN</text>
+
+  <text x="210" y="575" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">layer 32...</text>
+
+  <text x="210" y="648" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Output proj</text>
+  <text x="210" y="693" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">"Paris"</text>
+
+  <!-- ×32 badge text -->
+  <text x="385" y="400" font-family="Georgia, Times, serif" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="600">×32</text>
+  <text x="385" y="420" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle">layers</text>
+
+  <!-- Rollup percentages -->
+  <text x="490" y="175" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">1%</text>
+  <text x="490" y="320" font-family="Georgia, Times, serif" font-size="16" fill="#e53e3e" text-anchor="middle" font-weight="600">50%</text>
+  <text x="490" y="575" font-family="Georgia, Times, serif" font-size="16" fill="#38a169" text-anchor="middle" font-weight="600">45%</text>
+  <text x="490" y="665" font-family="Georgia, Times, serif" font-size="14" fill="#ed8936" text-anchor="middle">3%</text>
+  <text x="490" y="695" font-family="Georgia, Times, serif" font-size="14" fill="#6b46c1" text-anchor="middle">1%</text>
+
+  <!-- Center panel -->
+  <text x="790" y="135" font-family="Georgia, Times, serif" font-size="18" fill="#553c9a" text-anchor="middle" font-weight="600">ONE LAYER</text>
+
+  <text x="790" y="270" font-family="Georgia, Times, serif" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="600">Attention</text>
+  <text x="790" y="295" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle">50% of layer</text>
+
+  <text x="790" y="432" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle">LayerNorm</text>
+
+  <text x="790" y="545" font-family="Georgia, Times, serif" font-size="20" fill="#ffffff" text-anchor="middle" font-weight="600">FFN</text>
+  <text x="790" y="570" font-family="Georgia, Times, serif" font-size="14" fill="#c6f6d5" text-anchor="middle">45% of layer</text>
+
+  <text x="790" y="682" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle">LayerNorm</text>
+
+  <!-- Right panel -->
+  <text x="1300" y="135" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="600">INSIDE ATTENTION (hot vs cold)</text>
+
+  <text x="1120" y="192" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="500">Q</text>
+  <text x="1220" y="192" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="500">K</text>
+  <text x="1320" y="192" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="500">V</text>
+
+  <text x="1170" y="345" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="500">QKᵀ</text>
+  <text x="1170" y="370" font-family="Georgia, Times, serif" font-size="14" fill="#c6f6d5" text-anchor="middle">n × n matrix</text>
+
+  <text x="1170" y="525" font-family="Georgia, Times, serif" font-size="20" fill="#1a202c" text-anchor="middle" font-weight="600">softmax</text>
+  <text x="1170" y="550" font-family="Georgia, Times, serif" font-size="16" fill="#1a202c" text-anchor="middle" font-weight="500">BOTTLENECK</text>
+
+  <text x="1170" y="687" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="500">× V</text>
+
+  <text x="1170" y="787" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Output proj</text>
+
+  <!-- Right breakdown labels -->
+  <text x="1520" y="192" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Q, K, V proj</text>
+  <text x="1520" y="345" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">QKᵀ matmul</text>
+  <text x="1520" y="537" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="600">softmax</text>
+  <text x="1520" y="687" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">× V matmul</text>
+  <text x="1520" y="787" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Output proj</text>
+
+  <!-- Temperature labels -->
+  <text x="1680" y="192" font-family="Georgia, Times, serif" font-size="14" fill="#c6f6d5" text-anchor="middle">COLD</text>
+  <text x="1680" y="345" font-family="Georgia, Times, serif" font-size="14" fill="#c6f6d5" text-anchor="middle">COLD</text>
+  <text x="1680" y="537" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle" font-weight="600">HOT</text>
+  <text x="1680" y="687" font-family="Georgia, Times, serif" font-size="14" fill="#c6f6d5" text-anchor="middle">COLD</text>
+  <text x="1680" y="787" font-family="Georgia, Times, serif" font-size="14" fill="#c6f6d5" text-anchor="middle">COLD</text>
+
+  <!-- Parallel/Sequential labels -->
+  <text x="1780" y="192" font-family="Georgia, Times, serif" font-size="14" fill="#48bb78" text-anchor="middle">✓</text>
+  <text x="1780" y="345" font-family="Georgia, Times, serif" font-size="14" fill="#48bb78" text-anchor="middle">✓</text>
+  <text x="1780" y="537" font-family="Georgia, Times, serif" font-size="14" fill="#fc8181" text-anchor="middle">✗</text>
+  <text x="1780" y="687" font-family="Georgia, Times, serif" font-size="14" fill="#48bb78" text-anchor="middle">✓</text>
+  <text x="1780" y="787" font-family="Georgia, Times, serif" font-size="14" fill="#48bb78" text-anchor="middle">✓</text>
+
+  <!-- Legend header -->
+  <text x="960" y="850" font-family="Georgia, Times, serif" font-size="18" fill="#2d3748" text-anchor="middle" font-weight="600">KEY TERMS</text>
+
+  <!-- Attention definition -->
+  <text x="145" y="910" font-family="Georgia, Times, serif" font-size="16" fill="#c53030" text-anchor="start" font-weight="600">Attention</text>
+  <text x="100" y="940" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">"Which tokens matter</text>
+  <text x="100" y="960" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">for this token?"</text>
+  <text x="100" y="990" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="start">Q×Kᵀ → softmax → ×V</text>
+
+  <!-- FFN definition -->
+  <text x="525" y="910" font-family="Georgia, Times, serif" font-size="16" fill="#276749" text-anchor="start" font-weight="600">FFN</text>
+  <text x="480" y="940" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">Feed-Forward Network</text>
+  <text x="480" y="960" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">"Think about it"</text>
+  <text x="480" y="990" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="start">2 big matrix muls + GELU</text>
+
+  <!-- LayerNorm definition -->
+  <text x="905" y="910" font-family="Georgia, Times, serif" font-size="16" fill="#c05621" text-anchor="start" font-weight="600">LayerNorm</text>
+  <text x="860" y="940" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">"Keep numbers sane"</text>
+  <text x="860" y="960" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">mean=0, std=1, rescale</text>
+  <text x="860" y="990" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="start">Small sequential cost</text>
+
+  <!-- Q/K/V definition -->
+  <text x="1285" y="910" font-family="Georgia, Times, serif" font-size="16" fill="#553c9a" text-anchor="start" font-weight="600">Q, K, V</text>
+  <text x="1240" y="940" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">Query, Key, Value</text>
+  <text x="1240" y="960" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">Q asks, K answers,</text>
+  <text x="1240" y="980" font-family="Georgia, Times, serif" font-size="14" fill="#4a5568" text-anchor="start">V is the content</text>
+
+  <!-- Hot/Cold definition -->
+  <text x="1665" y="910" font-family="Georgia, Times, serif" font-size="14" fill="#48bb78" text-anchor="start" font-weight="500">COLD = parallel</text>
+  <text x="1665" y="950" font-family="Georgia, Times, serif" font-size="14" fill="#e53e3e" text-anchor="start" font-weight="500">HOT = sequential</text>
+  <text x="1620" y="990" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="start">4/5 ops parallel</text>
+  <text x="1620" y="1010" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="start">1/5 bottleneck</text>
+
+</svg>
