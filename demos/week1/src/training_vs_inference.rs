@@ -48,7 +48,14 @@ pub struct LayerNormStats {
 #[must_use]
 pub fn layernorm_with_stats(x: &[f32], eps: f32) -> (Vec<f32>, LayerNormStats) {
     if x.is_empty() {
-        return (vec![], LayerNormStats { mean: 0.0, var: 0.0, std: 0.0 });
+        return (
+            vec![],
+            LayerNormStats {
+                mean: 0.0,
+                var: 0.0,
+                std: 0.0,
+            },
+        );
     }
     let n = x.len() as f32;
     let mean: f32 = x.iter().sum::<f32>() / n;
@@ -69,7 +76,13 @@ pub struct SoftmaxStats {
 #[must_use]
 pub fn softmax_with_stats(x: &[f32]) -> (Vec<f32>, SoftmaxStats) {
     if x.is_empty() {
-        return (vec![], SoftmaxStats { max: 0.0, sum_exp: 0.0 });
+        return (
+            vec![],
+            SoftmaxStats {
+                max: 0.0,
+                sum_exp: 0.0,
+            },
+        );
     }
     let max = x.iter().cloned().fold(f32::NEG_INFINITY, f32::max);
     let exp_vals: Vec<f32> = x.iter().map(|v| (v - max).exp()).collect();
@@ -92,7 +105,10 @@ pub struct Token {
 impl Token {
     #[must_use]
     pub fn new(id: u32, text: &str) -> Self {
-        Self { id, text: text.to_string() }
+        Self {
+            id,
+            text: text.to_string(),
+        }
     }
 }
 
@@ -148,18 +164,22 @@ pub fn toy_forward(tokens: &[u32], vocab_size: usize) -> Vec<f32> {
 
     // Hardcoded "The capital of France is Paris." pattern
     let next_token = match tokens {
-        [] => 0,                          // "The"
-        [0] => 1,                         // "capital"
-        [0, 1] => 2,                      // "of"
-        [0, 1, 2] => 3,                   // "France"
-        [0, 1, 2, 3] => 4,                // "is"
-        [0, 1, 2, 3, 4] => 5,             // "Paris"
-        _ => 6,                           // "."
+        [] => 0,              // "The"
+        [0] => 1,             // "capital"
+        [0, 1] => 2,          // "of"
+        [0, 1, 2] => 3,       // "France"
+        [0, 1, 2, 3] => 4,    // "is"
+        [0, 1, 2, 3, 4] => 5, // "Paris"
+        _ => 6,               // "."
     };
 
     // Make the "correct" token have highest logit
     for (i, logit) in logits.iter_mut().enumerate() {
-        *logit = if i == next_token { 2.0 } else { -1.0 + (i as f32) * 0.1 };
+        *logit = if i == next_token {
+            2.0
+        } else {
+            -1.0 + (i as f32) * 0.1
+        };
     }
 
     logits
@@ -247,7 +267,9 @@ pub fn run() -> DemoResults {
         layernorm_output,
         layernorm_stats,
         generation_trace,
-        vocab: (0..vocab.len()).filter_map(|i| vocab.get(i as u32).map(|s| s.to_string())).collect(),
+        vocab: (0..vocab.len())
+            .filter_map(|i| vocab.get(i as u32).map(|s| s.to_string()))
+            .collect(),
     }
 }
 
@@ -257,25 +279,56 @@ pub fn print_stdout(results: &DemoResults) {
 
     println!("--- SOFTMAX (Global Reduction) ---");
     println!("Input:  {:?}", results.softmax_input);
-    println!("Max:    {:.2} (subtract for stability)", results.softmax_stats.max);
-    println!("Sum:    {:.2} (must compute before dividing)", results.softmax_stats.sum_exp);
-    println!("Output: {:?}\n", results.softmax_output.iter().map(|v| format!("{:.2}", v)).collect::<Vec<_>>());
+    println!(
+        "Max:    {:.2} (subtract for stability)",
+        results.softmax_stats.max
+    );
+    println!(
+        "Sum:    {:.2} (must compute before dividing)",
+        results.softmax_stats.sum_exp
+    );
+    println!(
+        "Output: {:?}\n",
+        results
+            .softmax_output
+            .iter()
+            .map(|v| format!("{:.2}", v))
+            .collect::<Vec<_>>()
+    );
 
     println!("--- LAYERNORM (Global Reduction) ---");
     println!("Input:  {:?}", results.layernorm_input);
-    println!("Mean:   {:.3} (must see all values)", results.layernorm_stats.mean);
-    println!("Std:    {:.3} (must see all values)", results.layernorm_stats.std);
-    println!("Output: {:?}\n", results.layernorm_output.iter().map(|v| format!("{:.2}", v)).collect::<Vec<_>>());
+    println!(
+        "Mean:   {:.3} (must see all values)",
+        results.layernorm_stats.mean
+    );
+    println!(
+        "Std:    {:.3} (must see all values)",
+        results.layernorm_stats.std
+    );
+    println!(
+        "Output: {:?}\n",
+        results
+            .layernorm_output
+            .iter()
+            .map(|v| format!("{:.2}", v))
+            .collect::<Vec<_>>()
+    );
 
     println!("--- AUTOREGRESSIVE (Sequential Dependency) ---");
     for step in &results.generation_trace {
-        let prev: String = step.input_tokens.iter()
+        let prev: String = step
+            .input_tokens
+            .iter()
             .filter_map(|&id| results.vocab.get(id as usize))
             .cloned()
             .collect::<Vec<_>>()
             .join(" ");
         let default = "?".to_string();
-        let next = results.vocab.get(step.sampled_token as usize).unwrap_or(&default);
+        let next = results
+            .vocab
+            .get(step.sampled_token as usize)
+            .unwrap_or(&default);
         println!("Step {}: [{}] → \"{}\"", step.step + 1, prev, next);
     }
     println!("\nKey: Token N+1 CANNOT be computed until Token N exists.");
@@ -302,7 +355,10 @@ pub fn render_tui(results: &DemoResults) {
         print!("{yellow}[{:.1}]{reset} ", v);
     }
     println!();
-    println!("  {dim}→ max={:.2}, sum_exp={:.2}{reset}", results.softmax_stats.max, results.softmax_stats.sum_exp);
+    println!(
+        "  {dim}→ max={:.2}, sum_exp={:.2}{reset}",
+        results.softmax_stats.max, results.softmax_stats.sum_exp
+    );
     print!("  Output: ");
     for v in &results.softmax_output {
         print!("{green}[{:.2}]{reset} ", v);
@@ -317,7 +373,10 @@ pub fn render_tui(results: &DemoResults) {
         print!("{yellow}[{:.1}]{reset} ", v);
     }
     println!();
-    println!("  {dim}→ μ={:.3}, σ={:.3}{reset}", results.layernorm_stats.mean, results.layernorm_stats.std);
+    println!(
+        "  {dim}→ μ={:.3}, σ={:.3}{reset}",
+        results.layernorm_stats.mean, results.layernorm_stats.std
+    );
     print!("  Output: ");
     for v in &results.layernorm_output {
         print!("{green}[{:.2}]{reset} ", v);
@@ -330,7 +389,10 @@ pub fn render_tui(results: &DemoResults) {
     print!("  ");
     let default_token = "?".to_string();
     for step in &results.generation_trace {
-        let token = results.vocab.get(step.sampled_token as usize).unwrap_or(&default_token);
+        let token = results
+            .vocab
+            .get(step.sampled_token as usize)
+            .unwrap_or(&default_token);
         print!("{green}\"{}\"{reset}", token);
         if step.step < results.generation_trace.len() - 1 {
             print!(" {dim}→{reset} ");
@@ -599,7 +661,8 @@ mod tests {
     #[test]
     fn test_run_layernorm_mean_zero() {
         let results = run();
-        let mean: f32 = results.layernorm_output.iter().sum::<f32>() / results.layernorm_output.len() as f32;
+        let mean: f32 =
+            results.layernorm_output.iter().sum::<f32>() / results.layernorm_output.len() as f32;
         assert!(mean.abs() < 1e-5);
     }
 
@@ -621,15 +684,29 @@ mod tests {
 
     #[test]
     fn test_softmax_stats_eq() {
-        let a = SoftmaxStats { max: 1.0, sum_exp: 2.0 };
-        let b = SoftmaxStats { max: 1.0, sum_exp: 2.0 };
+        let a = SoftmaxStats {
+            max: 1.0,
+            sum_exp: 2.0,
+        };
+        let b = SoftmaxStats {
+            max: 1.0,
+            sum_exp: 2.0,
+        };
         assert_eq!(a, b);
     }
 
     #[test]
     fn test_layernorm_stats_eq() {
-        let a = LayerNormStats { mean: 1.0, var: 2.0, std: 3.0 };
-        let b = LayerNormStats { mean: 1.0, var: 2.0, std: 3.0 };
+        let a = LayerNormStats {
+            mean: 1.0,
+            var: 2.0,
+            std: 3.0,
+        };
+        let b = LayerNormStats {
+            mean: 1.0,
+            var: 2.0,
+            std: 3.0,
+        };
         assert_eq!(a, b);
     }
 

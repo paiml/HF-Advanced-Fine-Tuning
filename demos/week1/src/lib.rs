@@ -6,6 +6,7 @@
 
 use clap::Parser;
 
+pub mod inference_pipeline;
 pub mod scalar_simd_gpu;
 pub mod training_vs_inference;
 

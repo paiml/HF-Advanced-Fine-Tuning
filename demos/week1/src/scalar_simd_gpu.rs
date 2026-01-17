@@ -359,7 +359,10 @@ pub fn log_scale_ratio(speedup: f64, min_speedup: f64, max_speedup: f64) -> f64 
 /// Render TUI bar chart (bar length = log-scale duration, sorted by speed)
 pub fn render_tui(results: &Results) {
     println!("\n\x1b[1m=== Scalar vs SIMD vs GPU ===\x1b[0m");
-    println!("\x1b[90mIterations: {} | Bar = log(time), sorted fastest→slowest\x1b[0m\n", results.iterations);
+    println!(
+        "\x1b[90mIterations: {} | Bar = log(time), sorted fastest→slowest\x1b[0m\n",
+        results.iterations
+    );
 
     for op in &results.operations {
         println!("\x1b[1;4m{}\x1b[0m", op.name);
@@ -388,7 +391,10 @@ pub fn render_tui(results: &Results) {
 
         // Show unavailable backends at the end
         for b in op.backends.iter().filter(|b| !b.available) {
-            println!("{:<10} \x1b[90m{:<25} {:>10} {:>10}\x1b[0m", b.name, "---", "---", "N/A");
+            println!(
+                "{:<10} \x1b[90m{:<25} {:>10} {:>10}\x1b[0m",
+                b.name, "---", "---", "N/A"
+            );
         }
         println!();
     }

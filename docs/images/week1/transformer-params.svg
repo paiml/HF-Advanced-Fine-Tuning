@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Main panels -->
+  <rect x="40" y="140" width="580" height="800" fill="#f7fafc" stroke="#e2e8f0" stroke-width="2" rx="8"/>
+  <rect x="640" y="140" width="640" height="800" fill="#1a202c" stroke="#2d3748" stroke-width="2" rx="8"/>
+  <rect x="1300" y="140" width="580" height="360" fill="#faf5ff" stroke="#9f7aea" stroke-width="2" rx="8"/>
+  <rect x="1300" y="520" width="580" height="420" fill="#fff5f5" stroke="#fc8181" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Parameter breakdown (left) -->
+  <rect x="80" y="200" width="500" height="45" fill="#e2e8f0" stroke="#a0aec0" stroke-width="2" rx="4"/>
+  <rect x="80" y="260" width="500" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="4"/>
+  <rect x="60" y="340" width="540" height="340" fill="#3182ce" stroke="#2c5282" stroke-width="4" rx="8"/>
+  <rect x="100" y="400" width="460" height="35" fill="#4299e1" rx="4"/>
+  <rect x="100" y="450" width="460" height="35" fill="#4299e1" rx="4"/>
+  <rect x="100" y="500" width="460" height="35" fill="#4299e1" rx="4"/>
+  <rect x="100" y="550" width="460" height="35" fill="#4299e1" rx="4"/>
+  <rect x="100" y="600" width="460" height="35" fill="#63b3ed" rx="4"/>
+  <rect x="80" y="700" width="500" height="60" fill="#38a169" stroke="#276749" stroke-width="2" rx="4" stroke-dasharray="8,4"/>
+  <rect x="80" y="780" width="500" height="45" fill="#e2e8f0" stroke="#a0aec0" stroke-width="2" rx="4"/>
+  <rect x="80" y="845" width="500" height="45" fill="#e2e8f0" stroke="#a0aec0" stroke-width="2" rx="4"/>
+  <rect x="80" y="910" width="500" height="25" fill="#e2e8f0" rx="4"/>
+  <rect x="80" y="910" width="400" height="25" fill="#3182ce" rx="4"/>
+  <rect x="480" y="910" width="100" height="25" fill="#38a169" rx="4"/>
+
+  <!-- LAYER 3: Window dressing (center) -->
+  <rect x="680" y="190" width="560" height="110" fill="#2d3748" stroke="#4a5568" stroke-width="2" rx="6"/>
+  <rect x="680" y="320" width="560" height="100" fill="#276749" stroke="#38a169" stroke-width="2" rx="6"/>
+  <rect x="680" y="440" width="560" height="90" fill="#276749" stroke="#38a169" stroke-width="2" rx="6"/>
+  <rect x="680" y="550" width="560" height="100" fill="#744210" stroke="#ed8936" stroke-width="2" rx="6"/>
+  <rect x="680" y="670" width="560" height="100" fill="#742a2a" stroke="#fc8181" stroke-width="3" rx="6"/>
+  <rect x="680" y="790" width="560" height="100" fill="#4a5568" stroke="#718096" stroke-width="2" rx="6"/>
+
+  <!-- LAYER 3: Brain/Body (right top) -->
+  <rect x="1400" y="200" width="200" height="100" fill="#3182ce" stroke="#2c5282" stroke-width="3" rx="8"/>
+  <rect x="1340" y="340" width="110" height="50" fill="#4a5568" stroke="#718096" stroke-width="2" rx="4"/>
+  <rect x="1470" y="340" width="110" height="50" fill="#4a5568" stroke="#718096" stroke-width="2" rx="4"/>
+  <rect x="1600" y="340" width="110" height="50" fill="#ed8936" stroke="#c05621" stroke-width="2" rx="4"/>
+  <line x1="1450" y1="300" x2="1395" y2="335" stroke="#718096" stroke-width="2"/>
+  <polygon points="1395,328 1385,340 1402,338" fill="#718096"/>
+  <line x1="1500" y1="300" x2="1525" y2="335" stroke="#718096" stroke-width="2"/>
+  <polygon points="1518,338 1535,340 1525,328" fill="#718096"/>
+  <line x1="1550" y1="300" x2="1655" y2="335" stroke="#718096" stroke-width="2"/>
+  <polygon points="1648,338 1665,340 1655,328" fill="#718096"/>
+
+  <!-- LAYER 3: Sampler demo (right bottom) -->
+  <rect x="1340" y="600" width="160" height="120" fill="#276749" stroke="#38a169" stroke-width="2" rx="6"/>
+  <rect x="1510" y="600" width="160" height="120" fill="#2c5282" stroke="#4299e1" stroke-width="2" rx="6"/>
+  <rect x="1680" y="600" width="160" height="120" fill="#744210" stroke="#ed8936" stroke-width="2" rx="6"/>
+  <rect x="1340" y="740" width="500" height="35" fill="#3182ce" stroke="#2c5282" stroke-width="2" rx="4"/>
+  <rect x="1340" y="795" width="160" height="70" fill="#c6f6d5" stroke="#38a169" stroke-width="2" rx="4"/>
+  <rect x="1510" y="795" width="160" height="70" fill="#bee3f8" stroke="#4299e1" stroke-width="2" rx="4"/>
+  <rect x="1680" y="795" width="160" height="70" fill="#feebc8" stroke="#ed8936" stroke-width="2" rx="4"/>
+  <line x1="1420" y1="775" x2="1420" y2="790" stroke="#718096" stroke-width="2"/>
+  <polygon points="1413,790 1420,805 1427,790" fill="#718096"/>
+  <line x1="1590" y1="775" x2="1590" y2="790" stroke="#718096" stroke-width="2"/>
+  <polygon points="1583,790 1590,805 1597,790" fill="#718096"/>
+  <line x1="1760" y1="775" x2="1760" y2="790" stroke="#718096" stroke-width="2"/>
+  <polygon points="1753,790 1760,805 1767,790" fill="#718096"/>
+
+  <!-- LAYER 5: TEXT -->
+
+  <!-- Title -->
+  <text x="960" y="60" font-family="Georgia, Times, serif" font-size="44" fill="#1a202c" text-anchor="middle" font-weight="600">Transformer = LLM: Where Parameters Live</text>
+  <text x="960" y="100" font-family="Georgia, Times, serif" font-size="20" fill="#718096" text-anchor="middle">80% transformer, 20% vocab, 0% tokenizer/sampler</text>
+
+  <!-- Left panel -->
+  <text x="330" y="175" font-family="Georgia, Times, serif" font-size="18" fill="#2d3748" text-anchor="middle" font-weight="600">PARAMETER BREAKDOWN (1.5B)</text>
+  <text x="330" y="230" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">TOKENIZE — 0 params</text>
+  <text x="330" y="295" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="500">EMBED — 233M (15%)</text>
+  <text x="330" y="375" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="600">TRANSFORMER ×28 — 1.2B (80%)</text>
+  <text x="330" y="423" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Q, K, V: 7M</text>
+  <text x="330" y="473" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Output proj: 2.4M</text>
+  <text x="330" y="523" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">FFN gate+up: 28M</text>
+  <text x="330" y="573" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">FFN down: 14M</text>
+  <text x="330" y="623" font-family="Georgia, Times, serif" font-size="14" fill="#1a365d" text-anchor="middle">~43M × 28 = 1.2B</text>
+  <text x="330" y="738" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle">LM HEAD — tied (0 extra)</text>
+  <text x="330" y="810" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">SAMPLE — 0 params</text>
+  <text x="330" y="875" font-family="Georgia, Times, serif" font-size="16" fill="#4a5568" text-anchor="middle">DECODE — 0 params</text>
+  <text x="280" y="928" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">80%</text>
+  <text x="530" y="928" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">20%</text>
+
+  <!-- Center panel -->
+  <text x="960" y="172" font-family="Georgia, Times, serif" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="600">0 PARAMS, BUT CAN BREAK EVERYTHING</text>
+  <text x="960" y="230" font-family="Georgia, Times, serif" font-size="16" fill="#a0aec0" text-anchor="middle" font-weight="500">TOKENIZER</text>
+  <text x="960" y="260" font-family="Georgia, Times, serif" font-size="14" fill="#e2e8f0" text-anchor="middle">Human ↔ Machine interface</text>
+  <text x="960" y="285" font-family="Georgia, Times, serif" font-size="14" fill="#fc8181" text-anchor="middle">Wrong tokenizer = garbage</text>
+  <text x="960" y="358" font-family="Georgia, Times, serif" font-size="16" fill="#c6f6d5" text-anchor="middle" font-weight="500">EMBEDDING</text>
+  <text x="960" y="388" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Where meaning enters</text>
+  <text x="960" y="475" font-family="Georgia, Times, serif" font-size="16" fill="#c6f6d5" text-anchor="middle" font-weight="500">LM HEAD</text>
+  <text x="960" y="505" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Where meaning exits (tied)</text>
+  <text x="960" y="588" font-family="Georgia, Times, serif" font-size="16" fill="#fbd38d" text-anchor="middle" font-weight="500">SAMPLER</text>
+  <text x="960" y="618" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">The personality knob</text>
+  <text x="960" y="643" font-family="Georgia, Times, serif" font-size="14" fill="#feebc8" text-anchor="middle">Same model + diff temp = diff vibe</text>
+  <text x="960" y="708" font-family="Georgia, Times, serif" font-size="16" fill="#fc8181" text-anchor="middle" font-weight="600">APR-TOK-001</text>
+  <text x="960" y="738" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle">Transformer worked perfectly</text>
+  <text x="960" y="763" font-family="Georgia, Times, serif" font-size="14" fill="#fed7d7" text-anchor="middle">Tokenizer broke → "𥅿𥅿𥅿"</text>
+  <text x="960" y="835" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="500">Intelligence × 0 usability = 0</text>
+  <text x="960" y="870" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">100% smart + broken interface = useless</text>
+
+  <!-- Right top -->
+  <text x="1590" y="175" font-family="Georgia, Times, serif" font-size="18" fill="#553c9a" text-anchor="middle" font-weight="600">THE ANALOGY</text>
+  <text x="1500" y="250" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="600">BRAIN</text>
+  <text x="1500" y="280" font-family="Georgia, Times, serif" font-size="14" fill="#bee3f8" text-anchor="middle">Transformer</text>
+  <text x="1395" y="372" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Eyes</text>
+  <text x="1525" y="372" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Mouth</text>
+  <text x="1655" y="372" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Vibe</text>
+  <text x="1590" y="440" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Genius + blind = can't read</text>
+  <text x="1590" y="465" font-family="Georgia, Times, serif" font-size="14" fill="#718096" text-anchor="middle">Genius + mute = can't speak</text>
+
+  <!-- Right bottom -->
+  <text x="1590" y="570" font-family="Georgia, Times, serif" font-size="16" fill="#c53030" text-anchor="middle" font-weight="600">SAME BRAIN, DIFFERENT PERSONALITY</text>
+  <text x="1420" y="640" font-family="Georgia, Times, serif" font-size="16" fill="#c6f6d5" text-anchor="middle" font-weight="500">temp=0</text>
+  <text x="1420" y="670" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Precise</text>
+  <text x="1420" y="700" font-family="Georgia, Times, serif" font-size="14" fill="#9ae6b4" text-anchor="middle">Code</text>
+  <text x="1590" y="640" font-family="Georgia, Times, serif" font-size="16" fill="#bee3f8" text-anchor="middle" font-weight="500">temp=0.7</text>
+  <text x="1590" y="670" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Balanced</text>
+  <text x="1590" y="700" font-family="Georgia, Times, serif" font-size="14" fill="#90cdf4" text-anchor="middle">Chat</text>
+  <text x="1760" y="640" font-family="Georgia, Times, serif" font-size="16" fill="#fbd38d" text-anchor="middle" font-weight="500">temp=1.5</text>
+  <text x="1760" y="670" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">Wild</text>
+  <text x="1760" y="700" font-family="Georgia, Times, serif" font-size="14" fill="#feebc8" text-anchor="middle">Creative</text>
+  <text x="1590" y="763" font-family="Georgia, Times, serif" font-size="14" fill="#ffffff" text-anchor="middle">↑ SAME LOGITS ↑</text>
+  <text x="1420" y="835" font-family="Georgia, Times, serif" font-size="14" fill="#276749" text-anchor="middle">"4."</text>
+  <text x="1590" y="835" font-family="Georgia, Times, serif" font-size="14" fill="#2c5282" text-anchor="middle">"4, because..."</text>
+  <text x="1760" y="835" font-family="Georgia, Times, serif" font-size="14" fill="#744210" text-anchor="middle">"4! Also..."</text>
+  <text x="1590" y="910" font-family="Georgia, Times, serif" font-size="14" fill="#c53030" text-anchor="middle">Sampler ≠ intelligence</text>
+
+  <!-- Tagline -->
+  <text x="960" y="1000" font-family="Georgia, Times, serif" font-size="24" fill="#2d3748" text-anchor="middle" font-weight="500">Transformer = 80% params, 100% intelligence.</text>
+  <text x="960" y="1040" font-family="Georgia, Times, serif" font-size="18" fill="#718096" text-anchor="middle">Everything else = interface. Wrong interface = useless.</text>
+
+</svg>

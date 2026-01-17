@@ -19,3 +19,7 @@ path = "src/bin/scalar_simd_gpu.rs"
 [[bin]]
 name = "demo-training-vs-inference"
 path = "src/bin/training_vs_inference.rs"
+
+[[bin]]
+name = "demo-inference-pipeline"
+path = "src/bin/inference_pipeline.rs"
