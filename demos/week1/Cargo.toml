@@ -23,3 +23,7 @@ path = "src/bin/training_vs_inference.rs"
 [[bin]]
 name = "demo-inference-pipeline"
 path = "src/bin/inference_pipeline.rs"
+
+[[bin]]
+name = "demo-bpe-vs-word"
+path = "src/bin/bpe_vs_word.rs"

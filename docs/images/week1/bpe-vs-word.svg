@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+
+  <!-- LAYER 1: Background -->
+  <rect width="1920" height="1080" fill="#ffffff"/>
+
+  <!-- LAYER 2: Main panels -->
+  <!-- Left: Training & Word Tokenizer -->
+  <rect x="40" y="140" width="440" height="400" fill="#fff5f5" stroke="#fc8181" stroke-width="2" rx="8"/>
+  <!-- Center-left: BPE Merges -->
+  <rect x="500" y="140" width="460" height="400" fill="#f0fff4" stroke="#48bb78" stroke-width="2" rx="8"/>
+  <!-- Center-right: Comparison -->
+  <rect x="980" y="140" width="500" height="400" fill="#ebf8ff" stroke="#4299e1" stroke-width="2" rx="8"/>
+  <!-- Right: Summary -->
+  <rect x="1500" y="140" width="380" height="400" fill="#faf5ff" stroke="#9f7aea" stroke-width="2" rx="8"/>
+
+  <!-- Bottom: The OOV Problem -->
+  <rect x="40" y="560" width="900" height="280" fill="#1a202c" stroke="#4a5568" stroke-width="2" rx="8"/>
+  <!-- Bottom right: Key Insight -->
+  <rect x="960" y="560" width="920" height="280" fill="#fffaf0" stroke="#ed8936" stroke-width="2" rx="8"/>
+
+  <!-- LAYER 3: Visual elements -->
+
+  <!-- Training corpus box -->
+  <rect x="60" y="200" width="400" height="120" fill="#fed7d7" stroke="#fc8181" stroke-width="1" rx="4"/>
+
+  <!-- Word vocab boxes -->
+  <rect x="60" y="350" width="60" height="30" fill="#e53e3e" stroke="#c53030" stroke-width="1" rx="4"/>
+  <rect x="130" y="350" width="50" height="30" fill="#fc8181" stroke="#c53030" stroke-width="1" rx="4"/>
+  <rect x="190" y="350" width="50" height="30" fill="#fc8181" stroke="#c53030" stroke-width="1" rx="4"/>
+  <rect x="250" y="350" width="50" height="30" fill="#fc8181" stroke="#c53030" stroke-width="1" rx="4"/>
+  <rect x="310" y="350" width="50" height="30" fill="#fc8181" stroke="#c53030" stroke-width="1" rx="4"/>
+  <rect x="370" y="350" width="50" height="30" fill="#fc8181" stroke="#c53030" stroke-width="1" rx="4"/>
+
+  <!-- BPE character start -->
+  <rect x="520" y="195" width="420" height="35" fill="#c6f6d5" stroke="#48bb78" stroke-width="1" rx="4"/>
+
+  <!-- BPE merge rows -->
+  <rect x="520" y="250" width="180" height="28" fill="#9ae6b4" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="520" y="290" width="180" height="28" fill="#68d391" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="520" y="330" width="180" height="28" fill="#48bb78" stroke="#276749" stroke-width="1" rx="4"/>
+  <rect x="520" y="370" width="180" height="28" fill="#38a169" stroke="#276749" stroke-width="1" rx="4"/>
+
+  <!-- Merge result boxes -->
+  <rect x="720" y="250" width="55" height="28" fill="#276749" stroke="#22543d" stroke-width="1" rx="4"/>
+  <rect x="720" y="290" width="55" height="28" fill="#276749" stroke="#22543d" stroke-width="1" rx="4"/>
+  <rect x="720" y="330" width="55" height="28" fill="#276749" stroke="#22543d" stroke-width="1" rx="4"/>
+  <rect x="720" y="370" width="55" height="28" fill="#276749" stroke="#22543d" stroke-width="1" rx="4"/>
+
+  <!-- Arrows for merges -->
+  <line x1="700" y1="264" x2="715" y2="264" stroke="#276749" stroke-width="2"/>
+  <polygon points="715,259 725,264 715,269" fill="#276749"/>
+  <line x1="700" y1="304" x2="715" y2="304" stroke="#276749" stroke-width="2"/>
+  <polygon points="715,299 725,304 715,309" fill="#276749"/>
+  <line x1="700" y1="344" x2="715" y2="344" stroke="#276749" stroke-width="2"/>
+  <polygon points="715,339 725,344 715,349" fill="#276749"/>
+  <line x1="700" y1="384" x2="715" y2="384" stroke="#276749" stroke-width="2"/>
+  <polygon points="715,379 725,384 715,389" fill="#276749"/>
+
+  <!-- Frequency labels -->
+  <rect x="790" y="250" width="60" height="28" fill="#e6fffa" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="790" y="290" width="60" height="28" fill="#e6fffa" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="790" y="330" width="60" height="28" fill="#e6fffa" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="790" y="370" width="60" height="28" fill="#e6fffa" stroke="#38a169" stroke-width="1" rx="4"/>
+
+  <!-- Comparison boxes -->
+  <rect x="1000" y="195" width="460" height="75" fill="#bee3f8" stroke="#4299e1" stroke-width="1" rx="4"/>
+  <rect x="1000" y="285" width="460" height="75" fill="#fed7d7" stroke="#fc8181" stroke-width="1" rx="4"/>
+  <rect x="1000" y="375" width="460" height="75" fill="#feebc8" stroke="#ed8936" stroke-width="1" rx="4"/>
+
+  <!-- Summary table -->
+  <rect x="1520" y="200" width="340" height="30" fill="#e9d8fd" stroke="#9f7aea" stroke-width="1" rx="2"/>
+  <rect x="1520" y="230" width="113" height="90" fill="#faf5ff" stroke="#d6bcfa" stroke-width="1"/>
+  <rect x="1633" y="230" width="113" height="90" fill="#fed7d7" stroke="#fc8181" stroke-width="1"/>
+  <rect x="1746" y="230" width="114" height="90" fill="#c6f6d5" stroke="#48bb78" stroke-width="1"/>
+
+  <!-- Check/X marks in summary -->
+  <circle cx="1690" cy="285" r="10" fill="#c53030"/>
+  <circle cx="1803" cy="285" r="10" fill="#276749"/>
+
+  <!-- Bottom left: OOV visualization -->
+  <!-- Word tokenizer path -->
+  <rect x="80" y="620" width="140" height="40" fill="#4a5568" stroke="#718096" stroke-width="1" rx="4"/>
+  <rect x="300" y="620" width="100" height="40" fill="#e53e3e" stroke="#c53030" stroke-width="2" rx="4"/>
+  <rect x="480" y="620" width="100" height="40" fill="#4a5568" stroke="#718096" stroke-width="1" rx="4"/>
+
+  <!-- BPE tokenizer path -->
+  <rect x="80" y="720" width="140" height="40" fill="#4a5568" stroke="#718096" stroke-width="1" rx="4"/>
+  <rect x="280" y="720" width="35" height="40" fill="#48bb78" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="325" y="720" width="35" height="40" fill="#48bb78" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="370" y="720" width="35" height="40" fill="#48bb78" stroke="#38a169" stroke-width="1" rx="4"/>
+  <rect x="480" y="720" width="100" height="40" fill="#4a5568" stroke="#718096" stroke-width="1" rx="4"/>
+
+  <!-- Arrows -->
+  <line x1="220" y1="640" x2="290" y2="640" stroke="#718096" stroke-width="2"/>
+  <polygon points="290,635 300,640 290,645" fill="#718096"/>
+  <line x1="400" y1="640" x2="470" y2="640" stroke="#718096" stroke-width="2"/>
+  <polygon points="470,635 480,640 470,645" fill="#718096"/>
+
+  <line x1="220" y1="740" x2="270" y2="740" stroke="#718096" stroke-width="2"/>
+  <polygon points="270,735 280,740 270,745" fill="#718096"/>
+  <line x1="405" y1="740" x2="470" y2="740" stroke="#718096" stroke-width="2"/>
+  <polygon points="470,735 480,740 470,745" fill="#718096"/>
+
+  <!-- Key insight boxes -->
+  <rect x="1000" y="620" width="420" height="75" fill="#feebc8" stroke="#ed8936" stroke-width="2" rx="8"/>
+  <rect x="1000" y="715" width="420" height="75" fill="#c6f6d5" stroke="#48bb78" stroke-width="2" rx="8"/>
+
+  <!-- Trade-off visualization -->
+  <rect x="1460" y="610" width="180" height="190" fill="#fff" stroke="#e2e8f0" stroke-width="1" rx="4"/>
+  <!-- Bar chart -->
+  <rect x="1490" y="720" width="50" height="50" fill="#fc8181"/>
+  <rect x="1570" y="680" width="50" height="90" fill="#48bb78"/>
+
+  <!-- LAYER 5: TEXT -->
+
+  <!-- Title -->
+  <text x="960" y="60" font-family="Georgia, Times, serif" font-size="44" fill="#1a202c" text-anchor="middle" font-weight="600">BPE vs Word Tokenization</text>
+  <text x="960" y="100" font-family="Georgia, Times, serif" font-size="20" fill="#718096" text-anchor="middle">Why subword tokenization handles unknown words gracefully</text>
+
+  <!-- Left panel: Training & Word -->
+  <text x="260" y="175" font-family="Georgia, Times, serif" font-size="18" fill="#c53030" text-anchor="middle" font-weight="600">WORD TOKENIZER</text>
+
+  <text x="260" y="225" font-family="Menlo, Monaco, monospace" font-size="14" fill="#4a5568" text-anchor="middle">"the cat sat"</text>
+  <text x="260" y="247" font-family="Menlo, Monaco, monospace" font-size="14" fill="#4a5568" text-anchor="middle">"the cat ran"</text>
+  <text x="260" y="269" font-family="Menlo, Monaco, monospace" font-size="14" fill="#4a5568" text-anchor="middle">"the dog sat"</text>
+  <text x="260" y="291" font-family="Menlo, Monaco, monospace" font-size="14" fill="#4a5568" text-anchor="middle">"the dog ran"</text>
+  <text x="260" y="330" font-family="Georgia, Times, serif" font-size="12" fill="#718096" text-anchor="middle">Training corpus (4 sentences)</text>
+
+  <text x="90" y="370" font-family="Menlo, Monaco, monospace" font-size="11" fill="#ffffff" text-anchor="middle">UNK</text>
+  <text x="155" y="370" font-family="Menlo, Monaco, monospace" font-size="11" fill="#742a2a" text-anchor="middle">the</text>
+  <text x="215" y="370" font-family="Menlo, Monaco, monospace" font-size="11" fill="#742a2a" text-anchor="middle">cat</text>
+  <text x="275" y="370" font-family="Menlo, Monaco, monospace" font-size="11" fill="#742a2a" text-anchor="middle">sat</text>
+  <text x="335" y="370" font-family="Menlo, Monaco, monospace" font-size="11" fill="#742a2a" text-anchor="middle">ran</text>
+  <text x="395" y="370" font-family="Menlo, Monaco, monospace" font-size="11" fill="#742a2a" text-anchor="middle">dog</text>
+
+  <text x="260" y="410" font-family="Georgia, Times, serif" font-size="14" fill="#c53030" text-anchor="middle" font-weight="500">Vocab: 6 tokens (CLOSED)</text>
+
+  <text x="260" y="455" font-family="Georgia, Times, serif" font-size="16" fill="#c53030" text-anchor="middle" font-weight="600">FATAL FLAW:</text>
+  <text x="260" y="480" font-family="Menlo, Monaco, monospace" font-size="13" fill="#4a5568" text-anchor="middle">"rat" → UNK</text>
+  <text x="260" y="500" font-family="Menlo, Monaco, monospace" font-size="13" fill="#4a5568" text-anchor="middle">"scattered" → UNK</text>
+  <text x="260" y="525" font-family="Georgia, Times, serif" font-size="12" fill="#718096" text-anchor="middle">100% meaning lost</text>
+
+  <!-- Center-left: BPE -->
+  <text x="730" y="175" font-family="Georgia, Times, serif" font-size="18" fill="#276749" text-anchor="middle" font-weight="600">BPE TOKENIZER</text>
+
+  <text x="730" y="218" font-family="Menlo, Monaco, monospace" font-size="12" fill="#22543d" text-anchor="middle">t h e   c a t   s a t   r a n   d o g</text>
+
+  <text x="610" y="269" font-family="Menlo, Monaco, monospace" font-size="11" fill="#22543d" text-anchor="middle">"t" + "h"</text>
+  <text x="748" y="269" font-family="Menlo, Monaco, monospace" font-size="11" fill="#ffffff" text-anchor="middle">"th"</text>
+  <text x="820" y="269" font-family="Georgia, Times, serif" font-size="10" fill="#276749" text-anchor="middle">×4</text>
+
+  <text x="610" y="309" font-family="Menlo, Monaco, monospace" font-size="11" fill="#22543d" text-anchor="middle">"th" + "e"</text>
+  <text x="748" y="309" font-family="Menlo, Monaco, monospace" font-size="11" fill="#ffffff" text-anchor="middle">"the"</text>
+  <text x="820" y="309" font-family="Georgia, Times, serif" font-size="10" fill="#276749" text-anchor="middle">×4</text>
+
+  <text x="610" y="349" font-family="Menlo, Monaco, monospace" font-size="11" fill="#22543d" text-anchor="middle">"a" + "t"</text>
+  <text x="748" y="349" font-family="Menlo, Monaco, monospace" font-size="11" fill="#ffffff" text-anchor="middle">"at"</text>
+  <text x="820" y="349" font-family="Georgia, Times, serif" font-size="10" fill="#276749" text-anchor="middle">×4</text>
+
+  <text x="610" y="389" font-family="Menlo, Monaco, monospace" font-size="11" fill="#22543d" text-anchor="middle">"c" + "at"</text>
+  <text x="748" y="389" font-family="Menlo, Monaco, monospace" font-size="11" fill="#ffffff" text-anchor="middle">"cat"</text>
+  <text x="820" y="389" font-family="Georgia, Times, serif" font-size="10" fill="#276749" text-anchor="middle">×2</text>
+
+  <text x="730" y="430" font-family="Georgia, Times, serif" font-size="14" fill="#276749" text-anchor="middle" font-weight="500">Vocab: chars + merges (OPEN)</text>
+
+  <text x="730" y="475" font-family="Georgia, Times, serif" font-size="16" fill="#276749" text-anchor="middle" font-weight="600">SUPERPOWER:</text>
+  <text x="730" y="500" font-family="Menlo, Monaco, monospace" font-size="13" fill="#22543d" text-anchor="middle">"rat" → ["r", "at"]</text>
+  <text x="730" y="525" font-family="Georgia, Times, serif" font-size="12" fill="#718096" text-anchor="middle">Falls back to known pieces</text>
+
+  <!-- Center-right: Comparison -->
+  <text x="1230" y="175" font-family="Georgia, Times, serif" font-size="18" fill="#2c5282" text-anchor="middle" font-weight="600">TOKENIZATION COMPARISON</text>
+
+  <!-- Known text row -->
+  <text x="1020" y="218" font-family="Georgia, Times, serif" font-size="13" fill="#2c5282" font-weight="600">Known:</text>
+  <text x="1020" y="238" font-family="Menlo, Monaco, monospace" font-size="12" fill="#4a5568">"the cat"</text>
+  <text x="1200" y="218" font-family="Georgia, Times, serif" font-size="12" fill="#c53030">WORD:</text>
+  <text x="1260" y="218" font-family="Menlo, Monaco, monospace" font-size="11" fill="#c53030">[the, cat]</text>
+  <text x="1200" y="238" font-family="Georgia, Times, serif" font-size="12" fill="#276749">BPE:</text>
+  <text x="1260" y="238" font-family="Menlo, Monaco, monospace" font-size="11" fill="#276749">[the, cat]</text>
+  <text x="1400" y="228" font-family="Georgia, Times, serif" font-size="14" fill="#276749" font-weight="600">✓ Both</text>
+
+  <!-- Unknown word row -->
+  <text x="1020" y="310" font-family="Georgia, Times, serif" font-size="13" fill="#c53030" font-weight="600">Unknown:</text>
+  <text x="1020" y="330" font-family="Menlo, Monaco, monospace" font-size="12" fill="#4a5568">"the rat"</text>
+  <text x="1200" y="310" font-family="Georgia, Times, serif" font-size="12" fill="#c53030">WORD:</text>
+  <text x="1260" y="310" font-family="Menlo, Monaco, monospace" font-size="11" fill="#c53030">[the, UNK]</text>
+  <text x="1200" y="330" font-family="Georgia, Times, serif" font-size="12" fill="#276749">BPE:</text>
+  <text x="1260" y="330" font-family="Menlo, Monaco, monospace" font-size="11" fill="#276749">[the, r, at]</text>
+  <text x="1400" y="320" font-family="Georgia, Times, serif" font-size="14" fill="#c53030" font-weight="600">✗ Word</text>
+
+  <!-- Novel word row -->
+  <text x="1020" y="400" font-family="Georgia, Times, serif" font-size="13" fill="#c05621" font-weight="600">Novel:</text>
+  <text x="1020" y="420" font-family="Menlo, Monaco, monospace" font-size="12" fill="#4a5568">"scattered"</text>
+  <text x="1200" y="400" font-family="Georgia, Times, serif" font-size="12" fill="#c53030">WORD:</text>
+  <text x="1260" y="400" font-family="Menlo, Monaco, monospace" font-size="11" fill="#c53030">[UNK]</text>
+  <text x="1200" y="420" font-family="Georgia, Times, serif" font-size="12" fill="#276749">BPE:</text>
+  <text x="1260" y="420" font-family="Menlo, Monaco, monospace" font-size="11" fill="#276749">[s,cat,t,e,r,e,d]</text>
+  <text x="1400" y="400" font-family="Georgia, Times, serif" font-size="12" fill="#c53030">Total loss</text>
+  <text x="1400" y="420" font-family="Georgia, Times, serif" font-size="12" fill="#276749">Found "cat"!</text>
+
+  <text x="1230" y="475" font-family="Georgia, Times, serif" font-size="13" fill="#4a5568" text-anchor="middle">BPE: more tokens, never loses meaning</text>
+  <text x="1230" y="495" font-family="Georgia, Times, serif" font-size="13" fill="#4a5568" text-anchor="middle">Word: fewer tokens, catastrophic OOV</text>
+
+  <!-- Right: Summary table -->
+  <text x="1690" y="175" font-family="Georgia, Times, serif" font-size="18" fill="#553c9a" text-anchor="middle" font-weight="600">SUMMARY</text>
+
+  <text x="1577" y="220" font-family="Georgia, Times, serif" font-size="12" fill="#553c9a" text-anchor="middle" font-weight="500"></text>
+  <text x="1690" y="220" font-family="Georgia, Times, serif" font-size="12" fill="#c53030" text-anchor="middle" font-weight="600">WORD</text>
+  <text x="1803" y="220" font-family="Georgia, Times, serif" font-size="12" fill="#276749" text-anchor="middle" font-weight="600">BPE</text>
+
+  <text x="1577" y="255" font-family="Georgia, Times, serif" font-size="11" fill="#4a5568" text-anchor="middle">Vocab</text>
+  <text x="1690" y="255" font-family="Georgia, Times, serif" font-size="11" fill="#c53030" text-anchor="middle">Closed</text>
+  <text x="1803" y="255" font-family="Georgia, Times, serif" font-size="11" fill="#276749" text-anchor="middle">Open</text>
+
+  <text x="1577" y="288" font-family="Georgia, Times, serif" font-size="11" fill="#4a5568" text-anchor="middle">OOV</text>
+  <text x="1690" y="290" font-family="Georgia, Times, serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">✗</text>
+  <text x="1803" y="290" font-family="Georgia, Times, serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">✓</text>
+
+  <text x="1577" y="310" font-family="Georgia, Times, serif" font-size="11" fill="#4a5568" text-anchor="middle">Coverage</text>
+  <text x="1690" y="310" font-family="Georgia, Times, serif" font-size="11" fill="#c53030" text-anchor="middle">Finite</text>
+  <text x="1803" y="310" font-family="Georgia, Times, serif" font-size="11" fill="#276749" text-anchor="middle">Infinite</text>
+
+  <text x="1690" y="355" font-family="Georgia, Times, serif" font-size="14" fill="#553c9a" text-anchor="middle" font-weight="500">Real models:</text>
+  <text x="1690" y="380" font-family="Georgia, Times, serif" font-size="12" fill="#718096" text-anchor="middle">GPT-4: 100K BPE</text>
+  <text x="1690" y="400" font-family="Georgia, Times, serif" font-size="12" fill="#718096" text-anchor="middle">Qwen: 152K BPE</text>
+  <text x="1690" y="420" font-family="Georgia, Times, serif" font-size="12" fill="#718096" text-anchor="middle">LLaMA: 32K BPE</text>
+  <text x="1690" y="450" font-family="Georgia, Times, serif" font-size="11" fill="#9f7aea" text-anchor="middle">All use BPE variants</text>
+  <text x="1690" y="470" font-family="Georgia, Times, serif" font-size="11" fill="#9f7aea" text-anchor="middle">None use word tokenizer</text>
+
+  <!-- Bottom left: OOV Problem -->
+  <text x="470" y="595" font-family="Georgia, Times, serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="600">THE OOV PROBLEM</text>
+
+  <text x="150" y="645" font-family="Menlo, Monaco, monospace" font-size="12" fill="#e2e8f0" text-anchor="middle">"the rat"</text>
+  <text x="350" y="645" font-family="Menlo, Monaco, monospace" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="600">UNK</text>
+  <text x="530" y="645" font-family="Georgia, Times, serif" font-size="12" fill="#fc8181" text-anchor="middle">Lost!</text>
+  <text x="650" y="645" font-family="Georgia, Times, serif" font-size="14" fill="#fc8181">← WORD</text>
+
+  <text x="150" y="745" font-family="Menlo, Monaco, monospace" font-size="12" fill="#e2e8f0" text-anchor="middle">"the rat"</text>
+  <text x="297" y="745" font-family="Menlo, Monaco, monospace" font-size="12" fill="#ffffff" text-anchor="middle">r</text>
+  <text x="342" y="745" font-family="Menlo, Monaco, monospace" font-size="12" fill="#ffffff" text-anchor="middle">a</text>
+  <text x="387" y="745" font-family="Menlo, Monaco, monospace" font-size="12" fill="#ffffff" text-anchor="middle">t</text>
+  <text x="530" y="745" font-family="Georgia, Times, serif" font-size="12" fill="#48bb78" text-anchor="middle">Works!</text>
+  <text x="650" y="745" font-family="Georgia, Times, serif" font-size="14" fill="#48bb78">← BPE</text>
+
+  <text x="470" y="800" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">"rat" not in vocab, but "r", "a", "t" are!</text>
+  <text x="470" y="825" font-family="Georgia, Times, serif" font-size="14" fill="#a0aec0" text-anchor="middle">BPE falls back to characters → meaning preserved</text>
+
+  <!-- Bottom right: Key Insight -->
+  <text x="1210" y="595" font-family="Georgia, Times, serif" font-size="18" fill="#c05621" text-anchor="middle" font-weight="600">THE TRADE-OFF</text>
+
+  <text x="1210" y="650" font-family="Georgia, Times, serif" font-size="14" fill="#744210" text-anchor="middle" font-weight="500">Word: Fewer tokens, finite coverage</text>
+  <text x="1210" y="675" font-family="Menlo, Monaco, monospace" font-size="12" fill="#744210" text-anchor="middle">"the cat" → 2 tokens (but "rat" → UNK)</text>
+
+  <text x="1210" y="745" font-family="Georgia, Times, serif" font-size="14" fill="#22543d" text-anchor="middle" font-weight="500">BPE: More tokens, infinite coverage</text>
+  <text x="1210" y="770" font-family="Menlo, Monaco, monospace" font-size="12" fill="#22543d" text-anchor="middle">"the cat" → 4 tokens (and "rat" works!)</text>
+
+  <text x="1550" y="640" font-family="Georgia, Times, serif" font-size="12" fill="#718096" text-anchor="middle">Tokens per text</text>
+  <text x="1515" y="790" font-family="Georgia, Times, serif" font-size="11" fill="#c53030" text-anchor="middle">Word</text>
+  <text x="1595" y="790" font-family="Georgia, Times, serif" font-size="11" fill="#276749" text-anchor="middle">BPE</text>
+  <text x="1515" y="710" font-family="Georgia, Times, serif" font-size="10" fill="#718096" text-anchor="middle">fewer</text>
+  <text x="1595" y="670" font-family="Georgia, Times, serif" font-size="10" fill="#718096" text-anchor="middle">more</text>
+
+  <!-- Tagline -->
+  <text x="960" y="890" font-family="Georgia, Times, serif" font-size="28" fill="#1a202c" text-anchor="middle" font-weight="600">BPE trades token count for coverage.</text>
+  <text x="960" y="930" font-family="Georgia, Times, serif" font-size="20" fill="#718096" text-anchor="middle">More tokens per text, but never says "I don't know"</text>
+
+  <!-- Bottom insight box -->
+  <rect x="580" y="960" width="760" height="60" fill="#f0fff4" stroke="#48bb78" stroke-width="2" rx="8"/>
+  <text x="960" y="990" font-family="Georgia, Times, serif" font-size="16" fill="#276749" text-anchor="middle" font-weight="500">"scattered" → Word sees nothing. BPE finds "cat" inside.</text>
+  <text x="960" y="1012" font-family="Georgia, Times, serif" font-size="13" fill="#718096" text-anchor="middle">Morphological awareness emerges from frequency-based merging</text>
+
+</svg>
