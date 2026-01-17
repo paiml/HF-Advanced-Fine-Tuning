@@ -1,0 +1,217 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+    <linearGradient id="qGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="kGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="vGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:0.1"/>
+    </linearGradient>
+    <linearGradient id="softmaxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="500" y="35" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">Self-Attention Mechanism</text>
+  <text x="500" y="58" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">"How tokens learn to look at each other"</text>
+
+  <!-- Panel 1: Q/K/V Concept (Top Left) -->
+  <rect x="20" y="80" width="470" height="200" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="20" y="80" width="470" height="32" rx="8" fill="#1e293b"/>
+  <text x="255" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="white">Q / K / V PROJECTIONS</text>
+
+  <!-- Q Box -->
+  <rect x="40" y="125" width="130" height="70" rx="6" fill="url(#qGrad)" stroke="#3b82f6" stroke-width="2"/>
+  <text x="105" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#3b82f6">Query (Q)</text>
+  <text x="105" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#475569">"What am I</text>
+  <text x="105" y="186" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#475569">looking for?"</text>
+
+  <!-- K Box -->
+  <rect x="185" y="125" width="130" height="70" rx="6" fill="url(#kGrad)" stroke="#10b981" stroke-width="2"/>
+  <text x="250" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#10b981">Key (K)</text>
+  <text x="250" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#475569">"What do I</text>
+  <text x="250" y="186" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#475569">contain?"</text>
+
+  <!-- V Box -->
+  <rect x="330" y="125" width="130" height="70" rx="6" fill="url(#vGrad)" stroke="#f59e0b" stroke-width="2"/>
+  <text x="395" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="bold" fill="#f59e0b">Value (V)</text>
+  <text x="395" y="172" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#475569">"What info do</text>
+  <text x="395" y="186" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#475569">I provide?"</text>
+
+  <!-- Analogy -->
+  <rect x="40" y="210" width="420" height="55" rx="4" fill="#f1f5f9"/>
+  <text x="250" y="232" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">Analogy: Library Search</text>
+  <text x="250" y="252" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Q = your question | K = book titles | V = book contents</text>
+
+  <!-- Panel 2: Softmax (Top Right) -->
+  <rect x="510" y="80" width="470" height="200" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="510" y="80" width="470" height="32" rx="8" fill="#8b5cf6"/>
+  <text x="745" y="102" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="white">SOFTMAX: The Magic Normalizer</text>
+
+  <!-- Formula -->
+  <rect x="530" y="125" width="200" height="50" rx="4" fill="url(#softmaxGrad)" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="630" y="148" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#7c3aed">softmax(x)ᵢ = eˣⁱ / Σeˣʲ</text>
+  <text x="630" y="166" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">exponential / sum of exponentials</text>
+
+  <!-- What it does -->
+  <text x="850" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">What it does:</text>
+  <text x="755" y="152" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• ANY numbers → probabilities</text>
+  <text x="755" y="168" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• Output range: 0 to 1</text>
+  <text x="755" y="184" font-family="system-ui, sans-serif" font-size="11" fill="#475569">• Always sums to 1.0</text>
+
+  <!-- Example transformation -->
+  <rect x="530" y="195" width="430" height="70" rx="4" fill="#faf5ff"/>
+  <text x="745" y="215" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#7c3aed">Example: Raw Scores → Probabilities</text>
+  <text x="630" y="238" text-anchor="middle" font-family="monospace" font-size="12" fill="#475569">[0.32, 0.16, 0.20]</text>
+  <text x="745" y="238" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#8b5cf6">→</text>
+  <text x="860" y="238" text-anchor="middle" font-family="monospace" font-size="12" fill="#7c3aed">[0.37, 0.31, 0.32]</text>
+  <text x="630" y="255" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">sum = 0.68</text>
+  <text x="860" y="255" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7c3aed">sum = 1.00 ✓</text>
+
+  <!-- Panel 3: Attention Flow (Bottom Left) -->
+  <rect x="20" y="300" width="630" height="190" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="20" y="300" width="630" height="32" rx="8" fill="#0891b2"/>
+  <text x="335" y="322" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="white">ATTENTION COMPUTATION FLOW</text>
+
+  <!-- Step boxes -->
+  <!-- Input -->
+  <rect x="40" y="350" width="80" height="50" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="80" y="372" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#0369a1">Input X</text>
+  <text x="80" y="388" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">[3 × 4]</text>
+
+  <!-- Arrow 1 -->
+  <line x1="125" y1="375" x2="150" y2="375" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Q projection -->
+  <rect x="155" y="345" width="70" height="30" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="190" y="365" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#1d4ed8">× Wq</text>
+
+  <!-- K projection -->
+  <rect x="155" y="380" width="70" height="30" rx="4" fill="#d1fae5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="190" y="400" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#047857">× Wk</text>
+
+  <!-- V projection -->
+  <rect x="155" y="415" width="70" height="30" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="190" y="435" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#b45309">× Wv</text>
+
+  <!-- Arrows from projections -->
+  <line x1="230" y1="360" x2="265" y2="375" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <line x1="230" y1="395" x2="265" y2="385" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Q×K^T -->
+  <rect x="270" y="355" width="90" height="50" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="315" y="377" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155">Q × Kᵀ</text>
+  <text x="315" y="393" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">[3 × 3]</text>
+
+  <!-- Arrow to softmax -->
+  <line x1="365" y1="380" x2="395" y2="380" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Softmax -->
+  <rect x="400" y="355" width="80" height="50" rx="4" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="440" y="377" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#7c3aed">softmax</text>
+  <text x="440" y="393" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">→ probs</text>
+
+  <!-- Arrow to multiply -->
+  <line x1="485" y1="380" x2="510" y2="380" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+  <!-- V arrow -->
+  <path d="M 230 430 Q 370 460 510 395" fill="none" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Attention × V -->
+  <rect x="515" y="355" width="90" height="50" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1.5"/>
+  <text x="560" y="377" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#334155">Attn × V</text>
+  <text x="560" y="393" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">[3 × 4]</text>
+
+  <!-- Final arrow -->
+  <line x1="610" y1="380" x2="625" y2="380" stroke="#475569" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+  <!-- Output -->
+  <text x="635" y="385" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#059669">Out</text>
+
+  <!-- Labels -->
+  <text x="315" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">scores: who attends to whom</text>
+  <text x="440" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8b5cf6">normalize!</text>
+  <text x="560" y="460" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">weighted sum</text>
+
+  <!-- Panel 4: Attention Matrix Visualization (Bottom Right) -->
+  <rect x="670" y="300" width="310" height="190" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="670" y="300" width="310" height="32" rx="8" fill="#dc2626"/>
+  <text x="825" y="322" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="white">ATTENTION WEIGHTS</text>
+
+  <!-- Matrix header -->
+  <text x="825" y="355" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">"The cat sat" - who attends to whom?</text>
+
+  <!-- Column labels -->
+  <text x="770" y="378" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">The</text>
+  <text x="825" y="378" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">cat</text>
+  <text x="880" y="378" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">sat</text>
+  <text x="930" y="378" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Σ</text>
+
+  <!-- Row 1: The -->
+  <text x="720" y="403" text-anchor="middle" font-family="monospace" font-size="10" fill="#334155">The</text>
+  <rect x="748" y="388" width="44" height="22" rx="2" fill="#dbeafe"/>
+  <text x="770" y="403" text-anchor="middle" font-family="monospace" font-size="10" fill="#1e40af">0.37</text>
+  <rect x="803" y="388" width="44" height="22" rx="2" fill="#e0f2fe"/>
+  <text x="825" y="403" text-anchor="middle" font-family="monospace" font-size="10" fill="#0369a1">0.31</text>
+  <rect x="858" y="388" width="44" height="22" rx="2" fill="#e0f2fe"/>
+  <text x="880" y="403" text-anchor="middle" font-family="monospace" font-size="10" fill="#0369a1">0.32</text>
+  <text x="930" y="403" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#059669">1.0</text>
+
+  <!-- Row 2: cat -->
+  <text x="720" y="428" text-anchor="middle" font-family="monospace" font-size="10" fill="#334155">cat</text>
+  <rect x="748" y="413" width="44" height="22" rx="2" fill="#e0f2fe"/>
+  <text x="770" y="428" text-anchor="middle" font-family="monospace" font-size="10" fill="#0369a1">0.29</text>
+  <rect x="803" y="413" width="44" height="22" rx="2" fill="#bfdbfe"/>
+  <text x="825" y="428" text-anchor="middle" font-family="monospace" font-size="10" fill="#1e40af">0.38</text>
+  <rect x="858" y="413" width="44" height="22" rx="2" fill="#dbeafe"/>
+  <text x="880" y="428" text-anchor="middle" font-family="monospace" font-size="10" fill="#1e40af">0.33</text>
+  <text x="930" y="428" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#059669">1.0</text>
+
+  <!-- Row 3: sat -->
+  <text x="720" y="453" text-anchor="middle" font-family="monospace" font-size="10" fill="#334155">sat</text>
+  <rect x="748" y="438" width="44" height="22" rx="2" fill="#e0f2fe"/>
+  <text x="770" y="453" text-anchor="middle" font-family="monospace" font-size="10" fill="#0369a1">0.29</text>
+  <rect x="803" y="438" width="44" height="22" rx="2" fill="#dbeafe"/>
+  <text x="825" y="453" text-anchor="middle" font-family="monospace" font-size="10" fill="#1e40af">0.32</text>
+  <rect x="858" y="438" width="44" height="22" rx="2" fill="#bfdbfe"/>
+  <text x="880" y="453" text-anchor="middle" font-family="monospace" font-size="10" fill="#1e40af">0.39</text>
+  <text x="930" y="453" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#059669">1.0</text>
+
+  <!-- Insight -->
+  <text x="825" y="478" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Each row = probability distribution (sums to 1)</text>
+
+  <!-- Bottom Panel: Why Softmax Matters -->
+  <rect x="20" y="510" width="960" height="170" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="20" y="510" width="960" height="32" rx="8" fill="#7c3aed"/>
+  <text x="500" y="532" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="white">WHY SOFTMAX MATTERS: With vs Without</text>
+
+  <!-- With Softmax (Left) -->
+  <rect x="40" y="555" width="440" height="110" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <text x="260" y="578" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#15803d">✓ WITH Softmax</text>
+
+  <text x="60" y="602" font-family="system-ui, sans-serif" font-size="11" fill="#166534">• Weights are probabilities (0 to 1)</text>
+  <text x="60" y="620" font-family="system-ui, sans-serif" font-size="11" fill="#166534">• Each row sums to 1.0</text>
+  <text x="60" y="638" font-family="system-ui, sans-serif" font-size="11" fill="#166534">• Interpretable: "37% attention to The, 31% to cat..."</text>
+  <text x="60" y="656" font-family="system-ui, sans-serif" font-size="11" fill="#166534">• Output scale is stable</text>
+
+  <!-- Without Softmax (Right) -->
+  <rect x="520" y="555" width="440" height="110" rx="6" fill="#fef2f2" stroke="#ef4444" stroke-width="2"/>
+  <text x="740" y="578" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#dc2626">✗ WITHOUT Softmax</text>
+
+  <text x="540" y="602" font-family="system-ui, sans-serif" font-size="11" fill="#991b1b">• Raw scores: can be any number</text>
+  <text x="540" y="620" font-family="system-ui, sans-serif" font-size="11" fill="#991b1b">• Rows sum to arbitrary values (0.67, 0.88...)</text>
+  <text x="540" y="638" font-family="system-ui, sans-serif" font-size="11" fill="#991b1b">• Not interpretable as "attention distribution"</text>
+  <text x="540" y="656" font-family="system-ui, sans-serif" font-size="11" fill="#991b1b">• Output scale varies wildly</text>
+</svg>
