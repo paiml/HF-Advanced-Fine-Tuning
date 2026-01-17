@@ -27,3 +27,7 @@ path = "src/bin/inference_pipeline.rs"
 [[bin]]
 name = "demo-bpe-vs-word"
 path = "src/bin/bpe_vs_word.rs"
+
+[[bin]]
+name = "demo-attention"
+path = "src/bin/attention.rs"

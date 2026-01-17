@@ -6,6 +6,7 @@
 
 use clap::Parser;
 
+pub mod attention;
 pub mod bpe_vs_word;
 pub mod inference_pipeline;
 pub mod scalar_simd_gpu;
