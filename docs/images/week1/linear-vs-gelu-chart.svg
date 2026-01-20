@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">Linear vs GELU: Why Non-linearity Matters</text>
+
+  <!-- LEFT CHART: Linear -->
+  <g transform="translate(50, 60)">
+    <!-- Chart background -->
+    <rect x="0" y="0" width="300" height="280" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Title -->
+    <text x="150" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#64748b">LINEAR (y = x)</text>
+
+    <!-- Axes -->
+    <line x1="40" y1="240" x2="280" y2="240" stroke="#334155" stroke-width="2"/>
+    <line x1="40" y1="240" x2="40" y2="40" stroke="#334155" stroke-width="2"/>
+
+    <!-- X axis labels -->
+    <text x="40" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">-3</text>
+    <text x="120" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">-1</text>
+    <text x="160" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">0</text>
+    <text x="200" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">1</text>
+    <text x="280" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">3</text>
+    <text x="160" y="275" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">input (x)</text>
+
+    <!-- Y axis labels -->
+    <text x="30" y="244" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">-3</text>
+    <text x="30" y="177" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">-1</text>
+    <text x="30" y="144" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">0</text>
+    <text x="30" y="110" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">1</text>
+    <text x="30" y="44" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">3</text>
+
+    <!-- Grid lines -->
+    <line x1="40" y1="140" x2="280" y2="140" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="160" y1="40" x2="160" y2="240" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+
+    <!-- Linear line: y = x -->
+    <line x1="40" y1="240" x2="280" y2="40" stroke="#3b82f6" stroke-width="3"/>
+
+    <!-- Label -->
+    <rect x="180" y="70" width="90" height="24" rx="4" fill="#dbeafe"/>
+    <text x="225" y="86" text-anchor="middle" font-family="monospace" font-size="11" fill="#1e40af">y = x</text>
+
+    <!-- Insight -->
+    <text x="150" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Straight line — just scales</text>
+    <text x="150" y="315" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#dc2626">Can't learn curves!</text>
+  </g>
+
+  <!-- RIGHT CHART: GELU -->
+  <g transform="translate(420, 60)">
+    <!-- Chart background -->
+    <rect x="0" y="0" width="300" height="280" rx="4" fill="white" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Title -->
+    <text x="150" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#7c3aed">GELU (Non-linear)</text>
+
+    <!-- Axes -->
+    <line x1="40" y1="240" x2="280" y2="240" stroke="#334155" stroke-width="2"/>
+    <line x1="40" y1="240" x2="40" y2="40" stroke="#334155" stroke-width="2"/>
+
+    <!-- X axis labels -->
+    <text x="40" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">-3</text>
+    <text x="120" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">-1</text>
+    <text x="160" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">0</text>
+    <text x="200" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">1</text>
+    <text x="280" y="258" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">3</text>
+    <text x="160" y="275" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">input (x)</text>
+
+    <!-- Y axis labels -->
+    <text x="30" y="244" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">-3</text>
+    <text x="30" y="177" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">-1</text>
+    <text x="30" y="144" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">0</text>
+    <text x="30" y="110" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">1</text>
+    <text x="30" y="44" text-anchor="end" font-family="monospace" font-size="10" fill="#64748b">3</text>
+
+    <!-- Grid lines -->
+    <line x1="40" y1="140" x2="280" y2="140" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+    <line x1="160" y1="40" x2="160" y2="240" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+
+    <!-- GELU curve approximation -->
+    <!-- GELU(x) ≈ x * 0.5 * (1 + tanh(sqrt(2/π) * (x + 0.044715 * x³))) -->
+    <!-- Points: (-3,~0), (-2,~-0.04), (-1,~-0.16), (0,0), (1,~0.84), (2,~1.96), (3,~3) -->
+    <path d="M 40 140
+             Q 60 142 80 144
+             Q 100 150 120 157
+             Q 140 150 160 140
+             Q 180 115 200 105
+             Q 240 60 280 40"
+          fill="none" stroke="#7c3aed" stroke-width="3"/>
+
+    <!-- Key points -->
+    <circle cx="120" cy="157" r="4" fill="#ef4444"/>
+    <circle cx="160" cy="140" r="4" fill="#7c3aed"/>
+    <circle cx="200" cy="105" r="4" fill="#22c55e"/>
+
+    <!-- Annotations -->
+    <text x="105" y="175" font-family="system-ui, sans-serif" font-size="9" fill="#ef4444">-1 → -0.16</text>
+    <text x="205" y="100" font-family="system-ui, sans-serif" font-size="9" fill="#22c55e">1 → 0.84</text>
+
+    <!-- Label -->
+    <rect x="180" y="185" width="90" height="24" rx="4" fill="#f5f3ff"/>
+    <text x="225" y="201" text-anchor="middle" font-family="monospace" font-size="10" fill="#6d28d9">GELU(x)</text>
+
+    <!-- Insight -->
+    <text x="150" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Curved — gates by magnitude</text>
+    <text x="150" y="315" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#16a34a">Can learn patterns!</text>
+  </g>
+
+  <!-- Bottom comparison -->
+  <rect x="200" y="355" width="400" height="35" rx="6" fill="#f1f5f9"/>
+  <text x="400" y="378" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#334155">
+    <tspan fill="#3b82f6" font-weight="600">Linear:</tspan> negative stays negative
+    <tspan dx="20" fill="#7c3aed" font-weight="600">GELU:</tspan> negative gets squashed → can say "no"
+  </text>
+</svg>
