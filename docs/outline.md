@@ -70,17 +70,28 @@ apr showcase --tier small --auto-verify
 
 ## Week 2: Parameter-Efficient Fine-Tuning (PEFT)
 
+**Task:** Fine-tune Qwen2.5-Coder to generate CLI help text for Rust tools.
+
+**Why CLI help:**
+- Narrow domain, consistent structure (clap-derived)
+- 50-200 examples sufficient
+- Easy to evaluate (structure, flags, descriptions)
+- Meta: model learns to document your own tools
+
+**Data sources:** apr-cli, pmat, bashrs, ripgrep, fd, bat, cargo subcommands
+
 ### 2.1 Full Fine-Tuning Baseline
 - Why training all params is expensive
 - Memory: model + gradients + optimizer states
 - The problem: 7B model needs ~60GB for training
+- **Demo:** `make demo-full-finetune-cost`
 
 ### 2.2 LoRA Fundamentals
 - Low-rank decomposition: W + ΔW = W + A×B
 - Rank selection (r=4, 8, 16, 32, 64)
 - Target modules (q_proj, v_proj, k_proj, o_proj)
 - 1000x fewer trainable params, same quality
-- **Demo:** `make demo-lora-rank`
+- **Demo:** `make demo-lora-math`
 
 ### 2.3 QLoRA
 - 4-bit NF4 quantization + LoRA
@@ -91,19 +102,19 @@ apr showcase --tier small --auto-verify
 ### 2.4 Rank Selection
 - r=8 vs r=64: capacity vs efficiency
 - Task complexity determines optimal rank
-- Ablation studies
-- **Demo:** `make demo-lora-ablation`
+- CLI help = narrow task = low rank sufficient
+- **Demo:** `make demo-lora-rank-ablation`
 
-### 2.5 Alternative Adapters
-- Prompt tuning (soft prompts)
-- Prefix tuning
-- Adapter layers (bottleneck modules)
-- **Demo:** `make demo-adapter-compare`
+### 2.5 Training on CLI Help
+- Dataset: command + flags → help text
+- Format: clap-style output
+- Evaluation: structure match, flag coverage
+- **Demo:** `make demo-cli-help-train`
 
 ### 2.6 Merging & Deployment
 - Merge LoRA back into base model
-- Combine multiple task-specific LoRAs
 - Export to GGUF via `apr export`
+- Inference: `apr run` generates help for new commands
 - **Demo:** `make demo-lora-merge`
 
 ---
@@ -142,9 +153,10 @@ apr showcase --tier small --auto-verify
 |------|-----|------|-------------|
 | 1 | `lab-transformer-trace` | Tiny | Trace token through full pipeline |
 | 1 | `lab-attention-viz` | Tiny | Visualize attention weights |
-| 2 | `lab-lora-qwen` | Small | LoRA fine-tune Qwen2.5-Coder-1.5B |
-| 2 | `lab-qlora-qwen` | Tiny | QLoRA on 0.5B (4-bit + LoRA) |
-| 2 | `lab-adapter-merge` | Small | Merge multiple LoRA adapters |
+| 2 | `lab-cli-help-data` | — | Collect CLI help from Rust tools |
+| 2 | `lab-lora-cli-help` | Small | LoRA fine-tune on CLI help task |
+| 2 | `lab-qlora-cli-help` | Tiny | QLoRA 4-bit on CLI help task |
+| 2 | `lab-rank-ablation` | Small | Compare r=4,8,16,32 on CLI help |
 | 3 | `lab-sft-chat` | Small | SFT on code instruction dataset |
 | 3 | `lab-dpo-preference` | Small | DPO with code preference pairs |
 
