@@ -1,80 +1,86 @@
-//! Feed-Forward Network Demo
+//! Feed-Forward Network Demo: The Lemonade Stand
 //!
-//! Shows why FFN is needed after attention:
-//! 1. After attention: weighted blend (gathered, not understood)
-//! 2. FFN: expand → non-linearity → contract
-//! 3. After FFN: computed meaning (ready for next layer)
+//! Making lemonade as a metaphor for FFN:
+//! 1. ATTENTION = Gather ingredients from the pantry (who to listen to)
+//! 2. FFN EXPAND = Break down into flavor components (what we're working with)
+//! 3. GELU = Taste test! Too sour? Squash it. Good? Let it through.
+//! 4. FFN CONTRACT = Final blend decision (the output)
 //!
-//! Key insight: Attention mixes. FFN thinks.
+//! Key insight: Attention gathers. FFN tastes and adjusts.
 
 use std::fmt;
 
-/// Embedding dimension (small for visibility)
-pub const HIDDEN_DIM: usize = 4;
+/// Ingredient dimensions: L=Lemon, W=Water, S=Sugar, T=Tartness
+pub const INGREDIENT_DIM: usize = 4;
+pub const INGREDIENT_LABELS: [&str; INGREDIENT_DIM] = ["L", "W", "S", "T"];
 
-/// FFN intermediate dimension (4× expansion)
-pub const INTERMEDIATE_DIM: usize = 16;
+/// Flavor component dimension (4× expansion = 16 taste receptors)
+pub const FLAVOR_DIM: usize = 16;
 
-/// Token labels
-pub const TOKENS: &[&str] = &["The", "cat", "sat"];
+/// Three batches of lemonade we're making
+pub const BATCHES: &[&str] = &["Batch1", "Batch2", "Batch3"];
 
-/// Number of tokens
-pub const SEQ_LEN: usize = 3;
+/// Number of batches
+pub const NUM_BATCHES: usize = 3;
 
-/// Simulated "after attention" embeddings
-/// These represent weighted blends from attention
-pub const AFTER_ATTENTION: [[f32; HIDDEN_DIM]; SEQ_LEN] = [
-    [0.46, 0.41, 0.75, 0.40], // "The" - blended
-    [0.40, 0.48, 0.78, 0.40], // "cat" - blended
-    [0.39, 0.44, 0.79, 0.44], // "sat" - blended
+/// After ATTENTION: gathered ingredients from pantry
+/// Each batch pulled different amounts from available supplies
+/// Values: [Lemon, Water, Sugar, Tartness]
+pub const GATHERED_INGREDIENTS: [[f32; INGREDIENT_DIM]; NUM_BATCHES] = [
+    [0.46, 0.41, 0.75, 0.40], // Batch1: sweet-forward
+    [0.40, 0.48, 0.78, 0.40], // Batch2: more water, sweeter
+    [0.39, 0.44, 0.79, 0.44], // Batch3: sweetest, bit tart
 ];
 
-/// Attention weights that produced these blends (for display)
-pub const ATTENTION_WEIGHTS: [[f32; SEQ_LEN]; SEQ_LEN] = [
-    [0.37, 0.31, 0.32], // "The" attended to
-    [0.29, 0.38, 0.33], // "cat" attended to
-    [0.29, 0.32, 0.39], // "sat" attended to
+/// How much each batch "listened to" each supply source
+pub const GATHERING_WEIGHTS: [[f32; NUM_BATCHES]; NUM_BATCHES] = [
+    [0.37, 0.31, 0.32], // Batch1 gathered from
+    [0.29, 0.38, 0.33], // Batch2 gathered from
+    [0.29, 0.32, 0.39], // Batch3 gathered from
 ];
 
-/// W1: expand from hidden_dim to intermediate_dim
-/// Shape: [HIDDEN_DIM][INTERMEDIATE_DIM]
+/// W1: "Flavor Analyzer" - breaks ingredients into 16 taste components
+/// Like: lemon → (sour, citrus, bright, acidic, ...)
+/// Shape: [INGREDIENT_DIM][FLAVOR_DIM]
 pub fn make_w1() -> Vec<Vec<f32>> {
-    // Initialize with simple pattern for reproducibility
-    (0..HIDDEN_DIM)
+    (0..INGREDIENT_DIM)
         .map(|i| {
-            (0..INTERMEDIATE_DIM)
+            (0..FLAVOR_DIM)
                 .map(|j| ((i + j) % 3) as f32 * 0.1 + 0.05)
                 .collect()
         })
         .collect()
 }
 
-/// W2: contract from intermediate_dim to hidden_dim
-/// Shape: [INTERMEDIATE_DIM][HIDDEN_DIM]
+/// W2: "Blend Decider" - combines taste components back to final recipe
+/// 16 taste signals → 4 output adjustments (L/W/S/T)
+/// Shape: [FLAVOR_DIM][INGREDIENT_DIM]
 pub fn make_w2() -> Vec<Vec<f32>> {
-    (0..INTERMEDIATE_DIM)
+    (0..FLAVOR_DIM)
         .map(|i| {
-            (0..HIDDEN_DIM)
+            (0..INGREDIENT_DIM)
                 .map(|j| ((i + j) % 4) as f32 * 0.05 + 0.02)
                 .collect()
         })
         .collect()
 }
 
-/// GELU activation function
-/// Approximation: x * 0.5 * (1 + tanh(sqrt(2/π) * (x + 0.044715 * x³)))
+/// GELU: The Taste Test!
+/// - Positive values (good flavors) → pass through mostly unchanged
+/// - Negative values (bad flavors) → squashed toward zero
+/// - "Too sour? Nope. Good balance? Yes!"
 pub fn gelu(x: f32) -> f32 {
     let sqrt_2_over_pi = 0.797_884_6;
     let coeff = 0.044715;
     x * 0.5 * (1.0 + (sqrt_2_over_pi * (x + coeff * x.powi(3))).tanh())
 }
 
-/// ReLU activation (simpler, for --error mode comparison)
+/// ReLU: Binary taste test (anything negative = reject completely)
 pub fn relu(x: f32) -> f32 {
     x.max(0.0)
 }
 
-/// Linear: no activation (for --error mode)
+/// Linear: No taste test (skip quality control) - for --error mode
 pub fn linear(x: f32) -> f32 {
     x
 }
@@ -90,87 +96,99 @@ fn matvec(matrix: &[Vec<f32>], vec: &[f32]) -> Vec<f32> {
     result
 }
 
-/// FFN step results
+/// Recipe step: one batch going through the kitchen
 #[derive(Debug, Clone)]
-pub struct FfnStep {
-    /// Input vector (after attention)
-    pub input: Vec<f32>,
-    /// After W1 (expanded)
-    pub after_w1: Vec<f32>,
-    /// After activation
-    pub after_activation: Vec<f32>,
-    /// After W2 (output)
-    pub output: Vec<f32>,
-    /// Activation name used
-    pub activation_name: String,
+pub struct RecipeStep {
+    /// Gathered ingredients [L, W, S, T]
+    pub ingredients: Vec<f32>,
+    /// After flavor analysis (16 taste components)
+    pub flavor_profile: Vec<f32>,
+    /// After taste test (GELU filtered)
+    pub taste_tested: Vec<f32>,
+    /// Final blend decision [L, W, S, T]
+    pub final_blend: Vec<f32>,
+    /// Taste test method used
+    pub taste_test_name: String,
 }
 
-/// Full demo results
+/// Full lemonade stand results
 #[derive(Debug, Clone)]
 pub struct DemoResults {
-    /// Token labels
-    pub tokens: Vec<String>,
-    /// Attention weights (for context)
-    pub attention_weights: Vec<Vec<f32>>,
-    /// FFN results per token
-    pub ffn_steps: Vec<FfnStep>,
-    /// W1 shape for display
-    pub w1_shape: (usize, usize),
-    /// W2 shape for display
-    pub w2_shape: (usize, usize),
-    /// Whether non-linearity was skipped
-    pub skip_nonlinearity: bool,
+    /// Batch names
+    pub batches: Vec<String>,
+    /// How each batch gathered ingredients
+    pub gathering_weights: Vec<Vec<f32>>,
+    /// Recipe results per batch
+    pub recipe_steps: Vec<RecipeStep>,
+    /// Flavor analyzer shape
+    pub analyzer_shape: (usize, usize),
+    /// Blend decider shape
+    pub decider_shape: (usize, usize),
+    /// Whether taste test was skipped
+    pub skip_taste_test: bool,
 }
 
-/// Run FFN on a single vector
-pub fn run_ffn<F>(input: &[f32], w1: &[Vec<f32>], w2: &[Vec<f32>], activation: F, activation_name: &str) -> FfnStep
+/// Process one batch through the kitchen
+pub fn make_batch<F>(ingredients: &[f32], analyzer: &[Vec<f32>], decider: &[Vec<f32>], taste_test: F, taste_test_name: &str) -> RecipeStep
 where
     F: Fn(f32) -> f32,
 {
-    // Step 1: Expand (input × W1)
-    let after_w1 = matvec(w1, input);
+    // Step 1: Analyze flavors (expand to 16 taste components)
+    let flavor_profile = matvec(analyzer, ingredients);
 
-    // Step 2: Apply activation
-    let after_activation: Vec<f32> = after_w1.iter().map(|&x| activation(x)).collect();
+    // Step 2: Taste test! (GELU gates bad flavors)
+    let taste_tested: Vec<f32> = flavor_profile.iter().map(|&x| taste_test(x)).collect();
 
-    // Step 3: Contract (intermediate × W2)
-    let after_w2 = matvec(w2, &after_activation);
+    // Step 3: Decide final blend (contract back to L/W/S/T)
+    let final_blend = matvec(decider, &taste_tested);
 
-    FfnStep {
-        input: input.to_vec(),
-        after_w1,
-        after_activation,
-        output: after_w2,
-        activation_name: activation_name.to_string(),
+    RecipeStep {
+        ingredients: ingredients.to_vec(),
+        flavor_profile,
+        taste_tested,
+        final_blend,
+        taste_test_name: taste_test_name.to_string(),
     }
 }
 
-/// Run the demo
-pub fn run(skip_nonlinearity: bool) -> DemoResults {
-    let w1 = make_w1();
-    let w2 = make_w2();
+/// Run the lemonade stand demo
+pub fn run(skip_taste_test: bool) -> DemoResults {
+    let analyzer = make_w1(); // Flavor Analyzer
+    let decider = make_w2();  // Blend Decider
 
-    let tokens: Vec<String> = TOKENS.iter().map(|s| (*s).to_string()).collect();
-    let attention_weights: Vec<Vec<f32>> = ATTENTION_WEIGHTS.iter().map(|row| row.to_vec()).collect();
+    let batches: Vec<String> = BATCHES.iter().map(|s| (*s).to_string()).collect();
+    let gathering_weights: Vec<Vec<f32>> = GATHERING_WEIGHTS.iter().map(|row| row.to_vec()).collect();
 
-    let ffn_steps: Vec<FfnStep> = AFTER_ATTENTION
+    let recipe_steps: Vec<RecipeStep> = GATHERED_INGREDIENTS
         .iter()
-        .map(|input| {
-            if skip_nonlinearity {
-                run_ffn(input, &w1, &w2, linear, "LINEAR (none)")
+        .map(|ingredients| {
+            if skip_taste_test {
+                make_batch(ingredients, &analyzer, &decider, linear, "NONE (no taste test)")
             } else {
-                run_ffn(input, &w1, &w2, gelu, "GELU")
+                make_batch(ingredients, &analyzer, &decider, gelu, "GELU (taste test)")
             }
         })
         .collect();
 
     DemoResults {
-        tokens,
-        attention_weights,
-        ffn_steps,
-        w1_shape: (HIDDEN_DIM, INTERMEDIATE_DIM),
-        w2_shape: (INTERMEDIATE_DIM, HIDDEN_DIM),
-        skip_nonlinearity,
+        batches,
+        gathering_weights,
+        recipe_steps,
+        analyzer_shape: (INGREDIENT_DIM, FLAVOR_DIM),
+        decider_shape: (FLAVOR_DIM, INGREDIENT_DIM),
+        skip_taste_test,
+    }
+}
+
+/// Format ingredients with labels
+fn fmt_ingredients(v: &[f32]) -> String {
+    if v.len() == INGREDIENT_DIM {
+        format!(
+            "[L:{:.2} W:{:.2} S:{:.2} T:{:.2}]",
+            v[0], v[1], v[2], v[3]
+        )
+    } else {
+        fmt_vec(v, 6)
     }
 }
 
@@ -189,115 +207,113 @@ fn fmt_vec(v: &[f32], max_show: usize) -> String {
 impl fmt::Display for DemoResults {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "╔══════════════════════════════════════════════════════════════╗")?;
-        writeln!(f, "║           FEED-FORWARD NETWORK DEMO                          ║")?;
+        writeln!(f, "║        THE LEMONADE STAND: FFN Demo                          ║")?;
         writeln!(f, "╠══════════════════════════════════════════════════════════════╣")?;
-        writeln!(f, "║  \"Attention mixes. FFN thinks.\"                              ║")?;
+        writeln!(f, "║  \"Attention gathers ingredients. FFN tastes and adjusts.\"    ║")?;
         writeln!(f, "╚══════════════════════════════════════════════════════════════╝")?;
         writeln!(f)?;
 
-        // Context: what attention produced
+        // Legend
+        writeln!(f, "  Ingredients: L=Lemon, W=Water, S=Sugar, T=Tartness")?;
+        writeln!(f)?;
+
+        // Step 1: What attention gathered
         writeln!(f, "┌─────────────────────────────────────────────────────────────┐")?;
-        writeln!(f, "│ CONTEXT: After Attention (weighted blends)                  │")?;
+        writeln!(f, "│ STEP 1: ATTENTION GATHERED (from the pantry)               │")?;
         writeln!(f, "└─────────────────────────────────────────────────────────────┘")?;
-        for (i, step) in self.ffn_steps.iter().enumerate() {
-            let weights = &self.attention_weights[i];
+        for (i, step) in self.recipe_steps.iter().enumerate() {
+            let weights = &self.gathering_weights[i];
             writeln!(
                 f,
-                "  {:>4} = {:.0}% The + {:.0}% cat + {:.0}% sat → {}",
-                self.tokens[i],
+                "  {} = {:.0}%A + {:.0}%B + {:.0}%C → {}",
+                self.batches[i],
                 weights[0] * 100.0,
                 weights[1] * 100.0,
                 weights[2] * 100.0,
-                fmt_vec(&step.input, 6)
+                fmt_ingredients(&step.ingredients)
             )?;
         }
         writeln!(f)?;
-        writeln!(f, "  Problem: Just weighted averages. No computation yet.")?;
+        writeln!(f, "  Status: Ingredients gathered, but not yet tasted!")?;
         writeln!(f)?;
 
-        // FFN architecture
+        // Step 2: Kitchen equipment
         writeln!(f, "┌─────────────────────────────────────────────────────────────┐")?;
-        writeln!(f, "│ FFN ARCHITECTURE                                            │")?;
+        writeln!(f, "│ STEP 2: THE KITCHEN (FFN Architecture)                      │")?;
         writeln!(f, "└─────────────────────────────────────────────────────────────┘")?;
         writeln!(
             f,
-            "  W1: [{} × {}]  (expand 4×)",
-            self.w1_shape.0, self.w1_shape.1
+            "  Flavor Analyzer: [{} × {}]  (4 ingredients → 16 taste signals)",
+            self.analyzer_shape.0, self.analyzer_shape.1
         )?;
-        writeln!(f, "  Activation: {}", self.ffn_steps[0].activation_name)?;
+        writeln!(f, "  Taste Test: {}", self.recipe_steps[0].taste_test_name)?;
         writeln!(
             f,
-            "  W2: [{} × {}]  (contract)",
-            self.w2_shape.0, self.w2_shape.1
+            "  Blend Decider:   [{} × {}]  (16 signals → 4 adjustments)",
+            self.decider_shape.0, self.decider_shape.1
         )?;
         writeln!(f)?;
         writeln!(
             f,
-            "  Formula: FFN(x) = W2 · {}(W1 · x)",
-            if self.skip_nonlinearity { "LINEAR" } else { "GELU" }
+            "  Recipe: output = Decider( {}( Analyzer(ingredients) ) )",
+            if self.skip_taste_test { "skip" } else { "GELU" }
         )?;
         writeln!(f)?;
 
-        // Step-by-step for each token
+        // Step 3: Processing each batch
         writeln!(f, "┌─────────────────────────────────────────────────────────────┐")?;
-        if self.skip_nonlinearity {
-            writeln!(f, "│ ⚠️  FFN STEPS (NO NON-LINEARITY - ERROR MODE)                │")?;
+        if self.skip_taste_test {
+            writeln!(f, "│ STEP 3: PROCESSING (⚠️  NO TASTE TEST!)                     │")?;
         } else {
-            writeln!(f, "│ FFN STEPS (per token)                                       │")?;
+            writeln!(f, "│ STEP 3: PROCESSING (taste test each batch)                 │")?;
         }
         writeln!(f, "└─────────────────────────────────────────────────────────────┘")?;
 
-        for (i, step) in self.ffn_steps.iter().enumerate() {
-            writeln!(f, "\n  ── {} ──", self.tokens[i])?;
-            writeln!(f, "  Input ({}D):     {}", HIDDEN_DIM, fmt_vec(&step.input, 6))?;
+        for (i, step) in self.recipe_steps.iter().enumerate() {
+            writeln!(f, "\n  ── {} ──", self.batches[i])?;
+            writeln!(f, "  Gathered:        {}", fmt_ingredients(&step.ingredients))?;
             writeln!(
                 f,
-                "  After W1 ({}D): {}",
-                INTERMEDIATE_DIM,
-                fmt_vec(&step.after_w1, 6)
+                "  Flavor Profile:  {} (16 taste signals)",
+                fmt_vec(&step.flavor_profile, 5)
             )?;
-            writeln!(
-                f,
-                "  After {}:    {}",
-                if self.skip_nonlinearity { "LINEAR" } else { "GELU  " },
-                fmt_vec(&step.after_activation, 6)
-            )?;
-            writeln!(f, "  Output ({}D):    {}", HIDDEN_DIM, fmt_vec(&step.output, 6))?;
+            if self.skip_taste_test {
+                writeln!(f, "  (skipped taste)  {}", fmt_vec(&step.taste_tested, 5))?;
+            } else {
+                writeln!(f, "  After Taste:     {} (bad filtered)", fmt_vec(&step.taste_tested, 5))?;
+            }
+            writeln!(f, "  Final Blend:     {}", fmt_ingredients(&step.final_blend))?;
         }
         writeln!(f)?;
 
-        // Compare input vs output
+        // Before vs after
         writeln!(f, "┌─────────────────────────────────────────────────────────────┐")?;
-        writeln!(f, "│ BEFORE vs AFTER FFN                                         │")?;
+        writeln!(f, "│ GATHERED vs FINAL BLEND                                     │")?;
         writeln!(f, "└─────────────────────────────────────────────────────────────┘")?;
-        for (i, step) in self.ffn_steps.iter().enumerate() {
-            let input_norm: f32 = step.input.iter().map(|x| x * x).sum::<f32>().sqrt();
-            let output_norm: f32 = step.output.iter().map(|x| x * x).sum::<f32>().sqrt();
+        for (i, step) in self.recipe_steps.iter().enumerate() {
             writeln!(
                 f,
-                "  {:>4}: {} → {} (norm: {:.2} → {:.2})",
-                self.tokens[i],
-                fmt_vec(&step.input, 6),
-                fmt_vec(&step.output, 6),
-                input_norm,
-                output_norm
+                "  {}: {} → {}",
+                self.batches[i],
+                fmt_ingredients(&step.ingredients),
+                fmt_ingredients(&step.final_blend)
             )?;
         }
         writeln!(f)?;
 
-        // Summary
+        // Key insight
         writeln!(f, "╔══════════════════════════════════════════════════════════════╗")?;
-        if self.skip_nonlinearity {
-            writeln!(f, "║ ⚠️  WITHOUT NON-LINEARITY:                                   ║")?;
-            writeln!(f, "║ • FFN is just two matrix multiplies = one big matrix        ║")?;
-            writeln!(f, "║ • W2 · W1 could be pre-computed → no \"thinking\"              ║")?;
-            writeln!(f, "║ • Entire transformer collapses to linear function           ║")?;
+        if self.skip_taste_test {
+            writeln!(f, "║ ⚠️  WITHOUT TASTE TEST (no GELU):                            ║")?;
+            writeln!(f, "║ • Just blindly mixed ingredients → no quality control       ║")?;
+            writeln!(f, "║ • Analyzer × Decider = one big matrix (no decisions)        ║")?;
+            writeln!(f, "║ • Can't learn \"too sour\" or \"too sweet\" → bad lemonade      ║")?;
         } else {
-            writeln!(f, "║ KEY INSIGHT:                                                 ║")?;
-            writeln!(f, "║ • Attention gathered context (who to listen to)             ║")?;
-            writeln!(f, "║ • FFN computed meaning (what it means)                      ║")?;
-            writeln!(f, "║ • GELU enables non-linear patterns                          ║")?;
-            writeln!(f, "║ • 2/3 of transformer params live in FFN (W1 + W2)           ║")?;
+            writeln!(f, "║ THE LEMONADE INSIGHT:                                        ║")?;
+            writeln!(f, "║ • Attention = gathered ingredients (L, W, S, T)              ║")?;
+            writeln!(f, "║ • FFN = tasted and adjusted (GELU said \"no\" to bad flavors) ║")?;
+            writeln!(f, "║ • Non-linearity = \"too sour? squash it!\"                     ║")?;
+            writeln!(f, "║ • 2/3 of transformer params = the kitchen (Analyzer+Decider)║")?;
         }
         writeln!(f, "╚══════════════════════════════════════════════════════════════╝")?;
 
@@ -319,68 +335,73 @@ pub fn render_tui(result: &DemoResults) {
 mod tests {
     use super::*;
 
-    // ========== Constants tests ==========
+    // ========== Lemonade constants tests ==========
 
     #[test]
     fn test_dimensions() {
-        assert_eq!(INTERMEDIATE_DIM, HIDDEN_DIM * 4);
-        assert_eq!(TOKENS.len(), SEQ_LEN);
-        assert_eq!(AFTER_ATTENTION.len(), SEQ_LEN);
-        assert_eq!(ATTENTION_WEIGHTS.len(), SEQ_LEN);
+        assert_eq!(FLAVOR_DIM, INGREDIENT_DIM * 4);
+        assert_eq!(BATCHES.len(), NUM_BATCHES);
+        assert_eq!(GATHERED_INGREDIENTS.len(), NUM_BATCHES);
+        assert_eq!(GATHERING_WEIGHTS.len(), NUM_BATCHES);
     }
 
     #[test]
-    fn test_attention_weights_sum_to_one() {
-        for row in &ATTENTION_WEIGHTS {
+    fn test_gathering_weights_sum_to_one() {
+        for row in &GATHERING_WEIGHTS {
             let sum: f32 = row.iter().sum();
             assert!((sum - 1.0).abs() < 0.01, "Row sum {} should be ~1.0", sum);
         }
     }
 
     #[test]
-    fn test_after_attention_dimensions() {
-        for row in &AFTER_ATTENTION {
-            assert_eq!(row.len(), HIDDEN_DIM);
+    fn test_gathered_ingredients_dimensions() {
+        for row in &GATHERED_INGREDIENTS {
+            assert_eq!(row.len(), INGREDIENT_DIM);
         }
     }
 
-    // ========== Weight matrix tests ==========
+    #[test]
+    fn test_ingredient_labels() {
+        assert_eq!(INGREDIENT_LABELS, ["L", "W", "S", "T"]);
+    }
+
+    // ========== Kitchen equipment tests ==========
 
     #[test]
-    fn test_w1_shape() {
-        let w1 = make_w1();
-        assert_eq!(w1.len(), HIDDEN_DIM);
-        assert_eq!(w1[0].len(), INTERMEDIATE_DIM);
+    fn test_analyzer_shape() {
+        let analyzer = make_w1();
+        assert_eq!(analyzer.len(), INGREDIENT_DIM);
+        assert_eq!(analyzer[0].len(), FLAVOR_DIM);
     }
 
     #[test]
-    fn test_w2_shape() {
-        let w2 = make_w2();
-        assert_eq!(w2.len(), INTERMEDIATE_DIM);
-        assert_eq!(w2[0].len(), HIDDEN_DIM);
+    fn test_decider_shape() {
+        let decider = make_w2();
+        assert_eq!(decider.len(), FLAVOR_DIM);
+        assert_eq!(decider[0].len(), INGREDIENT_DIM);
     }
 
     #[test]
-    fn test_w1_values_bounded() {
-        let w1 = make_w1();
-        for row in &w1 {
+    fn test_analyzer_values_bounded() {
+        let analyzer = make_w1();
+        for row in &analyzer {
             for &val in row {
-                assert!(val >= 0.0 && val <= 1.0, "W1 value {} out of bounds", val);
+                assert!(val >= 0.0 && val <= 1.0, "Analyzer value {} out of bounds", val);
             }
         }
     }
 
     #[test]
-    fn test_w2_values_bounded() {
-        let w2 = make_w2();
-        for row in &w2 {
+    fn test_decider_values_bounded() {
+        let decider = make_w2();
+        for row in &decider {
             for &val in row {
-                assert!(val >= 0.0 && val <= 1.0, "W2 value {} out of bounds", val);
+                assert!(val >= 0.0 && val <= 1.0, "Decider value {} out of bounds", val);
             }
         }
     }
 
-    // ========== Activation function tests ==========
+    // ========== Taste test (activation) tests ==========
 
     #[test]
     fn test_gelu_zero() {
@@ -388,35 +409,33 @@ mod tests {
     }
 
     #[test]
-    fn test_gelu_positive() {
+    fn test_gelu_good_flavor_passes() {
+        // Positive = good flavor → passes through
         let x = 1.0;
         let y = gelu(x);
-        // GELU(1) ≈ 0.841
-        assert!(y > 0.8 && y < 0.9, "GELU(1) = {} should be ~0.841", y);
+        assert!(y > 0.8 && y < 0.9, "Good flavor {} should pass ~0.841", y);
     }
 
     #[test]
-    fn test_gelu_negative() {
+    fn test_gelu_bad_flavor_squashed() {
+        // Negative = bad flavor → squashed
         let x = -1.0;
         let y = gelu(x);
-        // GELU(-1) ≈ -0.159
-        assert!(y > -0.2 && y < -0.1, "GELU(-1) = {} should be ~-0.159", y);
+        assert!(y > -0.2 && y < -0.1, "Bad flavor {} should be squashed to ~-0.159", y);
     }
 
     #[test]
-    fn test_gelu_large_positive() {
+    fn test_gelu_very_good_passes_fully() {
         let x = 5.0;
         let y = gelu(x);
-        // GELU(x) ≈ x for large positive x
-        assert!((y - x).abs() < 0.01, "GELU({}) should be ~{}", x, x);
+        assert!((y - x).abs() < 0.01, "Very good flavor passes fully");
     }
 
     #[test]
-    fn test_gelu_large_negative() {
+    fn test_gelu_very_bad_squashed_to_zero() {
         let x = -5.0;
         let y = gelu(x);
-        // GELU(x) ≈ 0 for large negative x
-        assert!(y.abs() < 0.01, "GELU({}) = {} should be ~0", x, y);
+        assert!(y.abs() < 0.01, "Very bad flavor squashed to ~0");
     }
 
     #[test]
@@ -435,7 +454,7 @@ mod tests {
     }
 
     #[test]
-    fn test_linear_passthrough() {
+    fn test_linear_no_taste_test() {
         assert_eq!(linear(3.14), 3.14);
         assert_eq!(linear(-2.5), -2.5);
     }
@@ -455,112 +474,109 @@ mod tests {
         let m = vec![vec![1.0, 2.0], vec![3.0, 4.0]];
         let v = vec![1.0, 1.0];
         let result = matvec(&m, &v);
-        // [1,1] × [[1,2],[3,4]] = [1*1+1*3, 1*2+1*4] = [4, 6]
         assert_eq!(result, vec![4.0, 6.0]);
     }
 
     #[test]
     fn test_matvec_expansion() {
-        // 2D → 4D
         let m = vec![vec![1.0, 0.0, 1.0, 0.0], vec![0.0, 1.0, 0.0, 1.0]];
         let v = vec![2.0, 3.0];
         let result = matvec(&m, &v);
         assert_eq!(result.len(), 4);
     }
 
-    // ========== FFN step tests ==========
+    // ========== Recipe step (make_batch) tests ==========
 
     #[test]
-    fn test_run_ffn_output_dimension() {
-        let w1 = make_w1();
-        let w2 = make_w2();
-        let input = AFTER_ATTENTION[0].to_vec();
-        let step = run_ffn(&input, &w1, &w2, gelu, "GELU");
-        assert_eq!(step.output.len(), HIDDEN_DIM);
+    fn test_make_batch_final_blend_dimension() {
+        let analyzer = make_w1();
+        let decider = make_w2();
+        let ingredients = GATHERED_INGREDIENTS[0].to_vec();
+        let step = make_batch(&ingredients, &analyzer, &decider, gelu, "GELU");
+        assert_eq!(step.final_blend.len(), INGREDIENT_DIM);
     }
 
     #[test]
-    fn test_run_ffn_intermediate_dimension() {
-        let w1 = make_w1();
-        let w2 = make_w2();
-        let input = AFTER_ATTENTION[0].to_vec();
-        let step = run_ffn(&input, &w1, &w2, gelu, "GELU");
-        assert_eq!(step.after_w1.len(), INTERMEDIATE_DIM);
-        assert_eq!(step.after_activation.len(), INTERMEDIATE_DIM);
+    fn test_make_batch_flavor_profile_dimension() {
+        let analyzer = make_w1();
+        let decider = make_w2();
+        let ingredients = GATHERED_INGREDIENTS[0].to_vec();
+        let step = make_batch(&ingredients, &analyzer, &decider, gelu, "GELU");
+        assert_eq!(step.flavor_profile.len(), FLAVOR_DIM);
+        assert_eq!(step.taste_tested.len(), FLAVOR_DIM);
     }
 
     #[test]
-    fn test_run_ffn_input_preserved() {
-        let w1 = make_w1();
-        let w2 = make_w2();
-        let input = AFTER_ATTENTION[0].to_vec();
-        let step = run_ffn(&input, &w1, &w2, gelu, "GELU");
-        assert_eq!(step.input, input);
+    fn test_make_batch_ingredients_preserved() {
+        let analyzer = make_w1();
+        let decider = make_w2();
+        let ingredients = GATHERED_INGREDIENTS[0].to_vec();
+        let step = make_batch(&ingredients, &analyzer, &decider, gelu, "GELU");
+        assert_eq!(step.ingredients, ingredients);
     }
 
     #[test]
-    fn test_run_ffn_activation_name() {
-        let w1 = make_w1();
-        let w2 = make_w2();
-        let input = AFTER_ATTENTION[0].to_vec();
-        let step = run_ffn(&input, &w1, &w2, gelu, "GELU");
-        assert_eq!(step.activation_name, "GELU");
+    fn test_make_batch_taste_test_name() {
+        let analyzer = make_w1();
+        let decider = make_w2();
+        let ingredients = GATHERED_INGREDIENTS[0].to_vec();
+        let step = make_batch(&ingredients, &analyzer, &decider, gelu, "GELU taste test");
+        assert_eq!(step.taste_test_name, "GELU taste test");
     }
 
     #[test]
-    fn test_run_ffn_linear_vs_gelu_different() {
-        let w1 = make_w1();
-        let w2 = make_w2();
-        let input = AFTER_ATTENTION[0].to_vec();
-        let step_gelu = run_ffn(&input, &w1, &w2, gelu, "GELU");
-        let step_linear = run_ffn(&input, &w1, &w2, linear, "LINEAR");
-        // Outputs should differ
-        let diff: f32 = step_gelu
-            .output
+    fn test_taste_test_vs_no_taste_test_different() {
+        let analyzer = make_w1();
+        let decider = make_w2();
+        let ingredients = GATHERED_INGREDIENTS[0].to_vec();
+        let with_taste = make_batch(&ingredients, &analyzer, &decider, gelu, "GELU");
+        let no_taste = make_batch(&ingredients, &analyzer, &decider, linear, "NONE");
+        let diff: f32 = with_taste
+            .final_blend
             .iter()
-            .zip(step_linear.output.iter())
+            .zip(no_taste.final_blend.iter())
             .map(|(a, b)| (a - b).abs())
             .sum();
-        assert!(diff > 0.01, "GELU and LINEAR should produce different outputs");
+        assert!(diff > 0.01, "Taste test should change the blend");
     }
 
     // ========== Run function tests ==========
 
     #[test]
-    fn test_run_normal_mode() {
+    fn test_run_with_taste_test() {
         let result = run(false);
-        assert!(!result.skip_nonlinearity);
-        assert_eq!(result.ffn_steps.len(), SEQ_LEN);
+        assert!(!result.skip_taste_test);
+        assert_eq!(result.recipe_steps.len(), NUM_BATCHES);
     }
 
     #[test]
-    fn test_run_error_mode() {
+    fn test_run_without_taste_test() {
         let result = run(true);
-        assert!(result.skip_nonlinearity);
+        assert!(result.skip_taste_test);
     }
 
     #[test]
-    fn test_run_tokens_match() {
+    fn test_run_batches_match() {
         let result = run(false);
-        assert_eq!(result.tokens, vec!["The", "cat", "sat"]);
+        assert_eq!(result.batches, vec!["Batch1", "Batch2", "Batch3"]);
     }
 
     #[test]
     fn test_run_shapes_correct() {
         let result = run(false);
-        assert_eq!(result.w1_shape, (HIDDEN_DIM, INTERMEDIATE_DIM));
-        assert_eq!(result.w2_shape, (INTERMEDIATE_DIM, HIDDEN_DIM));
+        assert_eq!(result.analyzer_shape, (INGREDIENT_DIM, FLAVOR_DIM));
+        assert_eq!(result.decider_shape, (FLAVOR_DIM, INGREDIENT_DIM));
     }
 
     #[test]
-    fn test_run_activation_name_in_steps() {
+    fn test_run_taste_test_name_in_steps() {
         let result = run(false);
-        for step in &result.ffn_steps {
-            assert_eq!(step.activation_name, "GELU");
+        for step in &result.recipe_steps {
+            assert!(step.taste_test_name.contains("GELU"));
         }
-        let result_error = run(true);
-        for step in &result_error.ffn_steps {
-            assert_eq!(step.activation_name, "LINEAR (none)");
+        let result_skip = run(true);
+        for step in &result_skip.recipe_steps {
+            assert!(step.taste_test_name.contains("NONE"));
         }
     }
 
@@ -581,29 +597,38 @@ mod tests {
     }
 
     #[test]
-    fn test_display_normal_mode() {
-        let result = run(false);
-        let display = format!("{}", result);
-        assert!(display.contains("FEED-FORWARD"));
-        assert!(display.contains("GELU"));
-        assert!(display.contains("KEY INSIGHT"));
+    fn test_fmt_ingredients() {
+        let v = vec![0.5, 0.3, 0.8, 0.2];
+        let s = fmt_ingredients(&v);
+        assert!(s.contains("L:"));
+        assert!(s.contains("W:"));
+        assert!(s.contains("S:"));
+        assert!(s.contains("T:"));
     }
 
     #[test]
-    fn test_display_error_mode() {
+    fn test_display_lemonade_mode() {
+        let result = run(false);
+        let display = format!("{}", result);
+        assert!(display.contains("LEMONADE"));
+        assert!(display.contains("GELU"));
+        assert!(display.contains("taste"));
+    }
+
+    #[test]
+    fn test_display_no_taste_test_mode() {
         let result = run(true);
         let display = format!("{}", result);
-        assert!(display.contains("ERROR MODE"));
-        assert!(display.contains("LINEAR"));
-        assert!(display.contains("collapses"));
+        assert!(display.contains("NO TASTE TEST"));
+        assert!(display.contains("blindly"));
     }
 
     #[test]
-    fn test_display_contains_tokens() {
+    fn test_display_contains_batches() {
         let result = run(false);
         let display = format!("{}", result);
-        for token in TOKENS {
-            assert!(display.contains(token));
+        for batch in BATCHES {
+            assert!(display.contains(batch));
         }
     }
 
@@ -611,7 +636,7 @@ mod tests {
     fn test_display_shows_shapes() {
         let result = run(false);
         let display = format!("{}", result);
-        assert!(display.contains(&format!("[{} × {}]", HIDDEN_DIM, INTERMEDIATE_DIM)));
+        assert!(display.contains(&format!("[{} × {}]", INGREDIENT_DIM, FLAVOR_DIM)));
     }
 
     // ========== Output function tests ==========
@@ -631,39 +656,38 @@ mod tests {
     // ========== Integration tests ==========
 
     #[test]
-    fn test_ffn_changes_representation() {
+    fn test_ffn_changes_blend() {
         let result = run(false);
-        for step in &result.ffn_steps {
-            // Output should differ from input
+        for step in &result.recipe_steps {
             let diff: f32 = step
-                .input
+                .ingredients
                 .iter()
-                .zip(step.output.iter())
+                .zip(step.final_blend.iter())
                 .map(|(a, b)| (a - b).abs())
                 .sum();
-            assert!(diff > 0.01, "FFN should change the representation");
+            assert!(diff > 0.01, "FFN should change the blend");
         }
     }
 
     #[test]
-    fn test_expansion_increases_dimension() {
+    fn test_flavor_expansion() {
         let result = run(false);
-        for step in &result.ffn_steps {
+        for step in &result.recipe_steps {
             assert!(
-                step.after_w1.len() > step.input.len(),
-                "W1 should expand dimensions"
+                step.flavor_profile.len() > step.ingredients.len(),
+                "Analyzer should expand to 16 flavors"
             );
         }
     }
 
     #[test]
-    fn test_contraction_restores_dimension() {
+    fn test_blend_contraction() {
         let result = run(false);
-        for step in &result.ffn_steps {
+        for step in &result.recipe_steps {
             assert_eq!(
-                step.output.len(),
-                step.input.len(),
-                "Output should match input dimension"
+                step.final_blend.len(),
+                step.ingredients.len(),
+                "Decider should contract back to 4 ingredients"
             );
         }
     }
