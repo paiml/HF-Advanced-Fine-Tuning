@@ -156,13 +156,13 @@
     <text x="770" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#fff">DECODE</text>
 
     <!-- Arrows -->
-    <path d="M82 20 L108 20" stroke="#ecf0f1" stroke-width="2" fill="none" marker-end="url(#whiteArrow)"/>
-    <path d="M192 20 L218 20" stroke="#ecf0f1" stroke-width="2" fill="none" marker-end="url(#whiteArrow)"/>
-    <path d="M342 20 L368 20" stroke="#ecf0f1" stroke-width="2" fill="none" marker-end="url(#whiteArrow)"/>
-    <path d="M492 20 L518 20" stroke="#ecf0f1" stroke-width="2" fill="none" marker-end="url(#whiteArrow)"/>
-    <path d="M602 20 L628 20" stroke="#ecf0f1" stroke-width="2" fill="none" marker-end="url(#whiteArrow)"/>
-    <path d="M712 20 L738 20" stroke="#ecf0f1" stroke-width="2" fill="none" marker-end="url(#whiteArrow)"/>
-    <defs><marker id="whiteArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ecf0f1"/></marker></defs>
+    <path d="M82 20 L108 20" stroke="#f1c40f" stroke-width="2" fill="none" marker-end="url(#goldArrow)"/>
+    <path d="M192 20 L218 20" stroke="#f1c40f" stroke-width="2" fill="none" marker-end="url(#goldArrow)"/>
+    <path d="M342 20 L368 20" stroke="#f1c40f" stroke-width="2" fill="none" marker-end="url(#goldArrow)"/>
+    <path d="M492 20 L518 20" stroke="#f1c40f" stroke-width="2" fill="none" marker-end="url(#goldArrow)"/>
+    <path d="M602 20 L628 20" stroke="#f1c40f" stroke-width="2" fill="none" marker-end="url(#goldArrow)"/>
+    <path d="M712 20 L738 20" stroke="#f1c40f" stroke-width="2" fill="none" marker-end="url(#goldArrow)"/>
+    <defs><marker id="goldArrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#f1c40f"/></marker></defs>
   </g>
 
   <!-- Loop indicator for attention+FFN -->
@@ -170,5 +170,5 @@
   <text x="380" y="575" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f1c40f">x N layers</text>
 
   <!-- Footer text -->
-  <text x="450" y="600" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#bdc3c7">String → Tokens → Tensors → [Attention → FFN] x N → Logits → Token → String</text>
+  <text x="450" y="600" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#f1c40f">String → Tokens → Tensors → [Attention → FFN] x N → Logits → Token → String</text>
 </svg>
