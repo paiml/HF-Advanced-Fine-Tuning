@@ -7,6 +7,8 @@
 .DELETE_ON_ERROR:
 .PHONY: all help setup lint test profile brick-score clean
 .PHONY: docs serve compliance check
+.PHONY: demos demo-test demo-scalar-simd-gpu demo-training-vs-inference
+.PHONY: demo-inference-pipeline demo-bpe-vs-word demo-attention demo-feed-forward
 
 # Default target
 all: lint compliance
@@ -20,6 +22,10 @@ help:
 	@printf '  make lint         Lint shell scripts with bashrs\n'
 	@printf '  make docs         Build documentation\n'
 	@printf '  make serve        Serve docs locally\n\n'
+	@printf 'Demos (Week 1):\n'
+	@printf '  make demos        List all available demos\n'
+	@printf '  make demo-test    Run all demos in CI mode (stdout)\n'
+	@printf '  make demo-X       Run specific demo (see: make demos)\n\n'
 	@printf 'Profiling:\n'
 	@printf '  make profile      Run ComputeBrick profile (small tier)\n'
 	@printf '  make profile-tiny Run profile with tiny tier (0.5B)\n'
@@ -41,6 +47,48 @@ setup:
 	@printf 'Initializing pmat hooks...\n'
 	pmat hooks install || true
 	pmat hooks cache init || true
+
+# Week 1 Demos
+DEMO_DIR := demos/week1
+
+demos:
+	@printf '=== Available Demos ===\n'
+	@printf 'Week 1 - Foundations:\n'
+	@printf '  make demo-scalar-simd-gpu      Compute parallelism\n'
+	@printf '  make demo-training-vs-inference Forward vs backward pass\n'
+	@printf '  make demo-inference-pipeline   6-step token flow\n'
+	@printf '  make demo-bpe-vs-word          Tokenization comparison\n'
+	@printf '  make demo-attention            Q/K/V + softmax\n'
+	@printf '  make demo-feed-forward         FFN: gathered to understood\n'
+	@printf '\nRun all: make demo-test\n'
+
+demo-test:
+	@printf '=== Running All Demos (CI Mode) ===\n'
+	cd $(DEMO_DIR) && cargo run --bin demo-scalar-simd-gpu -- --stdout
+	cd $(DEMO_DIR) && cargo run --bin demo-training-vs-inference -- --stdout
+	cd $(DEMO_DIR) && cargo run --bin demo-inference-pipeline -- --stdout
+	cd $(DEMO_DIR) && cargo run --bin demo-bpe-vs-word -- --stdout
+	cd $(DEMO_DIR) && cargo run --bin demo-attention -- --stdout
+	cd $(DEMO_DIR) && cargo run --bin demo-feed-forward -- --stdout
+	@printf '=== All Demos Passed ===\n'
+
+demo-scalar-simd-gpu:
+	cd $(DEMO_DIR) && cargo run --bin demo-scalar-simd-gpu
+
+demo-training-vs-inference:
+	cd $(DEMO_DIR) && cargo run --bin demo-training-vs-inference
+
+demo-inference-pipeline:
+	cd $(DEMO_DIR) && cargo run --bin demo-inference-pipeline
+
+demo-bpe-vs-word:
+	cd $(DEMO_DIR) && cargo run --bin demo-bpe-vs-word
+
+demo-attention:
+	cd $(DEMO_DIR) && cargo run --bin demo-attention
+
+demo-feed-forward:
+	cd $(DEMO_DIR) && cargo run --bin demo-feed-forward
 
 # Lint shell scripts (exit 2 = error, exit 1 = warning, exit 0 = clean)
 lint:
