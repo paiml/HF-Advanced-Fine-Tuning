@@ -10,7 +10,7 @@
 .PHONY: demos demo-test demo-scalar-simd-gpu demo-training-vs-inference
 .PHONY: demo-inference-pipeline demo-bpe-vs-word demo-attention demo-feed-forward
 .PHONY: demo-test-w2 demo-full-finetune-cost demo-lora-math demo-qlora
-.PHONY: demo-lora-rank-ablation demo-cli-help-train demo-lora-merge
+.PHONY: demo-lora-rank-ablation demo-cli-help-train demo-lora-merge demo-eval-cli-help
 
 # Default target
 all: lint compliance
@@ -70,6 +70,7 @@ demos:
 	@printf '  make demo-lora-rank-ablation   Rank selection guide\n'
 	@printf '  make demo-cli-help-train       CLI help training data format\n'
 	@printf '  make demo-lora-merge           Merge and deployment\n'
+	@printf '  make demo-eval-cli-help        Evaluation framework\n'
 	@printf '\nRun all: make demo-test (W1) | make demo-test-w2 (W2)\n'
 
 demo-test:
@@ -111,6 +112,7 @@ demo-test-w2:
 	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-rank-ablation -- --stdout
 	cd $(DEMO_DIR_W2) && cargo run --bin demo-cli-help-train -- --stdout
 	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-merge -- --stdout
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-eval-cli-help -- --stdout
 	@printf '=== Week 2 Demos Passed ===\n'
 
 demo-full-finetune-cost:
@@ -130,6 +132,9 @@ demo-cli-help-train:
 
 demo-lora-merge:
 	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-merge
+
+demo-eval-cli-help:
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-eval-cli-help
 
 # Lint shell scripts (exit 2 = error, exit 1 = warning, exit 0 = clean)
 lint:

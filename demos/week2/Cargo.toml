@@ -34,3 +34,7 @@ path = "src/bin/cli_help_train.rs"
 [[bin]]
 name = "demo-lora-merge"
 path = "src/bin/lora_merge.rs"
+
+[[bin]]
+name = "demo-eval-cli-help"
+path = "src/bin/eval_cli_help.rs"

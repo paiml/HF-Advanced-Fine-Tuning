@@ -19,6 +19,7 @@ pub mod qlora;
 pub mod lora_rank;
 pub mod cli_help;
 pub mod lora_merge;
+pub mod eval_cli_help;
 
 /// Common CLI args for all demos
 #[derive(Args, Debug, Clone)]
