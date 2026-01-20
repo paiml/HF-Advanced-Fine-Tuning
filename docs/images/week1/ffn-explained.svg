@@ -143,7 +143,7 @@
 
     <!-- Insight box -->
     <rect x="165" y="155" width="90" height="35" rx="4" fill="#f5f3ff"/>
-    <text x="210" y="170" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6d28d9">Taste & adjust</text>
+    <text x="210" y="170" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6d28d9">Taste + adjust</text>
     <text x="210" y="183" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#16a34a">Can say "no"!</text>
   </g>
 
