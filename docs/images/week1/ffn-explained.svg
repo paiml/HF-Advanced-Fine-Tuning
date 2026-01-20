@@ -148,49 +148,49 @@
   </g>
 
   <!-- BOTTOM: Tiny NN Diagram -->
-  <rect x="20" y="540" width="860" height="65" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
-  <text x="70" y="560" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#334155">FFN Architecture:</text>
+  <rect x="20" y="540" width="860" height="70" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
 
-  <!-- Input layer (4 nodes) -->
-  <circle cx="150" cy="560" r="6" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
-  <circle cx="150" cy="575" r="6" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
-  <circle cx="150" cy="590" r="6" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
-  <text x="150" y="610" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">4D</text>
+  <!-- Input layer (3 nodes) -->
+  <circle cx="50" cy="560" r="5" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
+  <circle cx="50" cy="575" r="5" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
+  <circle cx="50" cy="590" r="5" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
+  <text x="50" y="555" text-anchor="middle" font-family="monospace" font-size="8" fill="#1e40af">4D</text>
 
-  <!-- W1 arrow -->
-  <path d="M 162 575 L 195 575" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
-  <text x="178" y="568" text-anchor="middle" font-family="monospace" font-size="7" fill="#64748b">W1</text>
+  <!-- W1 label -->
+  <text x="80" y="578" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">W1</text>
+  <path d="M 60 575 L 95 575" stroke="#64748b" stroke-width="1" marker-end="url(#arr)"/>
 
-  <!-- Hidden layer (8 shown of 16) -->
-  <circle cx="210" cy="550" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
-  <circle cx="210" cy="560" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
-  <circle cx="210" cy="570" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
-  <circle cx="210" cy="580" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
-  <circle cx="210" cy="590" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
-  <circle cx="210" cy="600" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
-  <text x="210" y="618" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">16D</text>
+  <!-- Hidden layer (6 nodes) -->
+  <circle cx="115" cy="552" r="4" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="115" cy="562" r="4" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="115" cy="572" r="4" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="115" cy="582" r="4" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="115" cy="592" r="4" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="115" cy="602" r="4" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <text x="115" y="548" text-anchor="middle" font-family="monospace" font-size="8" fill="#b45309">16D</text>
 
   <!-- GELU box -->
-  <rect x="230" y="562" width="45" height="22" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
-  <text x="252" y="577" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#b45309">GELU</text>
+  <rect x="130" y="565" width="40" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="150" y="578" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#b45309">GELU</text>
 
-  <!-- W2 arrow -->
-  <path d="M 280 575 L 313 575" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
-  <text x="296" y="568" text-anchor="middle" font-family="monospace" font-size="7" fill="#64748b">W2</text>
+  <!-- W2 label -->
+  <text x="200" y="578" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">W2</text>
+  <path d="M 175 575 L 215 575" stroke="#64748b" stroke-width="1" marker-end="url(#arr)"/>
 
-  <!-- Output layer (4 nodes) -->
-  <circle cx="330" cy="560" r="6" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
-  <circle cx="330" cy="575" r="6" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
-  <circle cx="330" cy="590" r="6" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
-  <text x="330" y="610" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">4D</text>
+  <!-- Output layer (3 nodes) -->
+  <circle cx="235" cy="560" r="5" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
+  <circle cx="235" cy="575" r="5" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
+  <circle cx="235" cy="590" r="5" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
+  <text x="235" y="555" text-anchor="middle" font-family="monospace" font-size="8" fill="#16a34a">4D</text>
 
   <!-- Formula -->
-  <text x="450" y="577" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">FFN(x) = W2 · GELU(W1 · x)</text>
+  <rect x="280" y="560" width="230" height="28" rx="4" fill="#f1f5f9"/>
+  <text x="395" y="578" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">FFN(x) = W2 · GELU(W1 · x)</text>
 
   <!-- Params note -->
-  <rect x="620" y="555" width="240" height="40" rx="4" fill="#fef3c7"/>
-  <text x="740" y="573" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#92400e">⅔ of transformer params live here</text>
-  <text x="740" y="588" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#b45309">W1: [4×16] + W2: [16×4] = 128 params</text>
+  <rect x="530" y="555" width="340" height="45" rx="4" fill="#fef3c7"/>
+  <text x="700" y="573" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#92400e">⅔ of transformer params live in FFN</text>
+  <text x="700" y="590" text-anchor="middle" font-family="monospace" font-size="9" fill="#b45309">W1: [4×16] = 64 params | W2: [16×4] = 64 params</text>
 
   <!-- Arrow marker -->
   <defs>
