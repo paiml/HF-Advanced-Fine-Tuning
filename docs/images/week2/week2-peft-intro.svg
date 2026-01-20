@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a5276"/>
+      <stop offset="100%" style="stop-color:#2874a6"/>
+    </linearGradient>
+    <linearGradient id="loraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60"/>
+      <stop offset="100%" style="stop-color:#1e8449"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="550" fill="#f8f9fa"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="900" height="60" fill="url(#headerGrad)"/>
+  <text x="450" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#fff">Week 2: Parameter-Efficient Fine-Tuning</text>
+
+  <!-- Subheader -->
+  <text x="450" y="85" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#5d6d7e">"Same quality, 1000x fewer trainable parameters."</text>
+
+  <!-- The Problem Box -->
+  <g transform="translate(30, 110)">
+    <rect width="400" height="120" rx="8" fill="#fff" stroke="#e74c3c" stroke-width="2" filter="url(#shadow)"/>
+    <rect width="400" height="30" rx="8" fill="#e74c3c"/>
+    <rect x="0" y="22" width="400" height="8" fill="#e74c3c"/>
+    <text x="200" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">THE PROBLEM: Full Fine-Tuning</text>
+
+    <text x="20" y="55" font-family="Arial, sans-serif" font-size="12" fill="#333">7B model = 7 billion parameters</text>
+    <text x="20" y="75" font-family="Arial, sans-serif" font-size="12" fill="#333">Training needs: model + gradients + optimizer</text>
+    <text x="20" y="95" font-family="monospace" font-size="14" font-weight="bold" fill="#e74c3c">= ~60GB VRAM just to train</text>
+    <text x="20" y="115" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">Most people: 8-24GB GPU. Problem.</text>
+  </g>
+
+  <!-- The Solution Box -->
+  <g transform="translate(470, 110)">
+    <rect width="400" height="120" rx="8" fill="#fff" stroke="#27ae60" stroke-width="2" filter="url(#shadow)"/>
+    <rect width="400" height="30" rx="8" fill="#27ae60"/>
+    <rect x="0" y="22" width="400" height="8" fill="#27ae60"/>
+    <text x="200" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#fff">THE SOLUTION: LoRA</text>
+
+    <text x="20" y="55" font-family="Arial, sans-serif" font-size="12" fill="#333">Freeze base model (no gradients needed)</text>
+    <text x="20" y="75" font-family="Arial, sans-serif" font-size="12" fill="#333">Train small adapter matrices A × B</text>
+    <text x="20" y="95" font-family="monospace" font-size="14" font-weight="bold" fill="#27ae60">= ~0.1% of original params</text>
+    <text x="20" y="115" font-family="Arial, sans-serif" font-size="11" fill="#7f8c8d">7B model trainable on 8GB GPU. Solved.</text>
+  </g>
+
+  <!-- LoRA Formula Box -->
+  <g transform="translate(30, 250)">
+    <rect width="840" height="80" rx="8" fill="#2c3e50" filter="url(#shadow)"/>
+    <text x="420" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f1c40f">THE LORA FORMULA</text>
+    <text x="420" y="58" text-anchor="middle" font-family="monospace" font-size="20" fill="#fff">W' = W + ΔW = W + A × B</text>
+    <text x="420" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#bdc3c7">W = frozen base weights | A = [d × r] | B = [r × d] | r = rank (small: 4-64)</text>
+  </g>
+
+  <!-- 6 Topics Grid -->
+  <g transform="translate(30, 350)">
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="130" height="70" rx="6" fill="#3498db" filter="url(#shadow)"/>
+    <text x="65" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">1. BASELINE</text>
+    <text x="65" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d6eaf8">Full fine-tune</text>
+    <text x="65" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d6eaf8">(why it's hard)</text>
+
+    <rect x="140" y="0" width="130" height="70" rx="6" fill="#27ae60" filter="url(#shadow)"/>
+    <text x="205" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">2. LoRA</text>
+    <text x="205" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d5f5e3">Low-rank adapters</text>
+    <text x="205" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d5f5e3">A × B magic</text>
+
+    <rect x="280" y="0" width="130" height="70" rx="6" fill="#8e44ad" filter="url(#shadow)"/>
+    <text x="345" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">3. QLoRA</text>
+    <text x="345" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e8daef">4-bit + LoRA</text>
+    <text x="345" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#e8daef">70B on 24GB</text>
+
+    <rect x="420" y="0" width="130" height="70" rx="6" fill="#e67e22" filter="url(#shadow)"/>
+    <text x="485" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">4. RANK</text>
+    <text x="485" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fdebd0">r=8 vs r=64</text>
+    <text x="485" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#fdebd0">capacity tradeoff</text>
+
+    <rect x="560" y="0" width="130" height="70" rx="6" fill="#16a085" filter="url(#shadow)"/>
+    <text x="625" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">5. ADAPTERS</text>
+    <text x="625" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1f2eb">Prompt tuning</text>
+    <text x="625" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d1f2eb">Prefix, bottleneck</text>
+
+    <rect x="700" y="0" width="130" height="70" rx="6" fill="#2c3e50" filter="url(#shadow)"/>
+    <text x="765" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#fff">6. MERGE</text>
+    <text x="765" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d5d8dc">Combine LoRAs</text>
+    <text x="765" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d5d8dc">Deploy to prod</text>
+  </g>
+
+  <!-- Bottom insight -->
+  <g transform="translate(30, 440)">
+    <rect width="840" height="90" rx="8" fill="#fff3cd" stroke="#f1c40f" stroke-width="2" filter="url(#shadow)"/>
+    <text x="20" y="28" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#856404">WHY THIS MATTERS:</text>
+    <text x="20" y="50" font-family="Arial, sans-serif" font-size="12" fill="#5d4e37">Week 1: You learned WHERE to fine-tune (2/3 params in FFN).</text>
+    <text x="20" y="70" font-family="Arial, sans-serif" font-size="12" fill="#5d4e37">Week 2: You'll learn HOW to fine-tune without melting your GPU.</text>
+    <text x="20" y="85" font-family="Arial, sans-serif" font-size="11" font-style="italic" fill="#7f8c8d">LoRA + QLoRA = fine-tune any model on consumer hardware. Game changer.</text>
+  </g>
+</svg>

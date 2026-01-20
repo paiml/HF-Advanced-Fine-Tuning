@@ -29,79 +29,104 @@ apr showcase --tier small --auto-verify
 
 ---
 
-## Week 1: Parameter-Efficient Fine-Tuning
+## Week 1: Transformer Foundations
 
-### 1.1 LoRA Fundamentals
-- Low-rank decomposition of weight updates
-- Rank selection (r=8, 16, 32)
-- Target modules (q_proj, v_proj, k_proj, o_proj)
-- Qwen2.5-Coder architecture specifics
+### 1.1 Compute Fundamentals
+- Scalar vs SIMD vs GPU execution
+- Memory-bound vs compute-bound workloads
+- When GPU wins (matmul) vs loses (small ops)
+- **Demo:** `make demo-scalar-simd-gpu`
 
-### 1.2 QLoRA
-- 4-bit NF4 quantization
-- Double quantization
-- Paged optimizers for memory efficiency
-- Memory calculation: 1.5B model in ~4GB
+### 1.2 Training vs Inference
+- Global reductions (softmax, layernorm)
+- Sequential dependencies (autoregressive generation)
+- Why token N+1 waits for token N
+- **Demo:** `make demo-training-vs-inference`
 
-### 1.3 Quantization with bitsandbytes
-- 8-bit vs 4-bit tradeoffs
-- NF4 vs FP4 data types
-- Memory footprint calculation
-- Quantization-aware training considerations
+### 1.3 Inference Pipeline
+- 6-step flow: tokenize → embed → transform → lm_head → sample → decode
+- String in, tensors in between, string out
+- **Demo:** `make demo-inference-pipeline`
 
-### 1.4 PEFT Adapters
-- LoRA, LoHA, LoKr variants
-- Adapter merging strategies
-- Multi-adapter inference
-- Export to GGUF via `apr export`
+### 1.4 Tokenization
+- Word vs BPE tokenization
+- Why BPE never says "unknown"
+- Subword decomposition
+- **Demo:** `make demo-bpe-vs-word`
+
+### 1.5 Attention Mechanism
+- Q/K/V projections
+- Softmax as probability distribution
+- Attention = soft dictionary lookup
+- **Demo:** `make demo-attention`
+
+### 1.6 Feed-Forward Network
+- The Lemonade Stand analogy
+- Expand → GELU (taste test) → Contract
+- Why 2/3 of params live in FFN
+- **Demo:** `make demo-feed-forward`
 
 ---
 
-## Week 2: Alignment Training
+## Week 2: Parameter-Efficient Fine-Tuning (PEFT)
 
-### 2.1 Supervised Fine-Tuning (SFT)
+### 2.1 Full Fine-Tuning Baseline
+- Why training all params is expensive
+- Memory: model + gradients + optimizer states
+- The problem: 7B model needs ~60GB for training
+
+### 2.2 LoRA Fundamentals
+- Low-rank decomposition: W + ΔW = W + A×B
+- Rank selection (r=4, 8, 16, 32, 64)
+- Target modules (q_proj, v_proj, k_proj, o_proj)
+- 1000x fewer trainable params, same quality
+- **Demo:** `make demo-lora-rank`
+
+### 2.3 QLoRA
+- 4-bit NF4 quantization + LoRA
+- Double quantization
+- Fine-tune 70B on consumer GPU (24GB)
+- **Demo:** `make demo-qlora`
+
+### 2.4 Rank Selection
+- r=8 vs r=64: capacity vs efficiency
+- Task complexity determines optimal rank
+- Ablation studies
+- **Demo:** `make demo-lora-ablation`
+
+### 2.5 Alternative Adapters
+- Prompt tuning (soft prompts)
+- Prefix tuning
+- Adapter layers (bottleneck modules)
+- **Demo:** `make demo-adapter-compare`
+
+### 2.6 Merging & Deployment
+- Merge LoRA back into base model
+- Combine multiple task-specific LoRAs
+- Export to GGUF via `apr export`
+- **Demo:** `make demo-lora-merge`
+
+---
+
+## Week 3: Alignment Training
+
+### 3.1 Supervised Fine-Tuning (SFT)
 - Dataset formats (instruction, chat)
 - ChatML template (Qwen2.5 native format)
 - SFTTrainer configuration
 - Packing for efficiency
 
-### 2.2 Reward Modeling
-- Preference data collection
-- Bradley-Terry model
-- Reward model training
-- Code-specific reward signals
-
-### 2.3 Direct Preference Optimization (DPO)
+### 3.2 Direct Preference Optimization (DPO)
 - DPO loss function
 - Beta parameter tuning
 - DPO vs RLHF tradeoffs
-- Code quality preferences
+- No reward model needed
 
-### 2.4 Advanced DPO Variants
-- IPO (Identity Preference Optimization)
-- KTO (Kahneman-Tversky Optimization)
-- ORPO (Odds Ratio Preference Optimization)
-
----
-
-## Week 3: Reinforcement Learning
-
-### 3.1 PPO Fundamentals
-- Policy gradient methods
-- Advantage estimation (GAE)
-- Clipping and KL constraints
-
-### 3.2 RLHF Pipeline
+### 3.3 RLHF Pipeline
+- Reward modeling (Bradley-Terry)
+- PPO fundamentals (policy gradient, GAE)
 - Reference model management
-- Value head architecture
-- Reward shaping
-- Code execution feedback
-
-### 3.3 Training Stability
-- KL divergence monitoring
-- Learning rate scheduling
-- Gradient accumulation
-- Checkpoint management
+- KL divergence constraints
 
 ### 3.4 Evaluation & Deployment
 - Win rate metrics
@@ -115,12 +140,13 @@ apr showcase --tier small --auto-verify
 
 | Week | Lab | Tier | Description |
 |------|-----|------|-------------|
-| 1 | `lab-qlora-qwen` | Tiny | QLoRA fine-tune Qwen2.5-Coder-0.5B (fast iteration) |
-| 1 | `lab-adapter-merge` | Small | Merge multiple LoRA adapters |
-| 2 | `lab-sft-chat` | Small | SFT on code instruction dataset |
-| 2 | `lab-dpo-preference` | Small | DPO with code preference pairs |
-| 3 | `lab-ppo-rlhf` | Small | Full RLHF pipeline |
-| 3 | `lab-evaluation` | Small | Model evaluation + apr benchmark |
+| 1 | `lab-transformer-trace` | Tiny | Trace token through full pipeline |
+| 1 | `lab-attention-viz` | Tiny | Visualize attention weights |
+| 2 | `lab-lora-qwen` | Small | LoRA fine-tune Qwen2.5-Coder-1.5B |
+| 2 | `lab-qlora-qwen` | Tiny | QLoRA on 0.5B (4-bit + LoRA) |
+| 2 | `lab-adapter-merge` | Small | Merge multiple LoRA adapters |
+| 3 | `lab-sft-chat` | Small | SFT on code instruction dataset |
+| 3 | `lab-dpo-preference` | Small | DPO with code preference pairs |
 
 ### Lab Workflow
 
