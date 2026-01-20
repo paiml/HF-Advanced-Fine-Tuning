@@ -61,19 +61,20 @@
 
   <!-- Left Chart: Linear -->
   <g transform="translate(50, 310)">
-    <text x="150" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#3b82f6">LINEAR (y = x)</text>
+    <text x="150" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#3b82f6">LINEAR: y = 0.5L + 0.3W + 0.2S</text>
 
     <!-- Axes -->
     <line x1="40" y1="170" x2="260" y2="170" stroke="#334155" stroke-width="1.5"/>
     <line x1="40" y1="170" x2="40" y2="30" stroke="#334155" stroke-width="1.5"/>
 
     <!-- Labels -->
-    <text x="40" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">-2</text>
-    <text x="150" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">0</text>
-    <text x="260" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">2</text>
-    <text x="28" y="170" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">-2</text>
-    <text x="28" y="100" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">0</text>
-    <text x="28" y="34" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2</text>
+    <text x="40" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">0</text>
+    <text x="150" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">50</text>
+    <text x="260" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">100</text>
+    <text x="150" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">ingredients %</text>
+    <text x="28" y="170" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">0</text>
+    <text x="28" y="100" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">50</text>
+    <text x="28" y="34" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">100</text>
 
     <!-- Grid -->
     <line x1="40" y1="100" x2="260" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3"/>
@@ -82,27 +83,36 @@
     <!-- Linear line -->
     <line x1="40" y1="170" x2="260" y2="30" stroke="#3b82f6" stroke-width="2.5"/>
 
+    <!-- Ingredient points on line -->
+    <circle cx="150" cy="100" r="5" fill="#facc15" stroke="#a16207" stroke-width="1"/>
+    <text x="165" y="95" font-family="system-ui, sans-serif" font-size="8" fill="#a16207">L</text>
+    <circle cx="106" cy="128" r="5" fill="#38bdf8" stroke="#0369a1" stroke-width="1"/>
+    <text x="121" y="125" font-family="system-ui, sans-serif" font-size="8" fill="#0369a1">W</text>
+    <circle cx="84" cy="142" r="5" fill="#f472b6" stroke="#be185d" stroke-width="1"/>
+    <text x="99" y="140" font-family="system-ui, sans-serif" font-size="8" fill="#be185d">S</text>
+
     <!-- Insight box -->
-    <rect x="170" y="50" width="85" height="35" rx="4" fill="#dbeafe"/>
-    <text x="212" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#1e40af">Straight line</text>
-    <text x="212" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#dc2626">Can't say "no"</text>
+    <rect x="165" y="50" width="90" height="35" rx="4" fill="#dbeafe"/>
+    <text x="210" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#1e40af">Just weighted sum</text>
+    <text x="210" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#dc2626">No taste check!</text>
   </g>
 
-  <!-- Right Chart: GELU -->
+  <!-- Right Chart: GELU with lemonade -->
   <g transform="translate(480, 310)">
-    <text x="150" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#7c3aed">GELU (Non-linear)</text>
+    <text x="150" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#7c3aed">GELU: taste(L, W, S) → adjust</text>
 
     <!-- Axes -->
     <line x1="40" y1="170" x2="260" y2="170" stroke="#334155" stroke-width="1.5"/>
     <line x1="40" y1="170" x2="40" y2="30" stroke="#334155" stroke-width="1.5"/>
 
     <!-- Labels -->
-    <text x="40" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">-2</text>
-    <text x="150" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">0</text>
-    <text x="260" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">2</text>
-    <text x="28" y="170" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">-2</text>
+    <text x="40" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">sour</text>
+    <text x="150" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">ok</text>
+    <text x="260" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">sweet</text>
+    <text x="150" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">taste input</text>
+    <text x="28" y="170" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">-</text>
     <text x="28" y="100" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">0</text>
-    <text x="28" y="34" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2</text>
+    <text x="28" y="34" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">+</text>
 
     <!-- Grid -->
     <line x1="40" y1="100" x2="260" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3"/>
@@ -112,35 +122,29 @@
     <path d="M 40 98 Q 70 100 95 103 Q 120 110 150 100 Q 180 75 205 55 Q 235 38 260 30"
           fill="none" stroke="#7c3aed" stroke-width="2.5"/>
 
-    <!-- Key points -->
-    <circle cx="95" cy="103" r="4" fill="#ef4444"/>
-    <circle cx="150" cy="100" r="4" fill="#7c3aed"/>
-    <circle cx="205" cy="55" r="4" fill="#22c55e"/>
+    <!-- Too sour region (red) -->
+    <rect x="40" y="95" width="70" height="80" rx="0" fill="#fef2f2" opacity="0.5"/>
+    <text x="75" y="145" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#dc2626">too sour</text>
+    <text x="75" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#dc2626">→ squash</text>
 
-    <!-- Point labels -->
-    <text x="70" y="120" font-family="system-ui, sans-serif" font-size="8" fill="#ef4444">-1 → -0.16</text>
-    <text x="215" y="50" font-family="system-ui, sans-serif" font-size="8" fill="#22c55e">+1 → +0.84</text>
+    <!-- Good region (green) -->
+    <rect x="130" y="30" width="80" height="70" rx="0" fill="#f0fdf4" opacity="0.5"/>
+    <text x="170" y="50" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#16a34a">good!</text>
+    <text x="170" y="61" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" fill="#16a34a">→ pass</text>
+
+    <!-- Lemon point showing adjustment -->
+    <circle cx="95" cy="103" r="5" fill="#facc15" stroke="#a16207" stroke-width="2"/>
+    <path d="M 95 103 L 95 140" stroke="#a16207" stroke-width="1" stroke-dasharray="3"/>
+    <text x="110" y="125" font-family="system-ui, sans-serif" font-size="8" fill="#a16207">L: -0.16</text>
+
+    <!-- Balanced point -->
+    <circle cx="180" cy="75" r="5" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+    <text x="195" y="72" font-family="system-ui, sans-serif" font-size="8" fill="#16a34a">balanced</text>
 
     <!-- Insight box -->
-    <rect x="170" y="125" width="85" height="35" rx="4" fill="#f5f3ff"/>
-    <text x="212" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6d28d9">Curved gate</text>
-    <text x="212" y="153" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#16a34a">Can say "no"!</text>
-  </g>
-
-  <!-- Comparison table -->
-  <g transform="translate(335, 380)">
-    <rect x="0" y="0" width="230" height="65" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
-    <text x="115" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#334155">Input → Output</text>
-    <line x1="0" y1="25" x2="230" y2="25" stroke="#cbd5e1" stroke-width="1"/>
-
-    <text x="60" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">x = -1</text>
-    <text x="60" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">x = +1</text>
-
-    <text x="130" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="#3b82f6">-1.00</text>
-    <text x="130" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="#3b82f6">+1.00</text>
-
-    <text x="195" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="#7c3aed">-0.16</text>
-    <text x="195" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="#7c3aed">+0.84</text>
+    <rect x="165" y="155" width="90" height="35" rx="4" fill="#f5f3ff"/>
+    <text x="210" y="170" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6d28d9">Taste & adjust</text>
+    <text x="210" y="183" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#16a34a">Can say "no"!</text>
   </g>
 
   <!-- Arrow marker -->
