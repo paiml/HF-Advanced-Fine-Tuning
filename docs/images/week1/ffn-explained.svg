@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+  <!-- Background -->
+  <rect width="900" height="550" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="450" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#1e293b">FFN: Why Non-linearity Matters</text>
+  <text x="450" y="52" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">"Attention gathers. FFN thinks."</text>
+
+  <!-- TOP ROW: Lemonade Analogy -->
+  <rect x="20" y="70" width="860" height="200" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Left: Before (Attention) -->
+  <rect x="40" y="90" width="250" height="160" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="165" y="112" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748b">ATTENTION (Linear)</text>
+  <text x="165" y="128" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Gather by importance</text>
+
+  <rect x="60" y="140" width="100" height="24" rx="3" fill="#fef9c3" stroke="#facc15" stroke-width="1"/>
+  <text x="110" y="156" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#a16207">Lemon 50%</text>
+
+  <rect x="60" y="170" width="60" height="24" rx="3" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1"/>
+  <text x="90" y="186" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#0369a1">Water 30%</text>
+
+  <rect x="60" y="200" width="40" height="24" rx="3" fill="#fce7f3" stroke="#f472b6" stroke-width="1"/>
+  <text x="80" y="216" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#be185d">20%</text>
+
+  <text x="165" y="240" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#ef4444">Just a pile - not drinkable!</text>
+
+  <!-- Arrow -->
+  <path d="M 300 170 L 340 170" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="320" y="160" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#64748b">FFN</text>
+
+  <!-- Middle: Process -->
+  <rect x="350" y="90" width="200" height="160" rx="6" fill="#faf5ff" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="450" y="112" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#7c3aed">PROCESS (GELU)</text>
+
+  <rect x="370" y="130" width="160" height="22" rx="3" fill="#f5f3ff"/>
+  <text x="450" y="145" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6d28d9">1. Mix (W1 expand)</text>
+
+  <rect x="370" y="158" width="160" height="22" rx="3" fill="#fef3c7"/>
+  <text x="450" y="173" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#b45309">2. Taste (GELU)</text>
+
+  <rect x="370" y="186" width="160" height="22" rx="3" fill="#f0fdf4"/>
+  <text x="450" y="201" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#16a34a">3. Adjust (W2 contract)</text>
+
+  <text x="450" y="235" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#7c3aed">Non-linear decision!</text>
+
+  <!-- Arrow -->
+  <path d="M 560 170 L 600 170" stroke="#475569" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Right: After -->
+  <rect x="610" y="90" width="250" height="160" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="2"/>
+  <text x="735" y="112" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#16a34a">RESULT</text>
+  <text x="735" y="128" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Computed, not just mixed</text>
+
+  <text x="735" y="175" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48">🍋🥤</text>
+  <text x="735" y="220" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#16a34a">Actual lemonade!</text>
+  <text x="735" y="240" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">Ready for next layer</text>
+
+  <!-- BOTTOM ROW: X/Y Charts -->
+  <rect x="20" y="290" width="860" height="240" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Left Chart: Linear -->
+  <g transform="translate(50, 310)">
+    <text x="150" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#3b82f6">LINEAR (y = x)</text>
+
+    <!-- Axes -->
+    <line x1="40" y1="170" x2="260" y2="170" stroke="#334155" stroke-width="1.5"/>
+    <line x1="40" y1="170" x2="40" y2="30" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Labels -->
+    <text x="40" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">-2</text>
+    <text x="150" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">0</text>
+    <text x="260" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">2</text>
+    <text x="28" y="170" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">-2</text>
+    <text x="28" y="100" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">0</text>
+    <text x="28" y="34" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2</text>
+
+    <!-- Grid -->
+    <line x1="40" y1="100" x2="260" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3"/>
+    <line x1="150" y1="30" x2="150" y2="170" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3"/>
+
+    <!-- Linear line -->
+    <line x1="40" y1="170" x2="260" y2="30" stroke="#3b82f6" stroke-width="2.5"/>
+
+    <!-- Insight box -->
+    <rect x="170" y="50" width="85" height="35" rx="4" fill="#dbeafe"/>
+    <text x="212" y="65" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#1e40af">Straight line</text>
+    <text x="212" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#dc2626">Can't say "no"</text>
+  </g>
+
+  <!-- Right Chart: GELU -->
+  <g transform="translate(480, 310)">
+    <text x="150" y="15" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#7c3aed">GELU (Non-linear)</text>
+
+    <!-- Axes -->
+    <line x1="40" y1="170" x2="260" y2="170" stroke="#334155" stroke-width="1.5"/>
+    <line x1="40" y1="170" x2="40" y2="30" stroke="#334155" stroke-width="1.5"/>
+
+    <!-- Labels -->
+    <text x="40" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">-2</text>
+    <text x="150" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">0</text>
+    <text x="260" y="188" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">2</text>
+    <text x="28" y="170" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">-2</text>
+    <text x="28" y="100" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">0</text>
+    <text x="28" y="34" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2</text>
+
+    <!-- Grid -->
+    <line x1="40" y1="100" x2="260" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3"/>
+    <line x1="150" y1="30" x2="150" y2="170" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3"/>
+
+    <!-- GELU curve -->
+    <path d="M 40 98 Q 70 100 95 103 Q 120 110 150 100 Q 180 75 205 55 Q 235 38 260 30"
+          fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+
+    <!-- Key points -->
+    <circle cx="95" cy="103" r="4" fill="#ef4444"/>
+    <circle cx="150" cy="100" r="4" fill="#7c3aed"/>
+    <circle cx="205" cy="55" r="4" fill="#22c55e"/>
+
+    <!-- Point labels -->
+    <text x="70" y="120" font-family="system-ui, sans-serif" font-size="8" fill="#ef4444">-1 → -0.16</text>
+    <text x="215" y="50" font-family="system-ui, sans-serif" font-size="8" fill="#22c55e">+1 → +0.84</text>
+
+    <!-- Insight box -->
+    <rect x="170" y="125" width="85" height="35" rx="4" fill="#f5f3ff"/>
+    <text x="212" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6d28d9">Curved gate</text>
+    <text x="212" y="153" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#16a34a">Can say "no"!</text>
+  </g>
+
+  <!-- Comparison table -->
+  <g transform="translate(335, 380)">
+    <rect x="0" y="0" width="230" height="65" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="115" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#334155">Input → Output</text>
+    <line x1="0" y1="25" x2="230" y2="25" stroke="#cbd5e1" stroke-width="1"/>
+
+    <text x="60" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">x = -1</text>
+    <text x="60" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">x = +1</text>
+
+    <text x="130" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="#3b82f6">-1.00</text>
+    <text x="130" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="#3b82f6">+1.00</text>
+
+    <text x="195" y="40" text-anchor="middle" font-family="monospace" font-size="9" fill="#7c3aed">-0.16</text>
+    <text x="195" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="#7c3aed">+0.84</text>
+  </g>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#475569"/>
+    </marker>
+  </defs>
+</svg>
