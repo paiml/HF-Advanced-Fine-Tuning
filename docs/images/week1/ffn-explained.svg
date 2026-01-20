@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620">
   <!-- Background -->
-  <rect width="900" height="550" fill="#f8fafc"/>
+  <rect width="900" height="620" fill="#f8fafc"/>
 
   <!-- Title -->
   <text x="450" y="32" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" fill="#1e293b">FFN: Why Non-linearity Matters</text>
@@ -146,6 +146,51 @@
     <text x="245" y="100" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#6d28d9">Taste + adjust</text>
     <text x="245" y="113" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#16a34a">Can say "no"!</text>
   </g>
+
+  <!-- BOTTOM: Tiny NN Diagram -->
+  <rect x="20" y="540" width="860" height="65" rx="8" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="70" y="560" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#334155">FFN Architecture:</text>
+
+  <!-- Input layer (4 nodes) -->
+  <circle cx="150" cy="560" r="6" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
+  <circle cx="150" cy="575" r="6" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
+  <circle cx="150" cy="590" r="6" fill="#3b82f6" stroke="#1e40af" stroke-width="1"/>
+  <text x="150" y="610" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">4D</text>
+
+  <!-- W1 arrow -->
+  <path d="M 162 575 L 195 575" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="178" y="568" text-anchor="middle" font-family="monospace" font-size="7" fill="#64748b">W1</text>
+
+  <!-- Hidden layer (8 shown of 16) -->
+  <circle cx="210" cy="550" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="210" cy="560" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="210" cy="570" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="210" cy="580" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="210" cy="590" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <circle cx="210" cy="600" r="5" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+  <text x="210" y="618" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">16D</text>
+
+  <!-- GELU box -->
+  <rect x="230" y="562" width="45" height="22" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="252" y="577" text-anchor="middle" font-family="system-ui, sans-serif" font-size="8" font-weight="600" fill="#b45309">GELU</text>
+
+  <!-- W2 arrow -->
+  <path d="M 280 575 L 313 575" stroke="#64748b" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="296" y="568" text-anchor="middle" font-family="monospace" font-size="7" fill="#64748b">W2</text>
+
+  <!-- Output layer (4 nodes) -->
+  <circle cx="330" cy="560" r="6" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
+  <circle cx="330" cy="575" r="6" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
+  <circle cx="330" cy="590" r="6" fill="#22c55e" stroke="#16a34a" stroke-width="1"/>
+  <text x="330" y="610" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">4D</text>
+
+  <!-- Formula -->
+  <text x="450" y="577" text-anchor="middle" font-family="monospace" font-size="11" fill="#334155">FFN(x) = W2 · GELU(W1 · x)</text>
+
+  <!-- Params note -->
+  <rect x="620" y="555" width="240" height="40" rx="4" fill="#fef3c7"/>
+  <text x="740" y="573" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#92400e">⅔ of transformer params live here</text>
+  <text x="740" y="588" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#b45309">W1: [4×16] + W2: [16×4] = 128 params</text>
 
   <!-- Arrow marker -->
   <defs>
