@@ -1,0 +1,36 @@
+[package]
+name = "week2-demos"
+version = "0.1.0"
+edition = "2021"
+description = "Week 2: Parameter-Efficient Fine-Tuning Demos"
+
+[dependencies]
+trueno = { version = "0.13", features = ["gpu"] }
+clap = { version = "4.5", features = ["derive"] }
+
+[dev-dependencies]
+proptest = "1.9"
+
+[[bin]]
+name = "demo-full-finetune-cost"
+path = "src/bin/full_finetune_cost.rs"
+
+[[bin]]
+name = "demo-lora-math"
+path = "src/bin/lora_math.rs"
+
+[[bin]]
+name = "demo-qlora"
+path = "src/bin/qlora.rs"
+
+[[bin]]
+name = "demo-lora-rank-ablation"
+path = "src/bin/lora_rank_ablation.rs"
+
+[[bin]]
+name = "demo-cli-help-train"
+path = "src/bin/cli_help_train.rs"
+
+[[bin]]
+name = "demo-lora-merge"
+path = "src/bin/lora_merge.rs"

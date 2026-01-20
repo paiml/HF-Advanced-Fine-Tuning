@@ -9,6 +9,8 @@
 .PHONY: docs serve compliance check
 .PHONY: demos demo-test demo-scalar-simd-gpu demo-training-vs-inference
 .PHONY: demo-inference-pipeline demo-bpe-vs-word demo-attention demo-feed-forward
+.PHONY: demo-test-w2 demo-full-finetune-cost demo-lora-math demo-qlora
+.PHONY: demo-lora-rank-ablation demo-cli-help-train demo-lora-merge
 
 # Default target
 all: lint compliance
@@ -22,9 +24,10 @@ help:
 	@printf '  make lint         Lint shell scripts with bashrs\n'
 	@printf '  make docs         Build documentation\n'
 	@printf '  make serve        Serve docs locally\n\n'
-	@printf 'Demos (Week 1):\n'
+	@printf 'Demos:\n'
 	@printf '  make demos        List all available demos\n'
-	@printf '  make demo-test    Run all demos in CI mode (stdout)\n'
+	@printf '  make demo-test    Run Week 1 demos in CI mode\n'
+	@printf '  make demo-test-w2 Run Week 2 demos in CI mode\n'
 	@printf '  make demo-X       Run specific demo (see: make demos)\n\n'
 	@printf 'Profiling:\n'
 	@printf '  make profile      Run ComputeBrick profile (small tier)\n'
@@ -60,7 +63,14 @@ demos:
 	@printf '  make demo-bpe-vs-word          Tokenization comparison\n'
 	@printf '  make demo-attention            Q/K/V + softmax\n'
 	@printf '  make demo-feed-forward         FFN: gathered to understood\n'
-	@printf '\nRun all: make demo-test\n'
+	@printf '\nWeek 2 - PEFT (LoRA/QLoRA):\n'
+	@printf '  make demo-full-finetune-cost   Why full fine-tune is expensive\n'
+	@printf '  make demo-lora-math            LoRA A×B decomposition\n'
+	@printf '  make demo-qlora                4-bit quantization + LoRA\n'
+	@printf '  make demo-lora-rank-ablation   Rank selection guide\n'
+	@printf '  make demo-cli-help-train       CLI help training data format\n'
+	@printf '  make demo-lora-merge           Merge and deployment\n'
+	@printf '\nRun all: make demo-test (W1) | make demo-test-w2 (W2)\n'
 
 demo-test:
 	@printf '=== Running All Demos (CI Mode) ===\n'
@@ -89,6 +99,37 @@ demo-attention:
 
 demo-feed-forward:
 	cd $(DEMO_DIR) && cargo run --bin demo-feed-forward
+
+# Week 2 Demos
+DEMO_DIR_W2 := demos/week2
+
+demo-test-w2:
+	@printf '=== Running Week 2 Demos (CI Mode) ===\n'
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-full-finetune-cost -- --stdout
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-math -- --stdout
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-qlora -- --stdout
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-rank-ablation -- --stdout
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-cli-help-train -- --stdout
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-merge -- --stdout
+	@printf '=== Week 2 Demos Passed ===\n'
+
+demo-full-finetune-cost:
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-full-finetune-cost
+
+demo-lora-math:
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-math
+
+demo-qlora:
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-qlora
+
+demo-lora-rank-ablation:
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-rank-ablation
+
+demo-cli-help-train:
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-cli-help-train
+
+demo-lora-merge:
+	cd $(DEMO_DIR_W2) && cargo run --bin demo-lora-merge
 
 # Lint shell scripts (exit 2 = error, exit 1 = warning, exit 0 = clean)
 lint:
