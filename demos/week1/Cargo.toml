@@ -31,3 +31,7 @@ path = "src/bin/bpe_vs_word.rs"
 [[bin]]
 name = "demo-attention"
 path = "src/bin/attention.rs"
+
+[[bin]]
+name = "demo-feed-forward"
+path = "src/bin/feed_forward.rs"

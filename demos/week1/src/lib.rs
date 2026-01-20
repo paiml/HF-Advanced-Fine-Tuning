@@ -8,6 +8,7 @@ use clap::Parser;
 
 pub mod attention;
 pub mod bpe_vs_word;
+pub mod feed_forward;
 pub mod inference_pipeline;
 pub mod scalar_simd_gpu;
 pub mod training_vs_inference;
