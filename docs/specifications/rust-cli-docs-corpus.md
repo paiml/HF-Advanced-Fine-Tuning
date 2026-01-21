@@ -584,6 +584,44 @@ pacha = "0.1"
 3. **Security**: Memory-safe data handling, no pickle vulnerabilities
 4. **Sovereignty**: No external cloud dependencies, local-first design
 
+### 10.4 Entrenar Capability Gap (v0.5.x)
+
+**Status:** As of entrenar v0.5.3, LLM fine-tuning is in demo mode. The following features are required but not yet implemented:
+
+| Feature | Status | Required For |
+|---------|--------|--------------|
+| LLM model loading (SafeTensors) | Missing | Load base models |
+| Tokenizer integration | Missing | Text preprocessing |
+| LoRA adapter training | Demo only | Parameter-efficient fine-tuning |
+| QLoRA (4-bit quantization) | Missing | Memory-efficient training |
+| GPU/CUDA backend | Missing | Training acceleration |
+| Gradient checkpointing | Missing | Large model training |
+
+**Required entrenar Features for Production:**
+
+```rust
+// Expected API (not yet implemented)
+use entrenar::{LoraConfig, Trainer, QLoraQuantization};
+
+let model = Model::from_safetensors("Qwen/Qwen2.5-Coder-7B")?;
+let lora = LoraConfig::new()
+    .rank(8)
+    .alpha(16)
+    .target_modules(&["q_proj", "k_proj", "v_proj", "o_proj"]);
+
+let trainer = Trainer::new(model)
+    .with_lora(lora)
+    .with_quantization(QLoraQuantization::Nf4)
+    .with_data("corpus/train.parquet")?;
+
+trainer.train(3)?; // 3 epochs
+trainer.save("output/adapter")?;
+```
+
+**Workaround:** Until entrenar supports LLM training, the corpus is ready for use with external tools while maintaining data sovereignty (Parquet format, no cloud dependencies).
+
+**Tracking:** See [github.com/paiml/entrenar/issues](https://github.com/paiml/entrenar/issues) for feature requests.
+
 ---
 
 ## 11. Appendix: Makefile Targets
@@ -613,6 +651,10 @@ corpus-sample N=10      # Print N random examples
 ---
 
 ## 12. Changelog
+
+### v1.1.1 (2026-01-21) - Entrenar Gap Analysis
+- Added Section 10.4: Entrenar Capability Gap documenting missing LLM training features
+- Corpus ready; blocked on entrenar v0.6+ for Sovereign AI Stack fine-tuning
 
 ### v1.1.0 (2026-01-21) - Corpus Expansion
 - **Expanded extraction parameters:** Lowered `min_quality` from 0.5 to 0.4
