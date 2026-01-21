@@ -32,9 +32,11 @@ pass_threshold = 95
 warn_threshold = 85
 current_score = 96
 status = "PASS"
+triple_build_verified = true
 
 [corpus]
-# Final corpus statistics
-total_entries = 50
-repos_used = 6
-mean_quality = 0.895
+# Final corpus statistics (v1.1.0)
+total_entries = 100
+repos_used = 7
+mean_quality = 0.900
+corpus_hash = "095d77de8afda23bf548f2ac3a60957253bbf026621f3a4e512902b1640807df"

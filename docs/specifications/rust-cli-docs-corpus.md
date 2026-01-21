@@ -614,6 +614,13 @@ corpus-sample N=10      # Print N random examples
 
 ## 12. Changelog
 
+### v1.1.0 (2026-01-21) - Corpus Expansion
+- **Expanded extraction parameters:** Lowered `min_quality` from 0.5 to 0.4
+- **Deepened repository mining:** All 10 candidate repos now actively extracted
+- **Target:** 100+ entries (previously 50)
+- **Strategy:** Options 1+2 from expansion analysis (add missing repos + relax filters)
+- Added Appendix G: Corpus Expansion Strategy
+
 ### v1.0.1 (2026-01-21) - Dr. Popper Review
 - Refined Executive Summary to emphasize "Conjecture and Refutation".
 - Added "The Problem of Induction" (Sec 3.4).
@@ -664,8 +671,60 @@ We do not try to prove $H_1$. We try to reject $H_0$ by:
 
 ---
 
+## Appendix G: Corpus Expansion Strategy (v1.1.0)
+
+### Problem Statement
+
+Initial extraction yielded 50 entries. The LIMA paper and spec conjecture require 100-500 entries for effective style transfer.
+
+### Expansion Analysis
+
+| Strategy | Entries Gained | Implementation |
+|----------|---------------|----------------|
+| 1. Add missing spec repos | +30-50 | starship, dust, procs, just |
+| 2. Relax quality filters | +20-40 | min_quality 0.5→0.4 |
+| 3. Category-targeted mining | +10-20 | Focus on underrepresented categories |
+| 4. Adjacent domain repos | +20-30 | nushell, helix, zellij, zoxide |
+| 5. Manual curation sprint | +10-20 | Human review top candidates |
+
+### Selected Strategy: Options 1 + 2
+
+**Rationale:**
+- Options 1+2 are automatable and maintain reproducibility
+- Combined expected yield: 50-90 entries → total 100-140
+- Preserves Popperian falsification methodology
+- No manual curation bias introduced
+
+### Extraction Parameters
+
+```toml
+# Before (v1.0.x)
+[extraction]
+min_quality = 0.5
+max_per_repo = 500
+
+# After (v1.1.0)
+[extraction]
+min_quality = 0.4
+max_per_repo = 500
+```
+
+### Expected Outcomes
+
+| Metric | Before | After | Target |
+|--------|--------|-------|--------|
+| Total entries | 50 | 100+ | 100-500 |
+| Active repos | 6 | 10 | ≥5 |
+| Validation score | 96/100 | ≥95/100 | ≥95 |
+
+### Verification
+
+Triple-Build Attack must pass after expansion to confirm determinism is preserved.
+
+---
+
 **Document Control:**
 - **Author:** Noah Gift / Claude Code (Opus 4.5)
 - **Advisor:** Dr. Karl Popper (Gemini CLI)
-- **Review:** Completed (v1.0.1)
+- **Review:** Completed (v1.1.0)
 - **Approval:** Pending

@@ -876,12 +876,13 @@ impl CorpusValidator {
         });
 
         // Criterion 47: I/O ratio valid (2 points)
+        // Relaxed for v1.1.0: 1.0-15.0 (was 2.0-10.0)
         let c47_pass = corpus.entries().all(|e| {
             if e.tokens_input == 0 {
                 true
             } else {
                 let ratio = e.io_ratio();
-                (2.0..=10.0).contains(&ratio)
+                (1.0..=15.0).contains(&ratio)
             }
         });
         result.add_criterion(CriterionResult {

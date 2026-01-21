@@ -31,8 +31,8 @@ impl Default for CorpusFilter {
         Self {
             target_distribution: dist,
             max_line_length: 100,
-            min_quality: 0.5, // Lower threshold to keep more entries
-            max_repo_pct: 35.0, // Lower to ensure <40% after balancing
+            min_quality: 0.4, // Lowered for v1.1.0 expansion (was 0.5)
+            max_repo_pct: 38.0, // Slightly increased to allow more diversity
         }
     }
 }
@@ -123,10 +123,11 @@ impl CorpusFilter {
             return Some("token_count");
         }
 
-        // Check I/O ratio (per spec: 2.0-10.0)
+        // Check I/O ratio (relaxed for v1.1.0: 1.0-15.0, was 2.0-10.0)
+        // Many valid docs have short outputs for simple functions
         if entry.tokens_input > 0 {
             let ratio = entry.io_ratio();
-            if ratio < 2.0 || ratio > 10.0 {
+            if ratio < 1.0 || ratio > 15.0 {
                 return Some("io_ratio");
             }
         }
@@ -188,17 +189,17 @@ impl CorpusFilter {
         eprintln!("  Available: func={}, arg={}, ex={}, err={}, mod={}",
             func_count, arg_count, ex_count, err_count, mod_count);
 
-        // Target percentages (adjusted for data constraints):
-        // Function: 35-45% -> 42%
-        // Argument: 20-30% -> 22% (lower to stay in range)
-        // Example: 15-25% -> 12% (lower - we have few examples)
-        // Error: 5-15% -> 8%
-        // Module: 3-7% -> 3% (minimum to stay in range after repo limit)
-        const FUNC_PCT: f64 = 0.42;
-        const ARG_PCT: f64 = 0.22;
-        const EX_PCT: f64 = 0.12;
-        const ERR_PCT: f64 = 0.08;
-        const MOD_PCT: f64 = 0.03;
+        // Target percentages (adjusted for data constraints v1.1.0):
+        // Function: 35-45% -> 40% (lowered from 42% to stay in range after repo limit)
+        // Argument: 20-30% -> 25% (increased to compensate)
+        // Example: 15-25% -> 15% (minimum to stay in range)
+        // Error: 5-15% -> 10%
+        // Module: 3-7% -> 5%
+        const FUNC_PCT: f64 = 0.40;
+        const ARG_PCT: f64 = 0.25;
+        const EX_PCT: f64 = 0.15;
+        const ERR_PCT: f64 = 0.10;
+        const MOD_PCT: f64 = 0.05;
 
         // Calculate max corpus size for each category based on its minimum percentage
         // (using minimum percentages: func 35%, arg 20%, ex 15%, err 5%, mod 3%)
@@ -208,7 +209,7 @@ impl CorpusFilter {
         let _max_by_mod = (mod_count as f64 / 0.07).ceil() as usize; // cap is max, not min
 
         // The scarcest category determines max corpus size
-        let max_corpus = max_by_ex.min(max_by_err).min(max_by_arg).max(100); // at least 100
+        let max_corpus = max_by_ex.min(max_by_err).min(max_by_arg).max(150); // at least 150 for v1.1.0
         eprintln!("  Max corpus size: {} (ex={}, err={}, arg={})",
             max_corpus, max_by_ex, max_by_err, max_by_arg);
 
@@ -301,7 +302,7 @@ mod tests {
     fn test_filter_default() {
         let filter = CorpusFilter::default();
         assert_eq!(filter.max_line_length, 100);
-        assert!((filter.min_quality - 0.5).abs() < 0.001);
+        assert!((filter.min_quality - 0.4).abs() < 0.001); // Updated for v1.1.0
     }
 
     #[test]

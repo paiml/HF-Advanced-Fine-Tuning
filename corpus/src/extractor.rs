@@ -468,12 +468,19 @@ fn extract_attrs_doc(attrs: &[syn::Attribute]) -> Option<String> {
 fn categorize_doc(doc: &str) -> Category {
     let doc_lower = doc.to_lowercase();
 
-    // Example detection - look for code blocks or example-related text
+    // Example detection - expanded for v1.1.0 to capture more patterns
     if doc_lower.contains("# example")
         || doc_lower.contains("```rust")
         || doc_lower.contains("```no_run")
         || doc_lower.contains("```ignore")
+        || doc_lower.contains("```compile_fail")
+        || doc_lower.contains("```should_panic")
+        || doc_lower.contains("for example")
+        || doc_lower.contains("usage:")
+        || doc_lower.contains("basic usage")
         || (doc.contains("```") && (doc_lower.contains("use ") || doc_lower.contains("let ")))
+        || (doc.contains("```") && doc_lower.contains("assert"))
+        || (doc.contains("```") && doc_lower.contains("fn main"))
     {
         return Category::Example;
     }
