@@ -1,7 +1,7 @@
 # Rust CLI Documentation Corpus Specification
 
 **Document:** RCDC-SPEC-001
-**Version:** 1.0.1
+**Version:** 1.1.2
 **Status:** Draft (Reviewed by Dr. Popper)
 **Date:** January 2026
 **Philosophy:** The Toyota Way (Lean Principles) & Critical Rationalism
@@ -584,43 +584,60 @@ pacha = "0.1"
 3. **Security**: Memory-safe data handling, no pickle vulnerabilities
 4. **Sovereignty**: No external cloud dependencies, local-first design
 
-### 10.4 Entrenar Capability Gap (v0.5.x)
+### 10.4 Entrenar Capability Status (v0.5.4+)
 
-**Status:** As of entrenar v0.5.3, LLM fine-tuning is in demo mode. The following features are required but not yet implemented:
+**Status:** As of entrenar v0.5.4, core LLM training infrastructure is implemented. The YAML mode training pipeline can now load real models and data.
 
-| Feature | Status | Required For |
-|---------|--------|--------------|
-| LLM model loading (SafeTensors) | Missing | Load base models |
-| Tokenizer integration | Missing | Text preprocessing |
-| LoRA adapter training | Demo only | Parameter-efficient fine-tuning |
-| QLoRA (4-bit quantization) | Missing | Memory-efficient training |
-| GPU/CUDA backend | Missing | Training acceleration |
-| Gradient checkpointing | Missing | Large model training |
+| Feature | Status | Notes |
+|---------|--------|-------|
+| LLM model loading (SafeTensors) | ✅ Implemented | `load_model()` supports SafeTensors, JSON, YAML formats |
+| Tokenizer integration | ✅ Implemented | `HfTokenizer` wrapper with batch encoding utilities |
+| Data loading (Parquet/JSON) | ✅ Implemented | Uses `alimentar 0.2.4` for Arrow/Parquet support |
+| LoRA adapter training | ✅ Infrastructure | LoRA/QLoRA modules exist, need forward pass |
+| Transformer forward pass | 🔄 In Progress | Required for actual LLM training |
+| QLoRA (4-bit quantization) | ⏳ Planned | Quantization infrastructure exists |
+| GPU/CUDA backend | ⏳ Planned | `trueno` GPU feature gate available |
+| Gradient checkpointing | ⏳ Planned | Memory optimization for large models |
 
-**Required entrenar Features for Production:**
+**Current API (entrenar v0.5.4):**
 
 ```rust
-// Expected API (not yet implemented)
-use entrenar::{LoraConfig, Trainer, QLoraQuantization};
+use entrenar::{config::train_from_yaml, tokenizer::HfTokenizer};
 
-let model = Model::from_safetensors("Qwen/Qwen2.5-Coder-7B")?;
-let lora = LoraConfig::new()
-    .rank(8)
-    .alpha(16)
-    .target_modules(&["q_proj", "k_proj", "v_proj", "o_proj"]);
+// YAML-based training (loads real models when files exist)
+train_from_yaml("train.yaml")?;
 
-let trainer = Trainer::new(model)
-    .with_lora(lora)
-    .with_quantization(QLoraQuantization::Nf4)
-    .with_data("corpus/train.parquet")?;
+// Tokenizer with HuggingFace compatibility
+let tokenizer = HfTokenizer::from_file("tokenizer.json")?;
+let batches = tokenizer.create_batches(&pairs, max_len, batch_size);
 
-trainer.train(3)?; // 3 epochs
-trainer.save("output/adapter")?;
+// Or use built-in tokenizers
+let tokenizer = HfTokenizer::gpt2();  // GPT-2 vocab
+let tokenizer = HfTokenizer::qwen2(); // Qwen2 vocab
 ```
 
-**Workaround:** Until entrenar supports LLM training, the corpus is ready for use with external tools while maintaining data sovereignty (Parquet format, no cloud dependencies).
+**train.yaml Format:**
+```yaml
+model:
+  path: model.safetensors  # Loads real model when file exists
+data:
+  train: corpus/train.parquet  # Loaded via alimentar
+  batch_size: 8
+optimizer:
+  name: adamw
+  lr: 0.0001
+lora:
+  rank: 8
+  alpha: 16
+```
 
-**Tracking:** See [github.com/paiml/entrenar/issues](https://github.com/paiml/entrenar/issues) for feature requests.
+**Remaining Work for Production LLM Training:**
+1. Implement transformer forward pass (attention, FFN layers)
+2. Connect forward pass to training loop
+3. Add GPU acceleration via `trueno` GPU backend
+4. Implement gradient checkpointing for large models
+
+**Tracking:** See [github.com/paiml/entrenar](https://github.com/paiml/entrenar) for updates.
 
 ---
 
@@ -651,6 +668,13 @@ corpus-sample N=10      # Print N random examples
 ---
 
 ## 12. Changelog
+
+### v1.1.2 (2026-01-21) - Entrenar Implementation Complete
+- Updated Section 10.4: Documented entrenar v0.5.4 capabilities
+- Model loading now implemented (SafeTensors, JSON, YAML)
+- Tokenizer integration complete (HfTokenizer with batch utilities)
+- Data loading via alimentar 0.2.4 (Parquet/JSON support)
+- Remaining: transformer forward pass, GPU backend
 
 ### v1.1.1 (2026-01-21) - Entrenar Gap Analysis
 - Added Section 10.4: Entrenar Capability Gap documenting missing LLM training features
