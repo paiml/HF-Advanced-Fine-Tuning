@@ -1,7 +1,7 @@
 # Rust CLI Documentation Corpus Specification
 
 **Document:** RCDC-SPEC-001
-**Version:** 1.1.2
+**Version:** 1.1.3
 **Status:** Draft (Reviewed by Dr. Popper)
 **Date:** January 2026
 **Philosophy:** The Toyota Way (Lean Principles) & Critical Rationalism
@@ -586,15 +586,19 @@ pacha = "0.1"
 
 ### 10.4 Entrenar Capability Status (v0.5.4+)
 
-**Status:** As of entrenar v0.5.4, core LLM training infrastructure is implemented. The YAML mode training pipeline can now load real models and data.
+**Status:** As of entrenar v0.5.4, the complete LLM training pipeline is implemented. Full transformer forward pass with attention, FFN, and language modeling loss are now available.
 
 | Feature | Status | Notes |
 |---------|--------|-------|
 | LLM model loading (SafeTensors) | ✅ Implemented | `load_model()` supports SafeTensors, JSON, YAML formats |
 | Tokenizer integration | ✅ Implemented | `HfTokenizer` wrapper with batch encoding utilities |
 | Data loading (Parquet/JSON) | ✅ Implemented | Uses `alimentar 0.2.4` for Arrow/Parquet support |
-| LoRA adapter training | ✅ Infrastructure | LoRA/QLoRA modules exist, need forward pass |
-| Transformer forward pass | 🔄 In Progress | Required for actual LLM training |
+| Transformer forward pass | ✅ Implemented | Full attention + FFN + layer norm |
+| Multi-head attention | ✅ Implemented | Grouped-query attention (GQA) support |
+| Feed-forward network | ✅ Implemented | SwiGLU activation (gate + up + down) |
+| RMS normalization | ✅ Implemented | Pre-norm architecture |
+| CausalLM loss | ✅ Implemented | Cross-entropy for next-token prediction |
+| LoRA adapter training | ✅ Infrastructure | LoRA/QLoRA modules exist |
 | QLoRA (4-bit quantization) | ⏳ Planned | Quantization infrastructure exists |
 | GPU/CUDA backend | ⏳ Planned | `trueno` GPU feature gate available |
 | Gradient checkpointing | ⏳ Planned | Memory optimization for large models |
@@ -602,19 +606,34 @@ pacha = "0.1"
 **Current API (entrenar v0.5.4):**
 
 ```rust
-use entrenar::{config::train_from_yaml, tokenizer::HfTokenizer};
+use entrenar::{
+    config::train_from_yaml,
+    tokenizer::HfTokenizer,
+    transformer::{Transformer, TransformerConfig},
+    train::CausalLMLoss,
+};
 
 // YAML-based training (loads real models when files exist)
 train_from_yaml("train.yaml")?;
 
+// Direct transformer API
+let config = TransformerConfig::llama2_7b();  // Or mistral_7b(), qwen2_0_5b()
+let transformer = Transformer::new(&config);
+let logits = transformer.forward(&token_ids);
+
+// Causal language modeling loss
+let loss_fn = CausalLMLoss::new(config.vocab_size);
+let loss = loss_fn.forward(&logits, &targets);
+
 // Tokenizer with HuggingFace compatibility
 let tokenizer = HfTokenizer::from_file("tokenizer.json")?;
 let batches = tokenizer.create_batches(&pairs, max_len, batch_size);
-
-// Or use built-in tokenizers
-let tokenizer = HfTokenizer::gpt2();  // GPT-2 vocab
-let tokenizer = HfTokenizer::qwen2(); // Qwen2 vocab
 ```
+
+**Supported Model Configurations:**
+- LLaMA 2 7B/13B: `TransformerConfig::llama2_7b()` / `llama2_13b()`
+- Mistral 7B: `TransformerConfig::mistral_7b()` (GQA: 32 heads, 8 KV)
+- Qwen2 0.5B: `TransformerConfig::qwen2_0_5b()` (small model for testing)
 
 **train.yaml Format:**
 ```yaml
@@ -632,10 +651,9 @@ lora:
 ```
 
 **Remaining Work for Production LLM Training:**
-1. Implement transformer forward pass (attention, FFN layers)
-2. Connect forward pass to training loop
-3. Add GPU acceleration via `trueno` GPU backend
-4. Implement gradient checkpointing for large models
+1. GPU acceleration via `trueno` GPU backend (CPU training works)
+2. Gradient checkpointing for large models
+3. Mixed-precision training (bf16/fp16)
 
 **Tracking:** See [github.com/paiml/entrenar](https://github.com/paiml/entrenar) for updates.
 
@@ -668,6 +686,16 @@ corpus-sample N=10      # Print N random examples
 ---
 
 ## 12. Changelog
+
+### v1.1.3 (2026-01-21) - Full Transformer Implementation
+- **NEW:** Full transformer forward pass implemented in entrenar
+- Multi-head attention with grouped-query attention (GQA) support
+- Feed-forward network with SwiGLU activation
+- RMS normalization (pre-norm architecture)
+- CausalLMLoss for next-token prediction training
+- Supported configs: LLaMA 2 7B/13B, Mistral 7B, Qwen2 0.5B
+- 48 new tests (3091 total tests passing)
+- **Remaining:** GPU acceleration, gradient checkpointing, mixed precision
 
 ### v1.1.2 (2026-01-21) - Entrenar Implementation Complete
 - Updated Section 10.4: Documented entrenar v0.5.4 capabilities
