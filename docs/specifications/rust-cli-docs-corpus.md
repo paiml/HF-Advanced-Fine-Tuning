@@ -1,7 +1,7 @@
 # Rust CLI Documentation Corpus Specification
 
 **Document:** RCDC-SPEC-001
-**Version:** 1.1.5
+**Version:** 1.1.6
 **Status:** Draft (Reviewed by Dr. Popper)
 **Date:** January 2026
 **Philosophy:** The Toyota Way (Lean Principles) & Critical Rationalism
@@ -706,6 +706,15 @@ corpus-sample N=10      # Print N random examples
 ---
 
 ## 12. Changelog
+
+### v1.1.6 (2026-01-21) - Extreme TDD Coverage Push
+- **Test coverage improved:** 92.53% → 93.48% (3325 tests)
+- config/train.rs: 59% → 89.23% (24 new tests)
+- config/cli.rs: 77% → 94.77% (38 new tests)
+- ecosystem/realizar.rs: 79% → 99.50% (18 new tests)
+- optim/hpo.rs: 85% → 97.78% (18 new tests)
+- **Methodology:** Extreme TDD with serde, error display, and edge case coverage
+- **Target:** 95% coverage (currently 1.52% away)
 
 ### v1.1.5 (2026-01-21) - Fine-Tuning Pipeline Validation
 - **VALIDATED:** End-to-end fine-tuning pipeline executed successfully
