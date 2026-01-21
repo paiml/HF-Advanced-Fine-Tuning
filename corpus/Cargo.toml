@@ -1,0 +1,113 @@
+[package]
+name = "rust-cli-docs-corpus"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+description = "Rust CLI documentation corpus for fine-tuning LLMs"
+license = "Apache-2.0"
+repository = "https://github.com/paiml/HF-Advanced-Fine-Tuning"
+keywords = ["corpus", "fine-tuning", "rust", "documentation", "lora"]
+categories = ["development-tools", "text-processing"]
+
+[dependencies]
+# Sovereign AI Stack (NOTE: alimentar 0.2.4 uses arrow 57 which requires nightly)
+# For stable Rust, we use standalone arrow/parquet
+# alimentar = { version = "0.2.4", features = ["hf-hub", "doctest"] }
+
+# Arrow/Parquet (v54 with minimal features to avoid comfy-table edition2024 issue)
+arrow = { version = "54", default-features = false, features = ["ipc"] }
+parquet = { version = "54", default-features = false, features = ["arrow", "zstd"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Async runtime
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs"] }
+
+# CLI
+clap = { version = "4", features = ["derive"] }
+
+# Utilities
+uuid = { version = "1", features = ["v4"] }
+sha2 = "0.10"
+hex = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+regex = "1"
+rand = "0.9"
+
+# Rust parsing
+syn = { version = "2", features = ["full", "parsing"] }
+quote = "1"
+proc-macro2 = { version = "1", features = ["span-locations"] }
+
+# File system
+walkdir = "2"
+
+# HTTP client
+reqwest = { version = "0.12", features = ["json"] }
+
+# Error handling
+anyhow = "1"
+
+[dev-dependencies]
+# Testing
+proptest = "1"
+tempfile = "3"
+rstest = "0.24"
+pretty_assertions = "1"
+
+[features]
+default = []
+hf-publish = []
+
+[[bin]]
+name = "corpus-cli"
+path = "src/bin/cli.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+# Allow some pedantic lints that are too strict
+cast_possible_truncation = "allow"
+cast_sign_loss = "allow"
+cast_precision_loss = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+must_use_candidate = "allow"
+module_name_repetitions = "allow"
+similar_names = "allow"
+unused_async = "allow"
+needless_raw_string_hashes = "allow"
+should_implement_trait = "allow"
+redundant_else = "allow"
+match_same_arms = "allow"
+uninlined_format_args = "allow"
+redundant_closure_for_method_calls = "allow"
+single_match_else = "allow"
+unnecessary_wraps = "allow"
+fn_params_excessive_bools = "allow"
+struct_excessive_bools = "allow"
+items_after_statements = "allow"
+doc_markdown = "allow"
+missing_const_for_fn = "allow"
+unused_self = "allow"
+used_underscore_binding = "allow"
+default_trait_access = "allow"
+cast_possible_wrap = "allow"
+borrow_as_ptr = "allow"
+too_many_lines = "allow"
+case_sensitive_file_extension_comparisons = "allow"
+iter_without_into_iter = "allow"
+cognitive_complexity = "allow"
+manual_let_else = "allow"
+manual_range_contains = "allow"
+needless_pass_by_value = "allow"

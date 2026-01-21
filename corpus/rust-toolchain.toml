@@ -1,0 +1,7 @@
+# Rust CLI Documentation Corpus - Environment Specification
+# Per Spec Section 3.3: Environment Specification
+
+[toolchain]
+channel = "1.83.0"
+components = ["rustfmt", "clippy"]
+targets = ["x86_64-unknown-linux-gnu"]

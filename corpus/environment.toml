@@ -1,0 +1,20 @@
+# Rust CLI Documentation Corpus - Environment Specification
+# Per Spec Section 3.3: Environment Specification
+
+[environment]
+rust_version = "1.83.0"
+alimentar_version = "0.2.4"
+platform = "x86_64-unknown-linux-gnu"
+
+[sources]
+clap = { repo = "clap-rs/clap", commit = "" }
+ripgrep = { repo = "BurntSushi/ripgrep", commit = "" }
+fd = { repo = "sharkdp/fd", commit = "" }
+bat = { repo = "sharkdp/bat", commit = "" }
+eza = { repo = "eza-community/eza", commit = "" }
+
+[tools]
+alimentar = "0.2.4"
+batuta = "0.4"
+pacha = "0.1"
+certeza = "0.1"

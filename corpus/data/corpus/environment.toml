@@ -1,0 +1,40 @@
+# Environment Specification
+# Per RCDC-SPEC-001 Section 3.3
+
+[environment]
+rust_version = "1.83.0"
+corpus_tool_version = "0.1.0"
+platform = "x86_64-unknown-linux-gnu"
+extraction_date = "2026-01-21"
+
+[sources]
+# Primary CLI tools (per Spec Section 5.2)
+clap = { repo = "clap-rs/clap", commit = "HEAD" }
+ripgrep = { repo = "BurntSushi/ripgrep", commit = "HEAD" }
+fd = { repo = "sharkdp/fd", commit = "HEAD" }
+bat = { repo = "sharkdp/bat", commit = "HEAD" }
+eza = { repo = "eza-community/eza", commit = "HEAD" }
+starship = { repo = "starship/starship", commit = "HEAD" }
+dust = { repo = "bootandy/dust", commit = "HEAD" }
+tokei = { repo = "XAMPPRocky/tokei", commit = "HEAD" }
+procs = { repo = "dalance/procs", commit = "HEAD" }
+just = { repo = "casey/just", commit = "HEAD" }
+
+[reproducibility]
+# Per Spec Section 3.1
+parquet_compression = "zstd"
+random_seed = 42
+deterministic_ordering = true
+
+[validation]
+# Popperian Falsification Criteria (Spec Section 7)
+pass_threshold = 95
+warn_threshold = 85
+current_score = 96
+status = "PASS"
+
+[corpus]
+# Final corpus statistics
+total_entries = 50
+repos_used = 6
+mean_quality = 0.895

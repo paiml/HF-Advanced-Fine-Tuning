@@ -1,0 +1,54 @@
+[pmat]
+version = "2.213.11"
+last_compliance_check = "2026-01-21T21:00:00.000000000Z"
+auto_update = false
+falsification_score = 96
+falsification_status = "PASS"
+
+[project]
+name = "rust-cli-docs-corpus"
+type = "library"
+language = "rust"
+
+[quality]
+# 100-point Popperian Falsification Criteria
+test_coverage_threshold = 85
+mutation_coverage_threshold = 70
+lint_enabled = true
+lint_strict = true
+
+[falsification]
+# Section 7.1: Data Integrity (20 points)
+data_integrity_points = 20
+# Section 7.2: Syntactic Validity (20 points)
+syntactic_validity_points = 20
+# Section 7.3: Semantic Validity (20 points)
+semantic_validity_points = 20
+# Section 7.4: Distribution Balance (15 points)
+distribution_balance_points = 15
+# Section 7.5: Reproducibility (15 points)
+reproducibility_points = 15
+# Section 7.6: Quality Metrics (10 points)
+quality_metrics_points = 10
+
+# Pass threshold
+pass_threshold = 95
+warn_threshold = 85
+
+[toyota_way]
+genchi_genbutsu = true  # Go and see - extract from real production CLI tools
+jidoka = true            # Built-in quality - automated validation gates
+muda = true              # Waste elimination - no redundant examples
+heijunka = true          # Leveling - balanced category distribution
+kaizen = true            # Continuous improvement - versioned corpus
+
+[corpus]
+min_entries = 100
+max_entries = 500
+function_docs_pct = "35-45"
+argument_docs_pct = "20-30"
+example_docs_pct = "15-25"
+error_docs_pct = "5-15"
+module_docs_pct = "3-7"
+min_repos = 5
+max_repo_dominance_pct = 40
