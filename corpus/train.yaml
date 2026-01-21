@@ -1,0 +1,87 @@
+# Rust CLI Documentation Fine-Tuning
+# Per RCDC-SPEC-001 Section 9.2
+entrenar: '1.0'
+name: rust-cli-docs
+version: 1.1.0
+description: LoRA fine-tune for Rust CLI documentation style transfer
+seed: 42
+
+data:
+  train: /home/noah/src/HF-Advanced-Fine-Tuning/corpus/data/corpus/train.parquet
+  batch_size: 4            # Per spec - small for 24GB GPU
+  shuffle: true
+  num_workers: 4
+
+model:
+  # Use smaller model for initial testing; upgrade to 7B for production
+  # For 7B: download Qwen/Qwen2.5-Coder-7B and update path
+  path: /home/noah/.cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+  device: auto
+  dtype: float16
+
+optimizer:
+  name: adamw
+  lr: 0.0002               # Per spec
+  weight_decay: 0.01
+  betas:
+  - 0.9
+  - 0.999
+  eps: 1e-8
+
+scheduler:
+  name: cosine_annealing
+  warmup:
+    steps: 100
+    start_lr: 1e-7
+  T_max: 10000
+  eta_min: 1e-6
+
+training:
+  epochs: 3                # Per spec
+  gradient:
+    accumulation_steps: 4
+    clip_norm: 1.0
+  checkpoint:
+    save_every: 50
+    keep_last: 3
+    save_best: true
+    metric: val_loss
+    mode: min
+  early_stopping:
+    enabled: true
+    metric: val_loss
+    patience: 5
+    min_delta: 0.001
+    mode: min
+
+lora:
+  enabled: true
+  rank: 8                  # Per spec - low rank for style transfer
+  alpha: 16.0              # Per spec - 2x rank
+  dropout: 0.05
+  target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  bias: none
+  init_weights: gaussian
+
+monitoring:
+  terminal:
+    enabled: true
+    refresh_rate: 10
+    metrics:
+    - loss
+    - accuracy
+
+output:
+  dir: ./output/{{ name }}/{{ timestamp }}
+  model:
+    format: safetensors
+    save_optimizer: false
+    save_scheduler: false
+  report:
+    enabled: true
+    format: markdown
+    include_plots: true
