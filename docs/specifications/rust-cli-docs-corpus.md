@@ -1,21 +1,21 @@
 # Rust CLI Documentation Corpus Specification
 
 **Document:** RCDC-SPEC-001
-**Version:** 1.0.0
-**Status:** Draft
+**Version:** 1.0.1
+**Status:** Draft (Reviewed by Dr. Popper)
 **Date:** January 2026
-**Philosophy:** The Toyota Way (Lean Principles)
-**Target Dataset:** `paiml/rust-cli-docs`
+**Philosophy:** The Toyota Way (Lean Principles) & Critical Rationalism
+**Publication Target:** [huggingface.co/datasets/paiml/rust-cli-docs](https://huggingface.co/datasets/paiml/rust-cli-docs)
 
 ---
 
-## 1. Executive Summary
+## 1. Executive Summary (The Conjecture)
 
-This specification defines a reproducible, scientifically rigorous corpus for fine-tuning large language models to generate idiomatic `///` documentation comments for Rust CLI tools. The corpus enables QLoRA fine-tuning of Qwen2.5-Coder-7B on consumer hardware (24GB VRAM).
+This specification defines a reproducible, scientifically rigorous corpus for fine-tuning large language models to generate idiomatic `///` documentation comments for Rust CLI tools.
 
-**Core Thesis:** The transformation from "knows Rust" to "writes your doc style" is a narrow, learnable diff. A small, high-quality corpus (100-500 examples) with LoRA rank 8 is sufficient for style transfer.
+**Core Conjecture:** The transformation from "knows Rust" to "writes your doc style" is a narrow, learnable diff. We conjecture that a small, rigorously curated corpus (100-500 examples) with LoRA rank 8 is sufficient for style transfer, provided it survives our falsification attempts.
 
-**Publication Target:** [huggingface.co/datasets/paiml/rust-cli-docs](https://huggingface.co/datasets/paiml/rust-cli-docs)
+**Methodology:** We do not seek to *verify* that the corpus is "good" (an impossible task). Instead, we seek to identify and eliminate "bad" data through aggressive falsification tests. The corpus remains valid only as long as it withstands these tests.
 
 ---
 
@@ -25,12 +25,12 @@ This specification defines a reproducible, scientifically rigorous corpus for fi
 
 **Principle:** Go to the source to find facts.
 
-**Application:** We extract documentation from *real* production CLI tools, not synthetic examples. The source of truth is:
-1. `rustc` - Does the code compile?
-2. `cargo doc` - Does the documentation render correctly?
-3. Human review - Is this documentation actually helpful?
+**Application:** We extract documentation from *real* production CLI tools. These serve as our empirical reality.
+1. `rustc` - The absolute falsifier. If it doesn't compile, it is rejected.
+2. `cargo doc` - The rendering falsifier. If it breaks HTML generation, it is rejected.
+3. Human review - The semantic falsifier. Is this helpful, or merely syntactically correct noise?
 
-**Validation:** Each corpus entry must pass all three gates.
+**Validation:** Each corpus entry is a hypothesis that must survive these three gates.
 
 ### 2.2 Jidoka (Built-in Quality)
 
@@ -121,6 +121,10 @@ serde = { repo = "serde-rs/serde", commit = "..." }
 # ... additional sources
 ```
 
+### 3.4 The Problem of Induction
+
+We explicitly acknowledge that no amount of passing tests proves the corpus "perfect" (the problem of induction). We can only state that it has not yet been falsified by our 100-point verification matrix. All claims of quality are provisional.
+
 ---
 
 ## 4. Data Schema
@@ -147,7 +151,9 @@ serde = { repo = "serde-rs/serde", commit = "..." }
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
   "input": "pub fn parse_args(args: &[String]) -> Result<Config, Error> {",
-  "output": "/// Parses command-line arguments into application configuration.\n///\n/// # Arguments\n///\n/// * `args` - Raw command-line arguments, typically from `std::env::args()`\n///\n/// # Returns\n///\n/// A `Config` struct containing parsed options, or an `Error` if parsing fails.\n///\n/// # Examples\n///\n/// ```\n/// let args = vec![\"app\".into(), \"--verbose\".into()];\n/// let config = parse_args(&args)?;\n/// assert!(config.verbose);\n/// ```",
+  "output": "/// Parses command-line arguments into application configuration.\n///\n/// # Arguments\n///\n/// * `args` - Raw command-line arguments, typically from `std::env::args()`\n///\n/// # Returns\n///\n/// A `Config` struct containing parsed options, or an `Error` if parsing fails.\n///\n/// # Examples\n///\n/// ```\n/// let args = vec![\"app\".into(), \"--verbose\".into()];\n/// let config = parse_args(&args)?;
+/// assert!(config.verbose);
+/// ```",
   "category": "function",
   "source_repo": "example/cli-tool",
   "source_commit": "a1b2c3d",
@@ -284,7 +290,7 @@ make corpus-build
 - **Relevance:** Model for our provenance tracking and reproducibility guarantees.
 
 **8. Allamanis, M., et al. (2019). "The Adverse Effects of Code Duplication in Machine Learning Models of Code." *OOPSLA 2019*.**
-- **Summary:** Shows that code duplication between train/test sets inflates metrics by 100%+.
+- **Summary:** Shows that code duplication between train/test sets inflates metrics by 100%*.*
 - **Relevance:** Justifies our strict deduplication gate.
 
 ### 6.4 Lean Principles
@@ -297,11 +303,11 @@ make corpus-build
 - **Summary:** Adapts Toyota Production System to software development.
 - **Relevance:** Validates applying Lean principles to ML corpus engineering.
 
-### 6.5 Scientific Methodology
+### 6.5 Scientific Methodology (The Karl Popper Extension)
 
 **11. Popper, K. (1959). *The Logic of Scientific Discovery*. Routledge.**
 - **Summary:** Establishes falsificationism as the demarcation criterion for scientific theories.
-- **Relevance:** Framework for our 100-point falsification criteria.
+- **Relevance:** We treat the corpus not as "truth" but as a set of hypotheses. Every validation step is an attempt to falsify the hypothesis that "this is good data."
 
 **12. Pineau, J., et al. (2021). "Improving Reproducibility in Machine Learning Research." *JMLR*.**
 - **Summary:** ML reproducibility checklist adopted by major conferences.
@@ -387,8 +393,8 @@ Following Popper's falsificationism, a scientific corpus must specify conditions
 |---|-----------|------|--------|
 | 44 | Mean quality score ≥0.7 | Aggregate check | 2 |
 | 45 | No examples with score <0.3 | Minimum threshold | 2 |
-| 46 | Token count reasonable (10-500) | Range check | 2 |
-| 47 | Input/output ratio 1:2 to 1:10 | Ratio calculation | 2 |
+| 46 | Token count strictly bounded | `10 <= count <= 500` | 2 |
+| 47 | Input/output ratio valid | `2.0 <= (output/input) <= 10.0` | 2 |
 | 48 | Human review approval ≥90% | Sample review | 2 |
 
 ### 7.7 Validation Score Calculation
@@ -438,7 +444,9 @@ size_categories:
 ---
 ```
 
-### 8.2 Publication Workflow
+### 8.2 Publication Workflow (Sovereign AI Stack)
+
+**Tooling:** All publication uses `alimentar` from the batuta Sovereign AI Stack. No Python dependencies.
 
 ```bash
 # 1. Build and validate corpus
@@ -448,14 +456,23 @@ make corpus-validate
 # 2. Generate dataset card
 make corpus-card
 
-# 3. Login to HuggingFace
-huggingface-cli login
+# 3. Set HuggingFace token (environment variable)
+export HF_TOKEN="hf_..."  # From huggingface.co/settings/tokens
 
-# 4. Push to hub
+# 4. Push to hub via alimentar
 make corpus-publish
 # Equivalent to:
-# huggingface-cli upload paiml/rust-cli-docs ./data/corpus/
+# alimentar hub push data/corpus/train.parquet paiml/rust-cli-docs \
+#   --path-in-repo data/train.parquet \
+#   --readme data/corpus/README.md \
+#   --message "Release v1.0.0"
 ```
+
+**alimentar capabilities:**
+- `alimentar hub push` - Upload parquet files (uses LFS for binary)
+- `alimentar hub push --readme` - Upload dataset card with validation
+- Validates `task_categories` against official HuggingFace schema
+- Pure Rust, no Python runtime required
 
 ### 8.3 Versioning
 
@@ -469,23 +486,46 @@ make corpus-publish
 
 ## 9. Usage
 
-### 9.1 Loading the Dataset
+### 9.1 Loading the Dataset (Sovereign AI Stack)
 
-```rust
-// Using Rust (with hf-hub crate)
-use hf_hub::api::sync::Api;
+**CLI (alimentar):**
+```bash
+# Download from HuggingFace Hub
+alimentar import hf paiml/rust-cli-docs -o data/train.parquet --split train
 
-let api = Api::new()?;
-let repo = api.dataset("paiml/rust-cli-docs");
-let path = repo.get("data/train.parquet")?;
+# Inspect the dataset
+alimentar info data/train.parquet
+alimentar head data/train.parquet -n 5
 ```
 
-```python
-# Using Python (for comparison/validation)
-from datasets import load_dataset
+**Library (alimentar crate):**
+```rust
+use alimentar::{hf_hub::HfDataset, Dataset};
 
-ds = load_dataset("paiml/rust-cli-docs")
-print(f"Training examples: {len(ds['train'])}")
+// Import from HuggingFace Hub
+let hf = HfDataset::builder("paiml/rust-cli-docs")
+    .split("train")
+    .build()?;
+
+let dataset = hf.download()?;
+println!("Loaded {} examples", dataset.len());
+
+// Access data
+for batch in dataset.iter_batches(32) {
+    let inputs = batch.column("input")?;
+    let outputs = batch.column("output")?;
+    // Process...
+}
+```
+
+**Alternative (DuckDB for SQL queries):**
+```bash
+# Direct query without download
+duckdb -c "
+SELECT input, output, category
+FROM 'https://huggingface.co/datasets/paiml/rust-cli-docs/resolve/main/data/train.parquet'
+LIMIT 10
+"
 ```
 
 ### 9.2 Fine-Tuning Configuration
@@ -510,33 +550,76 @@ warmup_ratio = 0.03
 
 ---
 
-## 10. Appendix: Makefile Targets
+## 10. Sovereign AI Stack Dependencies
+
+This specification uses **ONLY** tools from the batuta Sovereign AI Stack. No Python dependencies.
+
+### 10.1 Required Tools
+
+| Tool | Crate | Purpose | Install |
+|------|-------|---------|---------|
+| `alimentar` | [alimentar](https://crates.io/crates/alimentar) | Data loading, HuggingFace Hub | `cargo install alimentar` |
+| `batuta` | [batuta](https://crates.io/crates/batuta) | Orchestration, analysis | `cargo install batuta` |
+| `pacha` | [pacha](https://crates.io/crates/pacha) | Model/data registry | `cargo install pacha` |
+| `entrenar` | [entrenar](https://crates.io/crates/entrenar) | Fine-tuning execution | `cargo install entrenar` |
+| `certeza` | [certeza](https://crates.io/crates/certeza) | Quality validation | `cargo install certeza` |
+
+### 10.2 Version Pinning
+
+```toml
+# Cargo.toml for corpus tooling
+[dependencies]
+alimentar = "0.5"
+batuta = "0.4"
+pacha = "0.1"
+
+[build-dependencies]
+# Pinned in Cargo.lock for reproducibility
+```
+
+### 10.3 Why Pure Rust?
+
+1. **Reproducibility**: Single `cargo install` vs. complex Python environments
+2. **Performance**: Zero-copy Arrow for large datasets
+3. **Security**: Memory-safe data handling, no pickle vulnerabilities
+4. **Sovereignty**: No external cloud dependencies, local-first design
+
+---
+
+## 11. Appendix: Makefile Targets
 
 ```makefile
-# Corpus management
+# Corpus management (uses alimentar)
 corpus-clone-sources    # Clone and pin source repositories
-corpus-extract          # Extract documentation pairs
+corpus-extract          # Extract documentation pairs (alimentar doctest)
 corpus-validate         # Run all validation gates
 corpus-export           # Export to parquet format
 corpus-build            # Full pipeline (idempotent)
 
-# Quality assurance
+# Quality assurance (uses certeza)
 corpus-falsify          # Run 100-point falsification
 corpus-review           # Generate human review sample
 corpus-stats            # Print corpus statistics
 
-# Publication
+# Publication (uses alimentar hub)
 corpus-card             # Generate HuggingFace dataset card
-corpus-publish          # Push to HuggingFace Hub
+corpus-publish          # Push to HuggingFace Hub via alimentar
 
 # Development
-corpus-inspect          # Interactive corpus browser
+corpus-inspect          # Interactive corpus browser (alimentar repl)
 corpus-sample N=10      # Print N random examples
 ```
 
 ---
 
-## 11. Changelog
+## 12. Changelog
+
+### v1.0.1 (2026-01-21) - Dr. Popper Review
+- Refined Executive Summary to emphasize "Conjecture and Refutation".
+- Added "The Problem of Induction" (Sec 3.4).
+- Sharpened "Quality Metrics" (Sec 7.6) with strict boundaries.
+- Added Appendix E: Team Prompts.
+- Added Appendix F: The Null Hypothesis
 
 ### v1.0.0 (2026-01-21)
 - Initial specification
@@ -546,7 +629,43 @@ corpus-sample N=10      # Print N random examples
 
 ---
 
+## Appendix E: Team Prompts (The Critical Rationalist's Toolkit)
+
+Use these prompts to maintain rigorous skepticism during implementation:
+
+1.  **The "Anti-Induction" Prompt:**
+    > "I am currently assuming this data extraction logic is correct because it worked on the first 5 files. Dr. Popper, how would you design a test specifically to break this logic on the 6th file?"
+
+2.  **The "Falsification" Prompt:**
+    > "We have a new candidate repo. Instead of checking if it fits, write a script that tries to prove it *doesn't* fit our quality standards (e.g., check for non-English comments, broken markdown, or excessive length). Only if it survives this attack do we accept it."
+
+3.  **The "Demarcation" Prompt:**
+    > "I am unsure if this doc comment is 'good'. Instead of using my intuition, help me define a strict, testable rule (a demarcation line) that cleanly separates 'good' from 'bad' in this context, so we can automate the decision."
+
+4.  **The "Crucial Experiment" Prompt:**
+    > "We have two competing extraction strategies (A and B). Design a 'crucial experiment'—a single test case where A and B predict opposite results—so we can decisively refute one of them."
+
+---
+
+## Appendix F: The Null Hypothesis
+
+In scientific testing, we must define what we are trying to disprove.
+
+**Null Hypothesis ($H_0$):**
+> "The generated documentation from our fine-tuned model is statistically indistinguishable from random documentation snippets or generic 'AI' filler text."
+
+**Alternative Hypothesis ($H_1$):**
+> "The generated documentation specifically reflects the idiomatic style, structure, and content patterns of high-quality Rust CLI tools found in the corpus."
+
+**Falsification Strategy:**
+We do not try to prove $H_1$. We try to reject $H_0$ by:
+1.  **Blind A/B Testing:** Can human experts distinguish real corpus examples from model output? (If they can't, we fail to reject $H_0$ regarding quality, or we have successfully achieved mimicry).
+2.  **Functional Testing:** Does the generated code in `/// # Examples` actually compile? (Random noise ($H_0$) would not compile).
+
+---
+
 **Document Control:**
 - **Author:** Noah Gift / Claude Code (Opus 4.5)
-- **Review:** Pending
+- **Advisor:** Dr. Karl Popper (Gemini CLI)
+- **Review:** Completed (v1.0.1)
 - **Approval:** Pending
