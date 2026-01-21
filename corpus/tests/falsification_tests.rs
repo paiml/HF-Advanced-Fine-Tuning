@@ -18,14 +18,10 @@ use std::collections::HashSet;
 // TEST HELPERS
 // ============================================================================
 
-fn make_valid_entry() -> CorpusEntry {
-    let mut entry = CorpusEntry::new(
-        "pub fn test() -> Result<(), Error> {}".to_string(),
-        "/// Tests the functionality.\n///\n/// # Errors\n///\n/// Returns an error if test fails."
-            .to_string(),
-        Category::Function,
-    );
-    entry.source_repo = "test/repo".to_string();
+/// Creates a valid entry with specific content (UUID derived from content).
+fn make_entry_with_content(input: String, output: String, category: Category, repo: &str) -> CorpusEntry {
+    let mut entry = CorpusEntry::new(input, output, category);
+    entry.source_repo = repo.to_string();
     entry.source_commit = "abc1234".to_string();
     entry.source_file = "src/lib.rs".to_string();
     entry.source_line = 42;
@@ -33,58 +29,71 @@ fn make_valid_entry() -> CorpusEntry {
     entry
 }
 
+fn make_valid_entry() -> CorpusEntry {
+    make_entry_with_content(
+        "pub fn test() -> Result<(), Error> {}".to_string(),
+        "/// Tests the functionality.\n///\n/// # Errors\n///\n/// Returns an error if test fails.".to_string(),
+        Category::Function,
+        "test/repo",
+    )
+}
+
 fn make_test_corpus() -> Corpus {
     let mut corpus = Corpus::new();
     let repos = ["clap-rs/clap", "BurntSushi/ripgrep", "sharkdp/fd", "sharkdp/bat", "eza-community/eza"];
 
-    // Add function entries (40%)
+    // Add function entries (40%) - create with unique content for deterministic UUIDs
     for i in 0..40 {
-        let mut entry = make_valid_entry();
-        entry.source_repo = repos[i % 5].to_string();
-        entry.category = Category::Function;
-        // Make each entry unique by including index in input/output
-        entry.input = format!("pub fn test_func_{}() -> Result<(), Error> {{}}", i);
-        entry.output = format!("/// Tests function {}.\n///\n/// # Errors\n///\n/// Returns error on failure.", i);
+        let entry = make_entry_with_content(
+            format!("pub fn test_func_{}() -> Result<(), Error> {{}}", i),
+            format!("/// Tests function {}.\n///\n/// # Errors\n///\n/// Returns error on failure.", i),
+            Category::Function,
+            repos[i % 5],
+        );
         corpus.add_entry(entry);
     }
 
     // Add argument entries (25%)
     for i in 0..25 {
-        let mut entry = make_valid_entry();
-        entry.source_repo = repos[i % 5].to_string();
-        entry.category = Category::Argument;
-        entry.input = format!("pub fn with_arg_{}(arg: T) {{}}", i);
-        entry.output = format!("/// # Arguments\n///\n/// * `arg` - Argument {}", i);
+        let entry = make_entry_with_content(
+            format!("pub fn with_arg_{}(arg: T) {{}}", i),
+            format!("/// # Arguments\n///\n/// * `arg` - Argument {}", i),
+            Category::Argument,
+            repos[i % 5],
+        );
         corpus.add_entry(entry);
     }
 
     // Add example entries (20%)
     for i in 0..20 {
-        let mut entry = make_valid_entry();
-        entry.source_repo = repos[i % 5].to_string();
-        entry.category = Category::Example;
-        entry.input = format!("pub fn example_{}() {{}}", i);
-        entry.output = format!("/// # Examples\n///\n/// ```rust\n/// let x = {};\n/// ```", i);
+        let entry = make_entry_with_content(
+            format!("pub fn example_{}() {{}}", i),
+            format!("/// # Examples\n///\n/// ```rust\n/// let x = {};\n/// ```", i),
+            Category::Example,
+            repos[i % 5],
+        );
         corpus.add_entry(entry);
     }
 
     // Add error entries (10%)
     for i in 0..10 {
-        let mut entry = make_valid_entry();
-        entry.source_repo = repos[i % 5].to_string();
-        entry.category = Category::Error;
-        entry.input = format!("pub fn error_func_{}() -> Result<(), Error> {{}}", i);
-        entry.output = format!("/// # Errors\n///\n/// Returns error {} if file not found.", i);
+        let entry = make_entry_with_content(
+            format!("pub fn error_func_{}() -> Result<(), Error> {{}}", i),
+            format!("/// # Errors\n///\n/// Returns error {} if file not found.", i),
+            Category::Error,
+            repos[i % 5],
+        );
         corpus.add_entry(entry);
     }
 
     // Add module entries (5%)
     for i in 0..5 {
-        let mut entry = make_valid_entry();
-        entry.source_repo = repos[i % 5].to_string();
-        entry.category = Category::Module;
-        entry.input = format!("mod module_{} {{}}", i);
-        entry.output = format!("//! Module {} documentation.", i);
+        let entry = make_entry_with_content(
+            format!("mod module_{} {{}}", i),
+            format!("//! Module {} documentation.", i),
+            Category::Module,
+            repos[i % 5],
+        );
         corpus.add_entry(entry);
     }
 
@@ -186,15 +195,16 @@ fn test_06_uuids_unique() {
 }
 
 #[test]
-fn test_07_uuids_valid_v4() {
+fn test_07_uuids_valid_v5() {
+    // UUID v5 format: version digit is 5, variant bits are 8, 9, a, or b
     let uuid_regex =
-        regex::Regex::new(r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$")
+        regex::Regex::new(r"^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$")
             .unwrap();
     let corpus = make_test_corpus();
     for entry in corpus.entries() {
         assert!(
             uuid_regex.is_match(&entry.id),
-            "Entry has invalid UUID v4: {}",
+            "Entry has invalid UUID v5: {}",
             entry.id
         );
     }

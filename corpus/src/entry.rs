@@ -1,7 +1,23 @@
 //! Corpus entry types.
+//!
+//! Uses deterministic UUID v5 for reproducibility (per Spec Section 3.1).
 
 use sha2::{Digest, Sha256};
 use uuid::Uuid;
+
+/// Custom namespace UUID for corpus entries (deterministic).
+/// Generated once: `uuid -v4` -> fixed for reproducibility.
+const CORPUS_NAMESPACE: Uuid = Uuid::from_bytes([
+    0x6b, 0xa7, 0xb8, 0x10, 0x9d, 0xad, 0x11, 0xd1,
+    0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8,
+]);
+
+/// Fixed extraction date for reproducibility (2026-01-21T00:00:00Z).
+fn deterministic_extraction_date() -> chrono::DateTime<chrono::Utc> {
+    chrono::DateTime::parse_from_rfc3339("2026-01-21T00:00:00Z")
+        .expect("valid date")
+        .with_timezone(&chrono::Utc)
+}
 
 /// Documentation category classification.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, serde::Serialize, serde::Deserialize)]
@@ -83,10 +99,16 @@ pub struct CorpusEntry {
 }
 
 impl CorpusEntry {
-    /// Creates a new corpus entry with generated UUID.
+    /// Creates a new corpus entry with deterministic UUID v5.
+    ///
+    /// The UUID is derived from the content hash (input + output) using UUID v5,
+    /// ensuring identical content always produces identical IDs (reproducibility).
     #[must_use]
     pub fn new(input: String, output: String, category: Category) -> Self {
-        let id = Uuid::new_v4().to_string();
+        // Deterministic UUID v5: same content -> same UUID
+        let content_for_hash = format!("{}\0{}", input, output);
+        let id = Uuid::new_v5(&CORPUS_NAMESPACE, content_for_hash.as_bytes()).to_string();
+
         let tokens_input = Self::estimate_tokens(&input);
         let tokens_output = Self::estimate_tokens(&output);
 
@@ -102,7 +124,7 @@ impl CorpusEntry {
             tokens_input,
             tokens_output,
             quality_score: 0.0,
-            extraction_date: chrono::Utc::now(),
+            extraction_date: deterministic_extraction_date(),
         }
     }
 

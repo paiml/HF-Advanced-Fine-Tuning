@@ -167,8 +167,9 @@ impl CorpusValidator {
     #[must_use]
     pub fn new() -> Self {
         Self {
+            // UUID v5 (deterministic, name-based) for reproducibility
             uuid_regex: regex::Regex::new(
-                r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                r"^[0-9a-f]{8}-[0-9a-f]{4}-5[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
             )
             .expect("valid regex"),
             email_regex: regex::Regex::new(
@@ -325,18 +326,18 @@ impl CorpusValidator {
             },
         });
 
-        // Criterion 7: UUIDs valid v4 (2 points)
+        // Criterion 7: UUIDs valid v5 (2 points)
         let c7_pass = corpus.entries().all(|e| self.uuid_regex.is_match(&e.id));
         result.add_criterion(CriterionResult {
             number: 7,
-            name: "UUIDs valid v4".to_string(),
+            name: "UUIDs valid v5".to_string(),
             points: 2,
             earned: if c7_pass { 2 } else { 0 },
             passed: c7_pass,
             error: if c7_pass {
                 None
             } else {
-                Some("Invalid UUID v4 format".to_string())
+                Some("Invalid UUID v5 format".to_string())
             },
         });
 
