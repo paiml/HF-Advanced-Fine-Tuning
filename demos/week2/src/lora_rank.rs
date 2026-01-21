@@ -3,10 +3,10 @@
 //! Shows effect of rank (r) on:
 //! - Parameter count
 //! - Memory usage
-//! - Capacity (expressiveness)
+//! - Learning capacity
 //!
-//! Key insight: Task complexity determines optimal rank.
-//! CLI help = narrow domain = low rank sufficient (r=8-16)
+//! Key insight: Match rank to task complexity.
+//! Simple task = low rank. Complex task = high rank.
 
 use std::fmt;
 
@@ -16,8 +16,8 @@ pub struct RankConfig {
     pub rank: usize,
     pub params: usize,
     pub memory_mb: f64,
-    pub capacity: &'static str,
-    pub use_case: &'static str,
+    pub brain_size: &'static str,
+    pub good_for: &'static str,
 }
 
 /// Model config for calculations
@@ -46,21 +46,21 @@ pub fn calculate_rank_config(model: &ModelConfig, rank: usize) -> RankConfig {
     // Memory: fp16 = 2 bytes per param
     let memory_mb = (total_params as f64 * 2.0) / 1e6;
 
-    let (capacity, use_case) = match rank {
-        r if r <= 4 => ("Very Low", "Simple patterns, style transfer"),
-        r if r <= 8 => ("Low", "Narrow domains (CLI help, SQL)"),
-        r if r <= 16 => ("Medium", "Most fine-tuning tasks"),
-        r if r <= 32 => ("High", "Complex reasoning, multi-task"),
-        r if r <= 64 => ("Very High", "Near full fine-tune quality"),
-        _ => ("Maximum", "Diminishing returns"),
+    let (brain_size, good_for) = match rank {
+        r if r <= 4 => ("Tiny", "One trick (formatting, simple style)"),
+        r if r <= 8 => ("Small", "One skill (CLI docs, SQL queries)"),
+        r if r <= 16 => ("Medium", "A few skills (general fine-tuning)"),
+        r if r <= 32 => ("Large", "Many skills (reasoning, multi-task)"),
+        r if r <= 64 => ("XL", "Lots of skills (near full fine-tune)"),
+        _ => ("XXL", "Overkill for most tasks"),
     };
 
     RankConfig {
         rank,
         params: total_params,
         memory_mb,
-        capacity,
-        use_case,
+        brain_size,
+        good_for,
     }
 }
 
@@ -68,35 +68,35 @@ pub fn calculate_rank_config(model: &ModelConfig, rank: usize) -> RankConfig {
 #[derive(Debug, Clone)]
 pub struct TaskExample {
     pub task: &'static str,
-    pub recommended_rank: &'static str,
-    pub reason: &'static str,
+    pub rank: &'static str,
+    pub why: &'static str,
 }
 
 pub const TASK_EXAMPLES: &[TaskExample] = &[
     TaskExample {
-        task: "CLI help generation",
-        recommended_rank: "r=8",
-        reason: "Consistent structure, narrow vocabulary",
+        task: "CLI docs (/// comments)",
+        rank: "r=8",
+        why: "Same format every time",
     },
     TaskExample {
-        task: "Code style adaptation",
-        recommended_rank: "r=8-16",
-        reason: "Pattern-based, limited variation",
+        task: "Code style tweaks",
+        rank: "r=8-16",
+        why: "Predictable patterns",
     },
     TaskExample {
-        task: "Instruction following",
-        recommended_rank: "r=16-32",
-        reason: "Diverse formats, reasoning required",
+        task: "Follow instructions",
+        rank: "r=16-32",
+        why: "Needs some flexibility",
     },
     TaskExample {
-        task: "Mathematical reasoning",
-        recommended_rank: "r=32-64",
-        reason: "Complex patterns, precision critical",
+        task: "Math problems",
+        rank: "r=32-64",
+        why: "Complex reasoning",
     },
     TaskExample {
-        task: "General chat improvement",
-        recommended_rank: "r=64+",
-        reason: "Broad domain, many capabilities",
+        task: "General chat",
+        rank: "r=64+",
+        why: "Everything and anything",
     },
 ];
 
@@ -124,20 +124,21 @@ pub fn run() -> DemoResults {
 impl fmt::Display for DemoResults {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         writeln!(f, "╔══════════════════════════════════════════════════════════════════╗")?;
-        writeln!(f, "║           LoRA RANK SELECTION                                    ║")?;
+        writeln!(f, "║           PICKING A RANK                                         ║")?;
         writeln!(f, "╠══════════════════════════════════════════════════════════════════╣")?;
-        writeln!(f, "║  \"How much capacity do you need?\"                                ║")?;
+        writeln!(f, "║  Rank = how much the model can learn                             ║")?;
+        writeln!(f, "║  Low rank = one trick. High rank = many tricks.                  ║")?;
         writeln!(f, "╚══════════════════════════════════════════════════════════════════╝")?;
         writeln!(f)?;
 
         // Rank comparison table
         writeln!(f, "┌────────────────────────────────────────────────────────────────┐")?;
-        writeln!(f, "│ RANK vs PARAMETERS ({})                              │", self.model_name)?;
+        writeln!(f, "│ RANK OPTIONS ({})                                    │", self.model_name)?;
         writeln!(f, "└────────────────────────────────────────────────────────────────┘")?;
-        writeln!(f, "  {:>6}  {:>12}  {:>10}  {:>12}  {}",
-            "Rank", "Params", "Memory", "Capacity", "Use Case")?;
-        writeln!(f, "  {:>6}  {:>12}  {:>10}  {:>12}  {}",
-            "────", "──────", "──────", "────────", "────────")?;
+        writeln!(f, "  {:>6}  {:>10}  {:>10}  {:>8}  {}",
+            "Rank", "Params", "Memory", "Size", "Good For")?;
+        writeln!(f, "  {:>6}  {:>10}  {:>10}  {:>8}  {}",
+            "────", "──────", "──────", "────", "────────")?;
 
         for cfg in &self.configs {
             let params_str = if cfg.params >= 1_000_000 {
@@ -146,14 +147,14 @@ impl fmt::Display for DemoResults {
                 format!("{:.0}K", cfg.params as f64 / 1e3)
             };
 
-            writeln!(f, "  r={:<4}  {:>12}  {:>9.1}MB  {:>12}  {}",
-                cfg.rank, params_str, cfg.memory_mb, cfg.capacity, cfg.use_case)?;
+            writeln!(f, "  r={:<4}  {:>10}  {:>9.1}MB  {:>8}  {}",
+                cfg.rank, params_str, cfg.memory_mb, cfg.brain_size, cfg.good_for)?;
         }
         writeln!(f)?;
 
         // Visual comparison
         writeln!(f, "┌────────────────────────────────────────────────────────────────┐")?;
-        writeln!(f, "│ PARAMETER GROWTH                                               │")?;
+        writeln!(f, "│ BIGGER RANK = MORE TO TRAIN                                    │")?;
         writeln!(f, "└────────────────────────────────────────────────────────────────┘")?;
         let max_params = self.configs.last().map(|c| c.params).unwrap_or(1);
         for cfg in &self.configs {
@@ -166,26 +167,25 @@ impl fmt::Display for DemoResults {
 
         // Task recommendations
         writeln!(f, "┌────────────────────────────────────────────────────────────────┐")?;
-        writeln!(f, "│ TASK → RECOMMENDED RANK                                        │")?;
+        writeln!(f, "│ MATCH RANK TO TASK                                             │")?;
         writeln!(f, "└────────────────────────────────────────────────────────────────┘")?;
         for task in &self.tasks {
-            writeln!(f, "  {:30} {:>8}  ({})",
-                task.task, task.recommended_rank, task.reason)?;
+            writeln!(f, "  {:25} {:>8}  — {}",
+                task.task, task.rank, task.why)?;
         }
         writeln!(f)?;
 
         // CLI help specific
         writeln!(f, "╔══════════════════════════════════════════════════════════════════╗")?;
-        writeln!(f, "║ FOR CLI HELP GENERATION:                                         ║")?;
+        writeln!(f, "║ FOR RUST CLI DOCS:  r={}                                         ║", self.cli_help_recommendation)?;
+        writeln!(f, "╠══════════════════════════════════════════════════════════════════╣")?;
         writeln!(f, "║                                                                  ║")?;
-        writeln!(f, "║  Recommended: r={}                                               ║", self.cli_help_recommendation)?;
+        writeln!(f, "║  It's one trick:                                                 ║")?;
+        writeln!(f, "║    • Same /// format every time                                  ║")?;
+        writeln!(f, "║    • Same words (flags, args, options)                           ║")?;
+        writeln!(f, "║    • Same structure (Usage, Examples)                            ║")?;
         writeln!(f, "║                                                                  ║")?;
-        writeln!(f, "║  Why? CLI help has:                                              ║")?;
-        writeln!(f, "║  • Consistent structure (Usage, Options, Examples)               ║")?;
-        writeln!(f, "║  • Limited vocabulary (flags, commands, descriptions)            ║")?;
-        writeln!(f, "║  • Predictable patterns (clap-style formatting)                  ║")?;
-        writeln!(f, "║                                                                  ║")?;
-        writeln!(f, "║  Higher ranks waste parameters on unused capacity.               ║")?;
+        writeln!(f, "║  Don't rent a mansion when you need a studio.                    ║")?;
         writeln!(f, "╚══════════════════════════════════════════════════════════════════╝")?;
 
         Ok(())
@@ -236,6 +236,6 @@ mod tests {
         let result = run();
         let display = format!("{}", result);
         assert!(display.contains("RANK"));
-        assert!(display.contains("CLI HELP"));
+        assert!(display.contains("RUST CLI"));
     }
 }

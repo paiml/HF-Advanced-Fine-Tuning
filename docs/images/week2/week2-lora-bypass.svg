@@ -1,0 +1,200 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="9" refX="11" refY="4.5" orient="auto">
+      <polygon points="0 0, 12 4.5, 0 9" fill="#64748b"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="9" refX="11" refY="4.5" orient="auto">
+      <polygon points="0 0, 12 4.5, 0 9" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowDown" markerWidth="9" markerHeight="12" refX="4.5" refY="11" orient="auto">
+      <polygon points="0 0, 4.5 12, 9 0" fill="#a855f7"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#0f172a"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="80" fill="#020617"/>
+  <text x="800" y="52" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="bold" fill="#f8fafc">LoRA: Train the Diff, Not the Model</text>
+
+  <!-- Section 1: Original (Full Fine-Tune) -->
+  <g transform="translate(80, 120)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="bold" fill="#ef4444">FULL FINE-TUNE (The Problem)</text>
+
+    <g transform="translate(0, 35)">
+      <!-- Input box -->
+      <rect x="0" y="0" width="140" height="70" rx="8" fill="#334155" stroke="#475569" stroke-width="3"/>
+      <text x="70" y="42" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#f1f5f9">Input</text>
+
+      <!-- Arrow -->
+      <line x1="155" y1="35" x2="255" y2="35" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+
+      <!-- W matrix -->
+      <rect x="270" y="0" width="320" height="70" rx="8" fill="#7c3aed" stroke="#a78bfa" stroke-width="3"/>
+      <text x="430" y="32" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="bold" fill="#fff">Qwen-7B</text>
+      <text x="430" y="56" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#ddd6fe">7B params ALL trainable</text>
+
+      <!-- Arrow -->
+      <line x1="605" y1="35" x2="705" y2="35" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+
+      <!-- Output box -->
+      <rect x="720" y="0" width="140" height="70" rx="8" fill="#334155" stroke="#475569" stroke-width="3"/>
+      <text x="790" y="42" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#f1f5f9">Output</text>
+
+      <!-- Problem callout -->
+      <rect x="920" y="0" width="260" height="70" rx="8" fill="#450a0a" stroke="#dc2626" stroke-width="2"/>
+      <text x="1050" y="30" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="bold" fill="#fca5a5">60GB+ VRAM</text>
+      <text x="1050" y="54" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#fecaca">Your GPU: 24GB</text>
+    </g>
+  </g>
+
+  <!-- Section 2: LoRA (Parallel Bypass) -->
+  <g transform="translate(80, 320)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="bold" fill="#22c55e">LoRA (Train the Diff)</text>
+
+    <g transform="translate(0, 40)">
+      <!-- Input box -->
+      <rect x="0" y="55" width="140" height="70" rx="8" fill="#334155" stroke="#475569" stroke-width="3"/>
+      <text x="70" y="97" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#f1f5f9">Input</text>
+
+      <!-- Fork point -->
+      <line x1="140" y1="90" x2="210" y2="90" stroke="#64748b" stroke-width="4"/>
+      <circle cx="210" cy="90" r="7" fill="#94a3b8"/>
+
+      <!-- Main path to W -->
+      <line x1="217" y1="90" x2="305" y2="90" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+
+      <!-- W frozen matrix -->
+      <rect x="320" y="55" width="320" height="70" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="3"/>
+      <text x="480" y="85" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="bold" fill="#fff">Qwen-7B (frozen)</text>
+      <text x="480" y="110" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#93c5fd">4-bit quantized, read-only</text>
+
+      <!-- Line from W to sum -->
+      <line x1="640" y1="90" x2="820" y2="90" stroke="#64748b" stroke-width="4"/>
+
+      <!-- LoRA bypass - down -->
+      <line x1="210" y1="97" x2="210" y2="230" stroke="#22c55e" stroke-width="5"/>
+      <line x1="210" y1="230" x2="305" y2="230" stroke="#22c55e" stroke-width="5" marker-end="url(#arrowGreen)"/>
+
+      <!-- Matrix A -->
+      <rect x="320" y="195" width="160" height="70" rx="8" fill="#166534" stroke="#22c55e" stroke-width="3"/>
+      <text x="400" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="bold" fill="#fff">A</text>
+      <text x="400" y="250" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#bbf7d0">[d × r]</text>
+
+      <!-- Arrow A to B -->
+      <line x1="480" y1="230" x2="540" y2="230" stroke="#22c55e" stroke-width="5" marker-end="url(#arrowGreen)"/>
+
+      <!-- Matrix B -->
+      <rect x="555" y="195" width="160" height="70" rx="8" fill="#166534" stroke="#22c55e" stroke-width="3"/>
+      <text x="635" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="bold" fill="#fff">B</text>
+      <text x="635" y="250" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#bbf7d0">[r × d]</text>
+
+      <!-- LoRA bypass - up to sum -->
+      <line x1="715" y1="230" x2="820" y2="230" stroke="#22c55e" stroke-width="5"/>
+      <line x1="820" y1="230" x2="820" y2="107" stroke="#22c55e" stroke-width="5"/>
+
+      <!-- Sum circle -->
+      <circle cx="820" cy="90" r="25" fill="#eab308" stroke="#fde047" stroke-width="3"/>
+      <text x="820" y="98" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="bold" fill="#1c1917">+</text>
+
+      <!-- Arrow to output -->
+      <line x1="845" y1="90" x2="935" y2="90" stroke="#64748b" stroke-width="4" marker-end="url(#arrow)"/>
+
+      <!-- Output box -->
+      <rect x="950" y="55" width="140" height="70" rx="8" fill="#334155" stroke="#475569" stroke-width="3"/>
+      <text x="1020" y="97" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#f1f5f9">Output</text>
+
+      <!-- Diff info box -->
+      <rect x="320" y="290" width="395" height="45" rx="6" fill="#052e16" stroke="#166534" stroke-width="2"/>
+      <text x="517" y="320" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#4ade80">A × B = the diff  |  ~0.1% of params</text>
+
+      <!-- Solution callout -->
+      <rect x="950" y="195" width="230" height="70" rx="8" fill="#052e16" stroke="#22c55e" stroke-width="2"/>
+      <text x="1065" y="225" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="bold" fill="#86efac">~8GB VRAM</text>
+      <text x="1065" y="250" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#bbf7d0">Fits your 24GB GPU</text>
+    </g>
+  </g>
+
+  <!-- Section 3: Where to Apply -->
+  <g transform="translate(80, 780)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="bold" fill="#f8fafc">WHERE TO APPLY</text>
+
+    <!-- Attention box -->
+    <rect x="0" y="25" width="580" height="90" rx="10" fill="#134e4a" stroke="#14b8a6" stroke-width="3"/>
+    <text x="290" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="bold" fill="#5eead4">ATTENTION (for Rust CLI docs)</text>
+    <text x="290" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#99f6e4">q_proj   k_proj   v_proj   o_proj</text>
+
+    <!-- FFN box -->
+    <rect x="620" y="25" width="580" height="90" rx="10" fill="#451a03" stroke="#f59e0b" stroke-width="3"/>
+    <text x="910" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="bold" fill="#fcd34d">FFN (if attention isn't enough)</text>
+    <text x="910" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#fde68a">gate_proj   up_proj   down_proj</text>
+  </g>
+
+  <!-- RIGHT PANEL: Inference Flow -->
+  <g transform="translate(1480, 100)">
+    <!-- Panel background -->
+    <rect x="0" y="0" width="400" height="780" rx="12" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+
+    <!-- Panel header -->
+    <rect x="0" y="0" width="400" height="50" rx="12" fill="#4f46e5"/>
+    <rect x="0" y="38" width="400" height="12" fill="#4f46e5"/>
+    <text x="200" y="33" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="bold" fill="#fff">INFERENCE FLOW</text>
+
+    <!-- Step 1: Input -->
+    <g transform="translate(20, 80)">
+      <rect x="0" y="0" width="360" height="100" rx="8" fill="#334155" stroke="#64748b" stroke-width="2"/>
+      <text x="180" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#94a3b8">INPUT</text>
+      <text x="180" y="55" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#f1f5f9">fn main() {</text>
+      <text x="180" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#f1f5f9">  let cli = Cli::parse();</text>
+      <text x="180" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#f1f5f9">}</text>
+    </g>
+
+    <!-- Arrow down -->
+    <line x1="200" y1="190" x2="200" y2="230" stroke="#a855f7" stroke-width="4" marker-end="url(#arrowDown)"/>
+
+    <!-- Step 2: Base knowledge -->
+    <g transform="translate(20, 240)">
+      <rect x="0" y="0" width="360" height="80" rx="8" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2"/>
+      <text x="180" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#93c5fd">QWEN BASE KNOWLEDGE</text>
+      <text x="180" y="52" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#bfdbfe">Rust syntax, clap patterns,</text>
+      <text x="180" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#bfdbfe">general code understanding</text>
+    </g>
+
+    <!-- Arrow down -->
+    <line x1="200" y1="330" x2="200" y2="370" stroke="#a855f7" stroke-width="4" marker-end="url(#arrowDown)"/>
+
+    <!-- Step 3: LoRA diff applied -->
+    <g transform="translate(20, 380)">
+      <rect x="0" y="0" width="360" height="80" rx="8" fill="#166534" stroke="#22c55e" stroke-width="2"/>
+      <text x="180" y="28" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#86efac">+ YOUR DOC STYLE (ΔW)</text>
+      <text x="180" y="52" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#bbf7d0">/// doc comment format,</text>
+      <text x="180" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="14" fill="#bbf7d0">argument descriptions, examples</text>
+    </g>
+
+    <!-- Arrow down -->
+    <line x1="200" y1="470" x2="200" y2="510" stroke="#a855f7" stroke-width="4" marker-end="url(#arrowDown)"/>
+
+    <!-- Step 4: Output -->
+    <g transform="translate(20, 520)">
+      <rect x="0" y="0" width="360" height="140" rx="8" fill="#052e16" stroke="#4ade80" stroke-width="2"/>
+      <text x="180" y="25" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#4ade80">OUTPUT</text>
+      <text x="20" y="50" font-family="JetBrains Mono, monospace" font-size="12" fill="#86efac">/// Entry point for the CLI.</text>
+      <text x="20" y="68" font-family="JetBrains Mono, monospace" font-size="12" fill="#86efac">///</text>
+      <text x="20" y="86" font-family="JetBrains Mono, monospace" font-size="12" fill="#86efac">/// Parses arguments and</text>
+      <text x="20" y="104" font-family="JetBrains Mono, monospace" font-size="12" fill="#86efac">/// dispatches to handlers.</text>
+      <text x="20" y="122" font-family="JetBrains Mono, monospace" font-size="12" fill="#f1f5f9">fn main() {</text>
+      <text x="20" y="136" font-family="JetBrains Mono, monospace" font-size="11" fill="#64748b">  ...</text>
+    </g>
+
+    <!-- Brain icon / summary -->
+    <g transform="translate(20, 680)">
+      <rect x="0" y="0" width="360" height="50" rx="6" fill="#4c1d95" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="180" y="32" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" fill="#e9d5ff">Base brain + your diff = your style</text>
+    </g>
+  </g>
+
+  <!-- Formula footer -->
+  <rect x="0" y="1000" width="1920" height="80" fill="#020617"/>
+  <text x="960" y="1048" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" fill="#94a3b8">W' = W + ΔW    |    ΔW = A × B    |    Qwen knows Rust; teach it your doc style</text>
+</svg>

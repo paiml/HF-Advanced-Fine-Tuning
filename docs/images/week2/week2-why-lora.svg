@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <marker id="arrowRight" markerWidth="14" markerHeight="10" refX="13" refY="5" orient="auto">
+      <polygon points="0 0, 14 5, 0 10" fill="#22c55e"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#0f172a"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="90" fill="#020617"/>
+  <text x="960" y="58" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="bold" fill="#f8fafc">Why LoRA?</text>
+
+  <!-- Context -->
+  <text x="960" y="150" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#94a3b8">Fine-tune Qwen-7B to write /// docs for Rust CLI tools</text>
+
+  <!-- LEFT: The Problem -->
+  <g transform="translate(200, 240)">
+    <text x="250" y="0" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="bold" fill="#ef4444">The Problem</text>
+
+    <!-- Giant block representing full model training -->
+    <rect x="0" y="50" width="500" height="450" rx="16" fill="#7c3aed" stroke="#a78bfa" stroke-width="4"/>
+
+    <text x="250" y="180" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" fill="#ddd6fe">Full Model</text>
+    <text x="250" y="280" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="96" font-weight="bold" fill="#fff">14 GB</text>
+    <text x="250" y="350" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#ddd6fe">+ gradients + optimizer</text>
+
+    <!-- Cost callout -->
+    <rect x="75" y="530" width="350" height="100" rx="12" fill="#450a0a" stroke="#dc2626" stroke-width="3"/>
+    <text x="250" y="580" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="bold" fill="#fca5a5">62 GB VRAM</text>
+    <text x="250" y="615" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#fecaca">to train</text>
+  </g>
+
+  <!-- CENTER: Arrow -->
+  <g transform="translate(820, 480)">
+    <line x1="0" y1="0" x2="200" y2="0" stroke="#22c55e" stroke-width="10" marker-end="url(#arrowRight)"/>
+  </g>
+  <text x="920" y="560" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="bold" fill="#4ade80">LoRA</text>
+  <text x="920" y="600" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#86efac">freeze model</text>
+  <text x="920" y="630" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#86efac">train the diff</text>
+
+  <!-- RIGHT: The Solution -->
+  <g transform="translate(1150, 240)">
+    <text x="275" y="0" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="bold" fill="#22c55e">The Solution</text>
+
+    <!-- Frozen model (grayed, smaller visual weight) -->
+    <rect x="0" y="50" width="300" height="250" rx="12" fill="#1e3a8a" stroke="#3b82f6" stroke-width="4"/>
+    <text x="150" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#93c5fd">Frozen Model</text>
+    <text x="150" y="200" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="bold" fill="#60a5fa">3.5 GB</text>
+    <text x="150" y="250" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#3b82f6">4-bit quantized</text>
+
+    <!-- Plus -->
+    <text x="150" y="340" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="bold" fill="#64748b">+</text>
+
+    <!-- Tiny diff -->
+    <rect x="320" y="50" width="230" height="250" rx="12" fill="#166534" stroke="#22c55e" stroke-width="4"/>
+    <text x="435" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#86efac">The Diff</text>
+    <text x="435" y="200" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="bold" fill="#fff">20 MB</text>
+    <text x="435" y="250" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="18" fill="#4ade80">trainable</text>
+
+    <!-- Cost callout -->
+    <rect x="100" y="530" width="350" height="100" rx="12" fill="#052e16" stroke="#22c55e" stroke-width="3"/>
+    <text x="275" y="580" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="bold" fill="#4ade80">8 GB VRAM</text>
+    <text x="275" y="615" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#86efac">to train</text>
+  </g>
+
+  <!-- Bottom: Your GPU -->
+  <g transform="translate(0, 870)">
+    <rect x="660" y="0" width="600" height="80" rx="12" fill="#1e1b4b" stroke="#6366f1" stroke-width="2"/>
+    <text x="960" y="50" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" fill="#e0e7ff">Your GPU: 24 GB</text>
+  </g>
+
+  <!-- Footer -->
+  <rect x="0" y="1000" width="1920" height="80" fill="#020617"/>
+  <text x="960" y="1050" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" fill="#64748b">The change from "knows Rust" to "your doc style" is small. Train the diff.</text>
+</svg>
