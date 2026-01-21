@@ -11,7 +11,7 @@
 //! - Reproducibility: 15 points (criteria 38-43)
 //! - Quality Metrics: 10 points (criteria 44-48)
 
-use rust_cli_docs_corpus::{Category, Corpus, CorpusEntry, CorpusValidator};
+use rust_cli_docs_corpus::{Category, Corpus, CorpusEntry, CorpusFilter, CorpusValidator};
 use std::collections::HashSet;
 
 // ============================================================================
@@ -896,4 +896,128 @@ fn test_corpus_hash_deterministic() {
     let hash1a = corpus1.compute_hash();
     let hash1b = corpus1.compute_hash();
     assert_eq!(hash1a, hash1b, "Hash should be deterministic");
+}
+
+// ============================================================================
+// RED TEAM ATTACK TESTS - Destruction Protocol
+// ============================================================================
+
+#[test]
+fn attack_1_garbage_in_gold_out() {
+    // ATTACK: Try to inject garbage "TODO" docs through the pipeline
+    let garbage = CorpusEntry::new(
+        "pub fn important_function(x: i32) -> i32 {}".to_string(),
+        "/// TODO: fix this".to_string(),
+        Category::Function,
+    );
+    
+    eprintln!("Attack 1: Garbage entry analysis:");
+    eprintln!("  Quality score: {}", garbage.quality_score);
+    eprintln!("  I/O ratio: {}", garbage.io_ratio());
+    eprintln!("  Total tokens: {}", garbage.total_tokens());
+    
+    let mut corpus = Corpus::new();
+    corpus.add_entry(garbage);
+    
+    let filter = CorpusFilter::default();
+    eprintln!("  Running filter...");
+    filter.print_filter_stats(&corpus);
+    let filtered = filter.filter(&corpus);
+    
+    eprintln!("  Entries after filter: {}", filtered.len());
+    
+    // Defense: Garbage should be rejected
+    // If this assertion fails, ATTACK SUCCEEDS (Jidoka failed)
+    assert_eq!(filtered.len(), 0, 
+        "JIDOKA BREACH: Garbage 'TODO' doc passed through quality gates!");
+}
+
+#[test]
+fn attack_3_null_hypothesis_quality_manipulation() {
+    // ATTACK: Create entry with terrible content but manipulated high quality score
+    let mut manipulated = CorpusEntry::new(
+        "fn x() {}".to_string(),  // Trivial function
+        "/// a".to_string(),       // One-character doc - clearly terrible
+        Category::Function,
+    );
+    
+    // Manually override quality score to 0.99 (manipulation attack)
+    manipulated.quality_score = 0.99;
+    
+    eprintln!("Attack 3: Quality manipulation analysis:");
+    eprintln!("  Original computed quality: would be low");
+    eprintln!("  Manipulated quality: {}", manipulated.quality_score);
+    eprintln!("  I/O ratio: {}", manipulated.io_ratio());
+    eprintln!("  Total tokens: {}", manipulated.total_tokens());
+    
+    // The validator should catch this inconsistency
+    // Criteria 44: Mean quality >= 0.7
+    // Criteria 45: No examples with score < 0.3
+    // But if the score is MANUALLY set high, will it blindly trust it?
+    
+    let validator = CorpusValidator::new();
+    let result = validator.validate(&manipulated);
+
+    let mut corpus = Corpus::new();
+    corpus.add_entry(manipulated);
+
+    eprintln!("  Validation result score: {}", result.score());
+    eprintln!("  Validation passed: {}", result.fully_passes());
+    
+    // The filter should still reject based on OTHER criteria (I/O ratio, token count)
+    // even if quality score is manipulated
+    let filter = CorpusFilter::default();
+    let filtered = filter.filter(&corpus);
+    
+    eprintln!("  Entries after filter: {}", filtered.len());
+    
+    // Defense: The manipulated entry should be rejected by OTHER gates
+    // (I/O ratio, token count) even if quality score is high
+    assert_eq!(filtered.len(), 0, 
+        "QUALITY GATE BREACH: Manipulated quality score bypassed all checks!");
+}
+
+#[test]
+fn attack_4_sovereign_stack_integration() {
+    // ATTACK: Verify the parquet file can be loaded and has correct schema
+    // for training (input/output columns exist and are non-empty)
+    
+    use std::path::Path;
+    
+    let corpus_path = Path::new("data/corpus/train.parquet");
+    if !corpus_path.exists() {
+        eprintln!("Warning: corpus file not found, skipping integration test");
+        return;
+    }
+    
+    // Load corpus
+    let corpus = match Corpus::load_from_parquet(corpus_path) {
+        Ok(c) => c,
+        Err(e) => panic!("INTEGRATION FAILURE: Cannot load corpus: {}", e),
+    };
+    
+    eprintln!("Attack 4: Sovereign Stack Integration:");
+    eprintln!("  Loaded {} entries", corpus.len());
+    
+    // Verify each entry has valid input/output for training
+    let mut valid_count = 0;
+    for entry in corpus.entries() {
+        // Training requires non-empty input and output
+        if entry.input.is_empty() {
+            panic!("INTEGRATION FAILURE: Empty input found");
+        }
+        if entry.output.is_empty() {
+            panic!("INTEGRATION FAILURE: Empty output found");
+        }
+        // Verify tokens are calculated
+        if entry.tokens_input == 0 || entry.tokens_output == 0 {
+            eprintln!("  Warning: Zero tokens in entry {}", entry.id);
+        }
+        valid_count += 1;
+    }
+    
+    eprintln!("  All {} entries have valid input/output", valid_count);
+    eprintln!("  INTEGRATION TEST PASSED: Data is training-compatible");
+    
+    assert!(corpus.len() >= 50, "Corpus should have at least 50 entries");
 }
