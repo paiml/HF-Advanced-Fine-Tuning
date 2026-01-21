@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#0f172a"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="90" fill="#020617"/>
+  <text x="960" y="58" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="bold" fill="#f8fafc">What is Quantization?</text>
+
+  <!-- Subheader -->
+  <text x="960" y="140" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#94a3b8">Fewer bits = fewer possible values = less precise</text>
+
+  <!-- The actual weight value indicator -->
+  <g transform="translate(960, 200)">
+    <text x="0" y="0" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" fill="#fbbf24">Actual weight value</text>
+    <text x="0" y="35" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" font-weight="bold" fill="#fbbf24">0.2385</text>
+  </g>
+
+  <!-- NUMBER LINE 1: 16-bit (many ticks) -->
+  <g transform="translate(150, 300)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="bold" fill="#22c55e">16-bit (fp16)</text>
+    <text x="300" y="0" font-family="Inter, Arial, sans-serif" font-size="18" fill="#86efac">65,536 possible values</text>
+
+    <!-- Number line -->
+    <line x1="0" y1="50" x2="1620" y2="50" stroke="#334155" stroke-width="4"/>
+
+    <!-- Ticks (many, dense) -->
+    <g fill="#22c55e">
+      <!-- Show dense ticks -->
+      <rect x="0" y="40" width="2" height="20"/>
+      <rect x="16" y="45" width="1" height="10"/>
+      <rect x="32" y="45" width="1" height="10"/>
+      <rect x="48" y="45" width="1" height="10"/>
+      <rect x="64" y="45" width="1" height="10"/>
+      <rect x="80" y="45" width="1" height="10"/>
+      <rect x="96" y="45" width="1" height="10"/>
+      <rect x="112" y="45" width="1" height="10"/>
+      <rect x="128" y="45" width="1" height="10"/>
+      <rect x="144" y="45" width="1" height="10"/>
+      <rect x="160" y="45" width="1" height="10"/>
+      <rect x="176" y="45" width="1" height="10"/>
+      <rect x="192" y="45" width="1" height="10"/>
+      <rect x="208" y="45" width="1" height="10"/>
+      <rect x="224" y="45" width="1" height="10"/>
+      <rect x="240" y="45" width="1" height="10"/>
+      <rect x="256" y="45" width="1" height="10"/>
+      <rect x="272" y="45" width="1" height="10"/>
+      <rect x="288" y="45" width="1" height="10"/>
+      <rect x="304" y="45" width="1" height="10"/>
+      <rect x="320" y="45" width="1" height="10"/>
+      <rect x="336" y="45" width="1" height="10"/>
+      <rect x="352" y="45" width="1" height="10"/>
+      <rect x="368" y="45" width="1" height="10"/>
+      <rect x="384" y="40" width="2" height="20"/>
+      <!-- ... pattern continues ... -->
+      <text x="1500" y="55" font-size="14" fill="#64748b">... thousands more</text>
+    </g>
+
+    <!-- Value marker -->
+    <circle cx="386" cy="50" r="10" fill="#fbbf24"/>
+    <line x1="386" y1="10" x2="386" y2="35" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="386" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#22c55e">0.2385</text>
+    <text x="500" y="90" font-family="Inter, Arial, sans-serif" font-size="16" fill="#86efac">← exact fit</text>
+
+    <!-- Labels -->
+    <text x="0" y="110" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748b">0.0</text>
+    <text x="1600" y="110" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748b">1.0</text>
+  </g>
+
+  <!-- NUMBER LINE 2: 8-bit (fewer ticks) -->
+  <g transform="translate(150, 480)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="bold" fill="#3b82f6">8-bit (int8)</text>
+    <text x="300" y="0" font-family="Inter, Arial, sans-serif" font-size="18" fill="#93c5fd">256 possible values</text>
+
+    <!-- Number line -->
+    <line x1="0" y1="50" x2="1620" y2="50" stroke="#334155" stroke-width="4"/>
+
+    <!-- Ticks (moderate spacing) -->
+    <g fill="#3b82f6">
+      <rect x="0" y="40" width="3" height="20"/>
+      <rect x="63" y="45" width="2" height="15"/>
+      <rect x="126" y="45" width="2" height="15"/>
+      <rect x="189" y="45" width="2" height="15"/>
+      <rect x="252" y="45" width="2" height="15"/>
+      <rect x="315" y="45" width="2" height="15"/>
+      <rect x="378" y="40" width="3" height="20"/>
+      <rect x="441" y="45" width="2" height="15"/>
+      <rect x="504" y="45" width="2" height="15"/>
+      <rect x="567" y="45" width="2" height="15"/>
+      <rect x="630" y="45" width="2" height="15"/>
+      <rect x="693" y="45" width="2" height="15"/>
+      <rect x="756" y="40" width="3" height="20"/>
+      <text x="1500" y="55" font-size="14" fill="#64748b">... 256 total</text>
+    </g>
+
+    <!-- Value marker (snapped to nearest) -->
+    <circle cx="378" cy="50" r="10" fill="#fbbf24"/>
+    <line x1="386" y1="10" x2="378" y2="35" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="378" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#3b82f6">0.24</text>
+    <text x="480" y="90" font-family="Inter, Arial, sans-serif" font-size="16" fill="#93c5fd">← snapped (off by 0.0015)</text>
+
+    <!-- Labels -->
+    <text x="0" y="110" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748b">0.0</text>
+    <text x="1600" y="110" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748b">1.0</text>
+  </g>
+
+  <!-- NUMBER LINE 3: 4-bit (sparse ticks) -->
+  <g transform="translate(150, 660)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="bold" fill="#a855f7">4-bit (NF4)</text>
+    <text x="300" y="0" font-family="Inter, Arial, sans-serif" font-size="18" fill="#d8b4fe">16 possible values</text>
+
+    <!-- Number line -->
+    <line x1="0" y1="50" x2="1620" y2="50" stroke="#334155" stroke-width="4"/>
+
+    <!-- Ticks (sparse, only 16) -->
+    <g fill="#a855f7">
+      <rect x="0" y="35" width="4" height="30"/>
+      <rect x="108" y="40" width="4" height="20"/>
+      <rect x="216" y="40" width="4" height="20"/>
+      <rect x="324" y="40" width="4" height="20"/>
+      <rect x="432" y="40" width="4" height="20"/>
+      <rect x="540" y="40" width="4" height="20"/>
+      <rect x="648" y="40" width="4" height="20"/>
+      <rect x="756" y="40" width="4" height="20"/>
+      <rect x="864" y="40" width="4" height="20"/>
+      <rect x="972" y="40" width="4" height="20"/>
+      <rect x="1080" y="40" width="4" height="20"/>
+      <rect x="1188" y="40" width="4" height="20"/>
+      <rect x="1296" y="40" width="4" height="20"/>
+      <rect x="1404" y="40" width="4" height="20"/>
+      <rect x="1512" y="40" width="4" height="20"/>
+      <rect x="1616" y="35" width="4" height="30"/>
+    </g>
+
+    <!-- Value marker (snapped to nearest, bigger error) -->
+    <circle cx="324" cy="50" r="10" fill="#fbbf24"/>
+    <line x1="386" y1="10" x2="324" y2="35" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,2"/>
+    <text x="324" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#a855f7">0.20</text>
+    <text x="450" y="90" font-family="Inter, Arial, sans-serif" font-size="16" fill="#d8b4fe">← snapped (off by 0.0385)</text>
+
+    <!-- Labels -->
+    <text x="0" y="110" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748b">0.0</text>
+    <text x="1600" y="110" font-family="Inter, Arial, sans-serif" font-size="14" fill="#64748b">1.0</text>
+  </g>
+
+  <!-- Bottom: Size vs Accuracy tradeoff -->
+  <g transform="translate(150, 830)">
+    <text x="0" y="0" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="bold" fill="#f8fafc">THE TRADEOFF</text>
+
+    <!-- Boxes -->
+    <g transform="translate(0, 30)">
+      <!-- fp16 -->
+      <rect x="0" y="0" width="350" height="80" rx="10" fill="#166534" stroke="#22c55e" stroke-width="2"/>
+      <text x="175" y="35" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="bold" fill="#fff">16-bit: 14 GB</text>
+      <text x="175" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#86efac">Baseline accuracy</text>
+
+      <!-- int8 -->
+      <rect x="400" y="0" width="350" height="80" rx="10" fill="#1e40af" stroke="#3b82f6" stroke-width="2"/>
+      <text x="575" y="35" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="bold" fill="#fff">8-bit: 7 GB</text>
+      <text x="575" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#93c5fd">~1% accuracy loss</text>
+
+      <!-- int4 -->
+      <rect x="800" y="0" width="350" height="80" rx="10" fill="#6b21a8" stroke="#a855f7" stroke-width="2"/>
+      <text x="975" y="35" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="bold" fill="#fff">4-bit: 3.5 GB</text>
+      <text x="975" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#d8b4fe">~3-5% accuracy loss</text>
+
+      <!-- QLoRA fix -->
+      <rect x="1200" y="0" width="420" height="80" rx="10" fill="#052e16" stroke="#4ade80" stroke-width="3"/>
+      <text x="1410" y="35" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="bold" fill="#4ade80">QLoRA: 4-bit + full-precision diff</text>
+      <text x="1410" y="60" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#86efac">LoRA corrects the rounding errors</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <rect x="0" y="1000" width="1920" height="80" fill="#020617"/>
+  <text x="960" y="1050" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#64748b">4-bit isn't perfect. It's close enough. LoRA makes up the difference.</text>
+</svg>
