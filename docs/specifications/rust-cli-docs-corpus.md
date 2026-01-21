@@ -1,7 +1,7 @@
 # Rust CLI Documentation Corpus Specification
 
 **Document:** RCDC-SPEC-001
-**Version:** 1.1.4
+**Version:** 1.1.5
 **Status:** Draft (Reviewed by Dr. Popper)
 **Date:** January 2026
 **Philosophy:** The Toyota Way (Lean Principles) & Critical Rationalism
@@ -706,6 +706,16 @@ corpus-sample N=10      # Print N random examples
 ---
 
 ## 12. Changelog
+
+### v1.1.5 (2026-01-21) - Fine-Tuning Pipeline Validation
+- **VALIDATED:** End-to-end fine-tuning pipeline executed successfully
+- Training configuration: LoRA rank=8, alpha=16, lr=0.0002, 3 epochs
+- Demo model training completed (4 projection layers: q/k/v/o_proj)
+- Training data: 100 rows from numeric parquet corpus
+- Model checkpoint saved to `checkpoints/final_model.json`
+- **Test coverage:** 92.53% (3232 tests passing)
+- New tests: transformer from_params (18), TUI capability (12), charts (14), config (4), refresh (5), sparkline (7)
+- **Status:** Pipeline operational; ready for production model fine-tuning
 
 ### v1.1.4 (2026-01-21) - Memory Optimization & Training Loop
 - **NEW:** Gradient checkpointing for O(sqrt(N)) memory scaling
