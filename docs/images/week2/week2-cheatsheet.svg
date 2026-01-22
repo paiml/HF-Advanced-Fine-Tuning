@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <filter id="shadow" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+    <style>
+      .title { font-family: Inter, Arial, sans-serif; font-size: 36px; font-weight: bold; fill: #fff; }
+      .box-title { font-family: Inter, Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #fff; }
+      .code { font-family: 'JetBrains Mono', monospace; font-size: 14px; fill: #64748b; }
+      .body { font-family: Inter, Arial, sans-serif; font-size: 15px; fill: #334155; }
+      .mono { font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+      .insight { font-family: Georgia, serif; font-size: 14px; font-style: italic; fill: #64748b; }
+      .footer-title { font-family: Inter, Arial, sans-serif; font-size: 24px; font-weight: bold; }
+      .pipeline-label { font-family: Inter, Arial, sans-serif; font-size: 14px; fill: #fff; }
+      .pipeline-sub { font-family: Inter, Arial, sans-serif; font-size: 12px; }
+      .metric { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#f8fafc"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1920" height="80" fill="url(#headerGrad)"/>
+  <text x="960" y="52" text-anchor="middle" class="title">Week 2: PEFT &amp; Corpus Engineering Cheat Sheet</text>
+
+  <!-- Row 1 -->
+  <!-- Box 1: LoRA Fundamentals -->
+  <g transform="translate(40, 110)">
+    <rect width="580" height="280" rx="12" fill="#fff" stroke="#22c55e" stroke-width="3" filter="url(#shadow)"/>
+    <rect width="580" height="50" rx="12" fill="#22c55e"/>
+    <rect x="0" y="40" width="580" height="10" fill="#22c55e"/>
+    <text x="290" y="35" text-anchor="middle" class="box-title">1. LoRA FUNDAMENTALS</text>
+    <text x="25" y="85" class="code">W' = W + BA (rank-r decomposition)</text>
+
+    <text x="25" y="125" class="body">Rank r=8:</text>
+    <text x="140" y="125" class="mono" style="fill:#16a34a">0.01% parameters trained</text>
+    <text x="25" y="155" class="body">Alpha=16:</text>
+    <text x="140" y="155" class="mono" style="fill:#ea580c">scaling factor = alpha/r = 2</text>
+    <text x="25" y="185" class="body">Target modules:</text>
+    <text x="160" y="185" class="mono" style="fill:#2563eb">q_proj, v_proj (attention)</text>
+
+    <line x1="25" y1="205" x2="555" y2="205" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="25" y="235" class="insight">Insight: Low rank captures task-specific adaptations.</text>
+    <text x="25" y="260" class="insight">Freeze base weights, train only the delta. Memory efficient.</text>
+  </g>
+
+  <!-- Box 2: QLoRA -->
+  <g transform="translate(670, 110)">
+    <rect width="580" height="280" rx="12" fill="#fff" stroke="#7c3aed" stroke-width="3" filter="url(#shadow)"/>
+    <rect width="580" height="50" rx="12" fill="#7c3aed"/>
+    <rect x="0" y="40" width="580" height="10" fill="#7c3aed"/>
+    <text x="290" y="35" text-anchor="middle" class="box-title">2. QLoRA: 4-BIT FINE-TUNING</text>
+    <text x="25" y="85" class="code">NF4 quantization + LoRA adapters</text>
+
+    <text x="25" y="125" class="body">7B model VRAM:</text>
+    <text x="170" y="125" class="mono" style="fill:#dc2626">28GB → 4GB (7x reduction)</text>
+    <text x="25" y="155" class="body">Base weights:</text>
+    <text x="140" y="155" class="mono" style="fill:#7c3aed">4-bit NF4, frozen</text>
+    <text x="25" y="185" class="body">LoRA weights:</text>
+    <text x="140" y="185" class="mono" style="fill:#16a34a">FP16, trainable</text>
+
+    <line x1="25" y1="205" x2="555" y2="205" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="25" y="235" class="insight">Insight: Quantize base for memory, keep adapters in FP16</text>
+    <text x="25" y="260" class="insight">for precision. Fine-tune 70B models on consumer GPUs.</text>
+  </g>
+
+  <!-- Box 3: Corpus Extraction -->
+  <g transform="translate(1300, 110)">
+    <rect width="580" height="280" rx="12" fill="#fff" stroke="#3b82f6" stroke-width="3" filter="url(#shadow)"/>
+    <rect width="580" height="50" rx="12" fill="#3b82f6"/>
+    <rect x="0" y="40" width="580" height="10" fill="#3b82f6"/>
+    <text x="290" y="35" text-anchor="middle" class="box-title">3. CORPUS EXTRACTION</text>
+    <text x="25" y="85" class="code">syn crate for AST parsing (not regex scraping)</text>
+
+    <text x="25" y="125" class="mono" style="fill:#334155">INPUT:  fn name + params + return type</text>
+    <text x="25" y="155" class="mono" style="fill:#334155">OUTPUT: rustdoc /// comments</text>
+    <text x="25" y="185" class="body">UUID v5:</text>
+    <text x="100" y="185" class="mono" style="fill:#2563eb">deterministic from content (dedup)</text>
+
+    <line x1="25" y1="205" x2="555" y2="205" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="25" y="235" class="insight">Insight: Parse real Rust syntax trees, not text patterns.</text>
+    <text x="25" y="260" class="insight">Same content = same UUID. Deduplication across runs.</text>
+  </g>
+
+  <!-- Row 2 -->
+  <!-- Box 4: Quality Filtering -->
+  <g transform="translate(40, 420)">
+    <rect width="580" height="280" rx="12" fill="#fff" stroke="#f59e0b" stroke-width="3" filter="url(#shadow)"/>
+    <rect width="580" height="50" rx="12" fill="#f59e0b"/>
+    <rect x="0" y="40" width="580" height="10" fill="#f59e0b"/>
+    <text x="290" y="35" text-anchor="middle" class="box-title">4. QUALITY FILTERING</text>
+    <text x="25" y="85" class="code">7 hard gates + category balancing + repo limits</text>
+
+    <text x="25" y="120" class="mono" style="fill:#334155">score &gt;= 0.4  |  tokens 10-500  |  line &lt; 100</text>
+    <text x="25" y="148" class="mono" style="fill:#334155">balanced delimiters  |  no control chars</text>
+    <text x="25" y="176" class="mono" style="fill:#334155">input/output ratio 1-15  |  valid UTF-8</text>
+    <text x="25" y="204" class="body" style="fill:#dc2626">Max 38% from any single repository</text>
+
+    <line x1="25" y1="220" x2="555" y2="220" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="25" y="248" class="insight">Insight: 80% of candidates filtered out. Quality gates</text>
+    <text x="25" y="270" class="insight">matter more than volume. Small + clean beats large + noisy.</text>
+  </g>
+
+  <!-- Box 5: Falsification Testing -->
+  <g transform="translate(670, 420)">
+    <rect width="580" height="280" rx="12" fill="#fff" stroke="#ef4444" stroke-width="3" filter="url(#shadow)"/>
+    <rect width="580" height="50" rx="12" fill="#ef4444"/>
+    <rect x="0" y="40" width="580" height="10" fill="#ef4444"/>
+    <text x="290" y="35" text-anchor="middle" class="box-title">5. POPPERIAN FALSIFICATION</text>
+    <text x="25" y="85" class="code">100-point test suite, 85 minimum to pass</text>
+
+    <text x="25" y="125" class="mono" style="fill:#334155">Data Integrity:    20 pts  |  Syntactic:      20 pts</text>
+    <text x="25" y="153" class="mono" style="fill:#334155">Semantic:          20 pts  |  Distribution:   15 pts</text>
+    <text x="25" y="181" class="mono" style="fill:#334155">Reproducibility:   15 pts  |  Quality:        10 pts</text>
+    <text x="25" y="209" class="body" style="fill:#16a34a">Typical score: 96/100</text>
+
+    <line x1="25" y1="225" x2="555" y2="225" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="25" y="253" class="insight">Insight: Try to falsify, not verify. Scientific method.</text>
+    <text x="25" y="275" class="insight">Surviving falsification attempts = justified confidence.</text>
+  </g>
+
+  <!-- Box 6: HuggingFace Publishing -->
+  <g transform="translate(1300, 420)">
+    <rect width="580" height="280" rx="12" fill="#fff" stroke="#14b8a6" stroke-width="3" filter="url(#shadow)"/>
+    <rect width="580" height="50" rx="12" fill="#14b8a6"/>
+    <rect x="0" y="40" width="580" height="10" fill="#14b8a6"/>
+    <text x="290" y="35" text-anchor="middle" class="box-title">6. HUGGINGFACE PUBLISHING</text>
+    <text x="25" y="85" class="code">alimentar crate - pure Rust, no Python SDK</text>
+
+    <text x="25" y="125" class="body">Parquet splits:</text>
+    <text x="140" y="125" class="mono" style="fill:#0d9488">80% train / 10% val / 10% test</text>
+    <text x="25" y="155" class="body">Stratification:</text>
+    <text x="140" y="155" class="mono" style="fill:#0d9488">category distribution preserved</text>
+    <text x="25" y="185" class="body">Auto-generated:</text>
+    <text x="155" y="185" class="mono" style="fill:#0d9488">dataset card, BibTeX, usage</text>
+
+    <line x1="25" y1="205" x2="555" y2="205" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="25" y="235" class="insight">Insight: No Python dependencies in the entire pipeline.</text>
+    <text x="25" y="260" class="insight">Deterministic: same input corpus → identical output.</text>
+  </g>
+
+  <!-- Footer: The Big Picture -->
+  <rect x="40" y="730" width="1840" height="320" rx="12" fill="#0f172a" filter="url(#shadow)"/>
+  <text x="960" y="775" text-anchor="middle" class="footer-title" style="fill:#22c55e">THE BIG PICTURE: Source Code to Production Model</text>
+
+  <!-- Pipeline visualization -->
+  <g transform="translate(80, 810)">
+    <!-- Boxes -->
+    <rect x="0" y="0" width="200" height="70" rx="8" fill="#3b82f6"/>
+    <text x="100" y="30" text-anchor="middle" class="pipeline-label">EXTRACT</text>
+    <text x="100" y="52" text-anchor="middle" class="pipeline-sub" style="fill:#bfdbfe">(syn AST parsing)</text>
+
+    <rect x="250" y="0" width="200" height="70" rx="8" fill="#f59e0b"/>
+    <text x="350" y="30" text-anchor="middle" class="pipeline-label">FILTER</text>
+    <text x="350" y="52" text-anchor="middle" class="pipeline-sub" style="fill:#fef3c7">(7 quality gates)</text>
+
+    <rect x="500" y="0" width="200" height="70" rx="8" fill="#ef4444"/>
+    <text x="600" y="30" text-anchor="middle" class="pipeline-label">FALSIFY</text>
+    <text x="600" y="52" text-anchor="middle" class="pipeline-sub" style="fill:#fecaca">(100-point suite)</text>
+
+    <rect x="750" y="0" width="200" height="70" rx="8" fill="#14b8a6"/>
+    <text x="850" y="30" text-anchor="middle" class="pipeline-label">PUBLISH</text>
+    <text x="850" y="52" text-anchor="middle" class="pipeline-sub" style="fill:#ccfbf1">(HuggingFace)</text>
+
+    <rect x="1000" y="0" width="200" height="70" rx="8" fill="#7c3aed"/>
+    <text x="1100" y="30" text-anchor="middle" class="pipeline-label">QUANTIZE</text>
+    <text x="1100" y="52" text-anchor="middle" class="pipeline-sub" style="fill:#ede9fe">(4-bit NF4)</text>
+
+    <rect x="1250" y="0" width="200" height="70" rx="8" fill="#22c55e"/>
+    <text x="1350" y="30" text-anchor="middle" class="pipeline-label">LoRA TRAIN</text>
+    <text x="1350" y="52" text-anchor="middle" class="pipeline-sub" style="fill:#dcfce7">(r=8, α=16)</text>
+
+    <rect x="1500" y="0" width="200" height="70" rx="8" fill="#1e3a8a"/>
+    <text x="1600" y="30" text-anchor="middle" class="pipeline-label">MERGE</text>
+    <text x="1600" y="52" text-anchor="middle" class="pipeline-sub" style="fill:#dbeafe">(W' = W + BA)</text>
+
+    <!-- Arrows -->
+    <defs><marker id="greenArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0, 10 4, 0 8" fill="#22c55e"/></marker></defs>
+    <path d="M202 35 L248 35" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#greenArrow)"/>
+    <path d="M452 35 L498 35" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#greenArrow)"/>
+    <path d="M702 35 L748 35" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#greenArrow)"/>
+    <path d="M952 35 L998 35" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#greenArrow)"/>
+    <path d="M1202 35 L1248 35" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#greenArrow)"/>
+    <path d="M1452 35 L1498 35" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#greenArrow)"/>
+  </g>
+
+  <!-- Key metrics row -->
+  <g transform="translate(80, 920)">
+    <text x="0" y="20" font-family="Inter, sans-serif" font-size="16" fill="#94a3b8">Key Metrics:</text>
+
+    <rect x="130" y="2" width="180" height="32" rx="6" fill="#22c55e" opacity="0.15"/>
+    <text x="220" y="24" text-anchor="middle" class="metric" style="fill:#22c55e">0.01% params trained</text>
+
+    <rect x="330" y="2" width="150" height="32" rx="6" fill="#7c3aed" opacity="0.15"/>
+    <text x="405" y="24" text-anchor="middle" class="metric" style="fill:#7c3aed">4GB VRAM (7B)</text>
+
+    <rect x="500" y="2" width="160" height="32" rx="6" fill="#ef4444" opacity="0.15"/>
+    <text x="580" y="24" text-anchor="middle" class="metric" style="fill:#ef4444">96/100 falsify</text>
+
+    <rect x="680" y="2" width="150" height="32" rx="6" fill="#f59e0b" opacity="0.15"/>
+    <text x="755" y="24" text-anchor="middle" class="metric" style="fill:#f59e0b">80% filtered</text>
+
+    <rect x="850" y="2" width="180" height="32" rx="6" fill="#3b82f6" opacity="0.15"/>
+    <text x="940" y="24" text-anchor="middle" class="metric" style="fill:#3b82f6">100% Pure Rust</text>
+  </g>
+
+  <!-- Sovereign Stack -->
+  <g transform="translate(1450, 910)">
+    <text x="0" y="20" font-family="Inter, sans-serif" font-size="14" fill="#64748b">Sovereign AI Stack:</text>
+    <text x="0" y="45" font-family="'JetBrains Mono', monospace" font-size="13" fill="#94a3b8">entrenar | alimentar | corpus | trueno</text>
+  </g>
+
+  <!-- Footer summary -->
+  <text x="960" y="1010" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#22c55e">Source Code → Curated Corpus → Falsification-Tested Dataset → QLoRA Fine-Tuning → Production Model</text>
+
+  <!-- Course branding -->
+  <text x="960" y="1050" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#475569">Course 4: Advanced Fine-Tuning with Sovereign AI Stack</text>
+</svg>

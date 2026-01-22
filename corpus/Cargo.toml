@@ -10,13 +10,12 @@ keywords = ["corpus", "fine-tuning", "rust", "documentation", "lora"]
 categories = ["development-tools", "text-processing"]
 
 [dependencies]
-# Sovereign AI Stack (NOTE: alimentar 0.2.4 uses arrow 57 which requires nightly)
-# For stable Rust, we use standalone arrow/parquet
-# alimentar = { version = "0.2.4", features = ["hf-hub", "doctest"] }
+# Sovereign AI Stack
+alimentar = { version = "0.2.5", features = ["hf-hub", "cli"] }
 
-# Arrow/Parquet (v54 with minimal features to avoid comfy-table edition2024 issue)
-arrow = { version = "54", default-features = false, features = ["ipc"] }
-parquet = { version = "54", default-features = false, features = ["arrow", "zstd"] }
+# Arrow/Parquet (match alimentar's arrow 57)
+arrow = { version = "57", default-features = false, features = ["ipc"] }
+parquet = { version = "57", default-features = false, features = ["arrow", "zstd"] }
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
@@ -27,6 +26,7 @@ tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs"] }
 
 # CLI
 clap = { version = "4", features = ["derive"] }
+crossterm = "0.28"
 
 # Utilities
 uuid = { version = "1", features = ["v4", "v5"] }
@@ -45,7 +45,7 @@ proc-macro2 = { version = "1", features = ["span-locations"] }
 # File system
 walkdir = "2"
 
-# HTTP client
+# HTTP client (for fallback, alimentar handles HF uploads)
 reqwest = { version = "0.12", features = ["json"] }
 
 # Error handling

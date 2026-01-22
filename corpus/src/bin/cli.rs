@@ -780,72 +780,166 @@ Apache 2.0
     Ok(())
 }
 
-/// Interactive corpus browser
+/// Interactive corpus browser using alimentar TUI
 fn inspect_command(input: PathBuf) -> anyhow::Result<()> {
-    let corpus = Corpus::load_from_parquet(&input)?;
+    use alimentar::tui::{DatasetAdapter, DatasetViewer};
+    use alimentar::ArrowDataset;
+    use crossterm::{cursor, execute, terminal};
+    use crossterm::event::{self, Event, KeyCode, KeyModifiers};
+    use crossterm::style::{Attribute, Print, SetAttribute};
+    use crossterm::terminal::{Clear, ClearType};
+    use std::io::{stdout, Write};
 
-    println!("Corpus Inspector");
-    println!("================\n");
-    println!("Loaded {} entries from {}\n", corpus.len(), input.display());
-    println!("Commands:");
-    println!("  list [N]     - List first N entries (default 10)");
-    println!("  show <ID>    - Show entry by ID");
-    println!("  cat <INDEX>  - Show entry by index");
-    println!("  stats        - Show statistics");
-    println!("  quit         - Exit\n");
+    // Load the parquet file as an Arrow dataset
+    let dataset = ArrowDataset::from_parquet(&input)
+        .map_err(|e| anyhow::anyhow!("Failed to load dataset: {}", e))?;
 
-    let entries: Vec<_> = corpus.entries().collect();
+    let adapter = DatasetAdapter::from_dataset(&dataset)
+        .map_err(|e| anyhow::anyhow!("TUI adapter error: {}", e))?;
+
+    // Get terminal size
+    let (width, height) = terminal::size().unwrap_or((80, 24));
+    let mut viewer = DatasetViewer::with_dimensions(adapter, width, height.saturating_sub(2));
+
+    // Enter raw mode for keyboard input
+    terminal::enable_raw_mode()?;
+    let mut stdout = stdout();
+
+    // Hide cursor
+    execute!(stdout, cursor::Hide)?;
+
+    // Run TUI loop
+    let result = (|| -> anyhow::Result<()> {
+        loop {
+            // Clear screen and move to top
+            execute!(stdout, Clear(ClearType::All), cursor::MoveTo(0, 0))?;
+
+            // Render title bar
+            let (w, _) = terminal::size().unwrap_or((80, 24));
+            let title = format!(
+                " Corpus Inspector | {} | {} rows | {}",
+                input.file_name().unwrap_or_default().to_string_lossy(),
+                viewer.row_count(),
+                if viewer.adapter().is_streaming() { "Streaming" } else { "InMemory" }
+            );
+            execute!(
+                stdout,
+                SetAttribute(Attribute::Reverse),
+                Print(format!("{:width$}", title, width = w as usize)),
+                SetAttribute(Attribute::Reset),
+                Print("\r\n")
+            )?;
+
+            // Render the viewer
+            for line in viewer.render_lines() {
+                execute!(stdout, Print(&line), Print("\r\n"))?;
+            }
+
+            // Render status bar
+            let status = format!(
+                " Row {}-{} of {} | ↑↓/jk scroll | PgUp/PgDn page | Home/End | /search | q quit ",
+                viewer.scroll_offset() + 1,
+                (viewer.scroll_offset() + viewer.visible_row_count() as usize).min(viewer.row_count()),
+                viewer.row_count()
+            );
+            execute!(
+                stdout,
+                SetAttribute(Attribute::Reverse),
+                Print(format!("{:width$}", status, width = w as usize)),
+                SetAttribute(Attribute::Reset)
+            )?;
+
+            stdout.flush()?;
+
+            // Handle input
+            if event::poll(std::time::Duration::from_millis(100))? {
+                if let Event::Key(key) = event::read()? {
+                    match key.code {
+                        KeyCode::Char('q') | KeyCode::Esc => break,
+                        KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => break,
+                        KeyCode::Down | KeyCode::Char('j') => viewer.scroll_down(),
+                        KeyCode::Up | KeyCode::Char('k') => viewer.scroll_up(),
+                        KeyCode::PageDown | KeyCode::Char(' ') => viewer.page_down(),
+                        KeyCode::PageUp => viewer.page_up(),
+                        KeyCode::Home | KeyCode::Char('g') => viewer.home(),
+                        KeyCode::End | KeyCode::Char('G') => viewer.end(),
+                        KeyCode::Char('/') => {
+                            // Simple search prompt
+                            if let Some(query) = prompt_search(&mut stdout)? {
+                                viewer.search(&query);
+                            }
+                        }
+                        _ => {}
+                    }
+                }
+
+                // Handle resize
+                if let Ok(Event::Resize(w, h)) = event::read() {
+                    viewer.set_dimensions(w, h.saturating_sub(2));
+                }
+            }
+        }
+        Ok(())
+    })();
+
+    // Cleanup: restore terminal
+    let _ = execute!(stdout, cursor::Show);
+    let _ = terminal::disable_raw_mode();
+
+    result
+}
+
+/// Prompt for search query in TUI mode
+fn prompt_search<W: std::io::Write>(stdout: &mut W) -> anyhow::Result<Option<String>> {
+    use crossterm::{cursor, execute, terminal};
+    use crossterm::event::{self, Event, KeyCode};
+    use crossterm::style::Print;
+    use crossterm::terminal::{Clear, ClearType};
+
+    let (_, height) = terminal::size().unwrap_or((80, 24));
+
+    // Move to bottom and show prompt
+    execute!(
+        stdout,
+        cursor::MoveTo(0, height - 1),
+        Clear(ClearType::CurrentLine),
+        cursor::Show,
+        Print("Search: ")
+    )?;
+    stdout.flush()?;
+
+    let mut query = String::new();
 
     loop {
-        print!("> ");
-        use std::io::Write;
-        std::io::stdout().flush()?;
-
-        let mut input_line = String::new();
-        if std::io::stdin().read_line(&mut input_line)? == 0 {
-            break;
-        }
-
-        let parts: Vec<&str> = input_line.split_whitespace().collect();
-        if parts.is_empty() {
-            continue;
-        }
-
-        let cmd = parts.first().copied().unwrap_or("");
-        match cmd {
-            "quit" | "exit" | "q" => break,
-            "list" => {
-                let n: usize = parts.get(1).and_then(|s| s.parse().ok()).unwrap_or(10);
-                for (i, entry) in entries.iter().take(n).enumerate() {
-                    println!("{:>4}. [{}] {} ({})", i, entry.category, &entry.id[..8], entry.source_repo);
+        if let Event::Key(key) = event::read()? {
+            match key.code {
+                KeyCode::Enter => {
+                    execute!(stdout, cursor::Hide)?;
+                    return Ok(if query.is_empty() { None } else { Some(query) });
                 }
-            }
-            "show" => {
-                if let Some(id) = parts.get(1) {
-                    if let Some(entry) = entries.iter().find(|e| e.id.starts_with(id)) {
-                        print_entry(entry);
-                    } else {
-                        println!("Entry not found: {}", id);
-                    }
+                KeyCode::Esc => {
+                    execute!(stdout, cursor::Hide)?;
+                    return Ok(None);
                 }
-            }
-            "cat" => {
-                if let Some(idx) = parts.get(1).and_then(|s| s.parse::<usize>().ok()) {
-                    if let Some(entry) = entries.get(idx) {
-                        print_entry(entry);
-                    } else {
-                        println!("Index out of range: {}", idx);
-                    }
+                KeyCode::Backspace => {
+                    query.pop();
+                    execute!(
+                        stdout,
+                        cursor::MoveTo(8, height - 1),
+                        Clear(ClearType::UntilNewLine),
+                        Print(&query)
+                    )?;
+                    stdout.flush()?;
                 }
+                KeyCode::Char(c) => {
+                    query.push(c);
+                    execute!(stdout, Print(c))?;
+                    stdout.flush()?;
+                }
+                _ => {}
             }
-            "stats" => {
-                println!("Total entries: {}", entries.len());
-            }
-            _ => println!("Unknown command: {}", cmd),
         }
     }
-
-    Ok(())
 }
 
 fn print_entry(entry: &rust_cli_docs_corpus::CorpusEntry) {
