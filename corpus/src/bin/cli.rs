@@ -16,6 +16,7 @@
 //! - sample: Print N random examples
 
 use clap::{Parser, Subcommand};
+use std::fmt::Write as _;
 use rust_cli_docs_corpus::{
     extractor::{DocExtractor, ExtractorConfig, RepoSpec},
     filter::CorpusFilter,
@@ -627,15 +628,15 @@ fn review_command(input: PathBuf, sample_count: usize, output: PathBuf) -> anyho
     let review_file = output.join("review_sample.md");
     let mut content = String::new();
     content.push_str("# Human Review Sample\n\n");
-    content.push_str(&format!("Generated: {}\n", chrono::Utc::now()));
-    content.push_str(&format!("Sample size: {}\n\n", sample.len()));
+    let _ = writeln!(content, "Generated: {}", chrono::Utc::now());
+    let _ = writeln!(content, "Sample size: {}\n", sample.len());
 
     for (i, entry) in sample.iter().enumerate() {
-        content.push_str(&format!("## Entry {} / {}\n\n", i + 1, sample.len()));
-        content.push_str(&format!("**ID:** `{}`\n\n", entry.id));
-        content.push_str(&format!("**Source:** `{}` @ `{}` (line {})\n\n", entry.source_repo, entry.source_commit, entry.source_line));
-        content.push_str(&format!("**Category:** {}\n\n", entry.category));
-        content.push_str(&format!("**Quality Score:** {:.3}\n\n", entry.quality_score));
+        let _ = writeln!(content, "## Entry {} / {}\n", i + 1, sample.len());
+        let _ = writeln!(content, "**ID:** `{}`\n", entry.id);
+        let _ = writeln!(content, "**Source:** `{}` @ `{}` (line {})\n", entry.source_repo, entry.source_commit, entry.source_line);
+        let _ = writeln!(content, "**Category:** {}\n", entry.category);
+        let _ = writeln!(content, "**Quality Score:** {:.3}\n", entry.quality_score);
         content.push_str("### Input (Signature)\n\n```rust\n");
         content.push_str(&entry.input);
         content.push_str("\n```\n\n");

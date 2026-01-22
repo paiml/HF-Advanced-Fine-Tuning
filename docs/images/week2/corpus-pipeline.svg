@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap');
+      .title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 42px; fill: #f8fafc; }
+      .subtitle { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 24px; fill: #94a3b8; }
+      .section-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 22px; fill: #f8fafc; }
+      .label { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 18px; fill: #e2e8f0; }
+      .label-small { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 14px; fill: #94a3b8; }
+      .code { font-family: 'JetBrains Mono', monospace; font-size: 14px; fill: #e2e8f0; }
+      .code-small { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #cbd5e1; }
+      .code-highlight { font-family: 'JetBrains Mono', monospace; font-size: 14px; fill: #22c55e; }
+      .number { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 28px; fill: #7c3aed; }
+      .stat { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 16px; fill: #22c55e; }
+      .stat-label { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 14px; fill: #94a3b8; }
+      .repo-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; fill: #e2e8f0; }
+    </style>
+    <!-- Gradients -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#020617"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="sourceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a"/>
+      <stop offset="100%" style="stop-color:#1e40af"/>
+    </linearGradient>
+    <linearGradient id="extractGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#6d28d9"/>
+    </linearGradient>
+    <linearGradient id="testGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <linearGradient id="tuneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <linearGradient id="publishGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#14b8a6"/>
+      <stop offset="100%" style="stop-color:#0d9488"/>
+    </linearGradient>
+    <!-- Arrow markers -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowhead-teal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#14b8a6"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="#0f172a"/>
+
+  <!-- Header -->
+  <rect width="1920" height="100" fill="url(#headerGrad)"/>
+  <text x="960" y="55" text-anchor="middle" class="title">Corpus Creation &amp; Publishing Pipeline</text>
+  <text x="960" y="85" text-anchor="middle" class="subtitle">From Source Repositories to HuggingFace Dataset</text>
+
+  <!-- Footer -->
+  <rect y="1030" width="1920" height="50" fill="#020617"/>
+  <text x="60" y="1060" class="label-small">paiml/rust-cli-docs-corpus</text>
+  <text x="1860" y="1060" text-anchor="end" class="label-small">Sovereign AI Stack</text>
+
+  <!-- ============================================ -->
+  <!-- STEP 1: SOURCE REPOSITORIES -->
+  <!-- ============================================ -->
+  <g transform="translate(60, 130)">
+    <!-- Step number -->
+    <circle cx="25" cy="25" r="25" fill="#7c3aed"/>
+    <text x="25" y="33" text-anchor="middle" class="number" style="fill:#fff;font-size:20px">1</text>
+
+    <!-- Section title -->
+    <text x="65" y="32" class="section-title">SOURCE REPOS</text>
+    <text x="260" y="32" class="label-small">7 Production Rust CLIs</text>
+
+    <!-- Source box -->
+    <rect x="0" y="50" width="340" height="220" rx="12" fill="url(#sourceGrad)" opacity="0.3" stroke="#3b82f6" stroke-width="2"/>
+
+    <!-- Repository icons -->
+    <g transform="translate(20, 70)">
+      <!-- ripgrep -->
+      <rect x="0" y="0" width="145" height="40" rx="6" fill="#1e293b" stroke="#3b82f6"/>
+      <text x="50" y="25" text-anchor="middle" class="repo-name">ripgrep</text>
+      <text x="120" y="25" text-anchor="middle" class="code-small" style="fill:#3b82f6">38%</text>
+
+      <!-- clap -->
+      <rect x="155" y="0" width="145" height="40" rx="6" fill="#1e293b" stroke="#3b82f6"/>
+      <text x="205" y="25" text-anchor="middle" class="repo-name">clap</text>
+      <text x="275" y="25" text-anchor="middle" class="code-small" style="fill:#3b82f6">26%</text>
+
+      <!-- eza -->
+      <rect x="0" y="50" width="145" height="40" rx="6" fill="#1e293b" stroke="#3b82f6"/>
+      <text x="50" y="75" text-anchor="middle" class="repo-name">eza</text>
+      <text x="120" y="75" text-anchor="middle" class="code-small" style="fill:#3b82f6">17%</text>
+
+      <!-- starship -->
+      <rect x="155" y="50" width="145" height="40" rx="6" fill="#1e293b" stroke="#3b82f6"/>
+      <text x="205" y="75" text-anchor="middle" class="repo-name">starship</text>
+      <text x="275" y="75" text-anchor="middle" class="code-small" style="fill:#3b82f6">7%</text>
+
+      <!-- fd -->
+      <rect x="0" y="100" width="95" height="40" rx="6" fill="#1e293b" stroke="#3b82f6"/>
+      <text x="47" y="125" text-anchor="middle" class="repo-name">fd</text>
+
+      <!-- tokei -->
+      <rect x="105" y="100" width="95" height="40" rx="6" fill="#1e293b" stroke="#3b82f6"/>
+      <text x="152" y="125" text-anchor="middle" class="repo-name">tokei</text>
+
+      <!-- bat -->
+      <rect x="210" y="100" width="90" height="40" rx="6" fill="#1e293b" stroke="#3b82f6"/>
+      <text x="255" y="125" text-anchor="middle" class="repo-name">bat</text>
+    </g>
+
+    <!-- GitHub icon hint -->
+    <text x="170" y="260" text-anchor="middle" class="code-small" style="fill:#64748b">git clone + rustdoc extraction</text>
+  </g>
+
+  <!-- Arrow 1->2 -->
+  <line x1="420" y1="260" x2="460" y2="260" stroke="#64748b" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- ============================================ -->
+  <!-- STEP 2: EXTRACTION -->
+  <!-- ============================================ -->
+  <g transform="translate(480, 130)">
+    <!-- Step number -->
+    <circle cx="25" cy="25" r="25" fill="#7c3aed"/>
+    <text x="25" y="33" text-anchor="middle" class="number" style="fill:#fff;font-size:20px">2</text>
+
+    <!-- Section title -->
+    <text x="65" y="32" class="section-title">EXTRACTION</text>
+
+    <!-- Extract box -->
+    <rect x="0" y="50" width="300" height="220" rx="12" fill="url(#extractGrad)" opacity="0.2" stroke="#7c3aed" stroke-width="2"/>
+
+    <!-- Input section -->
+    <text x="20" y="80" class="label-small" style="fill:#7c3aed">Parse Source</text>
+    <rect x="20" y="90" width="260" height="50" rx="6" fill="#1e293b"/>
+    <text x="30" y="112" class="code-small">/// Sorts items by key</text>
+    <text x="30" y="128" class="code-small">pub fn sort_by&lt;K&gt;(...)</text>
+
+    <!-- Output section -->
+    <text x="20" y="160" class="label-small" style="fill:#22c55e">Generate Pairs</text>
+    <rect x="20" y="170" width="260" height="85" rx="6" fill="#1e293b"/>
+    <text x="30" y="192" class="code-small" style="fill:#94a3b8">INPUT:</text>
+    <text x="30" y="208" class="code-small">  fn sort_by&lt;K&gt;(slice, f)</text>
+    <text x="30" y="226" class="code-small" style="fill:#94a3b8">OUTPUT:</text>
+    <text x="30" y="242" class="code-small">  /// Sorts items by key...</text>
+  </g>
+
+  <!-- Arrow 2->3 -->
+  <line x1="800" y1="260" x2="840" y2="260" stroke="#64748b" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- ============================================ -->
+  <!-- STEP 3: FALSIFICATION -->
+  <!-- ============================================ -->
+  <g transform="translate(860, 130)">
+    <!-- Step number -->
+    <circle cx="25" cy="25" r="25" fill="#7c3aed"/>
+    <text x="25" y="33" text-anchor="middle" class="number" style="fill:#fff;font-size:20px">3</text>
+
+    <!-- Section title -->
+    <text x="65" y="32" class="section-title">FALSIFICATION</text>
+    <text x="255" y="32" class="label-small">Quality Gates</text>
+
+    <!-- Test box -->
+    <rect x="0" y="50" width="300" height="220" rx="12" fill="url(#testGrad)" opacity="0.2" stroke="#f59e0b" stroke-width="2"/>
+
+    <!-- Test results -->
+    <g transform="translate(15, 70)">
+      <!-- Data Integrity -->
+      <rect x="0" y="0" width="130" height="45" rx="6" fill="#1e293b" stroke="#22c55e"/>
+      <text x="65" y="20" text-anchor="middle" class="label-small" style="fill:#22c55e">Integrity</text>
+      <text x="65" y="38" text-anchor="middle" class="stat">20/20</text>
+
+      <!-- Syntactic -->
+      <rect x="140" y="0" width="130" height="45" rx="6" fill="#1e293b" stroke="#22c55e"/>
+      <text x="205" y="20" text-anchor="middle" class="label-small" style="fill:#22c55e">Syntactic</text>
+      <text x="205" y="38" text-anchor="middle" class="stat">20/20</text>
+
+      <!-- Semantic -->
+      <rect x="0" y="55" width="130" height="45" rx="6" fill="#1e293b" stroke="#22c55e"/>
+      <text x="65" y="75" text-anchor="middle" class="label-small" style="fill:#22c55e">Semantic</text>
+      <text x="65" y="93" text-anchor="middle" class="stat">20/20</text>
+
+      <!-- Distribution -->
+      <rect x="140" y="55" width="130" height="45" rx="6" fill="#1e293b" stroke="#eab308"/>
+      <text x="205" y="75" text-anchor="middle" class="label-small" style="fill:#eab308">Distribution</text>
+      <text x="205" y="93" text-anchor="middle" class="stat" style="fill:#eab308">11/15</text>
+    </g>
+
+    <!-- Total score -->
+    <rect x="40" y="190" width="220" height="70" rx="8" fill="#166534" stroke="#22c55e" stroke-width="2"/>
+    <text x="150" y="215" text-anchor="middle" class="label" style="fill:#fff">73 Tests</text>
+    <text x="150" y="248" text-anchor="middle" class="stat">96/100</text>
+  </g>
+
+  <!-- Arrow 3->4 -->
+  <line x1="1180" y1="260" x2="1220" y2="260" stroke="#64748b" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- ============================================ -->
+  <!-- STEP 4: CORPUS OUTPUT -->
+  <!-- ============================================ -->
+  <g transform="translate(1240, 130)">
+    <!-- Step number -->
+    <circle cx="25" cy="25" r="25" fill="#7c3aed"/>
+    <text x="25" y="33" text-anchor="middle" class="number" style="fill:#fff;font-size:20px">4</text>
+
+    <!-- Section title -->
+    <text x="65" y="32" class="section-title">CORPUS</text>
+    <text x="180" y="32" class="label-small">Validated Dataset</text>
+
+    <!-- Corpus box -->
+    <rect x="0" y="50" width="280" height="220" rx="12" fill="url(#tuneGrad)" opacity="0.2" stroke="#22c55e" stroke-width="2"/>
+
+    <!-- File format -->
+    <rect x="15" y="65" width="250" height="120" rx="6" fill="#0f172a"/>
+    <text x="25" y="88" class="code-small" style="fill:#22c55e">corpus.parquet</text>
+    <text x="25" y="108" class="code-small" style="fill:#94a3b8">├── id: string</text>
+    <text x="25" y="124" class="code-small" style="fill:#94a3b8">├── crate: string</text>
+    <text x="25" y="140" class="code-small" style="fill:#94a3b8">├── input: string</text>
+    <text x="25" y="156" class="code-small" style="fill:#94a3b8">├── output: string</text>
+    <text x="25" y="172" class="code-small" style="fill:#94a3b8">└── quality: float</text>
+
+    <!-- Stats row -->
+    <g transform="translate(15, 195)">
+      <rect x="0" y="0" width="120" height="60" rx="6" fill="#1e293b" stroke="#334155"/>
+      <text x="60" y="25" text-anchor="middle" class="stat">100</text>
+      <text x="60" y="48" text-anchor="middle" class="stat-label">entries</text>
+
+      <rect x="130" y="0" width="120" height="60" rx="6" fill="#1e293b" stroke="#334155"/>
+      <text x="190" y="25" text-anchor="middle" class="stat">7</text>
+      <text x="190" y="48" text-anchor="middle" class="stat-label">crates</text>
+    </g>
+  </g>
+
+  <!-- Arrow 4->5 -->
+  <line x1="1540" y1="260" x2="1580" y2="260" stroke="#64748b" stroke-width="3" marker-end="url(#arrowhead)"/>
+
+  <!-- ============================================ -->
+  <!-- STEP 5: PUBLISH TO HF -->
+  <!-- ============================================ -->
+  <g transform="translate(1600, 130)">
+    <!-- Step number -->
+    <circle cx="25" cy="25" r="25" fill="#7c3aed"/>
+    <text x="25" y="33" text-anchor="middle" class="number" style="fill:#fff;font-size:20px">5</text>
+
+    <!-- Section title -->
+    <text x="65" y="32" class="section-title">PUBLISH</text>
+
+    <!-- Publish box -->
+    <rect x="0" y="50" width="260" height="220" rx="12" fill="url(#publishGrad)" opacity="0.2" stroke="#14b8a6" stroke-width="2"/>
+
+    <!-- HuggingFace logo placeholder -->
+    <rect x="70" y="70" width="120" height="40" rx="20" fill="#ffcc00" stroke="#f59e0b" stroke-width="2"/>
+    <text x="130" y="95" text-anchor="middle" class="label" style="fill:#1e293b;font-weight:700">HF</text>
+
+    <!-- Command -->
+    <rect x="15" y="125" width="230" height="60" rx="6" fill="#0f172a"/>
+    <text x="25" y="148" class="code-small" style="fill:#94a3b8">$ cargo run --release</text>
+    <text x="25" y="168" class="code-highlight">alimentar push</text>
+
+    <!-- Dataset URL -->
+    <rect x="15" y="195" width="230" height="60" rx="6" fill="#1e293b" stroke="#14b8a6"/>
+    <text x="130" y="218" text-anchor="middle" class="label-small" style="fill:#14b8a6">Dataset Live</text>
+    <text x="130" y="238" text-anchor="middle" class="code-small">paiml/rust-cli-docs</text>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM SECTION: DETAILED FLOW -->
+  <!-- ============================================ -->
+
+  <!-- Category Distribution -->
+  <g transform="translate(60, 420)">
+    <text x="0" y="0" class="section-title">Category Distribution</text>
+
+    <rect x="0" y="20" width="400" height="200" rx="12" fill="#1e293b" stroke="#334155"/>
+
+    <g transform="translate(20, 45)">
+      <!-- function -->
+      <rect x="0" y="0" width="360" height="28" rx="4" fill="#0f172a"/>
+      <rect x="0" y="0" width="166" height="28" rx="4" fill="#7c3aed"/>
+      <text x="180" y="19" class="label-small" style="fill:#e2e8f0">function 46%</text>
+
+      <!-- argument -->
+      <rect x="0" y="38" width="360" height="28" rx="4" fill="#0f172a"/>
+      <rect x="0" y="38" width="104" height="28" rx="4" fill="#14b8a6"/>
+      <text x="120" y="57" class="label-small" style="fill:#e2e8f0">argument 29%</text>
+
+      <!-- example -->
+      <rect x="0" y="76" width="360" height="28" rx="4" fill="#0f172a"/>
+      <rect x="0" y="76" width="50" height="28" rx="4" fill="#f59e0b"/>
+      <text x="65" y="95" class="label-small" style="fill:#e2e8f0">example 14%</text>
+
+      <!-- module -->
+      <rect x="0" y="114" width="360" height="28" rx="4" fill="#0f172a"/>
+      <rect x="0" y="114" width="40" height="28" rx="4" fill="#22c55e"/>
+      <text x="55" y="133" class="label-small" style="fill:#e2e8f0">other 11%</text>
+    </g>
+  </g>
+
+  <!-- Tool Chain -->
+  <g transform="translate(500, 420)">
+    <text x="0" y="0" class="section-title">Sovereign AI Stack Tools</text>
+
+    <rect x="0" y="20" width="560" height="200" rx="12" fill="#1e293b" stroke="#334155"/>
+
+    <!-- Tools -->
+    <g transform="translate(20, 45)">
+      <!-- syn-serde -->
+      <rect x="0" y="0" width="160" height="65" rx="8" fill="#0f172a" stroke="#3b82f6"/>
+      <text x="80" y="28" text-anchor="middle" class="label" style="fill:#3b82f6">syn-serde</text>
+      <text x="80" y="48" text-anchor="middle" class="code-small">AST parsing</text>
+
+      <!-- Arrow -->
+      <path d="M 170 32 L 200 32" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+      <!-- corpus crate -->
+      <rect x="210" y="0" width="160" height="65" rx="8" fill="#0f172a" stroke="#7c3aed"/>
+      <text x="290" y="28" text-anchor="middle" class="label" style="fill:#7c3aed">corpus</text>
+      <text x="290" y="48" text-anchor="middle" class="code-small">Test + validate</text>
+
+      <!-- Arrow -->
+      <path d="M 380 32 L 410 32" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+      <!-- alimentar -->
+      <rect x="420" y="0" width="120" height="65" rx="8" fill="#0f172a" stroke="#14b8a6"/>
+      <text x="480" y="28" text-anchor="middle" class="label" style="fill:#14b8a6">alimentar</text>
+      <text x="480" y="48" text-anchor="middle" class="code-small">HF publish</text>
+    </g>
+
+    <!-- Bottom row - dependencies -->
+    <g transform="translate(20, 125)">
+      <rect x="0" y="0" width="160" height="55" rx="8" fill="#0f172a" stroke="#334155"/>
+      <text x="80" y="22" text-anchor="middle" class="label-small">arrow 57</text>
+      <text x="80" y="40" text-anchor="middle" class="code-small" style="fill:#64748b">Columnar</text>
+
+      <rect x="175" y="0" width="160" height="55" rx="8" fill="#0f172a" stroke="#334155"/>
+      <text x="255" y="22" text-anchor="middle" class="label-small">parquet 57</text>
+      <text x="255" y="40" text-anchor="middle" class="code-small" style="fill:#64748b">File format</text>
+
+      <rect x="350" y="0" width="190" height="55" rx="8" fill="#0f172a" stroke="#334155"/>
+      <text x="445" y="22" text-anchor="middle" class="label-small">hf-hub</text>
+      <text x="445" y="40" text-anchor="middle" class="code-small" style="fill:#64748b">HF API</text>
+    </g>
+  </g>
+
+  <!-- Usage Examples -->
+  <g transform="translate(1100, 420)">
+    <text x="0" y="0" class="section-title">Dataset Usage</text>
+
+    <rect x="0" y="20" width="760" height="200" rx="12" fill="#1e293b" stroke="#334155"/>
+
+    <!-- Python usage -->
+    <g transform="translate(20, 40)">
+      <text x="0" y="0" class="label-small" style="fill:#3b82f6">Python (HuggingFace)</text>
+      <rect x="0" y="10" width="350" height="75" rx="6" fill="#0f172a"/>
+      <text x="10" y="30" class="code-small" style="fill:#f59e0b">from</text>
+      <text x="45" y="30" class="code-small">datasets</text>
+      <text x="100" y="30" class="code-small" style="fill:#f59e0b">import</text>
+      <text x="150" y="30" class="code-small">load_dataset</text>
+      <text x="10" y="50" class="code-small">ds = load_dataset(</text>
+      <text x="10" y="70" class="code-small" style="fill:#22c55e">  'paiml/rust-cli-docs-corpus')</text>
+    </g>
+
+    <!-- Rust usage -->
+    <g transform="translate(390, 40)">
+      <text x="0" y="0" class="label-small" style="fill:#f59e0b">Rust (Sovereign AI)</text>
+      <rect x="0" y="10" width="350" height="75" rx="6" fill="#0f172a"/>
+      <text x="10" y="30" class="code-small" style="fill:#94a3b8">// Pure Rust, no Python</text>
+      <text x="10" y="50" class="code-small">alimentar::pull(</text>
+      <text x="10" y="70" class="code-small" style="fill:#22c55e">  "paiml/rust-cli-docs-corpus")?;</text>
+    </g>
+
+    <!-- Fine-tuning command -->
+    <g transform="translate(20, 135)">
+      <text x="0" y="0" class="label-small" style="fill:#22c55e">Fine-tune with entrenar</text>
+      <rect x="0" y="10" width="720" height="45" rx="6" fill="#0f172a"/>
+      <text x="10" y="38" class="code">entrenar train --corpus paiml/rust-cli-docs-corpus --lora r=8 --epochs 3</text>
+    </g>
+  </g>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM ROW: QUALITY + METADATA -->
+  <!-- ============================================ -->
+
+  <!-- Quality Pipeline -->
+  <g transform="translate(60, 660)">
+    <text x="0" y="0" class="section-title">Quality Pipeline</text>
+
+    <rect x="0" y="20" width="900" height="160" rx="12" fill="#1e293b" stroke="#334155"/>
+
+    <!-- Flow boxes -->
+    <g transform="translate(20, 45)">
+      <!-- Raw -->
+      <rect x="0" y="0" width="130" height="80" rx="8" fill="#0f172a" stroke="#ef4444"/>
+      <text x="65" y="22" text-anchor="middle" class="label-small" style="fill:#ef4444">Raw Extract</text>
+      <text x="65" y="48" text-anchor="middle" class="stat" style="fill:#ef4444">~500</text>
+      <text x="65" y="68" text-anchor="middle" class="stat-label">candidates</text>
+
+      <path d="M 140 40 L 170 40" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+      <!-- Syntax Filter -->
+      <rect x="180" y="0" width="130" height="80" rx="8" fill="#0f172a" stroke="#f59e0b"/>
+      <text x="245" y="22" text-anchor="middle" class="label-small" style="fill:#f59e0b">Syntax Filter</text>
+      <text x="245" y="48" text-anchor="middle" class="stat" style="fill:#f59e0b">~250</text>
+      <text x="245" y="68" text-anchor="middle" class="stat-label">valid AST</text>
+
+      <path d="M 320 40 L 350 40" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+      <!-- Semantic Filter -->
+      <rect x="360" y="0" width="140" height="80" rx="8" fill="#0f172a" stroke="#eab308"/>
+      <text x="430" y="22" text-anchor="middle" class="label-small" style="fill:#eab308">Semantic</text>
+      <text x="430" y="48" text-anchor="middle" class="stat" style="fill:#eab308">~150</text>
+      <text x="430" y="68" text-anchor="middle" class="stat-label">meaningful</text>
+
+      <path d="M 510 40 L 540 40" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+      <!-- Quality Score -->
+      <rect x="550" y="0" width="130" height="80" rx="8" fill="#0f172a" stroke="#22c55e"/>
+      <text x="615" y="22" text-anchor="middle" class="label-small" style="fill:#22c55e">Quality</text>
+      <text x="615" y="48" text-anchor="middle" class="stat">100</text>
+      <text x="615" y="68" text-anchor="middle" class="stat-label">final</text>
+
+      <path d="M 690 40 L 720 40" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+
+      <!-- Output -->
+      <rect x="730" y="0" width="140" height="80" rx="8" fill="#166534" stroke="#22c55e" stroke-width="2"/>
+      <text x="800" y="35" text-anchor="middle" class="label" style="fill:#fff">Corpus</text>
+      <text x="800" y="60" text-anchor="middle" class="stat">100</text>
+    </g>
+
+    <!-- Rejection stats -->
+    <text x="435" y="145" text-anchor="middle" class="label-small">80% filtered by quality gates</text>
+  </g>
+
+  <!-- Dataset Metadata -->
+  <g transform="translate(1000, 660)">
+    <text x="0" y="0" class="section-title">Dataset Metadata</text>
+
+    <rect x="0" y="20" width="860" height="160" rx="12" fill="#1e293b" stroke="#334155"/>
+
+    <!-- YAML preview -->
+    <rect x="20" y="40" width="400" height="120" rx="6" fill="#0f172a"/>
+    <text x="30" y="62" class="code-small" style="fill:#f59e0b">license:</text>
+    <text x="100" y="62" class="code-small">apache-2.0</text>
+    <text x="30" y="82" class="code-small" style="fill:#f59e0b">task_categories:</text>
+    <text x="30" y="100" class="code-small">  - text-generation</text>
+    <text x="30" y="120" class="code-small" style="fill:#f59e0b">language:</text>
+    <text x="100" y="120" class="code-small">en</text>
+    <text x="30" y="140" class="code-small" style="fill:#f59e0b">size_category:</text>
+    <text x="140" y="140" class="code-small">n&lt;1K</text>
+
+    <!-- Stats boxes -->
+    <g transform="translate(440, 40)">
+      <rect x="0" y="0" width="125" height="55" rx="8" fill="#0f172a" stroke="#22c55e"/>
+      <text x="62" y="22" text-anchor="middle" class="code-small" style="fill:#22c55e">Apache-2.0</text>
+      <text x="62" y="42" text-anchor="middle" class="stat-label">License</text>
+
+      <rect x="135" y="0" width="125" height="55" rx="8" fill="#0f172a" stroke="#22c55e"/>
+      <text x="197" y="22" text-anchor="middle" class="code-small" style="fill:#22c55e">Rust 1.92</text>
+      <text x="197" y="42" text-anchor="middle" class="stat-label">Toolchain</text>
+
+      <rect x="270" y="0" width="125" height="55" rx="8" fill="#0f172a" stroke="#22c55e"/>
+      <text x="332" y="22" text-anchor="middle" class="code-small" style="fill:#22c55e">Parquet</text>
+      <text x="332" y="42" text-anchor="middle" class="stat-label">Format</text>
+    </g>
+
+    <!-- HF link -->
+    <rect x="440" y="105" width="400" height="55" rx="8" fill="#0f172a" stroke="#14b8a6" stroke-width="2"/>
+    <text x="640" y="128" text-anchor="middle" class="code-small" style="fill:#14b8a6">huggingface.co/datasets/paiml/rust-cli-docs-corpus</text>
+    <text x="640" y="148" text-anchor="middle" class="stat" style="fill:#14b8a6">LIVE</text>
+  </g>
+
+  <!-- Decorative connection lines -->
+  <path d="M 460 640 L 460 680" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
+  <path d="M 1100 640 L 1100 680" stroke="#334155" stroke-width="1" stroke-dasharray="4,4"/>
+</svg>
