@@ -55,7 +55,6 @@
 
   <!-- Footer -->
   <rect y="1030" width="1920" height="50" fill="#020617"/>
-  <text x="60" y="1060" class="label-small">Course 4: Advanced Fine-Tuning</text>
   <text x="1860" y="1060" text-anchor="end" class="label-small">Sovereign AI Stack</text>
 
   <!-- ============================================ -->
