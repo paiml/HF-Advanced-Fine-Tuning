@@ -5,7 +5,7 @@
 
 .SUFFIXES:
 .DELETE_ON_ERROR:
-.PHONY: all help setup lint test profile brick-score clean
+.PHONY: all help setup lint svg-lint test profile brick-score clean
 .PHONY: docs serve compliance check
 .PHONY: demos demo-test demo-scalar-simd-gpu demo-training-vs-inference
 .PHONY: demo-inference-pipeline demo-bpe-vs-word demo-attention demo-feed-forward
@@ -140,6 +140,12 @@ demo-eval-cli-help:
 lint:
 	@printf '=== Linting Shell Scripts ===\n'
 	@bashrs lint brick/profile.sh; ret=$$?; if [ $$ret -eq 2 ]; then exit 1; fi
+	@printf '=== Linting SVG Files ===\n'
+	@./scripts/svg-lint.sh docs/images
+
+# SVG linting only
+svg-lint:
+	@./scripts/svg-lint.sh docs/images
 
 # Documentation
 docs:

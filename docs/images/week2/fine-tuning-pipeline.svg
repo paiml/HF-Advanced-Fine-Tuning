@@ -164,7 +164,6 @@
 
     <!-- Section title -->
     <text x="65" y="32" class="section-title">TRAINING</text>
-    <text x="185" y="32" class="label-small">entrenar</text>
 
     <!-- Training box -->
     <rect x="0" y="50" width="380" height="200" rx="12" fill="url(#trainGrad)" opacity="0.2" stroke="#7c3aed" stroke-width="2"/>
@@ -257,7 +256,6 @@
   <!-- ============================================ -->
   <g transform="translate(60, 480)">
     <text x="0" y="0" class="section-title" style="fill:#7c3aed">LoRA Math</text>
-    <text x="120" y="0" class="label-small">W' = W + A × B</text>
 
     <!-- Math visualization -->
     <rect x="0" y="20" width="900" height="180" rx="12" fill="#1e293b" stroke="#334155"/>
@@ -436,7 +434,6 @@
   <!-- ============================================ -->
   <g transform="translate(1020, 720)">
     <text x="0" y="0" class="section-title">Falsification Tests</text>
-    <text x="180" y="0" class="label-small">96/100</text>
 
     <rect x="0" y="20" width="840" height="280" rx="12" fill="#1e293b" stroke="#334155"/>
 
