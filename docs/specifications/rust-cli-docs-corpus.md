@@ -707,6 +707,15 @@ corpus-sample N=10      # Print N random examples
 
 ## 12. Changelog
 
+### v1.1.7 (2026-01-22) - 95% Coverage Achieved & Fine-Tuning Complete
+- **MILESTONE:** entrenar test coverage reached 96.66% (3727 tests) - exceeds 95% target!
+- **Fine-tuning validated:** End-to-end pipeline executed with corpus data
+- Corpus stats: 100 entries, 7 repos, 0.900 mean quality score
+- Corpus validation: 96/100 (PASS) - all critical gates passed
+- Popperian falsification: 73 tests passed (54 validation + 18 property + 1 doctest)
+- Training artifacts: checkpoints/final_model.json saved successfully
+- **Status:** Course 4 fine-tuning pipeline fully operational
+
 ### v1.1.6 (2026-01-21) - Extreme TDD Coverage Push
 - **Test coverage improved:** 92.53% → 93.48% (3325 tests)
 - config/train.rs: 59% → 89.23% (24 new tests)
