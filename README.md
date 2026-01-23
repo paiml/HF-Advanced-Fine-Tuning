@@ -23,6 +23,53 @@
 
 Fine-tune Qwen2.5-Coder models using the **Sovereign AI Stack** — pure Rust tools for privacy-preserving ML with pure Rust inference engine.
 
+## Installation
+
+```bash
+# Install Sovereign AI Stack tools
+cargo install entrenar realizar apr-cli pmat
+
+# Or use make setup
+make setup
+
+# Verify installation
+entrenar --version
+apr --version
+```
+
+## Usage
+
+```bash
+# Import model from HuggingFace
+apr import hf://Qwen/Qwen2.5-Coder-1.5B-Instruct -o base.apr
+
+# Fine-tune with LoRA
+entrenar train --model base.apr --config labs/qlora.toml -o adapter.apr
+
+# Merge adapter with base model
+apr merge base.apr adapter.apr --strategy lora -o merged.apr
+
+# Run inference
+apr run merged.apr --prompt "def fibonacci(n):"
+
+# Serve as API
+apr serve merged.apr --port 8080
+```
+
+## Published Model
+
+The fine-tuned model is available on HuggingFace Hub:
+
+```bash
+# Download and run the fine-tuned model
+apr pull paiml/rust-cli-docs-qwen
+apr run paiml/rust-cli-docs-qwen --prompt "How do I use clap for CLI arguments?"
+```
+
+| Model | Format | Size | Description |
+|-------|--------|------|-------------|
+| [paiml/rust-cli-docs-qwen](https://huggingface.co/paiml/rust-cli-docs-qwen) | `.apr` | 6.6 GB | Qwen2 fine-tuned on Rust CLI documentation |
+
 ## Quick Start
 
 ```bash
@@ -190,8 +237,25 @@ make compliance
 - [batuta](https://crates.io/crates/batuta) — Orchestration
 
 ### HuggingFace
-- [Qwen2.5-Coder-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct)
+- [paiml/rust-cli-docs-qwen](https://huggingface.co/paiml/rust-cli-docs-qwen) — Fine-tuned model (6.6 GB APR format)
+- [Qwen2.5-Coder-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-1.5B-Instruct) — Base model
 - [HF Hub API](https://huggingface.co/docs/hub)
+
+## Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. **Fork** the repository
+2. **Create** a feature branch from `main`
+3. **Write** tests for new functionality
+4. **Ensure** all quality gates pass: `make check`
+5. **Submit** a pull request
+
+### Quality Standards
+
+- PMAT compliance required: `pmat check`
+- Test coverage minimum: 85%
+- Documentation for public APIs
 
 ## License
 
