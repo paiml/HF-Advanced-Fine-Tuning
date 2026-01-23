@@ -20,6 +20,11 @@ pub mod lora_rank;
 pub mod cli_help;
 pub mod lora_merge;
 pub mod eval_cli_help;
+pub mod inference_trace;
+pub mod kernel_overhead_bench;
+
+// Re-export tracer for easy access
+pub use inference_trace::{InferenceTracer, TraceStep, TRACER};
 
 /// Common CLI args for all demos
 #[derive(Args, Debug, Clone)]

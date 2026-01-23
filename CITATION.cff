@@ -1,0 +1,65 @@
+cff-version: 1.2.0
+message: "If you use this model or corpus, please cite it as below."
+title: "Rust CLI Documentation Model (RCDC)"
+version: 3.0.0
+date-released: 2026-01-23
+license: Apache-2.0
+url: "https://huggingface.co/paiml/rust-cli-docs-qwen"
+repository-code: "https://github.com/paiml/rust-cli-docs-corpus"
+abstract: >-
+  A fine-tuned Qwen2.5-Coder-1.5B-Instruct model specialized for generating
+  idiomatic Rust command-line tool documentation. Trained using the Sovereign
+  AI Stack (entrenar/realizar) on a curated corpus of 100 CLI documentation
+  examples from popular Rust projects including ripgrep, clap, bat, eza,
+  starship, tokei, and fd.
+keywords:
+  - rust
+  - documentation
+  - fine-tuning
+  - llm
+  - code-generation
+  - cli
+  - qwen2.5
+  - sovereign-ai
+authors:
+  - family-names: "Gift"
+    given-names: "Noah"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: "Pragmatic AI Labs"
+  - name: "Claude Code"
+    affiliation: "Anthropic"
+preferred-citation:
+  type: software
+  title: "Rust CLI Documentation Corpus: Small-Corpus Fine-Tuning for Domain-Specific Style Transfer"
+  authors:
+    - family-names: "Gift"
+      given-names: "Noah"
+    - name: "Claude Code"
+  year: 2026
+  url: "https://huggingface.co/paiml/rust-cli-docs-qwen"
+  license: Apache-2.0
+references:
+  - type: article
+    title: "Attention Is All You Need"
+    authors:
+      - family-names: "Vaswani"
+        given-names: "Ashish"
+    year: 2017
+    journal: "NeurIPS"
+    doi: "10.48550/arXiv.1706.03762"
+  - type: article
+    title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    authors:
+      - family-names: "Hu"
+        given-names: "Edward"
+    year: 2021
+    journal: "ICLR 2022"
+    doi: "10.48550/arXiv.2106.09685"
+  - type: article
+    title: "Qwen2.5-Coder Technical Report"
+    authors:
+      - family-names: "Hui"
+        given-names: "Binyuan"
+    year: 2024
+    journal: "arXiv"
+    doi: "10.48550/arXiv.2409.12186"

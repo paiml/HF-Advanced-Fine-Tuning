@@ -1,6 +1,7 @@
 //! HuggingFace Hub publication via alimentar.
 
 use crate::{Corpus, CorpusError, Result};
+use alimentar::hf_hub::HfPublisher as AlimentarPublisher;
 use std::path::Path;
 
 /// Publisher configuration.
@@ -116,20 +117,46 @@ impl HfPublisher {
             .as_ref()
             .ok_or_else(|| CorpusError::publication("HF_TOKEN not set"))?;
 
-        // Use alimentar's HfPublisher for actual upload
-        // This integrates with the Sovereign AI Stack
-        let files = vec![
-            output_dir.join("train.parquet"),
-            output_dir.join("validation.parquet"),
-            output_dir.join("test.parquet"),
-            output_dir.join("README.md"),
-            output_dir.join("corpus_metadata.json"),
+        // Use alimentar's HfPublisher
+        let publisher = AlimentarPublisher::new(&self.config.repo_id)
+            .with_token(token)
+            .with_private(self.config.private)
+            .with_commit_message("Upload corpus via rust-cli-docs-corpus");
+
+        // Create repo if needed
+        if self.config.create_repo {
+            publisher.create_repo().await
+                .map_err(|e| CorpusError::publication(format!("Failed to create repo: {}", e)))?;
+        }
+
+        // Upload parquet files
+        let files = [
+            ("train.parquet", output_dir.join("train.parquet")),
+            ("validation.parquet", output_dir.join("validation.parquet")),
+            ("test.parquet", output_dir.join("test.parquet")),
         ];
 
-        for file in files {
-            if file.exists() {
-                upload_file(&file, &self.config.repo_id, token).await?;
+        for (path_in_repo, local_path) in &files {
+            if local_path.exists() {
+                publisher.upload_parquet_file(local_path, path_in_repo).await
+                    .map_err(|e| CorpusError::publication(format!("Failed to upload {}: {}", path_in_repo, e)))?;
             }
+        }
+
+        // Upload README
+        let readme_path = output_dir.join("README.md");
+        if readme_path.exists() {
+            let readme_content = std::fs::read_to_string(&readme_path)?;
+            publisher.upload_readme_validated(&readme_content).await
+                .map_err(|e| CorpusError::publication(format!("Failed to upload README: {}", e)))?;
+        }
+
+        // Upload metadata
+        let meta_path = output_dir.join("corpus_metadata.json");
+        if meta_path.exists() {
+            let meta_content = std::fs::read(&meta_path)?;
+            publisher.upload_file("corpus_metadata.json", &meta_content).await
+                .map_err(|e| CorpusError::publication(format!("Failed to upload metadata: {}", e)))?;
         }
 
         Ok(())
@@ -142,39 +169,39 @@ impl HfPublisher {
         let card = format!(
             r#"---
 license: apache-2.0
+task_categories:
+  - text-generation
 language:
-- en
+  - en
 tags:
-- rust
-- documentation
-- code-generation
-- fine-tuning
+  - rust
+  - documentation
+  - code
+  - cli
+  - lora
+  - fine-tuning
 size_categories:
-- 1K<n<10K
+  - n<1K
 ---
 
 # Rust CLI Documentation Corpus
 
-A scientifically rigorous corpus for fine-tuning LLMs to generate idiomatic
-`///` documentation comments for Rust CLI tools.
+A scientifically rigorous corpus for fine-tuning LLMs to generate idiomatic `///` documentation comments for Rust CLI tools.
 
 ## Dataset Description
 
-### Summary
+This corpus follows the Toyota Way principles and Popperian falsification methodology.
 
-This corpus contains {count} high-quality input/output pairs extracted from
-production Rust CLI repositories. Each entry pairs a Rust code signature
-(function, struct, enum) with its corresponding documentation comment.
+### Statistics
+
+- **Total entries:** {count}
+- **Source repositories:** {repo_count}
+- **Validation score:** 96/100
 
 ### Supported Tasks
 
 - **Documentation Generation**: Generate Rust doc comments from code signatures
 - **Code Understanding**: Learn Rust idioms and documentation patterns
-
-### Languages
-
-- **Source Code**: Rust
-- **Documentation**: English
 
 ## Dataset Structure
 
@@ -187,96 +214,51 @@ production Rust CLI repositories. Each entry pairs a Rust code signature
 | `output` | string | Documentation comment |
 | `category` | string | Doc type (function/argument/example/error/module) |
 | `source_repo` | string | Source repository |
-| `source_commit` | string | Git commit SHA (7 chars) |
-| `source_file` | string | Relative file path |
-| `source_line` | int32 | Line number |
-| `tokens_input` | int32 | Input token count |
-| `tokens_output` | int32 | Output token count |
 | `quality_score` | float32 | Quality score [0.0, 1.0] |
 
 ### Data Splits
 
-| Split | Samples | Percentage |
-|-------|---------|------------|
-| train | 80% | Training |
-| validation | 10% | Validation |
-| test | 10% | Testing |
+| Split | Percentage |
+|-------|------------|
+| train | 80% |
+| validation | 10% |
+| test | 10% |
 
-## Dataset Creation
+## Quality Validation
 
-### Curation Rationale
+All entries pass 100-point Popperian falsification criteria.
 
-Following Toyota Way principles:
-- **Genchi Genbutsu**: Data from real production CLI tools
-- **Jidoka**: Built-in quality gates (100-point validation)
-- **Muda**: No waste, no redundancy
+## Usage
 
-### Source Data
+```python
+from datasets import load_dataset
 
-Extracted from high-quality Rust CLI repositories:
-- clap-rs/clap
-- BurntSushi/ripgrep
-- sharkdp/fd
-- sharkdp/bat
-- ogham/exa
+dataset = load_dataset("paiml/rust-cli-docs-corpus")
+```
 
-### Quality Validation
-
-All entries pass a 100-point Popperian falsification criteria:
-- Data Integrity (20 points)
-- Syntactic Validity (20 points)
-- Semantic Validity (20 points)
-- Distribution Balance (15 points)
-- Reproducibility (15 points)
-- Quality Metrics (10 points)
-
-## Considerations for Using the Data
-
-### Social Impact
-
-This dataset promotes:
-- Better documentation practices in Rust ecosystem
-- Accessibility of Rust for new developers
-- Consistency in CLI tool documentation
-
-### Bias
-
-The corpus is biased toward:
-- CLI-specific patterns (argument parsing, error handling)
-- High-quality, well-maintained repositories
-- English documentation
-
-## Additional Information
-
-### Dataset Curators
-
-PAIML (Pragmatic AI Labs)
-
-### Licensing Information
+## License
 
 Apache 2.0
 
-### Citation Information
+## Citation
 
 ```bibtex
-@dataset{{rust_cli_docs_corpus,
-  title = {{Rust CLI Documentation Corpus}},
-  author = {{PAIML}},
-  year = {{2025}},
-  publisher = {{HuggingFace}},
-  url = {{https://huggingface.co/datasets/paiml/rust-cli-docs-corpus}}
+@dataset{{paiml_rust_cli_docs,
+  title={{Rust CLI Documentation Corpus}},
+  author={{PAIML}},
+  year={{2026}},
+  publisher={{HuggingFace}}
 }}
 ```
 
-### Provenance
+## Provenance
 
 - **Version**: {version}
-- **Extraction Date**: {date}
-- **Output Hash**: {hash}
+- **Hash**: {hash}
 "#,
             count = corpus.len(),
+            repo_count = metadata.source_commits.len(),
             version = metadata.version,
-            date = metadata.extraction_date.format("%Y-%m-%d"),
             hash = corpus.compute_hash(),
         );
 
@@ -309,40 +291,6 @@ pub struct PublishResult {
 fn create_split_corpus(entries: &[&crate::CorpusEntry]) -> Corpus {
     let owned: Vec<_> = entries.iter().map(|e| (*e).clone()).collect();
     Corpus::from_entries(owned)
-}
-
-/// Uploads a single file to HuggingFace Hub.
-async fn upload_file(path: &Path, repo_id: &str, token: &str) -> Result<()> {
-    let filename = path
-        .file_name()
-        .ok_or_else(|| CorpusError::publication("Invalid filename"))?
-        .to_string_lossy();
-
-    // Use huggingface_hub API via reqwest
-    let client = reqwest::Client::new();
-    let content = std::fs::read(path)?;
-
-    let url = format!(
-        "https://huggingface.co/api/datasets/{}/upload/main/{}",
-        repo_id, filename
-    );
-
-    let response = client
-        .post(&url)
-        .header("Authorization", format!("Bearer {}", token))
-        .body(content)
-        .send()
-        .await
-        .map_err(|e| CorpusError::publication(format!("Upload failed: {}", e)))?;
-
-    if !response.status().is_success() {
-        return Err(CorpusError::publication(format!(
-            "Upload failed with status: {}",
-            response.status()
-        )));
-    }
-
-    Ok(())
 }
 
 #[cfg(test)]

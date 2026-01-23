@@ -1,0 +1,23 @@
+# ITP-SPEC-001: Tiny Model Training Config
+# Used for kernel overhead falsification experiment
+
+model:
+  path: /tmp/entrenar_tiny_test/dummy_model.json
+  layers: []
+  mode: transformer
+  config: /home/noah/src/HF-Advanced-Fine-Tuning/labs/tiny_model_config.json
+
+data:
+  train: /home/noah/src/HF-Advanced-Fine-Tuning/labs/tiny_train_data.json
+  batch_size: 4
+  seq_len: 32
+
+optimizer:
+  name: adam
+  lr: 0.001
+
+training:
+  epochs: 3
+  mode: causal_lm
+  warmup_steps: 0
+  output_dir: /tmp/entrenar_tiny_test

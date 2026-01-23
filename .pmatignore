@@ -1,0 +1,24 @@
+# PMAT Ignore File
+# Exclude directories and files from quality checks
+
+# Demo code - intentionally verbose for educational purposes
+demos/
+
+# Build artifacts
+target/
+corpus/target/
+
+# Generated files
+*.parquet
+*.safetensors
+*.gguf
+
+# Vendored dependencies
+.venv/
+
+# Documentation
+docs/images/
+
+# Mutation testing output
+mutants.out/
+mutants.out.old/

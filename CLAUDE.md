@@ -2,6 +2,27 @@
 
 Course 4: Advanced Fine-Tuning with Sovereign AI Stack
 
+## CRITICAL: No Python
+
+**Python is FORBIDDEN in this project.**
+
+All ML operations use the Sovereign AI Stack (pure Rust):
+- Fine-tuning → `entrenar`
+- Inference → `realizar`
+- Data processing → `alimentar`
+- Model operations → `apr-cli`
+
+Never suggest or use:
+- ❌ PyTorch, transformers, peft, bitsandbytes
+- ❌ pip install, conda, venv
+- ❌ Jupyter notebooks
+- ❌ HuggingFace Python SDK
+
+Always use:
+- ✅ Rust crates from the Sovereign AI Stack
+- ✅ Cargo for dependency management
+- ✅ TOML for configuration
+
 ## Project Structure
 
 ```

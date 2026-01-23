@@ -1,0 +1,27 @@
+# Production Fine-Tuning: Qwen2.5-Coder-1.5B-Instruct
+# RTX 4090 24GB - Conservative settings for full fine-tuning
+# ITP-SPEC-001: Production run after kernel overhead falsification
+
+model:
+  path: /home/noah/.cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a
+  layers: []
+  mode: transformer
+  config: /home/noah/.cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a/config.json
+
+data:
+  train: /home/noah/src/HF-Advanced-Fine-Tuning/labs/tiny_train_data.json
+  batch_size: 1
+  seq_len: 128
+  tokenizer: /home/noah/.cache/huggingface/hub/models--Qwen--Qwen2.5-Coder-1.5B-Instruct/snapshots/2e1fd397ee46e1388853d2af2c993145b0f1098a/tokenizer.json
+
+optimizer:
+  name: adamw
+  lr: 0.000001
+
+training:
+  epochs: 3
+  mode: causal_lm
+  warmup_steps: 2
+  grad_clip: 0.5
+  gradient_accumulation: 4
+  output_dir: /tmp/entrenar_qwen_1.5b_finetune

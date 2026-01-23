@@ -202,29 +202,29 @@
     <g transform="translate(25, 75)">
       <text x="0" y="0" class="label-small" style="fill:#ef4444">100-Point Falsification:</text>
 
-      <rect x="0" y="15" width="270" height="28" rx="4" fill="#1e293b"/>
-      <text x="10" y="33" class="code-small">Data Integrity</text>
-      <text x="230" y="33" text-anchor="end" class="stat">20 pts</text>
+      <rect x="0" y="15" width="270" height="26" rx="4" fill="#1e293b"/>
+      <text x="10" y="32" class="code-small">Data Integrity</text>
+      <text x="260" y="32" text-anchor="end" class="stat">20</text>
 
-      <rect x="0" y="48" width="270" height="28" rx="4" fill="#1e293b"/>
-      <text x="10" y="66" class="code-small">Syntactic Validity</text>
-      <text x="230" y="66" text-anchor="end" class="stat">20 pts</text>
+      <rect x="0" y="46" width="270" height="26" rx="4" fill="#1e293b"/>
+      <text x="10" y="63" class="code-small">Syntactic</text>
+      <text x="260" y="63" text-anchor="end" class="stat">20</text>
 
-      <rect x="0" y="81" width="270" height="28" rx="4" fill="#1e293b"/>
-      <text x="10" y="99" class="code-small">Semantic Validity</text>
-      <text x="230" y="99" text-anchor="end" class="stat">20 pts</text>
+      <rect x="0" y="77" width="270" height="26" rx="4" fill="#1e293b"/>
+      <text x="10" y="94" class="code-small">Semantic</text>
+      <text x="260" y="94" text-anchor="end" class="stat">20</text>
 
-      <rect x="0" y="114" width="270" height="28" rx="4" fill="#1e293b"/>
-      <text x="10" y="132" class="code-small">Distribution Balance</text>
-      <text x="230" y="132" text-anchor="end" class="stat">15 pts</text>
+      <rect x="0" y="108" width="270" height="26" rx="4" fill="#1e293b"/>
+      <text x="10" y="125" class="code-small">Distribution</text>
+      <text x="260" y="125" text-anchor="end" class="stat">15</text>
 
-      <rect x="0" y="147" width="270" height="28" rx="4" fill="#1e293b"/>
-      <text x="10" y="165" class="code-small">Reproducibility</text>
-      <text x="230" y="165" text-anchor="end" class="stat">15 pts</text>
+      <rect x="0" y="139" width="270" height="26" rx="4" fill="#1e293b"/>
+      <text x="10" y="156" class="code-small">Reproducibility</text>
+      <text x="260" y="156" text-anchor="end" class="stat">15</text>
 
-      <rect x="0" y="180" width="270" height="28" rx="4" fill="#1e293b"/>
-      <text x="10" y="198" class="code-small">Quality Metrics</text>
-      <text x="230" y="198" text-anchor="end" class="stat">10 pts</text>
+      <rect x="0" y="170" width="270" height="26" rx="4" fill="#1e293b"/>
+      <text x="10" y="187" class="code-small">Quality</text>
+      <text x="260" y="187" text-anchor="end" class="stat">10</text>
     </g>
 
     <!-- Pass threshold -->
@@ -273,10 +273,10 @@
   <g transform="translate(60, 470)">
     <text x="0" y="0" class="section-title" style="fill:#22c55e">CLI Commands (src/bin/cli.rs)</text>
 
-    <rect x="0" y="15" width="700" height="200" rx="12" fill="url(#cliGrad)" opacity="0.1" stroke="#22c55e" stroke-width="2"/>
+    <rect x="0" y="15" width="700" height="210" rx="12" fill="url(#cliGrad)" opacity="0.1" stroke="#22c55e" stroke-width="2"/>
 
     <!-- Commands grid -->
-    <g transform="translate(20, 40)">
+    <g transform="translate(20, 35)">
       <!-- Row 1 -->
       <rect x="0" y="0" width="155" height="35" rx="6" fill="#1e293b" stroke="#22c55e"/>
       <text x="77" y="22" text-anchor="middle" class="code">clone-sources</text>
@@ -317,16 +317,16 @@
       <text x="572" y="112" text-anchor="middle" class="code">debug-parse</text>
     </g>
 
-    <!-- Legend -->
-    <g transform="translate(20, 165)">
+    <!-- Legend - below the command grid -->
+    <g transform="translate(20, 175)">
       <rect x="0" y="0" width="12" height="12" rx="2" fill="#22c55e"/>
-      <text x="20" y="10" class="label-small">Core</text>
-      <rect x="80" y="0" width="12" height="12" rx="2" fill="#f59e0b"/>
-      <text x="100" y="10" class="label-small">Validation</text>
-      <rect x="180" y="0" width="12" height="12" rx="2" fill="#14b8a6"/>
-      <text x="200" y="10" class="label-small">Publish</text>
-      <rect x="270" y="0" width="12" height="12" rx="2" fill="#64748b"/>
-      <text x="290" y="10" class="label-small">Debug</text>
+      <text x="18" y="10" class="label-small">Core</text>
+      <rect x="70" y="0" width="12" height="12" rx="2" fill="#f59e0b"/>
+      <text x="88" y="10" class="label-small">Validation</text>
+      <rect x="170" y="0" width="12" height="12" rx="2" fill="#14b8a6"/>
+      <text x="188" y="10" class="label-small">Publish</text>
+      <rect x="260" y="0" width="12" height="12" rx="2" fill="#64748b"/>
+      <text x="278" y="10" class="label-small">Debug</text>
     </g>
   </g>
 
@@ -336,44 +336,43 @@
   <g transform="translate(800, 470)">
     <text x="0" y="0" class="section-title">Data Flow</text>
 
-    <rect x="0" y="15" width="560" height="200" rx="12" fill="#1e293b" stroke="#334155"/>
+    <rect x="0" y="15" width="560" height="170" rx="12" fill="#1e293b" stroke="#334155"/>
 
-    <g transform="translate(20, 45)">
-      <!-- Flow boxes -->
-      <rect x="0" y="0" width="100" height="50" rx="6" fill="#0f172a" stroke="#3b82f6"/>
-      <text x="50" y="22" text-anchor="middle" class="code-small" style="fill:#3b82f6">GitHub</text>
-      <text x="50" y="38" text-anchor="middle" class="code-small" style="fill:#3b82f6">Repos</text>
+    <g transform="translate(15, 40)">
+      <!-- Row 1: GitHub -> Extractor -> Filter -> Validator -->
+      <rect x="0" y="0" width="90" height="45" rx="6" fill="#0f172a" stroke="#3b82f6"/>
+      <text x="45" y="27" text-anchor="middle" class="code-small" style="fill:#3b82f6">GitHub</text>
 
-      <path d="M 110 25 L 130 25" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <path d="M 95 22 L 110 22" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
 
-      <rect x="140" y="0" width="100" height="50" rx="6" fill="#0f172a" stroke="#3b82f6"/>
-      <text x="190" y="30" text-anchor="middle" class="code-small" style="fill:#3b82f6">Extractor</text>
+      <rect x="115" y="0" width="90" height="45" rx="6" fill="#0f172a" stroke="#3b82f6"/>
+      <text x="160" y="27" text-anchor="middle" class="code-small" style="fill:#3b82f6">Extractor</text>
 
-      <path d="M 250 25 L 270 25" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <path d="M 210 22 L 225 22" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
 
-      <rect x="280" y="0" width="100" height="50" rx="6" fill="#0f172a" stroke="#f59e0b"/>
-      <text x="330" y="30" text-anchor="middle" class="code-small" style="fill:#f59e0b">Filter</text>
+      <rect x="230" y="0" width="90" height="45" rx="6" fill="#0f172a" stroke="#f59e0b"/>
+      <text x="275" y="27" text-anchor="middle" class="code-small" style="fill:#f59e0b">Filter</text>
 
-      <path d="M 390 25 L 410 25" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <path d="M 325 22 L 340 22" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
 
-      <rect x="420" y="0" width="100" height="50" rx="6" fill="#0f172a" stroke="#ef4444"/>
-      <text x="470" y="30" text-anchor="middle" class="code-small" style="fill:#ef4444">Validator</text>
+      <rect x="345" y="0" width="90" height="45" rx="6" fill="#0f172a" stroke="#ef4444"/>
+      <text x="390" y="27" text-anchor="middle" class="code-small" style="fill:#ef4444">Validator</text>
 
-      <!-- Second row -->
-      <path d="M 470 50 L 470 70 L 330 70 L 330 90" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <!-- Row 2: Corpus -> Publisher -> HF -->
+      <path d="M 390 45 L 390 60 L 160 60 L 160 75" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
 
-      <rect x="280" y="100" width="100" height="50" rx="6" fill="#0f172a" stroke="#7c3aed"/>
-      <text x="330" y="130" text-anchor="middle" class="code-small" style="fill:#7c3aed">Corpus</text>
+      <rect x="115" y="85" width="90" height="45" rx="6" fill="#0f172a" stroke="#7c3aed"/>
+      <text x="160" y="112" text-anchor="middle" class="code-small" style="fill:#7c3aed">Corpus</text>
 
-      <path d="M 390 125 L 410 125" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
+      <path d="M 210 107 L 225 107" stroke="#64748b" stroke-width="2" marker-end="url(#arrowhead)"/>
 
-      <rect x="420" y="100" width="100" height="50" rx="6" fill="#0f172a" stroke="#14b8a6"/>
-      <text x="470" y="130" text-anchor="middle" class="code-small" style="fill:#14b8a6">Publisher</text>
+      <rect x="230" y="85" width="90" height="45" rx="6" fill="#0f172a" stroke="#14b8a6"/>
+      <text x="275" y="112" text-anchor="middle" class="code-small" style="fill:#14b8a6">Publisher</text>
 
-      <!-- Output -->
-      <path d="M 470 150 L 470 170" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowhead-green)"/>
+      <path d="M 325 107 L 340 107" stroke="#22c55e" stroke-width="2" marker-end="url(#arrowhead-green)"/>
 
-      <text x="470" y="190" text-anchor="middle" class="label-small" style="fill:#22c55e">HuggingFace</text>
+      <rect x="345" y="85" width="90" height="45" rx="6" fill="#166534" stroke="#22c55e"/>
+      <text x="390" y="112" text-anchor="middle" class="code-small" style="fill:#22c55e">HF Hub</text>
     </g>
   </g>
 
@@ -421,42 +420,42 @@
 
     <rect x="0" y="15" width="600" height="300" rx="12" fill="#1e293b" stroke="#334155"/>
 
-    <g transform="translate(20, 45)">
+    <g transform="translate(25, 40)">
       <!-- Point 1 -->
-      <circle cx="10" cy="5" r="8" fill="#3b82f6"/>
-      <text x="10" y="9" text-anchor="middle" class="code-small" style="fill:#fff">1</text>
-      <text x="30" y="10" class="label" style="fill:#3b82f6">syn crate parsing</text>
-      <text x="30" y="28" class="code-small" style="fill:#94a3b8">Show extract_from_file() walking AST</text>
+      <circle cx="12" cy="8" r="10" fill="#3b82f6"/>
+      <text x="12" y="12" text-anchor="middle" class="code-small" style="fill:#fff">1</text>
+      <text x="35" y="5" class="label" style="fill:#3b82f6">syn crate parsing</text>
+      <text x="35" y="22" class="code-small" style="fill:#94a3b8">extract_from_file() walks AST</text>
 
       <!-- Point 2 -->
-      <circle cx="10" cy="55" r="8" fill="#f59e0b"/>
-      <text x="10" y="59" text-anchor="middle" class="code-small" style="fill:#fff">2</text>
-      <text x="30" y="60" class="label" style="fill:#f59e0b">Quality scoring heuristics</text>
-      <text x="30" y="78" class="code-small" style="fill:#94a3b8">score_entry(): base 0.6 + bonuses</text>
+      <circle cx="12" cy="53" r="10" fill="#f59e0b"/>
+      <text x="12" y="57" text-anchor="middle" class="code-small" style="fill:#fff">2</text>
+      <text x="35" y="50" class="label" style="fill:#f59e0b">Quality scoring</text>
+      <text x="35" y="67" class="code-small" style="fill:#94a3b8">score_entry(): base 0.6 + bonuses</text>
 
       <!-- Point 3 -->
-      <circle cx="10" cy="105" r="8" fill="#ef4444"/>
-      <text x="10" y="109" text-anchor="middle" class="code-small" style="fill:#fff">3</text>
-      <text x="30" y="110" class="label" style="fill:#ef4444">100-point falsification</text>
-      <text x="30" y="128" class="code-small" style="fill:#94a3b8">Run: cargo run falsify --input corpus.json</text>
+      <circle cx="12" cy="98" r="10" fill="#ef4444"/>
+      <text x="12" y="102" text-anchor="middle" class="code-small" style="fill:#fff">3</text>
+      <text x="35" y="95" class="label" style="fill:#ef4444">100-pt falsification</text>
+      <text x="35" y="112" class="code-small" style="fill:#94a3b8">cargo run falsify --input corpus.json</text>
 
       <!-- Point 4 -->
-      <circle cx="10" cy="155" r="8" fill="#22c55e"/>
-      <text x="10" y="159" text-anchor="middle" class="code-small" style="fill:#fff">4</text>
-      <text x="30" y="160" class="label" style="fill:#22c55e">Category balancing</text>
-      <text x="30" y="178" class="code-small" style="fill:#94a3b8">Filter enforces Fn:40% Arg:25% targets</text>
+      <circle cx="12" cy="143" r="10" fill="#22c55e"/>
+      <text x="12" y="147" text-anchor="middle" class="code-small" style="fill:#fff">4</text>
+      <text x="35" y="140" class="label" style="fill:#22c55e">Category balancing</text>
+      <text x="35" y="157" class="code-small" style="fill:#94a3b8">Fn:40% Arg:25% Ex:15% targets</text>
 
       <!-- Point 5 -->
-      <circle cx="10" cy="205" r="8" fill="#14b8a6"/>
-      <text x="10" y="209" text-anchor="middle" class="code-small" style="fill:#fff">5</text>
-      <text x="30" y="210" class="label" style="fill:#14b8a6">alimentar HF integration</text>
-      <text x="30" y="228" class="code-small" style="fill:#94a3b8">Pure Rust upload to HuggingFace Hub</text>
+      <circle cx="12" cy="188" r="10" fill="#14b8a6"/>
+      <text x="12" y="192" text-anchor="middle" class="code-small" style="fill:#fff">5</text>
+      <text x="35" y="185" class="label" style="fill:#14b8a6">alimentar integration</text>
+      <text x="35" y="202" class="code-small" style="fill:#94a3b8">Pure Rust HuggingFace upload</text>
 
       <!-- Point 6 -->
-      <circle cx="10" cy="255" r="8" fill="#7c3aed"/>
-      <text x="10" y="259" text-anchor="middle" class="code-small" style="fill:#fff">6</text>
-      <text x="30" y="260" class="label" style="fill:#7c3aed">Deterministic UUIDs</text>
-      <text x="30" y="278" class="code-small" style="fill:#94a3b8">UUID v5 from input+output for deduplication</text>
+      <circle cx="12" cy="233" r="10" fill="#7c3aed"/>
+      <text x="12" y="237" text-anchor="middle" class="code-small" style="fill:#fff">6</text>
+      <text x="35" y="230" class="label" style="fill:#7c3aed">Deterministic UUIDs</text>
+      <text x="35" y="247" class="code-small" style="fill:#94a3b8">UUID v5 for deduplication</text>
     </g>
   </g>
 
@@ -471,21 +470,21 @@
     <g transform="translate(15, 35)">
       <rect x="0" y="0" width="530" height="265" rx="6" fill="#0f172a"/>
 
-      <text x="10" y="22" class="code-small" style="fill:#94a3b8"># Extract from repos</text>
-      <text x="10" y="40" class="code" style="fill:#22c55e">$ cargo run extract --defaults --output corpus.json</text>
+      <text x="10" y="20" class="code-small" style="fill:#94a3b8"># Extract from repos</text>
+      <text x="10" y="38" class="code" style="fill:#22c55e">$ cargo run extract --defaults -o corpus.json</text>
 
-      <text x="10" y="70" class="code-small" style="fill:#94a3b8"># Run falsification</text>
-      <text x="10" y="88" class="code" style="fill:#22c55e">$ cargo run falsify --input corpus.json</text>
+      <text x="10" y="65" class="code-small" style="fill:#94a3b8"># Run falsification</text>
+      <text x="10" y="83" class="code" style="fill:#22c55e">$ cargo run falsify --input corpus.json</text>
 
-      <text x="10" y="118" class="code-small" style="fill:#94a3b8"># Show statistics</text>
-      <text x="10" y="136" class="code" style="fill:#22c55e">$ cargo run stats --input corpus.json</text>
+      <text x="10" y="110" class="code-small" style="fill:#94a3b8"># Show statistics</text>
+      <text x="10" y="128" class="code" style="fill:#22c55e">$ cargo run stats --input corpus.json</text>
 
-      <text x="10" y="166" class="code-small" style="fill:#94a3b8"># Interactive browse</text>
-      <text x="10" y="184" class="code" style="fill:#22c55e">$ cargo run inspect --input corpus.json</text>
+      <text x="10" y="155" class="code-small" style="fill:#94a3b8"># Interactive browse</text>
+      <text x="10" y="173" class="code" style="fill:#22c55e">$ cargo run inspect --input corpus.json</text>
 
-      <text x="10" y="214" class="code-small" style="fill:#94a3b8"># Publish to HuggingFace</text>
-      <text x="10" y="232" class="code" style="fill:#22c55e">$ cargo run publish --input corpus.json \</text>
-      <text x="10" y="250" class="code" style="fill:#22c55e">    --repo-id paiml/rust-cli-docs-corpus --upload</text>
+      <text x="10" y="200" class="code-small" style="fill:#94a3b8"># Publish to HuggingFace</text>
+      <text x="10" y="218" class="code" style="fill:#22c55e">$ cargo run publish --input corpus.json \</text>
+      <text x="10" y="236" class="code" style="fill:#22c55e">    --repo-id paiml/rust-cli-docs --upload</text>
     </g>
   </g>
 
