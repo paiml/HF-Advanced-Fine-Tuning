@@ -7,89 +7,44 @@ on:
     branches: [main]
 
 jobs:
-  docs:
-    name: Validate Documentation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check markdown syntax
-        uses: DavidAnson/markdownlint-cli2-action@v19
-        with:
-          globs: '**/*.md'
-        continue-on-error: true
-
-      - name: Check markdown links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          use-quiet-mode: 'yes'
-        continue-on-error: true
-
-  pmat:
-    name: PMAT Quality Gates
+  build:
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Install Rust toolchain
-        uses: dtolnay/rust-action@stable
+        uses: dtolnay/rust-toolchain@stable
 
-      - name: Install pmat
-        run: cargo install pmat --locked
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
 
-      - name: Run PMAT compliance check
-        run: pmat comply check
+      - name: Build Week 1 demos
+        run: cargo build --release --manifest-path demos/week1/Cargo.toml
 
-      - name: Run PMAT quality gates
-        run: pmat quality-gate || true
+      - name: Build Week 2 demos
+        run: cargo build --release --manifest-path demos/week2/Cargo.toml
 
-  validate-examples:
-    name: Validate Example Code
+      - name: Test Week 1 demos
+        run: cargo test --manifest-path demos/week1/Cargo.toml
+
+      - name: Test Week 2 demos
+        run: cargo test --manifest-path demos/week2/Cargo.toml
+
+  corpus:
+    name: Build Corpus
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Install Rust toolchain
-        uses: dtolnay/rust-action@stable
+        uses: dtolnay/rust-toolchain@stable
 
-      - name: Install apr-cli
-        run: cargo install apr-cli --locked
-        continue-on-error: true
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
 
-      - name: Check apr CLI available
-        run: apr --version || echo "apr-cli not installed"
+      - name: Build corpus crate
+        run: cargo build --release --manifest-path corpus/Cargo.toml
 
-  brick-score:
-    name: ComputeBrick Profiling
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-action@stable
-
-      - name: Install tools
-        run: |
-          cargo install apr-cli --locked || true
-          cargo install pmat --locked
-
-      - name: Run ComputeBrick profile (tiny tier for CI)
-        run: ./brick/profile.sh tiny
-        continue-on-error: true
-
-      - name: Calculate brick score
-        run: |
-          if ls brick/profiles/*.json 1> /dev/null 2>&1; then
-            LATEST=$(ls -t brick/profiles/*.json | head -1)
-            pmat brick-score --input "$LATEST" --threshold 50 || true
-          else
-            echo "No profile data available"
-          fi
-
-      - name: Upload profile artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: brick-profiles
-          path: brick/profiles/
-          if-no-files-found: ignore
+      - name: Test corpus crate
+        run: cargo test --manifest-path corpus/Cargo.toml
