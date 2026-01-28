@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 180">
+  <style>
+    .title { font: bold 24px system-ui, sans-serif; fill: #1e293b; }
+    .label { font: bold 15px system-ui, sans-serif; fill: white; }
+    .desc { font: 12px system-ui, sans-serif; fill: #64748b; }
+    .arrow { fill: #94a3b8; }
+  </style>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" class="title">Fine-Tuning Workflow</text>
+
+  <!-- Box 1: Import -->
+  <rect x="30" y="55" width="120" height="60" rx="8" fill="#0891b2"/>
+  <text x="90" y="92" text-anchor="middle" class="label">Import</text>
+  <text x="90" y="135" text-anchor="middle" class="desc">HuggingFace</text>
+
+  <!-- Arrow 1 -->
+  <polygon points="160,85 175,80 175,90" class="arrow"/>
+
+  <!-- Box 2: Train -->
+  <rect x="185" y="55" width="120" height="60" rx="8" fill="#eab308"/>
+  <text x="245" y="92" text-anchor="middle" class="label">Train</text>
+  <text x="245" y="135" text-anchor="middle" class="desc">LoRA / QLoRA</text>
+
+  <!-- Arrow 2 -->
+  <polygon points="315,85 330,80 330,90" class="arrow"/>
+
+  <!-- Box 3: Merge -->
+  <rect x="340" y="55" width="120" height="60" rx="8" fill="#dc2626"/>
+  <text x="400" y="92" text-anchor="middle" class="label">Merge</text>
+  <text x="400" y="135" text-anchor="middle" class="desc">Base + Adapter</text>
+
+  <!-- Arrow 3 -->
+  <polygon points="470,85 485,80 485,90" class="arrow"/>
+
+  <!-- Box 4: Inference -->
+  <rect x="495" y="55" width="120" height="60" rx="8" fill="#7c3aed"/>
+  <text x="555" y="92" text-anchor="middle" class="label">Inference</text>
+  <text x="555" y="135" text-anchor="middle" class="desc">apr run</text>
+
+  <!-- Arrow 4 -->
+  <polygon points="625,85 640,80 640,90" class="arrow"/>
+
+  <!-- Box 5: Export -->
+  <rect x="650" y="55" width="120" height="60" rx="8" fill="#16a34a"/>
+  <text x="710" y="92" text-anchor="middle" class="label">Export</text>
+  <text x="710" y="135" text-anchor="middle" class="desc">GGUF / SafeTensors</text>
+
+  <!-- Tagline -->
+  <text x="450" y="170" text-anchor="middle" class="desc">Pure Rust — no Python dependencies</text>
+</svg>
