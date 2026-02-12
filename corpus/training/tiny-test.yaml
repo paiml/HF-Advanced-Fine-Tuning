@@ -1,0 +1,27 @@
+# Tiny model test config for verifying training loop
+# Uses randomly initialized small model
+
+model:
+  path: "/tmp/tiny-model/model.safetensors"  # Will use random init
+  mode: transformer
+  config: "/tmp/tiny-model/config.json"
+
+data:
+  train: "/home/noah/src/HF-Advanced-Fine-Tuning/corpus/data/corpus/train_lm.jsonl"
+  tokenizer: "/home/noah/src/HF-Advanced-Fine-Tuning/corpus/models/qwen2.5-coder-1.5b-tokenizer.json"
+  batch_size: 4
+  seq_len: 32
+  input_column: text
+
+optimizer:
+  name: "adamw"
+  lr: 1e-3
+  weight_decay: 0.01
+
+training:
+  epochs: 2
+  mode: causal_lm
+  gradient_accumulation: 1
+  warmup_steps: 0
+  output_dir: "/tmp/tiny-test-output"
+  seed: 42
